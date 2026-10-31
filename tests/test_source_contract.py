@@ -57,6 +57,15 @@ class SourceContractTests(unittest.TestCase):
         self.assertIn("calibration raw Brier", self.source)
         self.assertIn("calibration adjusted Brier", self.source)
 
+    def test_standalone_report_imports_project_root(self):
+        report = APP.parent / "scripts" / "calibration_report.py"
+        source = report.read_text(encoding="utf-8")
+        tree = ast.parse(source, filename=str(report))
+        compile(source, str(report), "exec")
+        self.assertIn("sys.path.insert(0, str(ROOT))", source)
+        self.assertLess(source.index("sys.path.insert(0, str(ROOT))"),
+                        source.index("from calibration import"))
+
 
 if __name__ == "__main__":
     unittest.main()
