@@ -225,10 +225,10 @@ def show_card(model,home,away,data):
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
     best_name,best_prob=ranked_markets[0]
     if best_prob>=.75:
-        st.markdown(f'**Highest estimated probability:** {best_name} · **{best_prob:.1%}**')
+        st.markdown(f'**Highest estimated probability (unvalidated):** {best_name} · **{best_prob:.1%}**')
     else:
         st.markdown('**No strong pick** — none of the supported markets exceeds the 75% screening threshold.')
-    st.caption('Screening threshold is provisional, not validated confidence. These are mathematical estimates, not betting recommendations. Short odds can make high-probability outcomes poor value.')
+    st.caption('Not an expert-endorsed pick until independent backtesting passes. Screening threshold is provisional, not validated confidence. These are mathematical estimates, not betting recommendations. Short odds can make high-probability outcomes poor value.')
     with st.expander('Compare supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
@@ -261,7 +261,7 @@ with st.spinner('Loading football results and fixtures…'):
         current_names=set(new_results.HomeTeam)|set(new_results.AwayTeam)|set(upcoming.HomeTeam)|set(upcoming.AwayTeam)
         archive=raw.copy()
         for col in ('HomeTeam','AwayTeam'):
-            archive[col]=archive[col].map(lambda x:map_team(x,current_names))
+            archive[col]=archive[col].map(lambda x:map_team(x,current_names) or x)
         archive=archive.dropna(subset=['HomeTeam','AwayTeam'])
         raw=pd.concat([archive,new_results],ignore_index=True).sort_values('Date').drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last')
         data_source='open-matchday daily feed + OpenFootball archive'
@@ -340,6 +340,7 @@ with tab3:
                 c.metric('1X2 Brier ↓',f'{np.mean([r["brier"] for r in records]):.3f}')
                 d.metric('Log loss ↓',f'{np.mean([r["logloss"] for r in records]):.3f}')
                 st.caption(f'Train: {len(train)} matches before {cutoff.date()} · Test: {len(records)} matches from {cutoff.date()} · Exact-score hit: {np.mean([r["exact"] for r in records]):.1%}')
+                if len(records)<100:st.warning('Small holdout sample: treat market hit rates as exploratory, not reliable.')
                 rows=[]
                 for k,name in enumerate(markets):
                     ps=np.array([r['probs'][k] for r in records],dtype=float)
