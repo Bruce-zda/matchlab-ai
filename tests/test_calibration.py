@@ -1,7 +1,7 @@
 """Calibration contract tests. Synthetic data only; no live model promotion."""
 import unittest
 import numpy as np
-from calibration import fit_binary_calibrator, apply_binary_calibrator
+from calibration import fit_binary_calibrator, apply_binary_calibrator, chronological_calibration_report
 
 
 class CalibrationTests(unittest.TestCase):
@@ -25,6 +25,20 @@ class CalibrationTests(unittest.TestCase):
         params = fit_binary_calibrator(p, np.zeros(40))
         self.assertEqual(params, (0., 1.))
         np.testing.assert_allclose(apply_binary_calibrator(p, params), p, atol=1e-12)
+
+    def test_chronological_report_is_disjoint_and_non_promotional(self):
+        p = np.linspace(.1, .9, 100)
+        y = (np.arange(100) % 5 < (p * 5)).astype(float)
+        report = chronological_calibration_report(p, y)
+        self.assertEqual(report["calibration_train_n"], 65)
+        self.assertEqual(report["evaluation_n"], 35)
+        self.assertTrue(np.isfinite(report["raw_brier"]))
+        self.assertTrue(np.isfinite(report["calibrated_brier"]))
+        self.assertIsInstance(report["calibration_improved"], bool)
+
+    def test_chronological_report_rejects_short_series(self):
+        with self.assertRaises(ValueError):
+            chronological_calibration_report([.5] * 40, [0] * 40)
 
 
 if __name__ == "__main__":
