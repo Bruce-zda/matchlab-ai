@@ -63,6 +63,15 @@ class SourceContractTests(unittest.TestCase):
         self.assertIn("Research-stage assessment", self.source)
         self.assertNotIn("Expert-approved pick", self.source)
 
+    def test_history_window_and_validation_contract(self):
+        history = next(n for n in self.tree.body if isinstance(n, ast.FunctionDef) and n.name == "get_league")
+        source = ast.get_source_segment(self.source, history)
+        self.assertIn("range(year-7,year+1)", source)
+        self.assertIn("drop_duplicates", source)
+        self.assertIn("empty archive", source)
+        self.assertIn("valid_score_pair(row.FTHG,row.FTAG)", self.source)
+        self.assertIn("valid_team_pair(row.HomeTeam,row.AwayTeam)", self.source)
+
     def test_standalone_report_imports_project_root(self):
         report = APP.parent / "scripts" / "calibration_report.py"
         source = report.read_text(encoding="utf-8")
