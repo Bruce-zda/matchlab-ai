@@ -57,6 +57,12 @@ class SourceContractTests(unittest.TestCase):
         self.assertIn("calibration raw Brier", self.source)
         self.assertIn("calibration adjusted Brier", self.source)
 
+    def test_match_card_uses_evidence_aware_ranking(self):
+        self.assertIn("rank_model_outlooks(dc_probabilities,evidence_status)", self.source)
+        self.assertIn("No clear evidence-backed outlook", self.source)
+        self.assertIn("Descriptive probability only", self.source)
+        self.assertNotIn("Expert-approved pick", self.source)
+
     def test_standalone_report_imports_project_root(self):
         report = APP.parent / "scripts" / "calibration_report.py"
         source = report.read_text(encoding="utf-8")
