@@ -18,6 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from data_quality import valid_score_pair, valid_team_pair
 from elo_baseline import EloBaseline
+from bayesian_goals import BayesianGoals
 
 source = (ROOT / 'app.py').read_text()
 tree = ast.parse(source)
@@ -83,6 +84,7 @@ def run():
             if len(train) < 150 or len(test) < 20:
                 continue
             dc = namespace['fit_dc'](train)
+            bayesian = BayesianGoals().fit(train)
             elo = EloBaseline()
             for match in train.itertuples():
                 elo.observe(match.HomeTeam, match.AwayTeam, match.FTHG, match.FTAG)
@@ -93,8 +95,9 @@ def run():
                 _, _, grid = namespace['forecast'](dc, match.HomeTeam, match.AwayTeam)
                 dc_p = (float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum()))
                 elo_p = elo.predict(match.HomeTeam, match.AwayTeam)
+                bayesian_p = bayesian.predict(match.HomeTeam, match.AwayTeam)
                 actual = 0 if match.FTHG > match.FTAG else 1 if match.FTHG == match.FTAG else 2
-                for model, probabilities in (('Dixon-Coles', dc_p), ('Elo', elo_p)):
+                for model, probabilities in (('Dixon-Coles', dc_p), ('Elo', elo_p), ('Bayesian Goals', bayesian_p)):
                     brier, logloss = score(probabilities, actual)
                     rows.append({'league':league,'fold':fold,'date':match.Date.date().isoformat(),
                                  'home':match.HomeTeam,'away':match.AwayTeam,'model':model,
@@ -114,7 +117,7 @@ def run():
     summary = {'evaluation':'exploratory_frozen_chronological_folds_not_untouched',
                'models':grouped.reset_index().to_dict(orient='records'),
                'leagues':frame.league.nunique(),
-               'paired_fixtures':len(frame)//2,
+               'paired_fixtures':len(frame)//3,
                'data_errors':failures,
                'caveats':['Previously explored seasons; not an untouched holdout',
                           'Models frozen within each test fold',
@@ -122,7 +125,7 @@ def run():
                           'No bookmaker inputs']}
     (out/'model_comparison.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(json.dumps(summary,indent=2))
-    if frame.league.nunique()!=5 or len(frame)<400:
+    if frame.league.nunique()!=5 or len(frame)<600 or frame.groupby('model').size().nunique()!=1:
         raise SystemExit('Insufficient paired coverage')
 
 if __name__=='__main__':
