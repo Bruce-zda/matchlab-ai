@@ -31,12 +31,23 @@ jobs:
         run: python scripts/collect_forward.py --provider artifacts/forward_ledger.json
       - name: Verify append-only snapshot integrity
         run: python scripts/validate_forward_append.py artifacts/forward_ledger.json artifacts/forward_ledger.candidate.json
+      - name: Build and verify full-record integrity manifest
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          from forward_integrity import manifest,verify
+          ledger=json.loads(pathlib.Path('artifacts/forward_ledger.candidate.json').read_text())
+          proof=manifest(ledger)
+          verify(ledger,proof)
+          pathlib.Path('artifacts/forward_integrity.json').write_text(json.dumps(proof,indent=2)+'\\n')
+          print('Integrity digest:',proof['sha256'])
+          PY
       - name: Publish append-only pilot ledger
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           mv artifacts/forward_ledger.candidate.json artifacts/forward_ledger.json
-          git add artifacts/forward_ledger.json
+          git add artifacts/forward_ledger.json artifacts/forward_integrity.json artifacts/forward_coverage.json
           if git diff --cached --quiet; then
             echo 'No new pre-match forecasts to publish.'
             exit 0
@@ -60,4 +71,6 @@ jobs:
           path: |
             artifacts/forward_ledger.json
             artifacts/forward_ledger.candidate.json
+            artifacts/forward_integrity.json
+            artifacts/forward_coverage.json
           if-no-files-found: warn
