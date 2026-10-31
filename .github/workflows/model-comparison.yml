@@ -10,6 +10,9 @@ on:
       - 'app.py'
       - '.github/workflows/model-comparison.yml'
 
+permissions:
+  contents: write
+
 jobs:
   compare:
     runs-on: ubuntu-latest
@@ -23,6 +26,15 @@ jobs:
         run: python -m pip install 'numpy>=1.24,<3' 'pandas>=2.0' 'scipy>=1.11,<2' 'requests>=2.31'
       - name: Run paired chronological evaluation
         run: python scripts/model_comparison.py
+      - name: Publish model report for website
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add artifacts/model_comparison.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update public model comparison report'
+            git push
+          fi
       - name: Upload complete comparison evidence
         if: always()
         uses: actions/upload-artifact@v4
