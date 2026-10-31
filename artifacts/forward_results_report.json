@@ -1,13 +1,21 @@
 {
   "audit": {
-    "total_snapshots": 116,
+    "total_snapshots": 132,
     "newly_settled": 0,
     "already_settled": 0,
-    "awaiting_verified_result": 116,
-    "conflicting_provider_results": 0
+    "awaiting_verified_result": 132,
+    "conflicting_provider_results": 0,
+    "invalid_actual_kickoff": 0
   },
   "status": "pilot_forward_results_not_validated",
   "settled_forecasts": 0,
   "settled_fixtures": 0,
-  "models": []
+  "models": [],
+  "paired_comparison": {
+    "paired_fixtures": 0,
+    "status": "awaiting_paired_results",
+    "mean_brier_delta": null,
+    "mean_log_loss_delta": null,
+    "promotion_eligible": false
+  }
 }
