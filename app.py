@@ -441,6 +441,42 @@ def show_card(model,home,away,data):
     winner=['Home win','Draw','Away win'][int(np.argmax(probs))]
     safe_home,safe_away=html.escape(home),html.escape(away)
     st.markdown(f'<div class="match-card"><div class="label">MATCH CENTRE / PRE-MATCH</div><div class="fixture">{safe_home} <span style="color:#8b97a4">—</span> {safe_away}</div><div class="pick">Model lean: <b>{winner}</b> · {max(probs):.1%} estimated probability</div></div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">MatchLab assessment</div>',unsafe_allow_html=True)
+    under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
+    under35=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=3))
+    btts=float(grid[1:,1:].sum())
+    markets={
+        'Home win':probs[0], 'Draw':probs[1], 'Away win':probs[2],
+        'Home or draw (1X)':probs[0]+probs[1],
+        'Draw or away (X2)':probs[1]+probs[2],
+        'Home or away (12)':probs[0]+probs[2],
+        'Over 1.5 goals':1-float(grid[0,0]+grid[0,1]+grid[1,0]),
+        'Over 2.5 goals':1-under25,'Under 2.5 goals':under25,
+        'Under 3.5 goals':under35,
+        'Both teams to score — Yes':btts,
+        'Both teams to score — No':1-btts
+    }
+    # Descriptive market lean only: historical development folds are not an independent test.
+    ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
+    dc_candidates=[('Home or draw (1X)',probs[0]+probs[1]),('Draw or away (X2)',probs[1]+probs[2])]
+    dc_name,dc_prob=max(dc_candidates,key=lambda item:item[1])
+    close_dc=abs(dc_candidates[0][1]-dc_candidates[1][1])<.05
+    headline='No clear directional lean' if close_dc else dc_name
+    probability_text='Two options are closely matched' if close_dc else f'{dc_prob:.1%} estimated probability'
+    st.markdown(f'<div class="insight-card"><div class="insight-eyebrow">MatchLab outlook · preliminary</div><div class="insight-pick">{html.escape(headline)}</div><div class="insight-note">{html.escape(probability_text)}<br>Model estimate only — not a betting recommendation. No bookmaker odds or independently verified betting edge.</div></div>',unsafe_allow_html=True)
+    st.caption('1X and X2 each beat a training-only club benchmark in 13 of 15 development folds. These folds have already informed development; independent validation remains outstanding.')
+    st.markdown('**Compare double-chance probabilities**')
+    for market_name,probability in [('Home or draw · 1X',probs[0]+probs[1]),('Draw or away · X2',probs[1]+probs[2]),('Home or away · 12',probs[0]+probs[2])]:
+        st.markdown(f'<div class="prob-row"><span>{html.escape(market_name)}</span><strong>{probability:.1%}</strong></div><div class="prob-track"><div class="prob-fill" style="width:{max(0,min(100,probability*100)):.1f}%"></div></div>',unsafe_allow_html=True)
+    st.caption('Higher probability is not necessarily better value. An expert-approved pick requires independent evaluation and market odds.')
+    with st.expander('Explore all supported markets'):
+        st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
+
+    st.markdown('<div class="analysis-title">Outcome probabilities</div>',unsafe_allow_html=True)
+    a,b,c=st.columns(3)
+    a.metric('Home',f'{probs[0]:.1%}')
+    b.metric('Draw',f'{probs[1]:.1%}')
+    c.metric('Away',f'{probs[2]:.1%}')
     st.markdown('<div class="analysis-title">Match analysis</div>',unsafe_allow_html=True)
     home_form=team_stats(data,home)
     away_form=team_stats(data,away)
@@ -477,77 +513,34 @@ def show_card(model,home,away,data):
         reasons.append(f'At the relevant venues, {home} scored {home_venue["gf"]:.2f} per home match and {away} scored {away_venue["gf"]:.2f} per away match (up to five games each).')
     for reason in reasons:st.write(reason)
     st.caption('No verified lineups, injuries, live form feed or tactical assessment. Avoid interpreting this as a complete scouting report.')
-    st.markdown('<div class="analysis-title">MatchLab assessment</div>',unsafe_allow_html=True)
-    under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
-    under35=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=3))
-    btts=float(grid[1:,1:].sum())
-    markets={
-        'Home win':probs[0], 'Draw':probs[1], 'Away win':probs[2],
-        'Home or draw (1X)':probs[0]+probs[1],
-        'Draw or away (X2)':probs[1]+probs[2],
-        'Home or away (12)':probs[0]+probs[2],
-        'Over 1.5 goals':1-float(grid[0,0]+grid[0,1]+grid[1,0]),
-        'Over 2.5 goals':1-under25,'Under 2.5 goals':under25,
-        'Under 3.5 goals':under35,
-        'Both teams to score — Yes':btts,
-        'Both teams to score — No':1-btts
-    }
-    st.markdown('<div class="analysis-title">Double chance & Asian handicap</div>',unsafe_allow_html=True)
-    dc_rows=[
-        {'Market':'Home or draw · 1X','Model probability':f'{probs[0]+probs[1]:.1%}'},
-        {'Market':'Draw or away · X2','Model probability':f'{probs[1]+probs[2]:.1%}'},
-        {'Market':'Home or away · 12','Model probability':f'{probs[0]+probs[2]:.1%}'}
-    ]
-    st.dataframe(pd.DataFrame(dc_rows),hide_index=True,use_container_width=True)
-    st.caption('Double chance combines 1X2 outcomes; higher hit probability does not imply better betting value.')
-
-    side=st.radio('Asian handicap side',['Home','Away'],horizontal=True,key=f'ah_side_{home}_{away}')
-    handicap=st.select_slider('Handicap applied to selected team',options=[x/4 for x in range(-8,9)],value=0.0,key=f'ah_line_{home}_{away}')
-    selected_team=home if side=='Home' else away
-    st.markdown(f'**Selected handicap: {selected_team} {handicap:+.2f}**')
-    st.caption('A positive handicap gives the selected team a head start; a negative handicap requires a stronger result.')
-    def settle_line(diff,line):
-        adjusted=diff+line
-        if adjusted>1e-9:return 1.
-        if adjusted< -1e-9:return -1.
-        return 0.
-    def asian_settlement(diff,line):
-        # Quarter lines split the stake evenly between adjacent half-lines.
-        q=int(round(line*4))
-        if abs(q)%2==1:
-            return (settle_line(diff,line-.25)+settle_line(diff,line+.25))/2
-        return settle_line(diff,line)
-    settlement={'Full win':0.,'Half win':0.,'Push':0.,'Half loss':0.,'Full loss':0.}
-    for i in range(grid.shape[0]):
-        for j in range(grid.shape[1]):
-            diff=(i-j) if side=='Home' else (j-i)
-            value=asian_settlement(diff,handicap)
-            label={1.:'Full win',.5:'Half win',0.:'Push',-.5:'Half loss',-1.:'Full loss'}[value]
-            settlement[label]+=float(grid[i,j])
-    st.dataframe(pd.DataFrame([{'Settlement':key,'Estimated probability':f'{value:.1%}'} for key,value in settlement.items()]),hide_index=True,use_container_width=True)
-    st.caption(f'Estimated full-or-half-win probability: {settlement["Full win"]+settlement["Half win"]:.1%}; push probability: {settlement["Push"]:.1%}. Half-wins are not equivalent to full wins.')
-    st.caption('Quarter-goal lines split the stake between adjacent half-lines. A push returns the stake; half outcomes settle half the stake. These are unvalidated model estimates, not a recommended bet. Corners require a separate verified corner-statistics dataset.')
-    # Descriptive market lean only: historical development folds are not an independent test.
-    ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
-    dc_candidates=[('Home or draw (1X)',probs[0]+probs[1]),('Draw or away (X2)',probs[1]+probs[2])]
-    dc_name,dc_prob=max(dc_candidates,key=lambda item:item[1])
-    close_dc=abs(dc_candidates[0][1]-dc_candidates[1][1])<.05
-    headline='No clear directional lean' if close_dc else dc_name
-    probability_text='Two options are closely matched' if close_dc else f'{dc_prob:.1%} estimated probability'
-    st.markdown(f'<div class="insight-card"><div class="insight-eyebrow">MatchLab outlook · preliminary</div><div class="insight-pick">{html.escape(headline)}</div><div class="insight-note">{html.escape(probability_text)}<br>Model estimate only — not a betting recommendation. No bookmaker odds or independently verified betting edge.</div></div>',unsafe_allow_html=True)
-    st.caption('1X and X2 each beat a training-only club benchmark in 13 of 15 development folds. These folds have already informed development; independent validation remains outstanding.')
-    st.markdown('**Compare double-chance probabilities**')
-    for market_name,probability in [('Home or draw · 1X',probs[0]+probs[1]),('Draw or away · X2',probs[1]+probs[2]),('Home or away · 12',probs[0]+probs[2])]:
-        st.markdown(f'<div class="prob-row"><span>{html.escape(market_name)}</span><strong>{probability:.1%}</strong></div><div class="prob-track"><div class="prob-fill" style="width:{max(0,min(100,probability*100)):.1f}%"></div></div>',unsafe_allow_html=True)
-    st.caption('Higher probability is not necessarily better value. An expert-approved pick requires independent evaluation and market odds.')
-    with st.expander('Explore all supported markets'):
-        st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
-
-    st.markdown('<div class="analysis-title">Outcome probabilities</div>',unsafe_allow_html=True)
-    a,b,c=st.columns(3)
-    a.metric('Home',f'{probs[0]:.1%}')
-    b.metric('Draw',f'{probs[1]:.1%}')
-    c.metric('Away',f'{probs[2]:.1%}')
+    with st.expander('Asian handicap calculator · advanced'):
+        side=st.radio('Asian handicap side',['Home','Away'],horizontal=True,key=f'ah_side_{home}_{away}')
+        handicap=st.select_slider('Handicap applied to selected team',options=[x/4 for x in range(-8,9)],value=0.0,key=f'ah_line_{home}_{away}')
+        selected_team=home if side=='Home' else away
+        st.markdown(f'**Selected handicap: {selected_team} {handicap:+.2f}**')
+        st.caption('A positive handicap gives the selected team a head start; a negative handicap requires a stronger result.')
+        def settle_line(diff,line):
+            adjusted=diff+line
+            if adjusted>1e-9:return 1.
+            if adjusted< -1e-9:return -1.
+            return 0.
+        def asian_settlement(diff,line):
+            # Quarter lines split the stake evenly between adjacent half-lines.
+            q=int(round(line*4))
+            if abs(q)%2==1:
+                return (settle_line(diff,line-.25)+settle_line(diff,line+.25))/2
+            return settle_line(diff,line)
+        settlement={'Full win':0.,'Half win':0.,'Push':0.,'Half loss':0.,'Full loss':0.}
+        for i in range(grid.shape[0]):
+            for j in range(grid.shape[1]):
+                diff=(i-j) if side=='Home' else (j-i)
+                value=asian_settlement(diff,handicap)
+                label={1.:'Full win',.5:'Half win',0.:'Push',-.5:'Half loss',-1.:'Full loss'}[value]
+                settlement[label]+=float(grid[i,j])
+        st.dataframe(pd.DataFrame([{'Settlement':key,'Estimated probability':f'{value:.1%}'} for key,value in settlement.items()]),hide_index=True,use_container_width=True)
+        st.caption(f'Estimated full-or-half-win probability: {settlement["Full win"]+settlement["Half win"]:.1%}; push probability: {settlement["Push"]:.1%}. Half-wins are not equivalent to full wins.')
+        st.caption('Quarter-goal lines split the stake between adjacent half-lines. A push returns the stake; half outcomes settle half the stake. These are unvalidated model estimates, not a recommended bet. Corners require a separate verified corner-statistics dataset.')
+    st.caption('Asian handicap estimates are exploratory, not betting recommendations. Corners need verified event data.')
     top=sorted(((i,j,float(grid[i,j])) for i in range(grid.shape[0]) for j in range(grid.shape[1])),key=lambda x:x[2],reverse=True)[:3]
     st.write('**Likely scorelines:** '+' · '.join(f'{i}–{j} ({p:.1%})' for i,j,p in top))
     with st.expander('Full statistical breakdown'):
