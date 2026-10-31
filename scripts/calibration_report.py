@@ -22,6 +22,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from calibration import chronological_calibration_report
 from selection_policy import assess_calibration_gate
+from data_quality import valid_score_pair, valid_team_pair
 SOURCE = (ROOT / "app.py").read_text(encoding="utf-8")
 TREE = ast.parse(SOURCE)
 NAMES = {
@@ -41,6 +42,7 @@ namespace = {
     "dt": dt, "io": io, "re": re, "np": np, "pd": pd,
     "requests": requests, "minimize": minimize, "poisson": poisson,
     "chronological_calibration_report": chronological_calibration_report,
+    "valid_score_pair": valid_score_pair, "valid_team_pair": valid_team_pair,
     "LEAGUES": {
         "Premier League": "en.1", "La Liga": "es.1", "Serie A": "it.1",
         "Bundesliga": "de.1", "Ligue 1": "fr.1",
