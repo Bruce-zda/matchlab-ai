@@ -1,6 +1,7 @@
 import datetime as dt
 import io
 import html
+import re
 import numpy as np
 import pandas as pd
 import requests
@@ -97,6 +98,32 @@ def forecast(model,home_team,away_team,max_goals=12):
 
 LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1','Bundesliga':'de.1','Ligue 1':'fr.1'}
 TODAY=dt.date.today()
+
+OPEN_MATCHDAY='https://raw.githubusercontent.com/oladeeayo/open-matchday/master/data'
+FOLDERS={'en.1':'ENG_1_premier-league','es.1':'ESP_1_la-liga','it.1':'ITA_1_serie-a','de.1':'GER_1_bundesliga','fr.1':'FRA_1_ligue-1'}
+@st.cache_data(ttl=3600,show_spinner=False)
+def matchday_csv(code,kind):
+    url=f"{OPEN_MATCHDAY}/{FOLDERS[code]}/{kind}_2627.csv"
+    response=requests.get(url,timeout=20)
+    response.raise_for_status()
+    data=pd.read_csv(io.BytesIO(response.content))
+    for col in ('date','home','away'):
+        if col not in data:raise ValueError('Missing column '+col)
+    if kind=='results' and not {'ft_home','ft_away'}.issubset(data):raise ValueError('Missing result columns')
+    return pd.DataFrame({'Date':pd.to_datetime(data['date'],errors='coerce'),'HomeTeam':data['home'],'AwayTeam':data['away'],'FTHG':pd.to_numeric(data['ft_home'],errors='coerce') if 'ft_home' in data else np.nan,'FTAG':pd.to_numeric(data['ft_away'],errors='coerce') if 'ft_away' in data else np.nan}).dropna(subset=['Date','HomeTeam','AwayTeam'])
+def normalized(name):
+    name=str(name).lower().replace('&','and')
+    name=re.sub(r'[^a-z0-9]','',name)
+    aliases={'manutd':'manchesterunited','mancity':'manchestercity','spurs':'tottenhamhotspur','wolves':'wolverhamptonwanderers','newcastle':'newcastleunited','nottmforest':'nottinghamforest','psg':'parissaintgermain','inter':'internazionale','bayern':'bayernmunchen','leeds':'leedsunited','coventry':'coventrycity','hull':'hullcity'}
+    return aliases.get(name,name)
+def map_team(name,teams):
+    import difflib
+    keys={normalized(t):t for t in teams}
+    key=normalized(name)
+    if key in keys:return keys[key]
+    close=difflib.get_close_matches(key,list(keys),n=2,cutoff=.9)
+    return keys[close[0]] if len(close)==1 else None
+
 @st.cache_data(ttl=21600,show_spinner=False)
 def fetch_season(season,code):
     url=f'https://raw.githubusercontent.com/openfootball/football.json/master/{season}/{code}.json'
@@ -156,15 +183,30 @@ st.caption('Research prototype · Not betting advice · Estimates are not guaran
 league=st.selectbox('Choose league',list(LEAGUES))
 with st.spinner('Loading football results and fixtures…'):
     raw,errors=get_league(LEAGUES[league])
+    upcoming=pd.DataFrame()
+    data_source='OpenFootball (fallback)'
+    try:
+        new_results=matchday_csv(LEAGUES[league],'results')
+        upcoming=matchday_csv(LEAGUES[league],'fixtures')
+        current_names=set(new_results.HomeTeam)|set(new_results.AwayTeam)|set(upcoming.HomeTeam)|set(upcoming.AwayTeam)
+        archive=raw.copy()
+        for col in ('HomeTeam','AwayTeam'):
+            archive[col]=archive[col].map(lambda x:map_team(x,current_names))
+        archive=archive.dropna(subset=['HomeTeam','AwayTeam'])
+        raw=pd.concat([archive,new_results],ignore_index=True).sort_values('Date').drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last')
+        data_source='open-matchday daily feed + OpenFootball archive'
+    except Exception as exc:
+        st.warning(f'Open-matchday feed unavailable ({type(exc).__name__}); historical fallback in use.')
+
 if raw.empty:
     st.error('No football records available for this league.')
     st.stop()
 played=raw[(raw.Date.dt.date<TODAY)&raw.FTHG.notna()&raw.FTAG.notna()].copy()
-future=raw[(raw.Date.dt.date>=TODAY)&(raw.FTHG.isna()|raw.FTAG.isna())].copy()
+future=upcoming[upcoming.Date.dt.date>=TODAY].copy() if not upcoming.empty else raw[(raw.Date.dt.date>=TODAY)&(raw.FTHG.isna()|raw.FTAG.isna())].copy()
 last=played.Date.max().date() if not played.empty else None
 age=(TODAY-last).days if last else None
 freshness='CURRENT' if age is not None and age<=7 else 'DELAYED' if age is not None and age<=14 else 'STALE'
-st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures · Source: OpenFootball community dataset</div>',unsafe_allow_html=True)
+st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures · Source: {data_source}</div>',unsafe_allow_html=True)
 if age is not None and age>14:
     st.warning('⚠️ Results are stale. Forecasts may miss recent form; fixture dates are not independently verified.')
 elif age is not None and age>7:
@@ -184,7 +226,9 @@ with tab1:
         options=future.head(100).reset_index(drop=True)
         k=st.selectbox('Select fixture',range(len(options)),format_func=lambda i:f'{options.iloc[i].Date.date()} · {options.iloc[i].HomeTeam} vs {options.iloc[i].AwayTeam}')
         m=options.iloc[k]
-        if m.HomeTeam in teams and m.AwayTeam in teams:show_card(model,m.HomeTeam,m.AwayTeam)
+        h=map_team(m.HomeTeam,teams)
+        a=map_team(m.AwayTeam,teams)
+        if h and a and h!=a:show_card(model,h,a)
         else:st.info('One team has no recorded results yet.')
 with tab2:
     home=st.selectbox('Home team',teams)
@@ -217,4 +261,5 @@ with tab3:
                 st.write(f'Log loss: {metrics[:,2].mean():.3f}')
             else:st.error('No eligible test matches.')
         except Exception as e:st.error(f'Test failed: {e}')
-st.caption('Data: OpenFootball football.json (public domain). No paid API.')
+st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
+st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
