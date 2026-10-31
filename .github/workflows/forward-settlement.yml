@@ -1,0 +1,76 @@
+name: MatchLab forward results settlement
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 7,13,19 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: matchlab-forward-results-publisher
+  cancel-in-progress: false
+
+jobs:
+  settle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install 'requests>=2.31'
+      - name: Fetch verified match results
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: python scripts/fetch_forward_results.py
+      - name: Settle eligible forecasts
+        run: python scripts/settle_forward.py artifacts/forward_ledger.json artifacts/forward_provider_matches.json artifacts/forward_settlements.json
+      - name: Verify append-only settlement ledger
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          old=pathlib.Path('artifacts/forward_settlements.json')
+          candidate=pathlib.Path('artifacts/forward_settlements.candidate.json')
+          a=json.loads(old.read_text()) if old.exists() else []
+          b=json.loads(candidate.read_text())
+          if b[:len(a)]!=a:
+              raise SystemExit('Previously published settlements changed')
+          if len({r['snapshot_id'] for r in b})!=len(b):
+              raise SystemExit('Duplicate settlement identity')
+          print(f'Validated {len(a)} existing and {len(b)-len(a)} new settlements')
+          PY
+      - name: Publish verified settlement and pilot report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mv artifacts/forward_settlements.candidate.json artifacts/forward_settlements.json
+          git add artifacts/forward_settlements.json artifacts/forward_results_report.json
+          if git diff --cached --quiet; then
+            echo 'No new settlement or report changes'
+            exit 0
+          fi
+          git commit -m 'Update forward pilot settlement and performance report'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep 3
+          done
+          echo 'Could not publish settlement after retries' >&2
+          exit 1
+      - name: Upload settlement evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matchlab-forward-settlement-evidence
+          path: |
+            artifacts/forward_provider_matches.json
+            artifacts/forward_settlements.candidate.json
+            artifacts/forward_results_report.json
+          if-no-files-found: warn
