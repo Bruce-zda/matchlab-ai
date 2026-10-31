@@ -23,6 +23,12 @@ class ForwardSettlementTests(unittest.TestCase):
         settled,audit=reconcile(self.ledger,games)
         self.assertEqual(settled,[])
         self.assertEqual(audit['awaiting_verified_result'],1)
+    def test_rescheduled_kickoff_before_forecast_excluded(self):
+        match=dict(self.finished[0],utcDate='2026-10-31T13:00:00Z')
+        settled,audit=reconcile(self.ledger,[match])
+        self.assertEqual(settled,[])
+        self.assertEqual(audit['invalid_actual_kickoff'],1)
+
     def test_corrected_score_requires_review(self):
         settled,_=reconcile(self.ledger,self.finished)
         corrected=[{'id':123,'status':'FINISHED','score':{'fullTime':{'home':0,'away':2}}}]
