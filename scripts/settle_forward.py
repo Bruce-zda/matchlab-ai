@@ -9,6 +9,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from forward_validation import settle_snapshot,snapshot_id,utc_time
 from football_data_provider import finished_scores
+from paired_metrics import compare
 
 def reconcile(ledger,provider_matches,previous=None):
     previous=previous or []
@@ -87,6 +88,12 @@ def main():
     candidate=out_path.with_name(out_path.stem+'.candidate.json')
     candidate.write_text(json.dumps(settled,indent=2)+'\n')
     report=summary(ledger,settled)
+    pairs=compare(ledger,settled)
+    report['paired_comparison']={'paired_fixtures':len(pairs),
+        'status':'awaiting_paired_results' if not pairs else 'descriptive_only',
+        'mean_brier_delta':sum(r['brier_delta'] for r in pairs)/len(pairs) if pairs else None,
+        'mean_log_loss_delta':sum(r['log_loss_delta'] for r in pairs)/len(pairs) if pairs else None,
+        'promotion_eligible':False}
     (ROOT/'artifacts'/'forward_results_report.json').write_text(json.dumps(
         {'audit':audit,**report},indent=2)+'\n')
     print(json.dumps({'audit':audit,'report':report},indent=2))
