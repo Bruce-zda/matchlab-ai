@@ -132,7 +132,16 @@ div[data-testid="stMetricValue"]{font-size:1.35rem}
 }
 </style>""",unsafe_allow_html=True)
 st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE</span></div>',unsafe_allow_html=True)
-show_discover()
+section=st.sidebar.radio('MATCHLAB / NAVIGATION',
+    ['Discover','Prediction Studio','Model Lab'],
+    key='matchlab_navigation')
+if section=='Discover':
+    show_discover()
+    st.stop()
+if section=='Model Lab':
+    st.info('Model Lab includes the historical validation and forward performance sections below.')
+else:
+    st.caption('Prediction Studio · Match analysis, manual matchups and historical testing')
 st.divider()
 @st.cache_data(ttl=3600)
 def load_csv(upload):
