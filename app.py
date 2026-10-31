@@ -11,6 +11,7 @@ from scipy.stats import poisson
 from calibration import chronological_calibration_report
 from selection_policy import MarketEvidence, assess_market_evidence, describe_candidate, rank_model_outlooks
 from data_quality import valid_score_pair, valid_team_pair
+from odds_intelligence import SPORT_KEYS, compare_h2h
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -205,6 +206,19 @@ def matchday_csv(code,kind):
     if kind=='results':
         result=result[result.apply(lambda row:valid_score_pair(row.FTHG,row.FTAG),axis=1)]
     return result.drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last').sort_values('Date').reset_index(drop=True)
+@st.cache_data(ttl=900,show_spinner=False)
+def fetch_market_odds(sport_key,api_key):
+    response=requests.get(
+        f'https://api.the-odds-api.com/v4/sports/{sport_key}/odds/',
+        params={'apiKey':api_key,'regions':'eu','markets':'h2h','oddsFormat':'decimal'},
+        timeout=15,
+    )
+    response.raise_for_status()
+    payload=response.json()
+    if not isinstance(payload,list):
+        raise ValueError('Unexpected odds response')
+    return payload
+
 def normalized(name):
     name=str(name).lower().replace('&','and')
     name=re.sub(r'[^a-z0-9]','',name)
@@ -677,7 +691,24 @@ with tab1:
         m=options.iloc[k]
         h=map_team(m.HomeTeam,teams)
         a=map_team(m.AwayTeam,teams)
-        if h and a and h!=a:show_card(model,h,a,played)
+        if h and a and h!=a:
+            show_card(model,h,a,played)
+            with st.expander('Market intelligence · bookmaker comparison',expanded=False):
+                st.caption('Independent market prices only. Bookmaker odds never enter MatchLab’s forecasting model or expert selection.')
+                odds_key=st.secrets.get('ODDS_API_KEY','')
+                if not odds_key:
+                    st.info('Optional odds feed not connected. Add ODDS_API_KEY to Streamlit app secrets to enable bookmaker comparisons.')
+                elif st.button('Load current market prices',key='load_market_odds'):
+                    try:
+                        odds_events=fetch_market_odds(SPORT_KEYS[league],odds_key)
+                        odds_rows=compare_h2h(odds_events,h,a,m.Date.date(),normalized)
+                        if odds_rows:
+                            st.dataframe(pd.DataFrame(odds_rows),hide_index=True,use_container_width=True)
+                            st.caption('No-vig probabilities remove the displayed bookmaker margin; they are not model probabilities. Prices can change.')
+                        else:
+                            st.info('No unambiguous three-way bookmaker prices found for this fixture.')
+                    except (requests.RequestException,ValueError,KeyError) as exc:
+                        st.warning(f'Odds currently unavailable ({type(exc).__name__}). Model prediction is unaffected.')
         else:st.info('One team has no recorded results yet.')
 with tab2:
     home=st.selectbox('Home team',teams)
