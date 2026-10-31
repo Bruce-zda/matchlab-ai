@@ -434,6 +434,37 @@ def show_card(model,home,away,data):
         'Both teams to score — Yes':btts,
         'Both teams to score — No':1-btts
     }
+    st.markdown('<div class="analysis-title">Double chance & Asian handicap</div>',unsafe_allow_html=True)
+    dc_rows=[
+        {'Market':'Home or draw · 1X','Model probability':f'{probs[0]+probs[1]:.1%}'},
+        {'Market':'Draw or away · X2','Model probability':f'{probs[1]+probs[2]:.1%}'},
+        {'Market':'Home or away · 12','Model probability':f'{probs[0]+probs[2]:.1%}'}
+    ]
+    st.dataframe(pd.DataFrame(dc_rows),hide_index=True,use_container_width=True)
+    st.caption('Double chance combines 1X2 outcomes; higher hit probability does not imply better betting value.')
+
+    side=st.radio('Asian handicap side',['Home','Away'],horizontal=True,key='ah_side')
+    handicap=st.select_slider('Handicap applied to selected team',options=[x/4 for x in range(-8,9)],value=0.0,key='ah_line')
+    def settle_line(diff,line):
+        adjusted=diff+line
+        if adjusted>1e-9:return 1.
+        if adjusted< -1e-9:return -1.
+        return 0.
+    def asian_settlement(diff,line):
+        # Quarter lines split the stake evenly between adjacent half-lines.
+        q=int(round(line*4))
+        if abs(q)%2==1:
+            return (settle_line(diff,line-.25)+settle_line(diff,line+.25))/2
+        return settle_line(diff,line)
+    settlement={'Full win':0.,'Half win':0.,'Push':0.,'Half loss':0.,'Full loss':0.}
+    for i in range(grid.shape[0]):
+        for j in range(grid.shape[1]):
+            diff=(i-j) if side=='Home' else (j-i)
+            value=asian_settlement(diff,handicap)
+            label={1.:'Full win',.5:'Half win',0.:'Push',-.5:'Half loss',-1.:'Full loss'}[value]
+            settlement[label]+=float(grid[i,j])
+    st.dataframe(pd.DataFrame([{'Settlement':key,'Estimated probability':f'{value:.1%}'} for key,value in settlement.items()]),hide_index=True,use_container_width=True)
+    st.caption('Quarter-goal lines split the stake between adjacent half-lines. A push returns the stake; half outcomes settle half the stake. These are unvalidated model estimates, not a recommended bet. Corners require a separate verified corner-statistics dataset.')
     # High probability alone does not establish betting value or model calibration.
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
     best_name,best_prob=ranked_markets[0]
