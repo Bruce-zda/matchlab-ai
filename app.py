@@ -10,6 +10,7 @@ from scipy.optimize import minimize
 from scipy.stats import poisson
 from calibration import chronological_calibration_report
 from selection_policy import MarketEvidence, assess_market_evidence, describe_candidate, rank_model_outlooks
+from data_quality import valid_score_pair, valid_team_pair
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -199,7 +200,11 @@ def matchday_csv(code,kind):
     for col in ('date','home','away'):
         if col not in data:raise ValueError('Missing column '+col)
     if kind=='results' and not {'ft_home','ft_away'}.issubset(data):raise ValueError('Missing result columns')
-    return pd.DataFrame({'Date':pd.to_datetime(data['date'],errors='coerce'),'HomeTeam':data['home'],'AwayTeam':data['away'],'FTHG':pd.to_numeric(data['ft_home'],errors='coerce') if 'ft_home' in data else np.nan,'FTAG':pd.to_numeric(data['ft_away'],errors='coerce') if 'ft_away' in data else np.nan}).dropna(subset=['Date','HomeTeam','AwayTeam'])
+    result=pd.DataFrame({'Date':pd.to_datetime(data['date'],errors='coerce'),'HomeTeam':data['home'],'AwayTeam':data['away'],'FTHG':pd.to_numeric(data['ft_home'],errors='coerce') if 'ft_home' in data else np.nan,'FTAG':pd.to_numeric(data['ft_away'],errors='coerce') if 'ft_away' in data else np.nan}).dropna(subset=['Date','HomeTeam','AwayTeam'])
+    result=result[result.apply(lambda row:valid_team_pair(row.HomeTeam,row.AwayTeam),axis=1)].copy()
+    if kind=='results':
+        result=result[result.apply(lambda row:valid_score_pair(row.FTHG,row.FTAG),axis=1)]
+    return result.drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last').sort_values('Date').reset_index(drop=True)
 def normalized(name):
     name=str(name).lower().replace('&','and')
     name=re.sub(r'[^a-z0-9]','',name)
@@ -230,7 +235,11 @@ def fetch_season(season,code):
         if not isinstance(ft,list) or len(ft)<2:ft=[None,None]
         def name(v):return v.get('name',v.get('key','Unknown')) if isinstance(v,dict) else str(v)
         rows.append(dict(Date=date,HomeTeam=name(match.get('team1','')),AwayTeam=name(match.get('team2','')),FTHG=pd.to_numeric(ft[0],errors='coerce'),FTAG=pd.to_numeric(ft[1],errors='coerce')))
-    return pd.DataFrame(rows,columns=['Date','HomeTeam','AwayTeam','FTHG','FTAG'])
+    frame=pd.DataFrame(rows,columns=['Date','HomeTeam','AwayTeam','FTHG','FTAG'])
+    if frame.empty:return frame
+    frame=frame[frame.apply(lambda row:valid_team_pair(row.HomeTeam,row.AwayTeam),axis=1)]
+    frame=frame[frame.apply(lambda row:valid_score_pair(row.FTHG,row.FTAG),axis=1)]
+    return frame.drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last').reset_index(drop=True)
 @st.cache_data(ttl=21600,show_spinner=False)
 def get_league(code):
     year=TODAY.year if TODAY.month>=7 else TODAY.year-1
