@@ -151,6 +151,71 @@ def get_league(code):
 @st.cache_data(ttl=21600,show_spinner=False)
 def train_cached(df):
     return fit_dc(df)
+
+@st.cache_data(ttl=3600,show_spinner=False)
+def cross_league_evaluation():
+    output=[]
+    failures=[]
+    for league_name,code in LEAGUES.items():
+        try:
+            archive,_=get_league(code)
+            results=matchday_csv(code,'results')
+            fixtures=matchday_csv(code,'fixtures')
+            names=set(results.HomeTeam)|set(results.AwayTeam)|set(fixtures.HomeTeam)|set(fixtures.AwayTeam)
+            for col in ('HomeTeam','AwayTeam'):
+                archive[col]=archive[col].map(lambda x:map_team(x,names) or x)
+            data=pd.concat([archive,results],ignore_index=True).sort_values('Date').drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last')
+            data=data[(data.Date.dt.date<TODAY)&data.FTHG.notna()&data.FTAG.notna()].sort_values('Date').reset_index(drop=True)
+            if len(data)<150:raise ValueError('Fewer than 150 matches')
+            cutoff=data.iloc[int(len(data)*.8)].Date
+            training=data[data.Date<cutoff]
+            testing=data[data.Date>=cutoff]
+            if len(training)<100:raise ValueError('Insufficient training rows')
+            model=fit_dc(training)
+            yh=training.FTHG.to_numpy()
+            ya=training.FTAG.to_numpy()
+            outcomes=np.where(yh>ya,0,np.where(yh==ya,1,2))
+            baseline=np.bincount(outcomes,minlength=3)/len(outcomes)
+            train_total=yh+ya
+            market_baseline={
+                'Home win':baseline[0],'Draw':baseline[1],'Away win':baseline[2],
+                '1X':baseline[0]+baseline[1],'X2':baseline[1]+baseline[2],'12':baseline[0]+baseline[2],
+                'Over 1.5':float(np.mean(train_total>=2)),
+                'Over 2.5':float(np.mean(train_total>=3)),
+                'Under 2.5':float(np.mean(train_total<=2)),
+                'Under 3.5':float(np.mean(train_total<=3)),
+                'BTTS Yes':float(np.mean((yh>0)&(ya>0))),
+                'BTTS No':float(np.mean((yh==0)|(ya==0)))
+            }
+            samples=[]
+            for m in testing.itertuples():
+                if m.HomeTeam not in model[0] or m.AwayTeam not in model[0]:continue
+                _,_,g=forecast(model,m.HomeTeam,m.AwayTeam)
+                p=np.array([np.tril(g,-1).sum(),np.trace(g),np.triu(g,1).sum()])
+                result=0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2
+                total=int(m.FTHG+m.FTAG)
+                under25=float(sum(g[i,j] for i in range(g.shape[0]) for j in range(g.shape[1]) if i+j<=2))
+                under35=float(sum(g[i,j] for i in range(g.shape[0]) for j in range(g.shape[1]) if i+j<=3))
+                btts=float(g[1:,1:].sum())
+                values={'Home win':p[0],'Draw':p[1],'Away win':p[2],'1X':p[0]+p[1],'X2':p[1]+p[2],'12':p[0]+p[2],'Over 1.5':1-float(g[0,0]+g[0,1]+g[1,0]),'Over 2.5':1-under25,'Under 2.5':under25,'Under 3.5':under35,'BTTS Yes':btts,'BTTS No':1-btts}
+                actual={'Home win':result==0,'Draw':result==1,'Away win':result==2,'1X':result!=2,'X2':result!=0,'12':result!=1,'Over 1.5':total>=2,'Over 2.5':total>=3,'Under 2.5':total<=2,'Under 3.5':total<=3,'BTTS Yes':m.FTHG>0 and m.FTAG>0,'BTTS No':m.FTHG==0 or m.FTAG==0}
+                samples.append((result,p,values,actual))
+            if len(samples)<25:raise ValueError('Too few test fixtures')
+            actual_out=np.array([x[0] for x in samples])
+            probabilities=np.array([x[1] for x in samples])
+            model_brier=float(np.mean((probabilities-np.eye(3)[actual_out])**2))
+            base_brier=float(np.mean((baseline-np.eye(3)[actual_out])**2))
+            output.append({'League':league_name,'Market':'1X2 overall','Matches':len(samples),'Model Brier':model_brier,'Baseline Brier':base_brier,'Improvement':base_brier-model_brier,'Accuracy':float(np.mean(probabilities.argmax(axis=1)==actual_out)),'Cutoff':str(cutoff.date())})
+            for name,base in market_baseline.items():
+                ps=np.array([x[2][name] for x in samples],dtype=float)
+                ys=np.array([x[3][name] for x in samples],dtype=float)
+                mb=float(np.mean((ps-ys)**2))
+                bb=float(np.mean((base-ys)**2))
+                output.append({'League':league_name,'Market':name,'Matches':len(samples),'Model Brier':mb,'Baseline Brier':bb,'Improvement':bb-mb,'Accuracy':float(np.mean((ps>=.5)==ys)),'Cutoff':str(cutoff.date())})
+        except Exception as exc:
+            failures.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
+    return pd.DataFrame(output),failures
+
 def team_stats(data,team,venue=None,n=5):
     games=data[(data.HomeTeam==team)|(data.AwayTeam==team)].sort_values('Date',ascending=False)
     if venue=='home':games=games[games.HomeTeam==team]
@@ -286,7 +351,7 @@ if len(played)<100:
 with st.spinner('Fitting Dixon–Coles model…'):
     model=train_cached(played)
 teams=model[0]
-tab1,tab2,tab3=st.tabs(['Upcoming fixtures','Manual matchup','Historical test'])
+tab1,tab2,tab3,tab4=st.tabs(['Upcoming fixtures','Manual matchup','Historical test','All leagues'])
 with tab1:
     st.caption('Community-maintained fixture list · Confirm kick-off times independently.')
     if future.empty:st.info('No upcoming fixtures listed. Try manual matchup.')
@@ -372,6 +437,27 @@ with tab3:
                 st.caption('Brier: lower is better. The ≥75% threshold was not optimized on this test. High hit rate alone does not establish betting value; odds and independent validation are missing.')
                 export=pd.DataFrame([{k:v for k,v in r.items() if k not in ('probs','actuals')} for r in records])
                 st.download_button('Export holdout results',export.to_csv(index=False),file_name='matchlab_holdout.csv',mime='text/csv')
+with tab4:
+    st.subheader('Cross-league validation')
+    st.caption('One click evaluates all five leagues on separate chronological 80/20 holdouts. Each league is trained and tested independently.')
+    if st.button('Evaluate all five leagues',type='primary'):
+        with st.spinner('Loading and testing all competitions. This can take a few minutes…'):
+            evaluation,failures=cross_league_evaluation()
+        if failures:
+            for failure in failures:st.warning(failure)
+        if evaluation.empty:
+            st.error('No leagues could be evaluated. Check the data feeds.')
+        else:
+            overall=evaluation[evaluation.Market=='1X2 overall'].copy()
+            st.markdown('**Match result performance by league**')
+            st.dataframe(overall[['League','Matches','Accuracy','Model Brier','Baseline Brier','Improvement','Cutoff']].style.format({'Accuracy':'{:.1%}','Model Brier':'{:.3f}','Baseline Brier':'{:.3f}','Improvement':'+.3f'}),hide_index=True,use_container_width=True)
+            st.caption('Positive improvement means the model beats the simple historical-frequency baseline.')
+            detail=evaluation[evaluation.Market!='1X2 overall']
+            summary=detail.groupby('Market').agg(Leagues=('League','nunique'),Beats=('Improvement',lambda v:int((v>0).sum())),Mean_improvement=('Improvement','mean'),Total_matches=('Matches','sum')).reset_index()
+            st.markdown('**Market consistency across leagues**')
+            st.dataframe(summary,hide_index=True,use_container_width=True)
+            st.caption('Do not use this dashboard to tune thresholds on the same holdouts. Cross-league results are exploratory; rolling-origin testing and an untouched final test set are still required.')
+            st.download_button('Download cross-league results',evaluation.to_csv(index=False),file_name='matchlab_cross_league.csv',mime='text/csv')
 with st.expander('About the data and limitations'):
     st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
     st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
