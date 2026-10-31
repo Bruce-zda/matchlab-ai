@@ -39,7 +39,7 @@ jobs:
           ledger=json.loads(pathlib.Path('artifacts/forward_ledger.candidate.json').read_text())
           proof=manifest(ledger)
           verify(ledger,proof)
-          pathlib.Path('artifacts/forward_integrity.json').write_text(json.dumps(proof,indent=2)+'\\n')
+          pathlib.Path('artifacts/forward_integrity.json').write_text(json.dumps(proof,indent=2)+'\n')
           print('Integrity digest:',proof['sha256'])
           PY
       - name: Publish append-only pilot ledger
