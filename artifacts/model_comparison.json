@@ -908,6 +908,30 @@
       "observed_frequency": 0.5
     }
   ],
+  "hybrid_uncertainty": [
+    {
+      "metric": "brier",
+      "difference": -0.00037032933062678964,
+      "ci95_lower": -0.000934335265853547,
+      "ci95_upper": 0.00014605144159847644,
+      "blocks": 171,
+      "paired_fixtures": 5190,
+      "repetitions": 1000,
+      "method": "paired monthly blocks within each league",
+      "exploratory_only": true
+    },
+    {
+      "metric": "log_loss",
+      "difference": -0.002992432656255884,
+      "ci95_lower": -0.0062151053493320115,
+      "ci95_upper": 8.179263923043038e-05,
+      "blocks": 171,
+      "paired_fixtures": 5190,
+      "repetitions": 1000,
+      "method": "paired monthly blocks within each league",
+      "exploratory_only": true
+    }
+  ],
   "data_errors": [],
   "caveats": [
     "Previously explored seasons; not an untouched holdout",
@@ -915,6 +939,7 @@
     "Teams unseen in Dixon-Coles training excluded from both",
     "No bookmaker inputs",
     "50/50 blend is diagnostic only and not deployed",
-    "Calibration bins are descriptive, not a calibration fit"
+    "Calibration bins are descriptive, not a calibration fit",
+    "Block bootstrap intervals are exploratory and do not establish future superiority"
   ]
 }
