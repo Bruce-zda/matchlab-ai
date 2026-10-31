@@ -12,6 +12,7 @@ from calibration import chronological_calibration_report
 from selection_policy import MarketEvidence, assess_market_evidence, describe_candidate, rank_model_outlooks
 from data_quality import valid_score_pair, valid_team_pair
 from odds_intelligence import SPORT_KEYS, compare_h2h
+from model_performance import show_model_performance
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -902,6 +903,9 @@ with tab4:
             else:
                 st.info('Insufficient historical fold samples for the calibration experiment.')
             st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
+
+st.divider()
+show_model_performance()
 
 with st.expander('About the data and limitations'):
     st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
