@@ -334,7 +334,12 @@ def rolling_league_evaluation():
                 old_goal_brier=float(np.mean((old_goals-goal_truth)**2))
                 new_goal_brier=float(np.mean((new_goals-goal_truth)**2))
                 baseline_goal_brier=float(np.mean((goal_base-goal_truth)**2))
-                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier})
+                per_market={}
+                for idx,market in enumerate(('Over 1.5','Over 2.5','BTTS')):
+                    per_market[market+' current']=float(np.mean((old_goals[:,idx]-goal_truth[:,idx])**2))
+                    per_market[market+' challenger']=float(np.mean((new_goals[:,idx]-goal_truth[:,idx])**2))
+                    per_market[market+' baseline']=float(np.mean((goal_base[idx]-goal_truth[:,idx])**2))
+                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier,**per_market})
         except Exception as exc:
             errors.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
     return pd.DataFrame(results),errors
@@ -601,7 +606,17 @@ with tab4:
             goals_view=rolling[['League','Fold','Test matches','Current goals Brier','Challenger goals Brier','Goal baseline Brier','Challenger gain']].copy()
             st.dataframe(goals_view.style.format({'Current goals Brier':'{:.3f}','Challenger goals Brier':'{:.3f}','Goal baseline Brier':'{:.3f}','Challenger gain':'{:+.3f}'}),hide_index=True,use_container_width=True)
             gain_wins=int((rolling['Challenger gain']>0).sum())
-            st.info(f'Challenger improves goal Brier in {gain_wins}/{len(rolling)} folds. We will not promote it unless it consistently outperforms the existing model and baseline.')
+            baseline_wins=int((rolling['Challenger goals Brier']<rolling['Goal baseline Brier']).sum())
+            st.info(f'Challenger improves on the existing model in {gain_wins}/{len(rolling)} folds and beats the goals baseline in {baseline_wins}/{len(rolling)} folds. This is not yet sufficient to replace the live model.')
+            market_rows=[]
+            for market in ('Over 1.5','Over 2.5','BTTS'):
+                current=rolling[market+' current']
+                challenger=rolling[market+' challenger']
+                baseline_goals=rolling[market+' baseline']
+                market_rows.append({'Market':market,'Challenger beats current':int((challenger<current).sum()),'Challenger beats baseline':int((challenger<baseline_goals).sum()),'Total folds':len(rolling),'Average current Brier':float(current.mean()),'Average challenger Brier':float(challenger.mean()),'Average baseline Brier':float(baseline_goals.mean())})
+            st.markdown('**Goal-market breakdown**')
+            st.dataframe(pd.DataFrame(market_rows).style.format({'Average current Brier':'{:.3f}','Average challenger Brier':'{:.3f}','Average baseline Brier':'{:.3f}'}),hide_index=True,use_container_width=True)
+            st.caption('Exploratory diagnostic only. These historical folds have already influenced development; a separate untouched final test is necessary before promoting any challenger.')
 
             st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
 
