@@ -48,11 +48,11 @@ def show_model_performance():
                                   'mean_brier':'Brier score ↓','mean_log_loss':'Log loss ↓'})
     st.dataframe(view.style.format({'Brier score ↓':'{:.4f}','Log loss ↓':'{:.4f}'}),
                  hide_index=True, use_container_width=True)
-    if len(models)==2 and models['predictions'].nunique()==1:
+    if len(models)>=2 and models['predictions'].nunique()==1:
         brier_winner = models.loc[models.mean_brier.idxmin(),'model']
         log_winner = models.loc[models.mean_log_loss.idxmin(),'model']
         if brier_winner == log_winner:
-            st.caption(f'{brier_winner} has the lower exploratory scores on both metrics; this is not a final validated winner.')
+            st.caption(f'{brier_winner} has the lowest exploratory scores on both metrics; this is not a final validated winner.')
         else:
             st.caption('The metrics disagree on which model performed better. No clear exploratory leader.')
     for caveat in report.get('caveats',[]):
