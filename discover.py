@@ -149,6 +149,37 @@ def show_discover():
                                    for k in ('Home','Draw','Away')]
                         st.caption(f'Maximum model disagreement: {max(spreads):.1%} '
                                    'percentage points across the three outcomes.')
+                # Expert-style interpretation grounded exclusively in archived probabilities.
+                winner_index = max(range(3), key=lambda i: (h, d, a)[i])
+                labels = [f'{row.get("home", "Home")} win', 'Draw',
+                          f'{row.get("away", "Away")} win']
+                probs = (h, d, a)
+                ordered = sorted(probs, reverse=True)
+                margin = ordered[0] - ordered[1]
+                confidence = ('close contest' if margin < 0.08 else
+                              'moderate separation' if margin < 0.18 else
+                              'clear probability leader')
+                st.markdown('#### Expert analysis')
+                st.markdown(f'**Most likely result: {labels[winner_index]} — {probs[winner_index]:.1%}**')
+                st.caption('Highest-probability 1X2 outcome from the primary Dixon–Coles model; '
+                           'not a guaranteed result or a predicted exact score.')
+                st.write(f'The model assigns {h:.1%} to a home win, {d:.1%} to a draw '
+                         f'and {a:.1%} to an away win. This is a {confidence}: '
+                         f'the leading outcome is {margin:.1%} percentage points '
+                         'ahead of the next most likely outcome.')
+                if len(entries) > 1:
+                    leaders = []
+                    for item in entries:
+                        vals = (item['Home'], item['Draw'], item['Away'])
+                        leaders.append(max(range(3), key=lambda i: vals[i]))
+                    agreement = sum(i == winner_index for i in leaders)
+                    st.write(f'**Model consensus:** {agreement} of {len(entries)} archived models '
+                             'select the same most likely 1X2 outcome.')
+                    if agreement < len(entries):
+                        st.info('Models disagree on the leading outcome. Treat this '
+                                'forecast as less decisive.')
+                st.caption('Analysis uses archived model probabilities only. No injury, lineup, '
+                           'form or news claims are inferred without verified inputs.')
                 st.caption('Model probabilities are descriptive, not betting recommendations. '
                            'The hybrid is experimental and has not been promoted.')
     if len(candidates) > 24:
