@@ -1,32 +1,32 @@
 {
-  "date_utc": "2026-10-31T12:50:25.026843+00:00",
+  "date_utc": "2026-10-31T13:00:46.205623+00:00",
   "evaluation_type": "exploratory_rolling_historical_not_untouched",
   "folds": 15,
   "errors": [],
   "markets": {
     "1X": {
       "folds": 13,
-      "improved_folds": 9,
-      "mean_raw_brier": 0.19337835529003533,
-      "mean_calibrated_brier": 0.1922156317411997
+      "improved_folds": 6,
+      "mean_raw_brier": 0.19738859890035437,
+      "mean_calibrated_brier": 0.19764209756896203
     },
     "X2": {
       "folds": 13,
-      "improved_folds": 4,
-      "mean_raw_brier": 0.21596795474648128,
-      "mean_calibrated_brier": 0.2167261497376106
+      "improved_folds": 7,
+      "mean_raw_brier": 0.21737383713128075,
+      "mean_calibrated_brier": 0.21727468292833435
     },
     "12": {
       "folds": 13,
-      "improved_folds": 6,
-      "mean_raw_brier": 0.20300727858992043,
-      "mean_calibrated_brier": 0.2028854018104385
+      "improved_folds": 10,
+      "mean_raw_brier": 0.1980069049102913,
+      "mean_calibrated_brier": 0.1975692716071999
     }
   },
   "calibration_gate": {
-    "1X": "INCONSISTENT_CALIBRATION_GAIN",
-    "X2": "NO_CALIBRATION_GAIN",
-    "12": "INCONSISTENT_CALIBRATION_GAIN"
+    "1X": "NO_CALIBRATION_GAIN",
+    "X2": "INCONSISTENT_CALIBRATION_GAIN",
+    "12": "RESEARCH_CANDIDATE_ONLY"
   },
   "live_calibration_enabled": false
 }
