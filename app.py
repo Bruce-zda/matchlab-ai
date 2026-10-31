@@ -645,12 +645,6 @@ future=upcoming[upcoming.Date.dt.date>=TODAY].copy() if not upcoming.empty else 
 last=played.Date.max().date() if not played.empty else None
 age=(TODAY-last).days if last else None
 freshness='CURRENT' if age is not None and age<=7 else 'DELAYED' if age is not None and age<=14 else 'STALE'
-st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures</div>',unsafe_allow_html=True)
-if age is not None and age>14:
-    st.warning('⚠️ Results are stale. Forecasts may miss recent form; fixture dates are not independently verified.')
-elif age is not None and age>7:
-    st.info('Results are delayed. Confirm match schedules independently.')
-if errors:st.caption('Unavailable historical seasons: '+', '.join(errors))
 if len(played)<100:
     st.error('Insufficient completed matches to train the model.')
     st.stop()
@@ -854,3 +848,12 @@ with tab4:
 with st.expander('About the data and limitations'):
     st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
     st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
+
+st.divider()
+with st.expander(f'Data health · {freshness}', expanded=False):
+    st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures</div>',unsafe_allow_html=True)
+    if age is not None and age>14:
+        st.warning('⚠️ Results are stale. Forecasts may miss recent form; fixture dates are not independently verified.')
+    elif age is not None and age>7:
+        st.info('Results are delayed. Confirm match schedules independently.')
+    if errors:st.caption('Unavailable historical seasons: '+', '.join(errors))
