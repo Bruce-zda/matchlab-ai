@@ -1,7 +1,7 @@
 import unittest
 from selection_policy import (
     MarketEvidence, assess_market_evidence, assess_calibration_gate,
-    describe_candidate,
+    describe_candidate, rank_model_outlooks,
 )
 
 
@@ -38,6 +38,23 @@ class SelectionPolicyTests(unittest.TestCase):
     def test_rejects_invalid_probability(self):
         with self.assertRaises(ValueError):
             describe_candidate(float("nan"), "PRELIMINARY_SUPPORT")
+
+    def test_ranking_abstains_on_close_markets(self):
+        outcome = rank_model_outlooks(
+            {"1X": .80, "X2": .78},
+            {"1X": "PRELIMINARY_SUPPORT", "X2": "PRELIMINARY_SUPPORT"})
+        self.assertEqual(outcome["status"], "ABSTAIN")
+
+    def test_ranking_excludes_unsupported_markets(self):
+        outcome = rank_model_outlooks(
+            {"1X": .73, "X2": .95},
+            {"1X": "PRELIMINARY_SUPPORT", "X2": "NO_MODEL_ADVANTAGE"})
+        self.assertEqual(outcome["status"], "DESCRIPTIVE_OUTLOOK_ONLY")
+        self.assertEqual(outcome["ranking"][0][0], "1X")
+
+    def test_ranking_abstains_on_low_probability(self):
+        outcome = rank_model_outlooks({"1X": .52}, {"1X": "PRELIMINARY_SUPPORT"})
+        self.assertEqual(outcome["status"], "ABSTAIN")
 
 
 if __name__ == "__main__":
