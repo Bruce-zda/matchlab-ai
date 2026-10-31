@@ -14,6 +14,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: matchlab-model-comparison-publish
+  cancel-in-progress: false
+
 jobs:
   compare:
     runs-on: ubuntu-latest
@@ -34,7 +38,16 @@ jobs:
           git add artifacts/model_comparison.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update public model comparison report'
-            git push
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              if git rebase origin/main && git push origin HEAD:main; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep 3
+            done
+            echo 'Unable to publish after retries' >&2
+            exit 1
           fi
       - name: Upload complete comparison evidence
         if: always()
