@@ -55,6 +55,23 @@ def show_model_performance():
             st.caption(f'{brier_winner} has the lowest exploratory scores on both metrics; this is not a final validated winner.')
         else:
             st.caption('The metrics disagree on which model performed better. No clear exploratory leader.')
+    if report.get('league_metrics'):
+        st.markdown('**League-by-league comparison**')
+        league_view = pd.DataFrame(report['league_metrics'])
+        league_view = league_view.rename(columns={'league':'League','model':'Model',
+            'predictions':'Matches','mean_brier':'Brier ↓','mean_log_loss':'Log loss ↓'})
+        st.dataframe(league_view.style.format({'Brier ↓':'{:.4f}','Log loss ↓':'{:.4f}'}),
+                     hide_index=True,use_container_width=True)
+    if report.get('calibration_bins'):
+        st.markdown('**Probability reliability**')
+        st.caption('Predicted probability versus actual frequency in ten fixed bins. Sparse bins are noisy.')
+        bins = pd.DataFrame(report['calibration_bins'])
+        selected = st.selectbox('Reliability model',sorted(bins.model.unique()),key='reliability_model')
+        outcome = st.selectbox('Outcome',('home','draw','away'),key='reliability_outcome')
+        view_bins = bins[(bins.model==selected)&(bins.outcome==outcome)]
+        st.dataframe(view_bins[['mean_probability','observed_frequency','count']].rename(
+            columns={'mean_probability':'Predicted','observed_frequency':'Observed','count':'Matches'}
+        ).style.format({'Predicted':'{:.1%}','Observed':'{:.1%}'}),hide_index=True,use_container_width=True)
     for caveat in report.get('caveats',[]):
         st.caption('• '+str(caveat))
     st.caption('Reports are published by the GitHub evaluation workflow. Scores are not calculated from bookmaker odds.')
