@@ -55,6 +55,12 @@ def show_model_performance():
             st.caption(f'{brier_winner} has the lowest exploratory scores on both metrics; this is not a final validated winner.')
         else:
             st.caption('The metrics disagree on which model performed better. No clear exploratory leader.')
+    if report.get('hybrid_uncertainty'):
+        st.markdown('**Hybrid advantage: uncertainty check**')
+        st.caption('Paired monthly block bootstrap; intervals crossing zero mean the observed advantage is not clearly separated from sampling noise.')
+        uncertainty=pd.DataFrame(report['hybrid_uncertainty'])
+        st.dataframe(uncertainty[['metric','difference','ci95_lower','ci95_upper','paired_fixtures']].rename(columns={'metric':'Score','difference':'Hybrid minus DC','ci95_lower':'95% lower','ci95_upper':'95% upper','paired_fixtures':'Fixtures'}).style.format({'Hybrid minus DC':'{:+.5f}','95% lower':'{:+.5f}','95% upper':'{:+.5f}'}),hide_index=True,use_container_width=True)
+        st.caption('Exploratory intervals only: historical data was previously examined. Not evidence of future betting performance.')
     if report.get('league_metrics'):
         st.markdown('**League-by-league comparison**')
         league_view = pd.DataFrame(report['league_metrics'])
