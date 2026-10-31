@@ -256,14 +256,25 @@ def fetch_season(season,code):
     return frame.drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last').reset_index(drop=True)
 @st.cache_data(ttl=21600,show_spinner=False)
 def get_league(code):
+    """Load up to eight chronological seasons, preserving source gaps."""
     year=TODAY.year if TODAY.month>=7 else TODAY.year-1
     frames=[];errors=[]
-    for y in (year-2,year-1,year):
+    for y in range(year-7,year+1):
         season=f'{y}-{str(y+1)[-2:]}'
-        try:frames.append(fetch_season(season,code))
-        except Exception as e:errors.append(f'{season}: {type(e).__name__}')
-    if not frames:return pd.DataFrame(),errors
-    return pd.concat(frames,ignore_index=True).drop_duplicates(['Date','HomeTeam','AwayTeam']).sort_values('Date'),errors
+        try:
+            frame=fetch_season(season,code)
+            if frame.empty:
+                errors.append(f'{season}: empty archive')
+            else:
+                frames.append(frame)
+        except (requests.RequestException,ValueError,KeyError,TypeError) as exc:
+            errors.append(f'{season}: {type(exc).__name__}')
+    if not frames:
+        return pd.DataFrame(columns=['Date','HomeTeam','AwayTeam','FTHG','FTAG']),errors
+    history=pd.concat(frames,ignore_index=True)
+    history=history.drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last')
+    return history.sort_values('Date').reset_index(drop=True),errors
+
 @st.cache_data(ttl=21600,show_spinner=False)
 def train_cached(df):
     return fit_dc(df)
