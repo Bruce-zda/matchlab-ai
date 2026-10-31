@@ -1,3 +1,4 @@
+import datetime as dt
 import io
 import numpy as np
 import pandas as pd
@@ -6,9 +7,9 @@ import streamlit as st
 from scipy.optimize import minimize
 from scipy.stats import poisson
 
-st.set_page_config(page_title='MatchLab AI', page_icon='⚽', layout='wide')
-st.title('⚽ MatchLab AI')
-st.caption('Transparent football forecasts • Dixon–Coles baseline • not betting advice')
+st.set_page_config(page_title='MatchLab AI V2', page_icon='⚽', layout='wide')
+st.title('⚽ MatchLab AI V2')
+st.caption('Five leagues · automatic fixtures · transparent Dixon–Coles forecasts')
 
 @st.cache_data(ttl=3600)
 def load_csv(upload):
@@ -67,75 +68,121 @@ def forecast(model,home_team,away_team,max_goals=12):
     grid=np.maximum(grid,0);grid/=grid.sum()
     return lam,mu,grid
 
-st.info('Upload a legally usable historical results CSV. This app does not download third-party datasets automatically.')
-file=st.file_uploader('Historical match CSV',type=['csv'])
-if not file:
-    st.write('Required columns: `Date`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`. Include at least 100 completed matches from one competition. Dates should be day-first.')
+
+LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1','Bundesliga':'de.1','Ligue 1':'fr.1'}
+TODAY=dt.date.today()
+@st.cache_data(ttl=21600,show_spinner=False)
+def fetch_season(season,code):
+    url=f'https://raw.githubusercontent.com/openfootball/football.json/master/{season}/{code}.json'
+    response=requests.get(url,timeout=20)
+    response.raise_for_status()
+    payload=response.json()
+    games=payload.get('matches') or [m for r in payload.get('rounds',[]) for m in r.get('matches',[])]
+    rows=[]
+    for match in games:
+        date=pd.to_datetime(match.get('date'),errors='coerce')
+        if pd.isna(date):continue
+        score=match.get('score')
+        ft=score.get('ft') if isinstance(score,dict) else score if isinstance(score,list) else None
+        if isinstance(ft,dict):ft=[ft.get('home'),ft.get('away')]
+        if not isinstance(ft,list) or len(ft)<2:ft=[None,None]
+        def name(v):return v.get('name',v.get('key','Unknown')) if isinstance(v,dict) else str(v)
+        rows.append(dict(Date=date,HomeTeam=name(match.get('team1','')),AwayTeam=name(match.get('team2','')),FTHG=pd.to_numeric(ft[0],errors='coerce'),FTAG=pd.to_numeric(ft[1],errors='coerce')))
+    return pd.DataFrame(rows,columns=['Date','HomeTeam','AwayTeam','FTHG','FTAG'])
+@st.cache_data(ttl=21600,show_spinner=False)
+def get_league(code):
+    year=TODAY.year if TODAY.month>=7 else TODAY.year-1
+    frames=[];errors=[]
+    for y in (year-2,year-1,year):
+        season=f'{y}-{str(y+1)[-2:]}'
+        try:frames.append(fetch_season(season,code))
+        except Exception as e:errors.append(f'{season}: {type(e).__name__}')
+    if not frames:return pd.DataFrame(),errors
+    return pd.concat(frames,ignore_index=True).drop_duplicates(['Date','HomeTeam','AwayTeam']).sort_values('Date'),errors
+@st.cache_data(ttl=21600,show_spinner=False)
+def train_cached(df):
+    return fit_dc(df)
+def show_card(model,home,away):
+    lam,mu,grid=forecast(model,home,away)
+    probs=[float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum())]
+    winner=['Home win','Draw','Away win'][int(np.argmax(probs))]
+    st.subheader(f'{home} vs {away}')
+    st.info(f'Most likely outcome: **{winner}** ({max(probs):.1%}). Not a certainty.')
+    a,b,c=st.columns(3)
+    a.metric('Home win',f'{probs[0]:.1%}')
+    b.metric('Draw',f'{probs[1]:.1%}')
+    c.metric('Away win',f'{probs[2]:.1%}')
+    top=sorted(((i,j,float(grid[i,j])) for i in range(grid.shape[0]) for j in range(grid.shape[1])),key=lambda x:x[2],reverse=True)[:3]
+    st.write('**Top exact scores:** '+' · '.join(f'{i}–{j} ({p:.1%})' for i,j,p in top))
+    with st.expander('Advanced analysis'):
+        a,b=st.columns(2)
+        a.metric('Home expected goals',f'{lam:.2f}')
+        b.metric('Away expected goals',f'{mu:.2f}')
+        under=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
+        a.metric('Over 2.5 goals',f'{1-under:.1%}')
+        b.metric('Both teams score',f'{grid[1:,1:].sum():.1%}')
+        st.write('**Exact score probabilities** (home goals = rows)')
+        st.dataframe(pd.DataFrame(grid[:6,:6]).style.format('{:.1%}'),use_container_width=True)
+        st.caption('Time-decayed Dixon–Coles. No injuries, lineup changes, or live odds included.')
+
+st.warning('Research prototype, not betting advice. Community data may be incomplete or outdated.')
+league=st.selectbox('Choose league',list(LEAGUES))
+with st.spinner('Loading football results and fixtures…'):
+    raw,errors=get_league(LEAGUES[league])
+if raw.empty:
+    st.error('No football records available for this league.')
     st.stop()
-try: data=load_csv(file)
-except Exception as e:st.error(str(e));st.stop()
-if len(data)<100:st.error('Please provide at least 100 valid historical matches.');st.stop()
-
-st.sidebar.header('Controls')
-cutoff=st.sidebar.date_input('Training data through',value=data.Date.max().date(),min_value=data.Date.min().date(),max_value=data.Date.max().date())
-train=data[data.Date.dt.date<=cutoff].copy()
-if len(train)<100:st.error('Training window needs at least 100 matches.');st.stop()
-half_life=st.sidebar.slider('Recency half-life (days)',120,900,365,30)
+played=raw[(raw.Date.dt.date<TODAY)&raw.FTHG.notna()&raw.FTAG.notna()].copy()
+future=raw[(raw.Date.dt.date>=TODAY)&(raw.FTHG.isna()|raw.FTAG.isna())].copy()
+last=played.Date.max().date() if not played.empty else None
+st.caption(f'OpenFootball data · {len(played)} completed matches · {len(future)} upcoming fixtures listed · latest result {last}')
+if last and (TODAY-last).days>14:st.warning('Results may be stale; last recorded result is more than 14 days old.')
+if errors:st.caption('Unavailable historical seasons: '+', '.join(errors))
+if len(played)<100:
+    st.error('Insufficient completed matches to train the model.')
+    st.stop()
 with st.spinner('Fitting Dixon–Coles model…'):
-    model=fit_dc(train,half_life)
+    model=train_cached(played)
 teams=model[0]
-st.success(f'Model trained on {len(train):,} matches through {train.Date.max().date()} • {len(teams)} teams')
-
-tab1,tab2=st.tabs(['🔎 Select matchup','📅 Fixtures from uploaded CSV'])
+tab1,tab2,tab3=st.tabs(['Upcoming fixtures','Manual matchup','Historical test'])
 with tab1:
-    col1,col2=st.columns(2)
-    home=col1.selectbox('Home team',teams)
-    away=col2.selectbox('Away team',[t for t in teams if t!=home])
-with tab2:
-    future=data[(data.Date.dt.date>cutoff)&data.HomeTeam.isin(teams)&data.AwayTeam.isin(teams)]
-    st.caption('Fixtures shown here are only rows in your uploaded CSV after the training cutoff. Their results are hidden until evaluation; this is not a live fixture feed.')
-    if future.empty:st.write('No future rows found in the uploaded CSV. Live fixtures require a separately licensed API.')
+    st.caption('Community-maintained fixtures, not a verified live feed.')
+    if future.empty:st.info('No upcoming fixtures listed. Try manual matchup.')
     else:
-        labels=[f'{r.Date.date()} | {r.HomeTeam} vs {r.AwayTeam}' for r in future.itertuples()]
-        selection=st.selectbox('Select a held-out fixture',range(len(labels)),format_func=lambda i:labels[i])
-        if st.button('Analyse selected fixture'):
-            row=future.iloc[selection];st.session_state['fixture']=(row.HomeTeam,row.AwayTeam)
-if 'fixture' in st.session_state:
-    home,away=st.session_state['fixture']
-    st.caption('Using selected fixture; choose a new matchup in the selector to switch.')
-lam,mu,grid=forecast(model,home,away)
-probs=[float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum())]
-st.subheader(f'{home} vs {away}')
-a,b,c=st.columns(3)
-a.metric('Home win',f'{probs[0]:.1%}')
-b.metric('Draw',f'{probs[1]:.1%}')
-c.metric('Away win',f'{probs[2]:.1%}')
-st.write(f'**Expected goals:** {home} {lam:.2f} — {mu:.2f} {away}')
-under=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
-btts=float(grid[1:,1:].sum())
-st.write(f'**Over 2.5:** {1-under:.1%} · **Under 2.5:** {under:.1%} · **Both teams score:** {btts:.1%}')
-ranked=sorted(((i,j,float(grid[i,j])) for i in range(grid.shape[0]) for j in range(grid.shape[1])),key=lambda x:x[2],reverse=True)[:3]
-st.write('**Top 3 exact scores:** '+ ' · '.join(f'{i}–{j} ({p:.1%})' for i,j,p in ranked))
-st.caption('Probabilities are model estimates, not guarantees. The finite score grid is renormalized. No independent validation or profitability claim is made.')
-
-st.divider()
-st.subheader('🧪 Chronological holdout evaluation')
-st.write('To evaluate without leakage, choose an earlier training cutoff in the sidebar. All later matches in the uploaded CSV become the holdout set.')
-held=data[(data.Date.dt.date>cutoff)&data.HomeTeam.isin(teams)&data.AwayTeam.isin(teams)]
-if held.empty:st.info('No holdout matches. Move the training cutoff earlier to enable testing.')
-else:
-    records=[]
-    for row in held.itertuples():
-        _,_,g=forecast(model,row.HomeTeam,row.AwayTeam)
-        p=np.array([np.tril(g,-1).sum(),np.trace(g),np.triu(g,1).sum()])
-        actual=0 if row.FTHG>row.FTAG else 1 if row.FTHG==row.FTAG else 2
-        records.append({'Date':row.Date.date(),'Match':f'{row.HomeTeam}–{row.AwayTeam}', 'Actual': ['H','D','A'][actual], 'Prediction':['H','D','A'][int(p.argmax())], 'P(H)':p[0],'P(D)':p[1],'P(A)':p[2], 'Correct':int(p.argmax()==actual),'Brier':float(np.sum((p-np.eye(3)[actual])**2)/3),'Log loss':float(-np.log(max(p[actual],1e-12))), 'Exact score hit':int(np.argmax(g)==row.FTHG*g.shape[1]+row.FTAG)})
-    results=pd.DataFrame(records)
-    x,y,z,w=st.columns(4)
-    x.metric('1X2 accuracy',f'{results.Correct.mean():.1%}')
-    y.metric('Brier score ↓',f'{results.Brier.mean():.3f}')
-    z.metric('Log loss ↓',f'{results["Log loss"].mean():.3f}')
-    w.metric('Exact-score hit rate',f'{results["Exact score hit"].mean():.1%}')
-    st.caption(f'{len(results)} holdout matches • fixed model trained only before the cutoff • no retraining during holdout')
-    st.dataframe(results,hide_index=True,use_container_width=True)
-    st.download_button('Download evaluation CSV',results.to_csv(index=False).encode(),'matchlab_holdout.csv','text/csv')
+        options=future.head(100).reset_index(drop=True)
+        k=st.selectbox('Select fixture',range(len(options)),format_func=lambda i:f'{options.iloc[i].Date.date()} · {options.iloc[i].HomeTeam} vs {options.iloc[i].AwayTeam}')
+        m=options.iloc[k]
+        if m.HomeTeam in teams and m.AwayTeam in teams:show_card(model,m.HomeTeam,m.AwayTeam)
+        else:st.info('One team has no recorded results yet.')
+with tab2:
+    home=st.selectbox('Home team',teams)
+    away=st.selectbox('Away team',[t for t in teams if t!=home])
+    show_card(model,home,away)
+with tab3:
+    st.caption('80/20 chronological holdout. Historical accuracy is not betting profitability.')
+    if st.button('Run historical test'):
+        ordered=played.sort_values('Date').reset_index(drop=True)
+        cutoff=ordered.iloc[int(len(ordered)*0.8)].Date
+        train=ordered[ordered.Date<cutoff]
+        test=ordered[ordered.Date>=cutoff]
+        try:
+            held_model=fit_dc(train)
+            records=[]
+            for m in test.itertuples():
+                if m.HomeTeam not in held_model[0] or m.AwayTeam not in held_model[0]:continue
+                _,_,g=forecast(held_model,m.HomeTeam,m.AwayTeam)
+                p=np.array([np.tril(g,-1).sum(),np.trace(g),np.triu(g,1).sum()])
+                outcome=0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2
+                exact=int(np.unravel_index(np.argmax(g),g.shape)==(m.FTHG,m.FTAG))
+                records.append((int(np.argmax(p)==outcome),np.mean((p-np.eye(3)[outcome])**2),-np.log(max(p[outcome],1e-12)),exact))
+            if records:
+                metrics=np.array(records)
+                a,b,c,d=st.columns(4)
+                a.metric('Test matches',len(records))
+                b.metric('1X2 accuracy',f'{metrics[:,0].mean():.1%}')
+                c.metric('Brier score',f'{metrics[:,1].mean():.3f}')
+                d.metric('Exact score hit',f'{metrics[:,3].mean():.1%}')
+                st.write(f'Log loss: {metrics[:,2].mean():.3f}')
+            else:st.error('No eligible test matches.')
+        except Exception as e:st.error(f'Test failed: {e}')
+st.caption('Data: OpenFootball football.json (public domain). No paid API.')
