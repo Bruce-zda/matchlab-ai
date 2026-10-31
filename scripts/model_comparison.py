@@ -114,18 +114,63 @@ def run():
     grouped = frame.groupby('model').agg(predictions=('brier','size'),
                                         mean_brier=('brier','mean'),
                                         mean_log_loss=('log_loss','mean'))
+    # Diagnostic blend is prespecified 50/50; no weights are fitted on test outcomes.
+    key = ['league','fold','date','home','away','actual']
+    wide = frame.pivot(index=key, columns='model', values=['p_home','p_draw','p_away'])
+    if wide.isna().any().any():
+        raise RuntimeError('Missing predictions for a paired fixture')
+    blended = []
+    for outcome, probability in [('p_home',0),('p_draw',1),('p_away',2)]:
+        blended.append(0.5 * wide[(outcome,'Dixon-Coles')].to_numpy() +
+                       0.5 * wide[(outcome,'Bayesian Goals')].to_numpy())
+    blend = np.column_stack(blended)
+    actuals = wide.index.get_level_values('actual').to_numpy(dtype=int)
+    blend_brier = np.mean((blend - np.eye(3)[actuals])**2, axis=1)
+    blend_log = -np.log(np.clip(blend[np.arange(len(actuals)),actuals],1e-12,1))
+    blend_frame = wide.index.to_frame(index=False)
+    blend_frame['model'] = 'DC + Bayesian (50/50)'
+    blend_frame['p_home'],blend_frame['p_draw'],blend_frame['p_away'] = blend.T
+    blend_frame['brier'],blend_frame['log_loss'] = blend_brier,blend_log
+    frame = pd.concat([frame,blend_frame],ignore_index=True)
+    frame.to_csv(out/'model_comparison_predictions.csv',index=False)
+    grouped = frame.groupby('model').agg(predictions=('brier','size'),
+                                         mean_brier=('brier','mean'),
+                                         mean_log_loss=('log_loss','mean'))
+    league_summary = (frame.groupby(['league','model'])
+                      .agg(predictions=('brier','size'),mean_brier=('brier','mean'),
+                           mean_log_loss=('log_loss','mean'))
+                      .reset_index().to_dict(orient='records'))
+    # Reliability diagnostic: for each outcome, group predicted probabilities
+    # into fixed-width bins, then compare observed outcome frequency.
+    calibration = []
+    for model, subset in frame.groupby('model'):
+        for outcome, col in enumerate(('p_home','p_draw','p_away')):
+            for bin_index in range(10):
+                low = bin_index / 10
+                high = (bin_index+1) / 10
+                chosen = subset[(subset[col]>=low) & (subset[col]<high if bin_index<9 else subset[col]<=high)]
+                if len(chosen)==0:
+                    continue
+                calibration.append({'model':model,'outcome':('home','draw','away')[outcome],
+                                    'bin':bin_index,'count':len(chosen),
+                                    'mean_probability':float(chosen[col].mean()),
+                                    'observed_frequency':float((chosen.actual==outcome).mean())})
     summary = {'evaluation':'exploratory_frozen_chronological_folds_not_untouched',
                'models':grouped.reset_index().to_dict(orient='records'),
                'leagues':frame.league.nunique(),
-               'paired_fixtures':len(frame)//3,
+               'paired_fixtures':len(frame)//4,
+               'league_metrics':league_summary,
+               'calibration_bins':calibration,
                'data_errors':failures,
                'caveats':['Previously explored seasons; not an untouched holdout',
                           'Models frozen within each test fold',
                           'Teams unseen in Dixon-Coles training excluded from both',
-                          'No bookmaker inputs']}
+                          'No bookmaker inputs',
+                          '50/50 blend is diagnostic only and not deployed',
+                          'Calibration bins are descriptive, not a calibration fit']}
     (out/'model_comparison.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(json.dumps(summary,indent=2))
-    if frame.league.nunique()!=5 or len(frame)<600 or frame.groupby('model').size().nunique()!=1:
+    if frame.league.nunique()!=5 or len(frame)<800 or frame.groupby('model').size().nunique()!=1:
         raise SystemExit('Insufficient paired coverage')
 
 if __name__=='__main__':
