@@ -1,0 +1,31 @@
+name: MatchLab historical coverage audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/history_coverage.py'
+      - 'data_quality.py'
+      - '.github/workflows/history-coverage.yml'
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install feed dependency
+        run: python -m pip install 'requests>=2.31'
+      - name: Audit all five leagues
+        run: python scripts/history_coverage.py
+      - name: Upload auditable coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matchlab-history-coverage
+          path: artifacts/history_coverage.json
+          if-no-files-found: warn
