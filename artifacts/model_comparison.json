@@ -2,6 +2,12 @@
   "evaluation": "exploratory_frozen_chronological_folds_not_untouched",
   "models": [
     {
+      "model": "Bayesian Goals",
+      "predictions": 5190,
+      "mean_brier": 0.19921920922954098,
+      "mean_log_loss": 1.0011124995888874
+    },
+    {
       "model": "Dixon-Coles",
       "predictions": 5190,
       "mean_brier": 0.19825902863617417,
