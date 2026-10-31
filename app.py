@@ -99,6 +99,32 @@ div[data-testid="stMetricValue"]{font-size:1.35rem}
 .stTabs [data-baseweb="tab"]{font-size:.91rem;min-height:46px}
 [data-testid="stSelectbox"]>div,[data-testid="stRadio"]{min-height:44px}
 }
+
+/* MatchLab compact editorial match view */
+.match-card{padding:25px 27px;margin:12px 0 14px;border-radius:14px;box-shadow:none}
+.match-card .label,.insight-eyebrow{font-size:.66rem;letter-spacing:.16em}
+.match-card .fixture{margin:12px 0 15px;line-height:1.15}
+.fixture-divider{font-size:.55em;color:#8594a3;font-weight:550;vertical-align:middle;margin:0 .18em}
+.match-card .pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.85rem;color:#9baebf}
+.match-card .pick strong{color:#f3f5f7}
+.result-prob{margin-left:auto;background:#273a46;border:1px solid #3a4c57;border-radius:7px;padding:5px 9px;color:#f1c783;font-weight:800;font-variant-numeric:tabular-nums}
+.insight-card{padding:19px 23px;margin:12px 0 13px;background:#141d27}
+.insight-pick{font-size:clamp(1.18rem,3vw,1.55rem);line-height:1.2;margin:10px 0 7px}
+.insight-note{font-size:.87rem;line-height:1.45}
+.insight-foot{border-top:1px solid #2a3643;margin-top:13px;padding-top:10px;color:#8191a1;font-size:.73rem}
+.analysis-title{margin:20px 0 10px;font-size:1.08rem}
+.prob-row{margin:11px 0 6px}
+@media(max-width:650px){
+.block-container{padding:.85rem .9rem 3rem!important}
+.match-card{padding:18px 17px;margin:9px 0 12px}
+.match-card .fixture{font-size:clamp(1.42rem,6vw,1.85rem);margin:11px 0 13px}
+.match-card .pick{gap:6px;font-size:.81rem}
+.result-prob{margin-left:0}
+.insight-card{padding:17px;margin:10px 0}
+.insight-pick{font-size:1.28rem}
+.analysis-title{margin:16px 0 9px}
+[data-testid="stMarkdownContainer"] p{line-height:1.5}
+}
 </style>""",unsafe_allow_html=True)
 st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE</span></div>',unsafe_allow_html=True)
 @st.cache_data(ttl=3600)
@@ -455,8 +481,12 @@ def show_card(model,home,away,data):
     probs=[float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum())]
     winner=['Home win','Draw','Away win'][int(np.argmax(probs))]
     safe_home,safe_away=html.escape(home),html.escape(away)
-    st.markdown(f'<div class="match-card"><div class="label">MATCH CENTRE / PRE-MATCH</div><div class="fixture">{safe_home} <span style="color:#8b97a4">—</span> {safe_away}</div><div class="pick">Model lean: <b>{winner}</b> · {max(probs):.1%} estimated probability</div></div>',unsafe_allow_html=True)
-    st.markdown('<div class="analysis-title">MatchLab assessment</div>',unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="match-card"><div class="label">MATCH PREVIEW</div>'
+        f'<div class="fixture">{safe_home} <span class="fixture-divider">vs</span> {safe_away}</div>'
+        f'<div class="pick">Most likely result <strong>{winner}</strong>'
+        f'<span class="result-prob">{max(probs):.1%}</span></div></div>',
+        unsafe_allow_html=True)
     under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
     under35=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=3))
     btts=float(grid[1:,1:].sum())
@@ -485,18 +515,25 @@ def show_card(model,home,away,data):
     }
     outlook = rank_model_outlooks(dc_probabilities,evidence_status)
     if outlook['status'] == 'ABSTAIN':
-        headline='No clear evidence-backed outlook'
-        probability_text=outlook['reason']
+        confidence_label='No clear market advantage'
+        confidence_detail='The strongest supported markets are closely matched.'
     else:
-        headline,ranked_probability=outlook['ranking'][0]
-        probability_text=f'{ranked_probability:.1%} model probability · preliminary'
-    st.markdown(f'<div class="insight-card"><div class="insight-eyebrow">MatchLab outlook · research stage</div><div class="insight-pick">{html.escape(headline)}</div><div class="insight-note">{html.escape(probability_text)}<br>Descriptive probability only — no verified odds, independent final test, or betting recommendation.</div></div>',unsafe_allow_html=True)
-    st.caption('Screening uses exploratory development-fold summaries (1X and X2: 13/15; 12: 10/15 against club baseline). These are not independent final evidence and do not establish betting value.')
+        ranked_name,ranked_probability=outlook['ranking'][0]
+        confidence_label='Preliminary market outlook'
+        confidence_detail=f'{ranked_name} · {ranked_probability:.1%} estimated probability'
+    st.markdown(
+        f'<div class="insight-card"><div class="insight-eyebrow">MODEL ASSESSMENT</div>'
+        f'<div class="insight-pick">{html.escape(confidence_label)}</div>'
+        f'<div class="insight-note">{html.escape(confidence_detail)}</div>'
+        f'<div class="insight-foot">Research-stage assessment · not a verified betting edge</div></div>',
+        unsafe_allow_html=True)
+    with st.expander('How this assessment is evaluated'):
+        st.caption('Double-chance screening uses exploratory historical folds. 1X and X2 beat the club baseline in 13/15 folds; 12 in 10/15. These folds informed development, so independent validation remains necessary. No bookmaker odds are available to assess betting value.')
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
     st.markdown('**Compare double-chance probabilities**')
     for market_name,probability in [('Home or draw · 1X',probs[0]+probs[1]),('Draw or away · X2',probs[1]+probs[2]),('Home or away · 12',probs[0]+probs[2])]:
         st.markdown(f'<div class="prob-row"><span>{html.escape(market_name)}</span><strong>{probability:.1%}</strong></div><div class="prob-track"><div class="prob-fill" style="width:{max(0,min(100,probability*100)):.1f}%"></div></div>',unsafe_allow_html=True)
-    st.caption('Higher probability is not necessarily better value. An expert-approved pick requires independent evaluation and market odds.')
+    st.caption('Probabilities describe outcomes, not betting value.')
     with st.expander('Explore all supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
