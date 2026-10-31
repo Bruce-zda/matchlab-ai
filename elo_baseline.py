@@ -38,8 +38,8 @@ class EloBaseline:
         self.ratings[home] = hr + change
         self.ratings[away] = ar - change
         # Expanding historical draw estimate, used only on subsequent matches.
-        self.draw_rate = ((self.draw_rate * max(self.matches, 1)) +
-                          (1.0 if home_goals == away_goals else 0.0)) / (max(self.matches, 1) + 1)
+        self.draw_rate = ((self.draw_rate * (self.matches + 50)) +
+                          (1.0 if home_goals == away_goals else 0.0)) / (self.matches + 51)
         self.matches += 1
 
 def evaluate_elo(matches, warmup=100):
