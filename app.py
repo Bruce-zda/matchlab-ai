@@ -472,8 +472,8 @@ def show_card(model,home,away,data):
     st.dataframe(pd.DataFrame(dc_rows),hide_index=True,use_container_width=True)
     st.caption('Double chance combines 1X2 outcomes; higher hit probability does not imply better betting value.')
 
-    side=st.radio('Asian handicap side',['Home','Away'],horizontal=True,key='ah_side')
-    handicap=st.select_slider('Handicap applied to selected team',options=[x/4 for x in range(-8,9)],value=0.0,key='ah_line')
+    side=st.radio('Asian handicap side',['Home','Away'],horizontal=True,key=f'ah_side_{home}_{away}')
+    handicap=st.select_slider('Handicap applied to selected team',options=[x/4 for x in range(-8,9)],value=0.0,key=f'ah_line_{home}_{away}')
     selected_team=home if side=='Home' else away
     st.markdown(f'**Selected handicap: {selected_team} {handicap:+.2f}**')
     st.caption('A positive handicap gives the selected team a head start; a negative handicap requires a stronger result.')
