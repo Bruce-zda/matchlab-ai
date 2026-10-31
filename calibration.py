@@ -47,3 +47,32 @@ def apply_binary_calibrator(probabilities, parameters):
         raise ValueError("Invalid forecast probabilities")
     intercept, slope = parameters
     return expit(intercept + slope * logit(np.clip(p, 1e-6, 1 - 1e-6)))
+
+
+def chronological_calibration_report(probabilities, outcomes, train_fraction=0.65):
+    """Evaluate a frozen calibrator on a later, disjoint chronological segment.
+
+    Inputs must already be sorted by event time and represent out-of-sample
+    predictions from models trained before each event. Do not pass in-sample
+    fitted probabilities. This function never modifies the live predictor.
+    """
+    p = np.asarray(probabilities, dtype=float)
+    y = np.asarray(outcomes, dtype=float)
+    if p.ndim != 1 or y.ndim != 1 or p.shape != y.shape or len(p) < 60:
+        raise ValueError("Need at least 60 chronologically ordered forecast/outcome pairs")
+    if not 0.5 <= train_fraction <= 0.8:
+        raise ValueError("Training fraction must be between 0.5 and 0.8")
+    cut = int(len(p) * train_fraction)
+    params = fit_binary_calibrator(p[:cut], y[:cut])
+    held_raw = p[cut:]
+    held_calibrated = apply_binary_calibrator(held_raw, params)
+    held_truth = y[cut:]
+    return {
+        "calibration_train_n": cut,
+        "evaluation_n": len(held_truth),
+        "raw_brier": float(np.mean((held_raw - held_truth) ** 2)),
+        "calibrated_brier": float(np.mean((held_calibrated - held_truth) ** 2)),
+        "parameters": params,
+        "calibration_improved": bool(np.mean((held_calibrated - held_truth) ** 2) <
+                                     np.mean((held_raw - held_truth) ** 2)),
+    }
