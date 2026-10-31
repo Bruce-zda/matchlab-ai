@@ -1,5 +1,6 @@
 import datetime as dt
 import io
+import html
 import numpy as np
 import pandas as pd
 import requests
@@ -8,8 +9,33 @@ from scipy.optimize import minimize
 from scipy.stats import poisson
 
 st.set_page_config(page_title='MatchLab AI V2', page_icon='⚽', layout='wide')
-st.title('⚽ MatchLab AI V2')
-st.caption('Five leagues · automatic fixtures · transparent Dixon–Coles forecasts')
+st.markdown("""<style>
+:root{color-scheme:dark}
+.block-container{max-width:1040px;padding-top:1.2rem;padding-bottom:3rem}
+[data-testid="stAppViewContainer"]{background:radial-gradient(ellipse at 85% 0%,#183e36 0%,#0d161b 34%,#0b1117 70%);color:#edf8f3}
+[data-testid="stHeader"]{background:transparent}
+h1,h2,h3{letter-spacing:-.035em}
+h1{font-size:clamp(2rem,5vw,3.3rem)!important}
+div[data-testid="stMetric"]{background:#17242b;border:1px solid #30413f;border-radius:16px;padding:14px}
+div[data-testid="stMetricValue"]{color:#7ff5b0}
+.stTabs [data-baseweb="tab-list"]{gap:10px;overflow-x:auto}
+.stTabs [data-baseweb="tab"]{background:#17242b;border-radius:12px 12px 0 0;padding:10px 14px}
+.stTabs [aria-selected="true"]{color:#7ff5b0!important}
+div[data-testid="stAlert"]{border-radius:14px}
+.hero{border:1px solid #325348;background:linear-gradient(125deg,#193a32,#142129);border-radius:22px;padding:22px 24px;margin:8px 0 20px}
+.hero .eyebrow{color:#85f5b2;font-size:.8rem;font-weight:800;letter-spacing:.13em}
+.hero h1{margin:.2rem 0 .35rem}
+.hero p{margin:0;color:#bbd0ca}
+.match-card{background:#16252b;border:1px solid #315047;border-radius:22px;padding:20px;margin:16px 0}
+.match-card .label{color:#8aeeb3;font-size:.78rem;letter-spacing:.11em;font-weight:800}
+.match-card .fixture{font-size:clamp(1.25rem,3.5vw,2rem);font-weight:800;margin:10px 0}
+.match-card .pick{color:#d8eee5}
+.status{border:1px solid #4e694d;background:#283526;border-radius:14px;padding:14px 17px;margin:10px 0;color:#f1eec7}
+@media(max-width:640px){.block-container{padding-left:1rem;padding-right:1rem}.hero,.match-card{padding:17px}.stTabs [data-baseweb="tab"]{padding:8px}}
+</style>""",unsafe_allow_html=True)
+st.markdown("""<div class="hero"><div class="eyebrow">MATCH INTELLIGENCE · PROTOTYPE</div>
+<h1>⚽ MatchLab AI <span style="color:#86f5b2">V2.1</span></h1>
+<p>Five major leagues · fixture forecasts · transparent probabilities</p></div>""",unsafe_allow_html=True)
 
 @st.cache_data(ttl=3600)
 def load_csv(upload):
@@ -106,12 +132,13 @@ def show_card(model,home,away):
     lam,mu,grid=forecast(model,home,away)
     probs=[float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum())]
     winner=['Home win','Draw','Away win'][int(np.argmax(probs))]
-    st.subheader(f'{home} vs {away}')
-    st.info(f'Most likely outcome: **{winner}** ({max(probs):.1%}). Not a certainty.')
+    safe_home,safe_away=html.escape(home),html.escape(away)
+    st.markdown(f'<div class="match-card"><div class="label">MATCH FORECAST</div><div class="fixture">{safe_home} <span style="color:#86f5b2">vs</span> {safe_away}</div><div class="pick">Model pick: <b>{winner}</b> · {max(probs):.1%} estimated probability</div></div>',unsafe_allow_html=True)
     a,b,c=st.columns(3)
     a.metric('Home win',f'{probs[0]:.1%}')
     b.metric('Draw',f'{probs[1]:.1%}')
     c.metric('Away win',f'{probs[2]:.1%}')
+    st.progress(float(max(probs)),text=f'Model confidence in top outcome: {max(probs):.1%} (not calibrated confidence)')
     top=sorted(((i,j,float(grid[i,j])) for i in range(grid.shape[0]) for j in range(grid.shape[1])),key=lambda x:x[2],reverse=True)[:3]
     st.write('**Top exact scores:** '+' · '.join(f'{i}–{j} ({p:.1%})' for i,j,p in top))
     with st.expander('Advanced analysis'):
@@ -125,7 +152,7 @@ def show_card(model,home,away):
         st.dataframe(pd.DataFrame(grid[:6,:6]).style.format('{:.1%}'),use_container_width=True)
         st.caption('Time-decayed Dixon–Coles. No injuries, lineup changes, or live odds included.')
 
-st.warning('Research prototype, not betting advice. Community data may be incomplete or outdated.')
+st.caption('Research prototype · Not betting advice · Estimates are not guarantees.')
 league=st.selectbox('Choose league',list(LEAGUES))
 with st.spinner('Loading football results and fixtures…'):
     raw,errors=get_league(LEAGUES[league])
@@ -135,8 +162,13 @@ if raw.empty:
 played=raw[(raw.Date.dt.date<TODAY)&raw.FTHG.notna()&raw.FTAG.notna()].copy()
 future=raw[(raw.Date.dt.date>=TODAY)&(raw.FTHG.isna()|raw.FTAG.isna())].copy()
 last=played.Date.max().date() if not played.empty else None
-st.caption(f'OpenFootball data · {len(played)} completed matches · {len(future)} upcoming fixtures listed · latest result {last}')
-if last and (TODAY-last).days>14:st.warning('Results may be stale; last recorded result is more than 14 days old.')
+age=(TODAY-last).days if last else None
+freshness='CURRENT' if age is not None and age<=7 else 'DELAYED' if age is not None and age<=14 else 'STALE'
+st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures · Source: OpenFootball community dataset</div>',unsafe_allow_html=True)
+if age is not None and age>14:
+    st.warning('⚠️ Results are stale. Forecasts may miss recent form; fixture dates are not independently verified.')
+elif age is not None and age>7:
+    st.info('Results are delayed. Confirm match schedules independently.')
 if errors:st.caption('Unavailable historical seasons: '+', '.join(errors))
 if len(played)<100:
     st.error('Insufficient completed matches to train the model.')
@@ -146,7 +178,7 @@ with st.spinner('Fitting Dixon–Coles model…'):
 teams=model[0]
 tab1,tab2,tab3=st.tabs(['Upcoming fixtures','Manual matchup','Historical test'])
 with tab1:
-    st.caption('Community-maintained fixtures, not a verified live feed.')
+    st.caption('Community-maintained fixture list · Confirm kick-off times independently.')
     if future.empty:st.info('No upcoming fixtures listed. Try manual matchup.')
     else:
         options=future.head(100).reset_index(drop=True)
