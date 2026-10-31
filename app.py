@@ -305,32 +305,52 @@ with tab2:
     away=st.selectbox('Away team',[t for t in teams if t!=home])
     show_card(model,home,away,played)
 with tab3:
-    st.caption('80/20 chronological holdout. Historical accuracy is not betting profitability.')
-    if st.button('Run historical test'):
+    st.caption('Chronological 80/20 holdout. One fixed model trained before the test period; no future scores enter training.')
+    if st.button('Run market-by-market evaluation',type='primary'):
         ordered=played.sort_values('Date').reset_index(drop=True)
         cutoff=ordered.iloc[int(len(ordered)*0.8)].Date
-        train=ordered[ordered.Date<cutoff]
-        test=ordered[ordered.Date>=cutoff]
-        try:
-            held_model=fit_dc(train)
-            records=[]
-            for m in test.itertuples():
-                if m.HomeTeam not in held_model[0] or m.AwayTeam not in held_model[0]:continue
-                _,_,g=forecast(held_model,m.HomeTeam,m.AwayTeam)
-                p=np.array([np.tril(g,-1).sum(),np.trace(g),np.triu(g,1).sum()])
-                outcome=0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2
-                exact=int(np.unravel_index(np.argmax(g),g.shape)==(m.FTHG,m.FTAG))
-                records.append((int(np.argmax(p)==outcome),np.mean((p-np.eye(3)[outcome])**2),-np.log(max(p[outcome],1e-12)),exact))
-            if records:
-                metrics=np.array(records)
+        train=ordered[ordered.Date<cutoff].copy()
+        test=ordered[ordered.Date>=cutoff].copy()
+        if len(train)<100:
+            st.error('Insufficient training data.')
+        else:
+            with st.spinner('Evaluating unseen matches…'):
+                held_model=fit_dc(train)
+                records=[]
+                markets=['Home win','Draw','Away win','1X','X2','12','Over 1.5','Over 2.5','Under 2.5','Under 3.5','BTTS Yes','BTTS No']
+                for m in test.itertuples():
+                    if m.HomeTeam not in held_model[0] or m.AwayTeam not in held_model[0]:continue
+                    _,_,g=forecast(held_model,m.HomeTeam,m.AwayTeam)
+                    p=np.array([np.tril(g,-1).sum(),np.trace(g),np.triu(g,1).sum()])
+                    outcome=0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2
+                    total=int(m.FTHG+m.FTAG)
+                    scored_both=bool(m.FTHG>0 and m.FTAG>0)
+                    u25=sum(g[i,j] for i in range(g.shape[0]) for j in range(g.shape[1]) if i+j<=2)
+                    u35=sum(g[i,j] for i in range(g.shape[0]) for j in range(g.shape[1]) if i+j<=3)
+                    bt=float(g[1:,1:].sum())
+                    q=[p[0],p[1],p[2],p[0]+p[1],p[1]+p[2],p[0]+p[2],1-float(g[0,0]+g[0,1]+g[1,0]),1-u25,u25,u35,bt,1-bt]
+                    y=[outcome==0,outcome==1,outcome==2,outcome!=2,outcome!=0,outcome!=1,total>=2,total>=3,total<=2,total<=3,scored_both,not scored_both]
+                    records.append(dict(Date=m.Date.date(),Match=f'{m.HomeTeam} vs {m.AwayTeam}',actual=outcome,guess=int(p.argmax()),brier=float(np.mean((p-np.eye(3)[outcome])**2)),logloss=float(-np.log(max(p[outcome],1e-12))),exact=int(tuple(np.unravel_index(np.argmax(g),g.shape))==(int(m.FTHG),int(m.FTAG))),probs=q,actuals=y))
+            if not records:
+                st.error('No eligible holdout fixtures.')
+            else:
                 a,b,c,d=st.columns(4)
                 a.metric('Test matches',len(records))
-                b.metric('1X2 accuracy',f'{metrics[:,0].mean():.1%}')
-                c.metric('Brier score',f'{metrics[:,1].mean():.3f}')
-                d.metric('Exact score hit',f'{metrics[:,3].mean():.1%}')
-                st.write(f'Log loss: {metrics[:,2].mean():.3f}')
-            else:st.error('No eligible test matches.')
-        except Exception as e:st.error(f'Test failed: {e}')
+                b.metric('1X2 accuracy',f'{np.mean([r["actual"]==r["guess"] for r in records]):.1%}')
+                c.metric('1X2 Brier ↓',f'{np.mean([r["brier"] for r in records]):.3f}')
+                d.metric('Log loss ↓',f'{np.mean([r["logloss"] for r in records]):.3f}')
+                st.caption(f'Train: {len(train)} matches before {cutoff.date()} · Test: {len(records)} matches from {cutoff.date()} · Exact-score hit: {np.mean([r["exact"] for r in records]):.1%}')
+                rows=[]
+                for k,name in enumerate(markets):
+                    ps=np.array([r['probs'][k] for r in records],dtype=float)
+                    ys=np.array([r['actuals'][k] for r in records],dtype=float)
+                    chosen=ps>=.75
+                    rows.append({'Market':name,'Brier ↓':round(float(np.mean((ps-ys)**2)),3),'Mean predicted':round(float(ps.mean()),3),'Observed rate':round(float(ys.mean()),3),'P≥75% picks':int(chosen.sum()),'Hit rate at ≥75%':f'{ys[chosen].mean():.1%}' if chosen.any() else '—'})
+                st.subheader('Market reliability')
+                st.dataframe(pd.DataFrame(rows),hide_index=True,use_container_width=True)
+                st.caption('Brier: lower is better. The ≥75% threshold was not optimized on this test. High hit rate alone does not establish betting value; odds and independent validation are missing.')
+                export=pd.DataFrame([{k:v for k,v in r.items() if k not in ('probs','actuals')} for r in records])
+                st.download_button('Export holdout results',export.to_csv(index=False),file_name='matchlab_holdout.csv',mime='text/csv')
 with st.expander('About the data and limitations'):
     st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
     st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
