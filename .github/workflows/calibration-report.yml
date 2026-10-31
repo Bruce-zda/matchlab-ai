@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,3 +34,15 @@ jobs:
           path: artifacts/
           if-no-files-found: warn
           retention-days: 30
+      - name: Publish machine-readable report to repository
+        if: success() && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p reports
+          cp artifacts/calibration_report.json reports/latest_calibration.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/latest_calibration.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish latest historical calibration audit [skip ci]"
+            git push
+          fi
