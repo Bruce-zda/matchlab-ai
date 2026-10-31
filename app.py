@@ -9,7 +9,7 @@ import streamlit as st
 from scipy.optimize import minimize
 from scipy.stats import poisson
 
-st.set_page_config(page_title='MatchLab AI V2', page_icon='⚽', layout='wide')
+st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
 .block-container{max-width:980px;padding:2.8rem 1.25rem 4rem}
 [data-testid="stAppViewContainer"]{background:#0d1117;color:#e6e9ed}
@@ -32,8 +32,44 @@ div[data-testid="stAlert"]{border-radius:8px}
 .analysis-title{font-size:1.05rem;font-weight:750;margin:24px 0 9px}
 .form-strip{font-family:monospace;letter-spacing:.15em;font-size:1.05rem}
 @media(max-width:640px){.block-container{padding:2rem .9rem 3rem}.match-card{padding:16px}.brand b{font-size:1.3rem}}
+
+/* MatchLab mobile-first release styling */
+:root{color-scheme:dark}
+html,body,[data-testid="stAppViewContainer"]{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+[data-testid="stAppViewContainer"]{background:radial-gradient(ellipse at 75% -15%,#192331 0%,#0c1017 38%,#0c1017 100%)}
+.block-container{max-width:1050px;padding-top:2.2rem}
+.brand{margin-bottom:12px;padding-bottom:16px;border-bottom:1px solid #29313b}
+.brand b{font-size:1.65rem;font-weight:850;letter-spacing:-.07em}
+.brand span{font-size:.63rem;font-weight:650;color:#94a2b3}
+.match-card{background:linear-gradient(135deg,#1c2934,#121923 70%);border:1px solid #344352;border-radius:16px;padding:30px;box-shadow:0 16px 36px #05070b40}
+.match-card .label{color:#e1b86e}
+.match-card .fixture{line-height:1.22;font-size:clamp(1.55rem,4.5vw,2.6rem)}
+.match-card .pick{font-size:1rem;color:#cdd7df}
+.status{border-left:2px solid #d5ad65;background:#171f29;border-radius:0 9px 9px 0}
+.analysis-title{font-size:1.22rem;font-weight:780;letter-spacing:-.035em;margin:30px 0 14px}
+[data-testid="stMetric"]{min-width:0}
+div[data-testid="stMetric"]{border-radius:12px;background:#171f29;border-color:#2c3948;padding:17px}
+div[data-testid="stMetricValue"]{font-weight:730;letter-spacing:-.04em}
+div[data-testid="stVerticalBlock"]>div{min-width:0}
+.stTabs [data-baseweb="tab-list"]{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap}
+.stTabs [data-baseweb="tab"]{white-space:nowrap}
+.stButton button[kind="primary"]{background:#d6ae68;color:#121923;border:none;border-radius:9px;font-weight:750}
+.stButton button[kind="primary"]:hover{background:#e9c98c;color:#121923}
+.stButton button[kind="secondary"],.stDownloadButton button{border:1px solid #34404e;border-radius:9px;background:#18212c;color:#e2e9ef}
+[data-testid="stDataFrame"]{border:1px solid #293544;border-radius:10px;overflow:hidden}
+@media(max-width:650px){
+.block-container{padding:1.25rem .85rem 3rem}
+.brand{align-items:center;flex-wrap:wrap;gap:5px 12px}
+.brand b{font-size:1.5rem}
+.brand span{font-size:.58rem}
+.match-card{padding:20px 17px}
+.match-card .fixture{font-size:1.7rem}
+div[data-testid="stMetric"]{padding:11px}
+div[data-testid="stMetricValue"]{font-size:1.35rem}
+.stTabs [data-baseweb="tab"]{font-size:.83rem;padding:9px 11px}
+}
 </style>""",unsafe_allow_html=True)
-st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE / BETA</span></div>',unsafe_allow_html=True)
+st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE</span></div>',unsafe_allow_html=True)
 @st.cache_data(ttl=3600)
 def load_csv(upload):
     df=pd.read_csv(upload)
@@ -353,7 +389,7 @@ def show_card(model,home,away,data):
     best_name,best_prob=ranked_markets[0]
     st.markdown('**Expert pick: Withheld pending independent validation**')
     st.write(f'**Highest raw model probability:** {best_name} · {best_prob:.1%}. This is a probability ranking, not a recommendation.')
-    st.caption('A high probability is not proof of reliability or betting value. Early Premier League holdout results show that some goals markets underperform a simple baseline. Expert recommendations will remain disabled until per-market out-of-sample validation across leagues and time periods is complete.')
+    st.caption('Probability alone does not establish reliability or betting value. Goals markets underperformed simple baselines in several leagues. Expert recommendations remain disabled until independent per-market validation is complete.')
     with st.expander('Compare supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
@@ -374,7 +410,7 @@ def show_card(model,home,away,data):
         st.dataframe(pd.DataFrame(grid[:6,:6]).style.format('{:.1%}'),use_container_width=True)
         st.caption('Model expected goals are not event-data xG. Probabilities have not been calibrated.')
 
-st.caption('Research prototype · Not betting advice · Estimates are not guarantees.')
+st.caption('Data-driven match analysis · Probabilities, not guarantees.')
 league=st.selectbox('Choose league',list(LEAGUES))
 with st.spinner('Loading football results and fixtures…'):
     raw,errors=get_league(LEAGUES[league])
