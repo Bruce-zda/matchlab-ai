@@ -206,7 +206,33 @@ def show_card(model,home,away,data):
         reasons.append(f'At the relevant venues, {home} scored {home_venue["gf"]:.2f} per home match and {away} scored {away_venue["gf"]:.2f} per away match (up to five games each).')
     for reason in reasons:st.write(reason)
     st.caption('No verified lineups, injuries, live form feed or tactical assessment. Avoid interpreting this as a complete scouting report.')
-    st.markdown('<div class="analysis-title">03 / Outcome probabilities</div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">03 / MatchLab expert assessment</div>',unsafe_allow_html=True)
+    under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
+    under35=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=3))
+    btts=float(grid[1:,1:].sum())
+    markets={
+        'Home win':probs[0], 'Draw':probs[1], 'Away win':probs[2],
+        'Home or draw (1X)':probs[0]+probs[1],
+        'Draw or away (X2)':probs[1]+probs[2],
+        'Home or away (12)':probs[0]+probs[2],
+        'Over 1.5 goals':1-float(grid[0,0]+grid[0,1]+grid[1,0]),
+        'Over 2.5 goals':1-under25,'Under 2.5 goals':under25,
+        'Under 3.5 goals':under35,
+        'Both teams to score — Yes':btts,
+        'Both teams to score — No':1-btts
+    }
+    # High probability alone does not establish betting value or model calibration.
+    ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
+    best_name,best_prob=ranked_markets[0]
+    if best_prob>=.75:
+        st.markdown(f'**Highest estimated probability:** {best_name} · **{best_prob:.1%}**')
+    else:
+        st.markdown('**No strong pick** — none of the supported markets exceeds the 75% screening threshold.')
+    st.caption('Screening threshold is provisional, not validated confidence. These are mathematical estimates, not betting recommendations. Short odds can make high-probability outcomes poor value.')
+    with st.expander('Compare supported markets'):
+        st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
+
+    st.markdown('<div class="analysis-title">04 / Outcome probabilities</div>',unsafe_allow_html=True)
     a,b,c=st.columns(3)
     a.metric('Home',f'{probs[0]:.1%}')
     b.metric('Draw',f'{probs[1]:.1%}')
@@ -250,7 +276,7 @@ future=upcoming[upcoming.Date.dt.date>=TODAY].copy() if not upcoming.empty else 
 last=played.Date.max().date() if not played.empty else None
 age=(TODAY-last).days if last else None
 freshness='CURRENT' if age is not None and age<=7 else 'DELAYED' if age is not None and age<=14 else 'STALE'
-st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures · Source: {data_source}</div>',unsafe_allow_html=True)
+st.markdown(f'<div class="status"><b>DATA HEALTH: {freshness}</b> · Latest recorded result: {last} · {age if age is not None else "?"} days old<br>{len(played):,} completed matches · {len(future):,} unverified upcoming fixtures</div>',unsafe_allow_html=True)
 if age is not None and age>14:
     st.warning('⚠️ Results are stale. Forecasts may miss recent form; fixture dates are not independently verified.')
 elif age is not None and age>7:
@@ -305,5 +331,6 @@ with tab3:
                 st.write(f'Log loss: {metrics[:,2].mean():.3f}')
             else:st.error('No eligible test matches.')
         except Exception as e:st.error(f'Test failed: {e}')
-st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
-st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
+with st.expander('About the data and limitations'):
+    st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
+    st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
