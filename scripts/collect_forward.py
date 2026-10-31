@@ -20,7 +20,7 @@ from scipy.stats import poisson
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from forward_validation import append_snapshot,utc_time
+from forward_validation import append_snapshot,utc_time,snapshot_id
 from bayesian_goals import BayesianGoals
 from elo_baseline import EloBaseline
 from data_quality import valid_score_pair,valid_team_pair
