@@ -9,7 +9,7 @@ Legend: [x] implemented and user-verified at prototype level; [ ] outstanding; [
 - [x] 3. Add match analysis and multiple prediction markets.
 - [x] 4. Implement historical, cross-league and rolling backtests.
 - [x] 5. Compare forecasts against league-frequency and club-specific baselines.
-- [~] 6. Improve goal-market forecasting and probability calibration. Acceptance: training-only calibration, evaluated against unmodified baseline across leagues and rolling periods, with no leakage.
+- [~] 6. Validate priority markets (Double Chance and Asian Handicap) and improve probability calibration. Acceptance: training-only calibration, rolling tests against relevant baselines, and independent untouched evaluation; goals-market experiments remain deferred.
 - [ ] 7. Validate expert-pick policy. Acceptance: independent per-market performance, sufficient sample sizes, honest abstention; no claims of guaranteed accuracy.
 - [ ] 8. Deliver premium mobile-first UI. Acceptance: legible on typical phone without desktop zoom, consistent navigation, polished match centre.
 - [ ] 9. Harden data and deployment. Acceptance: duplicate checks, freshness notices, unavailable-feed fallback, automated smoke tests, dependency pinning, source/license compliance.
@@ -30,3 +30,9 @@ Legend: [x] implemented and user-verified at prototype level; [ ] outstanding; [
 - Keep predictions and their limitations clearly labeled.
 - Do not silently select a favorable test set or tune on the final evaluation set.
 - Preserve attribution and respect upstream noncommercial licensing.
+
+## Priority-market test (2026-10-31)
+- User-verified rolling results: Double Chance 1X and X2 beat club-specific baseline in 13/15 folds; 12 in 10/15.
+- Asian Handicap settlement MSE beats historical goal-difference baseline in 14–15/15 folds across tested lines from -1.0 to +1.0.
+- These are correlated development folds, not independent final validation; no odds or ROI tested. Do not label selections expert-validated or profitable.
+- Product focus: Double Chance and Asian Handicap; goal markets secondary; corners deferred until verified data exists.
