@@ -450,7 +450,7 @@ with tab4:
         else:
             overall=evaluation[evaluation.Market=='1X2 overall'].copy()
             st.markdown('**Match result performance by league**')
-            st.dataframe(overall[['League','Matches','Accuracy','Model Brier','Baseline Brier','Improvement','Cutoff']].style.format({'Accuracy':'{:.1%}','Model Brier':'{:.3f}','Baseline Brier':'{:.3f}','Improvement':'+.3f'}),hide_index=True,use_container_width=True)
+            st.dataframe(overall[['League','Matches','Accuracy','Model Brier','Baseline Brier','Improvement','Cutoff']].style.format({'Accuracy':'{:.1%}','Model Brier':'{:.3f}','Baseline Brier':'{:.3f}','Improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
             st.caption('Positive improvement means the model beats the simple historical-frequency baseline.')
             detail=evaluation[evaluation.Market!='1X2 overall']
             summary=detail.groupby('Market').agg(Leagues=('League','nunique'),Beats=('Improvement',lambda v:int((v>0).sum())),Mean_improvement=('Improvement','mean'),Total_matches=('Matches','sum')).reset_index()
