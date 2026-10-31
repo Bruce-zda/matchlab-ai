@@ -498,12 +498,18 @@ def show_card(model,home,away,data):
     st.dataframe(pd.DataFrame([{'Settlement':key,'Estimated probability':f'{value:.1%}'} for key,value in settlement.items()]),hide_index=True,use_container_width=True)
     st.caption(f'Estimated full-or-half-win probability: {settlement["Full win"]+settlement["Half win"]:.1%}; push probability: {settlement["Push"]:.1%}. Half-wins are not equivalent to full wins.')
     st.caption('Quarter-goal lines split the stake between adjacent half-lines. A push returns the stake; half outcomes settle half the stake. These are unvalidated model estimates, not a recommended bet. Corners require a separate verified corner-statistics dataset.')
-    # High probability alone does not establish betting value or model calibration.
+    # Prioritise the markets that have shown stronger rolling historical performance.
+    # This is a descriptive model lean, NOT a validated betting recommendation.
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
-    best_name,best_prob=ranked_markets[0]
-    st.markdown('**Expert pick: Withheld pending independent validation**')
-    st.write(f'**Highest raw model probability:** {best_name} · {best_prob:.1%}. This is a probability ranking, not a recommendation.')
-    st.caption('Probability alone does not establish reliability or betting value. Goals markets underperformed simple baselines in several leagues. Expert recommendations remain disabled until independent per-market validation is complete.')
+    dc_candidates=[('Home or draw (1X)',probs[0]+probs[1]),('Draw or away (X2)',probs[1]+probs[2])]
+    dc_name,dc_prob=max(dc_candidates,key=lambda item:item[1])
+    st.markdown('**MatchLab market assessment · preliminary**')
+    st.markdown(f'**Model lean: {dc_name} — {dc_prob:.1%}**')
+    st.caption('1X and X2 each beat a training-only club benchmark in 13 of 15 development folds. This is encouraging but not independent validation. No expert-approved bet or profitability claim is being made.')
+    if abs(dc_candidates[0][1]-dc_candidates[1][1])<.05:
+        st.info('The two double-chance options are close. MatchLab does not identify a clear directional advantage here.')
+    st.markdown('**Expert recommendation: Not yet validated**')
+    st.caption('The model ranks outcomes, but no bookmaker odds, independent final holdout, or proven betting edge are available. Asian handicaps are supported as settlement estimates; corners remain unavailable without verified corner data.')
     with st.expander('Compare supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
