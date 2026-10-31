@@ -216,6 +216,51 @@ def cross_league_evaluation():
             failures.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
     return pd.DataFrame(output),failures
 
+
+@st.cache_data(ttl=3600,show_spinner=False)
+def rolling_league_evaluation():
+    results=[]
+    errors=[]
+    for league_name,code in LEAGUES.items():
+        try:
+            archive,_=get_league(code)
+            recent=matchday_csv(code,'results')
+            names=set(recent.HomeTeam)|set(recent.AwayTeam)
+            for col in ('HomeTeam','AwayTeam'):
+                archive[col]=archive[col].map(lambda x:map_team(x,names) or x)
+            data=pd.concat([archive,recent],ignore_index=True).sort_values('Date').drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last')
+            data=data[(data.Date.dt.date<TODAY)&data.FTHG.notna()&data.FTAG.notna()].sort_values('Date').reset_index(drop=True)
+            if len(data)<350:raise ValueError('Not enough completed matches for rolling evaluation')
+            for fold,start_frac in enumerate((.55,.7,.85),start=1):
+                begin=int(len(data)*start_frac)
+                end=min(len(data),begin+max(40,int(len(data)*.15)))
+                # Group boundary by date so all matches played that day stay together.
+                cutoff=data.iloc[begin].Date
+                end_date=data.iloc[end-1].Date if end<len(data) else data.Date.max()
+                train=data[data.Date<cutoff]
+                test=data[(data.Date>=cutoff)&(data.Date<=end_date)]
+                if len(train)<150 or len(test)<20:continue
+                model=fit_dc(train)
+                hg=train.FTHG.to_numpy()
+                ag=train.FTAG.to_numpy()
+                labels=np.where(hg>ag,0,np.where(hg==ag,1,2))
+                baseline=np.bincount(labels,minlength=3)/len(labels)
+                preds=[]; actual=[]
+                for m in test.itertuples():
+                    if m.HomeTeam not in model[0] or m.AwayTeam not in model[0]:continue
+                    _,_,g=forecast(model,m.HomeTeam,m.AwayTeam)
+                    preds.append([float(np.tril(g,-1).sum()),float(np.trace(g)),float(np.triu(g,1).sum())])
+                    actual.append(0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2)
+                if len(actual)<20:continue
+                p=np.array(preds);y=np.array(actual)
+                target=np.eye(3)[y]
+                model_brier=float(np.mean((p-target)**2))
+                base_brier=float(np.mean((baseline-target)**2))
+                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Improvement':base_brier-model_brier})
+        except Exception as exc:
+            errors.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
+    return pd.DataFrame(results),errors
+
 def team_stats(data,team,venue=None,n=5):
     games=data[(data.HomeTeam==team)|(data.AwayTeam==team)].sort_values('Date',ascending=False)
     if venue=='home':games=games[games.HomeTeam==team]
@@ -458,6 +503,23 @@ with tab4:
             st.dataframe(summary,hide_index=True,use_container_width=True)
             st.caption('Do not use this dashboard to tune thresholds on the same holdouts. Cross-league results are exploratory; rolling-origin testing and an untouched final test set are still required.')
             st.download_button('Download cross-league results',evaluation.to_csv(index=False),file_name='matchlab_cross_league.csv',mime='text/csv')
+    st.divider()
+    st.subheader('Rolling-origin validation')
+    st.caption('Three chronological folds per league. Every fold retrains using only earlier results. This is a stronger stress test than one 80/20 split, but still not a fully untouched final evaluation.')
+    if st.button('Run rolling validation across five leagues'):
+        with st.spinner('Training up to 15 historical models. This may take several minutes…'):
+            rolling,rolling_errors=rolling_league_evaluation()
+        for issue in rolling_errors:st.warning(issue)
+        if rolling.empty:
+            st.error('No rolling folds completed.')
+        else:
+            st.dataframe(rolling.style.format({'Accuracy':'{:.1%}','Model Brier':'{:.3f}','Baseline Brier':'{:.3f}','Improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
+            grouped=rolling.groupby('League').agg(Folds=('Fold','count'),Matches=('Test matches','sum'),Positive_folds=('Improvement',lambda x:int((x>0).sum())),Mean_improvement=('Improvement','mean')).reset_index()
+            st.markdown('**Consistency by competition**')
+            st.dataframe(grouped.style.format({'Mean_improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
+            st.caption('Positive folds compare against a training-only frequency baseline. Folds can be correlated and do not guarantee future performance.')
+            st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
+
 with st.expander('About the data and limitations'):
     st.caption('Daily data: open-matchday (non-commercial use only; upstream rights apply). Historical: OpenFootball. No live scores or paid API.')
     st.markdown('Attribution: [open-matchday](https://github.com/oladeeayo/open-matchday) · [OpenFootball](https://github.com/openfootball/football.json)')
