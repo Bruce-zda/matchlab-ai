@@ -95,7 +95,12 @@ def team_key(name):
 def match_team(provider_name,training_names):
     matches=[name for name in training_names if team_key(name)==team_key(provider_name)]
     if len(matches)!=1:
-        raise ValueError('No unique approved team-name match: '+str(provider_name))
+        import difflib
+        suggestions=difflib.get_close_matches(team_key(provider_name),
+            [team_key(n) for n in training_names],n=3,cutoff=0.5)
+        candidates=[n for n in training_names if team_key(n) in suggestions]
+        raise ValueError('No unique approved team-name match: '+str(provider_name)+
+                         '; training-name candidates (diagnostic only): '+repr(candidates))
     return matches[0]
 
 def collect(fixtures,ledger,now,model_version):
