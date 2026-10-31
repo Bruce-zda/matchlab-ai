@@ -297,10 +297,28 @@ def rolling_league_evaluation():
                     ap=(a+12*baseline)/(a.sum()+12)
                     return (hp+ap)/2
                 preds=[]; actual=[]; strong_preds=[]
+                goal_trials=[]
+                league_home=float(np.mean(hg))
+                league_away=float(np.mean(ag))
+                def goal_markets(grid):
+                    under15=float(grid[0,0]+grid[0,1]+grid[1,0])
+                    under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
+                    return np.array([1-under15,1-under25,float(grid[1:,1:].sum())])
+                def poisson_grid(lam,mu):
+                    counts=np.arange(13)
+                    grid=np.outer(poisson.pmf(counts,lam),poisson.pmf(counts,mu))
+                    return grid/grid.sum()
+
                 for m in test.itertuples():
                     if m.HomeTeam not in model[0] or m.AwayTeam not in model[0]:continue
-                    _,_,g=forecast(model,m.HomeTeam,m.AwayTeam)
+                    lam,mu,g=forecast(model,m.HomeTeam,m.AwayTeam)
                     preds.append([float(np.tril(g,-1).sum()),float(np.trace(g)),float(np.triu(g,1).sum())])
+                    # Goal-market-only challenger, never used for live predictions.
+                    candidate=poisson_grid(.75*lam+.25*league_home,.75*mu+.25*league_away)
+                    goal_trials.append((goal_markets(g),goal_markets(candidate),
+                                        np.array([m.FTHG+m.FTAG>=2,m.FTHG+m.FTAG>=3,
+                                                  m.FTHG>0 and m.FTAG>0],dtype=float)))
+
                     strong_preds.append(club_baseline(m.HomeTeam,m.AwayTeam))
                     actual.append(0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2)
                 if len(actual)<20:continue
@@ -309,7 +327,14 @@ def rolling_league_evaluation():
                 model_brier=float(np.mean((p-target)**2))
                 base_brier=float(np.mean((baseline-target)**2))
                 strong_brier=float(np.mean((np.array(strong_preds)-target)**2))
-                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier})
+                old_goals=np.array([v[0] for v in goal_trials])
+                new_goals=np.array([v[1] for v in goal_trials])
+                goal_truth=np.array([v[2] for v in goal_trials])
+                goal_base=np.array([np.mean(hg+ag>=2),np.mean(hg+ag>=3),np.mean((hg>0)&(ag>0))])
+                old_goal_brier=float(np.mean((old_goals-goal_truth)**2))
+                new_goal_brier=float(np.mean((new_goals-goal_truth)**2))
+                baseline_goal_brier=float(np.mean((goal_base-goal_truth)**2))
+                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier})
         except Exception as exc:
             errors.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
     return pd.DataFrame(results),errors
@@ -571,6 +596,13 @@ with tab4:
             st.markdown('**Consistency by competition**')
             st.dataframe(grouped.style.format({'Mean_improvement':'{:+.3f}','Mean_club_improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
             st.caption('Two training-only benchmarks: league-wide frequencies and a stronger smoothed team home/away outcome model. Positive club improvement means MatchLab beats that stronger benchmark. Folds can be correlated and do not guarantee future performance.')
+            st.markdown('**Goal-model challenger (experimental)**')
+            st.caption('Compares current goal-market forecasts with a 25% training-league-rate shrinkage model. Both are scored on the same held-out fixtures across Over 1.5, Over 2.5 and BTTS. This challenger does NOT change live predictions.')
+            goals_view=rolling[['League','Fold','Test matches','Current goals Brier','Challenger goals Brier','Goal baseline Brier','Challenger gain']].copy()
+            st.dataframe(goals_view.style.format({'Current goals Brier':'{:.3f}','Challenger goals Brier':'{:.3f}','Goal baseline Brier':'{:.3f}','Challenger gain':'{:+.3f}'}),hide_index=True,use_container_width=True)
+            gain_wins=int((rolling['Challenger gain']>0).sum())
+            st.info(f'Challenger improves goal Brier in {gain_wins}/{len(rolling)} folds. We will not promote it unless it consistently outperforms the existing model and baseline.')
+
             st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
 
 with st.expander('About the data and limitations'):
