@@ -59,8 +59,8 @@ class SourceContractTests(unittest.TestCase):
 
     def test_match_card_uses_evidence_aware_ranking(self):
         self.assertIn("rank_model_outlooks(dc_probabilities,evidence_status)", self.source)
-        self.assertIn("No clear evidence-backed outlook", self.source)
-        self.assertIn("Descriptive probability only", self.source)
+        self.assertIn("No clear market advantage", self.source)
+        self.assertIn("Research-stage assessment", self.source)
         self.assertNotIn("Expert-approved pick", self.source)
 
     def test_standalone_report_imports_project_root(self):
