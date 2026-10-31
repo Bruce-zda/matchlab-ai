@@ -1,6 +1,7 @@
 import unittest
+import pandas as pd
 from forward_validation import utc_time
-from scripts.collect_forward import collect,match_team
+from scripts.collect_forward import collect,match_team,canonicalize_history
 
 class CollectorSafetyTests(unittest.TestCase):
     def test_date_only_kickoff_rejected_without_network(self):
@@ -17,6 +18,15 @@ class CollectorSafetyTests(unittest.TestCase):
         ledger,audit=collect(fixtures,[],'2026-10-31T14:00:00+00:00','test-sha')
         self.assertEqual(ledger,[])
         self.assertEqual(audit[0]['status'],'skipped')
+
+    def test_history_merges_approved_aliases_across_venues(self):
+        frame=pd.DataFrame({'HomeTeam':['Aston Villa','Chelsea','Aston Villa FC'],
+                            'AwayTeam':['Chelsea','Aston Villa FC','Chelsea']})
+        result=canonicalize_history(frame)
+        names=set(result.HomeTeam)|set(result.AwayTeam)
+        self.assertEqual(len([n for n in names if n.startswith('Aston Villa')]),1)
+        self.assertEqual(match_team('Aston Villa FC',names),
+                         next(n for n in names if n.startswith('Aston Villa')))
 
     def test_approved_newcastle_alias(self):
         self.assertEqual(match_team('Newcastle United FC',['Newcastle United','Chelsea']), 'Newcastle United')
