@@ -195,6 +195,10 @@ def main():
     # ledger; a separate reviewed publishing process must preserve old snapshots.
     output=ledger_path.with_name(ledger_path.stem+'.candidate.json')
     output.write_text(json.dumps(updated,indent=2)+'\n')
+    coverage={'fixture_count':len(audit),'covered':sum(x['status'] in ('recorded','already_recorded') for x in audit),
+              'skipped':sum(x['status']=='skipped' for x in audit),'details':audit,
+              'collected_at_utc':dt.datetime.now(dt.timezone.utc).isoformat()}
+    (ROOT/'artifacts'/'forward_coverage.json').write_text(json.dumps(coverage,indent=2)+'\n')
     print(json.dumps({'existing_snapshots':len(ledger),'candidate_snapshots':len(updated),
                       'audit':audit,'candidate_path':str(output)},indent=2))
     recorded=sum(item['status'] in ('recorded','already_recorded') for item in audit)
