@@ -1,7 +1,7 @@
 {
   "fixture_count": 30,
-  "covered": 26,
-  "skipped": 4,
+  "covered": 30,
+  "skipped": 0,
   "details": [
     {
       "league": "Ligue 1",
@@ -32,8 +32,8 @@
       "home": "Aston Villa FC",
       "away": "Fulham FC",
       "kickoff_utc": "2026-10-31T20:00:00+00:00",
-      "status": "skipped",
-      "reason": "No unique approved team-name match: Aston Villa FC; training-name candidates (diagnostic only): ['Aston Villa', 'Aston Villa FC']"
+      "status": "recorded",
+      "models": 4
     },
     {
       "league": "Serie A",
@@ -53,14 +53,6 @@
     },
     {
       "league": "Serie A",
-      "home": "Frosinone Calcio",
-      "away": "Torino FC",
-      "kickoff_utc": "2026-11-01T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
       "home": "SS Lazio",
       "away": "Cagliari Calcio",
       "kickoff_utc": "2026-11-01T14:00:00+00:00",
@@ -71,6 +63,14 @@
       "league": "Ligue 1",
       "home": "RC Strasbourg Alsace",
       "away": "AJ Auxerre",
+      "kickoff_utc": "2026-11-01T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Serie A",
+      "home": "Frosinone Calcio",
+      "away": "Torino FC",
       "kickoff_utc": "2026-11-01T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -93,14 +93,6 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Paris FC",
-      "away": "AS Monaco FC",
-      "kickoff_utc": "2026-11-01T16:15:00+00:00",
-      "status": "skipped",
-      "reason": "No unique approved team-name match: AS Monaco FC; training-name candidates (diagnostic only): ['AS Monaco', 'AS Monaco FC', 'Dijon FCO']"
-    },
-    {
-      "league": "Ligue 1",
       "home": "Olympique Lyonnais",
       "away": "Angers SCO",
       "kickoff_utc": "2026-11-01T16:15:00+00:00",
@@ -108,17 +100,25 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Liverpool FC",
-      "away": "Arsenal FC",
-      "kickoff_utc": "2026-11-01T16:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
+      "league": "Ligue 1",
+      "home": "Paris FC",
+      "away": "AS Monaco FC",
+      "kickoff_utc": "2026-11-01T16:15:00+00:00",
+      "status": "recorded",
+      "models": 4
     },
     {
       "league": "Bundesliga",
       "home": "Eintracht Frankfurt",
       "away": "Hamburger SV",
+      "kickoff_utc": "2026-11-01T16:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Liverpool FC",
+      "away": "Arsenal FC",
       "kickoff_utc": "2026-11-01T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -152,8 +152,8 @@
       "home": "Juventus FC",
       "away": "SSC Napoli",
       "kickoff_utc": "2026-11-01T19:45:00+00:00",
-      "status": "skipped",
-      "reason": "No unique approved team-name match: Juventus FC; training-name candidates (diagnostic only): ['Juventus', 'Juventus FC']"
+      "status": "recorded",
+      "models": 4
     },
     {
       "league": "La Liga",
@@ -192,8 +192,8 @@
       "home": "Newcastle United FC",
       "away": "Everton FC",
       "kickoff_utc": "2026-11-02T20:00:00+00:00",
-      "status": "skipped",
-      "reason": "No unique approved team-name match: Newcastle United FC; training-name candidates (diagnostic only): ['Manchester United', 'Manchester United FC', 'Newcastle United', 'Newcastle United FC']"
+      "status": "recorded",
+      "models": 4
     },
     {
       "league": "La Liga",
@@ -244,5 +244,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-10-31T17:31:13.028815+00:00"
+  "collected_at_utc": "2026-10-31T17:35:26.121908+00:00"
 }
