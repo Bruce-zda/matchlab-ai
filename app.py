@@ -8,6 +8,7 @@ import requests
 import streamlit as st
 from scipy.optimize import minimize
 from scipy.stats import poisson
+from calibration import chronological_calibration_report
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -417,7 +418,20 @@ def rolling_league_evaluation():
                     yy=np.isin(y,idxs).astype(float)
                     per_market[f'{market} model Brier']=float(np.mean((pp-yy)**2))
                     per_market[f'{market} club Brier']=float(np.mean((bp-yy)**2))
-                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Venue model Brier':venue_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier,**per_market})
+                # Exploratory chronological calibration: predictions in this fold
+                # are all out-of-sample relative to the DC fit. Calibrator sees
+                # only the earlier part of the fold; later outcomes remain hidden.
+                # No calibrated probabilities enter live predictions.
+                calibration_metrics={}
+                if len(y)>=60:
+                    for market,idxs in (('1X',(0,1)),('X2',(1,2)),('12',(0,2))):
+                        binary_p=p[:,list(idxs)].sum(axis=1)
+                        binary_y=np.isin(y,idxs).astype(float)
+                        report=chronological_calibration_report(binary_p,binary_y)
+                        calibration_metrics[f'{market} calibration raw Brier']=report['raw_brier']
+                        calibration_metrics[f'{market} calibration adjusted Brier']=report['calibrated_brier']
+                        calibration_metrics[f'{market} calibration evaluation n']=report['evaluation_n']
+                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Venue model Brier':venue_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier,**per_market,**calibration_metrics})
         except Exception as exc:
             errors.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
     return pd.DataFrame(results),errors
@@ -758,6 +772,21 @@ with tab4:
             st.caption('The 60% fold threshold is a screening rule, not a statistical significance test. These folds have already been examined during development.')
             st.caption('Exploratory diagnostic only. These historical folds have already influenced development; a separate untouched final test is necessary before promoting any challenger.')
 
+            st.markdown('**Experimental Double Chance calibration**')
+            st.caption('Within each historical fold, the model is frozen before the fold. A calibrator is fitted on the earlier 65% of its out-of-sample forecasts, then assessed on the later 35%. This is exploratory: folds overlap across training histories and are not an untouched final test.')
+            calibration_rows=[]
+            for market in ('1X','X2','12'):
+                raw_key=f'{market} calibration raw Brier'
+                adj_key=f'{market} calibration adjusted Brier'
+                if raw_key in rolling.columns:
+                    valid=rolling[[raw_key,adj_key]].dropna()
+                    if not valid.empty:
+                        calibration_rows.append({'Market':market,'Folds':len(valid),'Improved folds':int((valid[adj_key]<valid[raw_key]).sum()),'Raw Brier':float(valid[raw_key].mean()),'Calibrated Brier':float(valid[adj_key].mean())})
+            if calibration_rows:
+                st.dataframe(pd.DataFrame(calibration_rows).style.format({'Raw Brier':'{:.4f}','Calibrated Brier':'{:.4f}'}),hide_index=True,use_container_width=True)
+                st.warning('Experimental only — no calibrated probabilities are deployed. An untouched evaluation is still required.')
+            else:
+                st.info('Insufficient historical fold samples for the calibration experiment.')
             st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
 
 with st.expander('About the data and limitations'):
