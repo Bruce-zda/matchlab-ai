@@ -1,0 +1,26 @@
+{
+  "evaluation": "exploratory_frozen_chronological_folds_not_untouched",
+  "models": [
+    {
+      "model": "Dixon-Coles",
+      "predictions": 5190,
+      "mean_brier": 0.19825902863617417,
+      "mean_log_loss": 0.9978968897142952
+    },
+    {
+      "model": "Elo",
+      "predictions": 5190,
+      "mean_brier": 0.20133517648190782,
+      "mean_log_loss": 1.0141224089061447
+    }
+  ],
+  "leagues": 5,
+  "paired_fixtures": 5190,
+  "data_errors": [],
+  "caveats": [
+    "Previously explored seasons; not an untouched holdout",
+    "Models frozen within each test fold",
+    "Teams unseen in Dixon-Coles training excluded from both",
+    "No bookmaker inputs"
+  ]
+}
