@@ -26,3 +26,28 @@ def compare(ledger, settlements):
                        'brier_delta': hybrid['brier'] - base['brier'],
                        'log_loss_delta': hybrid['log_loss'] - base['log_loss']})
     return paired
+
+
+def uncertainty(paired, repetitions=1000, seed=1729):
+    """Resample league-month blocks; descriptive, not a promotion decision."""
+    import random
+    if not paired:
+        return None
+    if repetitions < 40:
+        raise ValueError('At least 40 bootstrap repetitions required')
+    blocks = defaultdict(list)
+    for row in paired:
+        blocks[(row['league'], row['month'])].append(row)
+    groups = list(blocks.values())
+    rng = random.Random(seed)
+    samples = {'brier_delta': [], 'log_loss_delta': []}
+    for _ in range(repetitions):
+        drawn = [row for _ in groups for row in rng.choice(groups)]
+        for metric in samples:
+            samples[metric].append(sum(row[metric] for row in drawn) / len(drawn))
+    output = {}
+    for metric, values in samples.items():
+        values.sort()
+        output[metric] = [values[int(0.025 * (repetitions - 1))],
+                          values[int(0.975 * (repetitions - 1))]]
+    return output
