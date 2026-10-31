@@ -9,7 +9,7 @@ import streamlit as st
 from scipy.optimize import minimize
 from scipy.stats import poisson
 from calibration import chronological_calibration_report
-from selection_policy import MarketEvidence, assess_market_evidence, describe_candidate
+from selection_policy import MarketEvidence, assess_market_evidence, describe_candidate, rank_model_outlooks
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -471,15 +471,28 @@ def show_card(model,home,away,data):
         'Both teams to score — Yes':btts,
         'Both teams to score — No':1-btts
     }
-    # Descriptive market lean only: historical development folds are not an independent test.
+    # These development-fold benchmarks are exploratory and must never imply an edge.
+    # Only historically supported double-chance markets enter descriptive ranking.
+    evidence_status = {
+        'Home or draw (1X)': assess_market_evidence(MarketEvidence('1X',15,13,.193,.204)),
+        'Draw or away (X2)': assess_market_evidence(MarketEvidence('X2',15,13,.219,.228)),
+        'Home or away (12)': assess_market_evidence(MarketEvidence('12',15,10,.186,.188)),
+    }
+    dc_probabilities = {
+        'Home or draw (1X)': probs[0]+probs[1],
+        'Draw or away (X2)': probs[1]+probs[2],
+        'Home or away (12)': probs[0]+probs[2],
+    }
+    outlook = rank_model_outlooks(dc_probabilities,evidence_status)
+    if outlook['status'] == 'ABSTAIN':
+        headline='No clear evidence-backed outlook'
+        probability_text=outlook['reason']
+    else:
+        headline,ranked_probability=outlook['ranking'][0]
+        probability_text=f'{ranked_probability:.1%} model probability · preliminary'
+    st.markdown(f'<div class="insight-card"><div class="insight-eyebrow">MatchLab outlook · research stage</div><div class="insight-pick">{html.escape(headline)}</div><div class="insight-note">{html.escape(probability_text)}<br>Descriptive probability only — no verified odds, independent final test, or betting recommendation.</div></div>',unsafe_allow_html=True)
+    st.caption('Screening uses exploratory development-fold summaries (1X and X2: 13/15; 12: 10/15 against club baseline). These are not independent final evidence and do not establish betting value.')
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
-    dc_candidates=[('Home or draw (1X)',probs[0]+probs[1]),('Draw or away (X2)',probs[1]+probs[2])]
-    dc_name,dc_prob=max(dc_candidates,key=lambda item:item[1])
-    close_dc=abs(dc_candidates[0][1]-dc_candidates[1][1])<.05
-    headline='No clear directional lean' if close_dc else dc_name
-    probability_text='Two options are closely matched' if close_dc else f'{dc_prob:.1%} estimated probability'
-    st.markdown(f'<div class="insight-card"><div class="insight-eyebrow">MatchLab outlook · preliminary</div><div class="insight-pick">{html.escape(headline)}</div><div class="insight-note">{html.escape(probability_text)}<br>Model estimate only — not a betting recommendation. No bookmaker odds or independently verified betting edge.</div></div>',unsafe_allow_html=True)
-    st.caption('1X and X2 each beat a training-only club benchmark in 13 of 15 development folds. These folds have already informed development; independent validation remains outstanding.')
     st.markdown('**Compare double-chance probabilities**')
     for market_name,probability in [('Home or draw · 1X',probs[0]+probs[1]),('Draw or away · X2',probs[1]+probs[2]),('Home or away · 12',probs[0]+probs[2])]:
         st.markdown(f'<div class="prob-row"><span>{html.escape(market_name)}</span><strong>{probability:.1%}</strong></div><div class="prob-track"><div class="prob-fill" style="width:{max(0,min(100,probability*100)):.1f}%"></div></div>',unsafe_allow_html=True)
