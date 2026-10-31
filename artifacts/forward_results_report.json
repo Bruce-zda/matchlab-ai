@@ -16,6 +16,7 @@
     "status": "awaiting_paired_results",
     "mean_brier_delta": null,
     "mean_log_loss_delta": null,
+    "bootstrap_95pct_ci": null,
     "promotion_eligible": false
   }
 }
