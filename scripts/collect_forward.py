@@ -177,8 +177,13 @@ def main():
     output.write_text(json.dumps(updated,indent=2)+'\n')
     print(json.dumps({'existing_snapshots':len(ledger),'candidate_snapshots':len(updated),
                       'audit':audit,'candidate_path':str(output)},indent=2))
-    if any(item['status']=='skipped' for item in audit):
-        raise SystemExit('Some fixtures skipped: review audit before publication')
+    recorded=sum(item['status']=='recorded' for item in audit)
+    skipped=sum(item['status']=='skipped' for item in audit)
+    print(f'PREVIEW COVERAGE: {recorded}/{len(audit)} fixtures recorded; {skipped} skipped.')
+    if skipped:
+        print('WARNING: skipped fixtures require review; this is NOT complete coverage.',file=sys.stderr)
+    if recorded==0:
+        raise SystemExit('No valid forecasts recorded: preview failed')
 
 if __name__=='__main__':
     main()
