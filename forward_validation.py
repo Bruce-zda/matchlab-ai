@@ -40,7 +40,7 @@ def validate_forecast(record):
 
 def snapshot_id(record):
     validate_forecast(record)
-    fields={k:record[k] for k in ('league','home','away','kickoff_utc','model','model_version')}
+    fields={k:record[k] for k in ('league','home','away','kickoff_utc','model')}
     payload=json.dumps(fields,sort_keys=True,separators=(',',':'))
     return hashlib.sha256(payload.encode()).hexdigest()[:24]
 
