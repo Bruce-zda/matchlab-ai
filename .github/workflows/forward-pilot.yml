@@ -1,0 +1,63 @@
+name: MatchLab forward forecast pilot ledger
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 5,11,17 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: matchlab-forward-ledger-publisher
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install 'numpy>=1.24,<3' 'pandas>=2.0' 'scipy>=1.11,<2' 'requests>=2.31'
+      - name: Collect pre-kickoff forecasts (pilot; not validated performance)
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: python scripts/collect_forward.py --provider artifacts/forward_ledger.json
+      - name: Verify append-only snapshot integrity
+        run: python scripts/validate_forward_append.py artifacts/forward_ledger.json artifacts/forward_ledger.candidate.json
+      - name: Publish append-only pilot ledger
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mv artifacts/forward_ledger.candidate.json artifacts/forward_ledger.json
+          git add artifacts/forward_ledger.json
+          if git diff --cached --quiet; then
+            echo 'No new pre-match forecasts to publish.'
+            exit 0
+          fi
+          git commit -m 'Append timestamped pilot forward forecasts'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep 3
+          done
+          echo 'Publication failed: review and rerun to preserve ledger integrity' >&2
+          exit 1
+      - name: Upload collection evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matchlab-forward-pilot-evidence
+          path: |
+            artifacts/forward_ledger.json
+            artifacts/forward_ledger.candidate.json
+          if-no-files-found: warn
