@@ -300,6 +300,21 @@ def rolling_league_evaluation():
                 goal_trials=[]
                 league_home=float(np.mean(hg))
                 league_away=float(np.mean(ag))
+                # Independent goal-rate benchmark based on training-only venue splits.
+                home_for={};home_against={};away_for={};away_against={}
+                for row in train.itertuples():
+                    home_for.setdefault(row.HomeTeam,[]).append(float(row.FTHG))
+                    home_against.setdefault(row.HomeTeam,[]).append(float(row.FTAG))
+                    away_for.setdefault(row.AwayTeam,[]).append(float(row.FTAG))
+                    away_against.setdefault(row.AwayTeam,[]).append(float(row.FTHG))
+                def venue_goal_rates(home,away):
+                    def shrink(values,prior):
+                        return (sum(values)+8*prior)/(len(values)+8)
+                    home_attack=shrink(home_for.get(home,[]),league_home)
+                    away_defense=shrink(away_against.get(away,[]),league_home)
+                    away_attack=shrink(away_for.get(away,[]),league_away)
+                    home_defense=shrink(home_against.get(home,[]),league_away)
+                    return max(.15,home_attack*away_defense/max(.1,league_home)),max(.15,away_attack*home_defense/max(.1,league_away))
                 def goal_markets(grid):
                     under15=float(grid[0,0]+grid[0,1]+grid[1,0])
                     under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
@@ -315,7 +330,9 @@ def rolling_league_evaluation():
                     preds.append([float(np.tril(g,-1).sum()),float(np.trace(g)),float(np.triu(g,1).sum())])
                     # Goal-market-only challenger, never used for live predictions.
                     candidate=poisson_grid(.75*lam+.25*league_home,.75*mu+.25*league_away)
-                    goal_trials.append((goal_markets(g),goal_markets(candidate),
+                    venue_lam,venue_mu=venue_goal_rates(m.HomeTeam,m.AwayTeam)
+                    venue_candidate=poisson_grid(venue_lam,venue_mu)
+                    goal_trials.append((goal_markets(g),goal_markets(candidate),goal_markets(venue_candidate),
                                         np.array([m.FTHG+m.FTAG>=2,m.FTHG+m.FTAG>=3,
                                                   m.FTHG>0 and m.FTAG>0],dtype=float)))
 
@@ -329,17 +346,20 @@ def rolling_league_evaluation():
                 strong_brier=float(np.mean((np.array(strong_preds)-target)**2))
                 old_goals=np.array([v[0] for v in goal_trials])
                 new_goals=np.array([v[1] for v in goal_trials])
-                goal_truth=np.array([v[2] for v in goal_trials])
+                venue_goals=np.array([v[2] for v in goal_trials])
+                goal_truth=np.array([v[3] for v in goal_trials])
                 goal_base=np.array([np.mean(hg+ag>=2),np.mean(hg+ag>=3),np.mean((hg>0)&(ag>0))])
                 old_goal_brier=float(np.mean((old_goals-goal_truth)**2))
                 new_goal_brier=float(np.mean((new_goals-goal_truth)**2))
                 baseline_goal_brier=float(np.mean((goal_base-goal_truth)**2))
+                venue_goal_brier=float(np.mean((venue_goals-goal_truth)**2))
                 per_market={}
                 for idx,market in enumerate(('Over 1.5','Over 2.5','BTTS')):
                     per_market[market+' current']=float(np.mean((old_goals[:,idx]-goal_truth[:,idx])**2))
                     per_market[market+' challenger']=float(np.mean((new_goals[:,idx]-goal_truth[:,idx])**2))
                     per_market[market+' baseline']=float(np.mean((goal_base[idx]-goal_truth[:,idx])**2))
-                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier,**per_market})
+                    per_market[market+' venue']=float(np.mean((venue_goals[:,idx]-goal_truth[:,idx])**2))
+                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier,'Current goals Brier':old_goal_brier,'Challenger goals Brier':new_goal_brier,'Goal baseline Brier':baseline_goal_brier,'Venue model Brier':venue_goal_brier,'Challenger gain':old_goal_brier-new_goal_brier,**per_market})
         except Exception as exc:
             errors.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
     return pd.DataFrame(results),errors
@@ -614,6 +634,11 @@ with tab4:
                 challenger=rolling[market+' challenger']
                 baseline_goals=rolling[market+' baseline']
                 market_rows.append({'Market':market,'Challenger beats current':int((challenger<current).sum()),'Challenger beats baseline':int((challenger<baseline_goals).sum()),'Total folds':len(rolling),'Average current Brier':float(current.mean()),'Average challenger Brier':float(challenger.mean()),'Average baseline Brier':float(baseline_goals.mean())})
+            st.markdown('**Independent venue-based goals benchmark**')
+            st.caption('A separate model uses training-only home/away scoring and conceding rates with eight-match smoothing. Lower Brier is better. It is not deployed to live forecasts.')
+            venue_table=rolling[['League','Fold','Test matches','Current goals Brier','Venue model Brier','Goal baseline Brier']].copy()
+            st.dataframe(venue_table.style.format({'Current goals Brier':'{:.3f}','Venue model Brier':'{:.3f}','Goal baseline Brier':'{:.3f}'}),hide_index=True,use_container_width=True)
+            st.info(f"Venue model beats current goals forecast in {int((rolling['Venue model Brier']<rolling['Current goals Brier']).sum())}/{len(rolling)} folds and simple baseline in {int((rolling['Venue model Brier']<rolling['Goal baseline Brier']).sum())}/{len(rolling)} folds.")
             st.markdown('**Goal-market breakdown**')
             st.dataframe(pd.DataFrame(market_rows).style.format({'Average current Brier':'{:.3f}','Average challenger Brier':'{:.3f}','Average baseline Brier':'{:.3f}'}),hide_index=True,use_container_width=True)
             st.markdown('**Goal-model promotion gate**')
