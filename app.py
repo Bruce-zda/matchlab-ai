@@ -445,6 +445,9 @@ def show_card(model,home,away,data):
 
     side=st.radio('Asian handicap side',['Home','Away'],horizontal=True,key='ah_side')
     handicap=st.select_slider('Handicap applied to selected team',options=[x/4 for x in range(-8,9)],value=0.0,key='ah_line')
+    selected_team=home if side=='Home' else away
+    st.markdown(f'**Selected handicap: {selected_team} {handicap:+.2f}**')
+    st.caption('A positive handicap gives the selected team a head start; a negative handicap requires a stronger result.')
     def settle_line(diff,line):
         adjusted=diff+line
         if adjusted>1e-9:return 1.
@@ -464,6 +467,7 @@ def show_card(model,home,away,data):
             label={1.:'Full win',.5:'Half win',0.:'Push',-.5:'Half loss',-1.:'Full loss'}[value]
             settlement[label]+=float(grid[i,j])
     st.dataframe(pd.DataFrame([{'Settlement':key,'Estimated probability':f'{value:.1%}'} for key,value in settlement.items()]),hide_index=True,use_container_width=True)
+    st.caption(f'Estimated full-or-half-win probability: {settlement["Full win"]+settlement["Half win"]:.1%}; push probability: {settlement["Push"]:.1%}. Half-wins are not equivalent to full wins.')
     st.caption('Quarter-goal lines split the stake between adjacent half-lines. A push returns the stake; half outcomes settle half the stake. These are unvalidated model estimates, not a recommended bet. Corners require a separate verified corner-statistics dataset.')
     # High probability alone does not establish betting value or model calibration.
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
