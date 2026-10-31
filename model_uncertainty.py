@@ -5,7 +5,9 @@ import pandas as pd
 def paired_interval(frame, metric='brier', repetitions=1000, seed=42):
     names=('DC + Bayesian (50/50)','Dixon-Coles')
     subset=frame[frame.model.isin(names)].copy()
-    pivot=subset.pivot(index=['league','date','home','away'],columns='model',values=metric)
+    if subset.duplicated(['league','fold','date','home','away','actual','model']).any():
+        raise ValueError('Duplicate model forecast within a fold')
+    pivot=subset.pivot(index=['league','fold','date','home','away','actual'],columns='model',values=metric)
     if not set(names).issubset(pivot) or pivot.isna().any().any():
         raise ValueError('Unpaired model forecasts')
     paired=pivot.reset_index()
