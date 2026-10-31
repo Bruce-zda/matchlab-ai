@@ -205,8 +205,8 @@ def main():
             print('SKIPPED:',json.dumps(item,ensure_ascii=True))
     if skipped:
         print('WARNING: skipped fixtures require review; this is NOT complete coverage.',file=sys.stderr)
-    if recorded==0:
-        raise SystemExit('No valid forecasts recorded: preview failed')
+    if recorded==0 and fixtures:
+        raise SystemExit('No valid forecasts recorded: collector failed')
 
 if __name__=='__main__':
     main()
