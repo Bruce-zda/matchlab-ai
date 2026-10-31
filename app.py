@@ -14,6 +14,7 @@ from data_quality import valid_score_pair, valid_team_pair
 from odds_intelligence import SPORT_KEYS, compare_h2h
 from model_performance import show_model_performance
 from forward_performance import show_forward_performance
+from discover import show_discover
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -131,6 +132,8 @@ div[data-testid="stMetricValue"]{font-size:1.35rem}
 }
 </style>""",unsafe_allow_html=True)
 st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE</span></div>',unsafe_allow_html=True)
+show_discover()
+st.divider()
 @st.cache_data(ttl=3600)
 def load_csv(upload):
     df=pd.read_csv(upload)
