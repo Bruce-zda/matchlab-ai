@@ -21,6 +21,10 @@ class CollectorSafetyTests(unittest.TestCase):
     def test_approved_newcastle_alias(self):
         self.assertEqual(match_team('Newcastle United FC',['Newcastle United','Chelsea']), 'Newcastle United')
 
+    def test_newcastle_full_club_name(self):
+        self.assertEqual(match_team('Newcastle United FC',['Newcastle United FC']), 'Newcastle United FC')
+        self.assertEqual(match_team('Newcastle United FC',['Newcastle United Football Club']), 'Newcastle United Football Club')
+
     def test_unknown_club_is_not_guessed(self):
         with self.assertRaises(ValueError):
             match_team('Newcastle City FC',['Newcastle United','Chelsea'])
