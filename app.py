@@ -316,6 +316,21 @@ with tab3:
         else:
             with st.spinner('Evaluating unseen matches…'):
                 held_model=fit_dc(train)
+                train_h=train.FTHG.to_numpy()
+                train_a=train.FTAG.to_numpy()
+                train_outcome=np.where(train_h>train_a,0,np.where(train_h==train_a,1,2))
+                baseline_1x2=np.bincount(train_outcome,minlength=3)/len(train_outcome)
+                train_total=train_h+train_a
+                baseline_market=np.array([
+                    baseline_1x2[0],baseline_1x2[1],baseline_1x2[2],
+                    baseline_1x2[0]+baseline_1x2[1],
+                    baseline_1x2[1]+baseline_1x2[2],
+                    baseline_1x2[0]+baseline_1x2[2],
+                    np.mean(train_total>=2),np.mean(train_total>=3),
+                    np.mean(train_total<=2),np.mean(train_total<=3),
+                    np.mean((train_h>0)&(train_a>0)),
+                    np.mean((train_h==0)|(train_a==0))
+                ])
                 records=[]
                 markets=['Home win','Draw','Away win','1X','X2','12','Over 1.5','Over 2.5','Under 2.5','Under 3.5','BTTS Yes','BTTS No']
                 for m in test.itertuples():
@@ -339,6 +354,13 @@ with tab3:
                 b.metric('1X2 accuracy',f'{np.mean([r["actual"]==r["guess"] for r in records]):.1%}')
                 c.metric('1X2 Brier ↓',f'{np.mean([r["brier"] for r in records]):.3f}')
                 d.metric('Log loss ↓',f'{np.mean([r["logloss"] for r in records]):.3f}')
+                baseline_brier=float(np.mean([np.mean((baseline_1x2-np.eye(3)[r['actual']])**2) for r in records]))
+                model_brier=float(np.mean([r['brier'] for r in records]))
+                st.write(f'**Simple baseline (training-set home/draw/away frequencies):** Brier {baseline_brier:.3f} · MatchLab {model_brier:.3f}')
+                if model_brier>=baseline_brier:
+                    st.error('Validation gate NOT PASSED: MatchLab does not beat the simple 1X2 baseline on this holdout.')
+                else:
+                    st.success('MatchLab beats the simple 1X2 baseline on this holdout. Broader testing is still required.')
                 st.caption(f'Train: {len(train)} matches before {cutoff.date()} · Test: {len(records)} matches from {cutoff.date()} · Exact-score hit: {np.mean([r["exact"] for r in records]):.1%}')
                 if len(records)<100:st.warning('Small holdout sample: treat market hit rates as exploratory, not reliable.')
                 rows=[]
@@ -346,7 +368,7 @@ with tab3:
                     ps=np.array([r['probs'][k] for r in records],dtype=float)
                     ys=np.array([r['actuals'][k] for r in records],dtype=float)
                     chosen=ps>=.75
-                    rows.append({'Market':name,'Brier ↓':round(float(np.mean((ps-ys)**2)),3),'Mean predicted':round(float(ps.mean()),3),'Observed rate':round(float(ys.mean()),3),'P≥75% picks':int(chosen.sum()),'Hit rate at ≥75%':f'{ys[chosen].mean():.1%}' if chosen.any() else '—'})
+                    rows.append({'Market':name,'Brier ↓':round(float(np.mean((ps-ys)**2)),3),'Baseline Brier ↓':round(float(np.mean((baseline_market[k]-ys)**2)),3),'Beats baseline':bool(np.mean((ps-ys)**2)<np.mean((baseline_market[k]-ys)**2)),'Mean predicted':round(float(ps.mean()),3),'Observed rate':round(float(ys.mean()),3),'P≥75% picks':int(chosen.sum()),'Hit rate at ≥75%':f'{ys[chosen].mean():.1%}' if chosen.any() else '—'})
                 st.subheader('Market reliability')
                 st.dataframe(pd.DataFrame(rows),hide_index=True,use_container_width=True)
                 st.caption('Brier: lower is better. The ≥75% threshold was not optimized on this test. High hit rate alone does not establish betting value; odds and independent validation are missing.')
