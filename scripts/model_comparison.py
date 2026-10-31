@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT))
 from data_quality import valid_score_pair, valid_team_pair
 from elo_baseline import EloBaseline
 from bayesian_goals import BayesianGoals
+from model_uncertainty import paired_interval
 
 source = (ROOT / 'app.py').read_text()
 tree = ast.parse(source)
@@ -155,19 +156,22 @@ def run():
                                     'bin':bin_index,'count':len(chosen),
                                     'mean_probability':float(chosen[col].mean()),
                                     'observed_frequency':float((chosen.actual==outcome).mean())})
+    uncertainty = [paired_interval(frame, metric=metric) for metric in ('brier','log_loss')]
     summary = {'evaluation':'exploratory_frozen_chronological_folds_not_untouched',
                'models':grouped.reset_index().to_dict(orient='records'),
                'leagues':frame.league.nunique(),
                'paired_fixtures':len(frame)//4,
                'league_metrics':league_summary,
                'calibration_bins':calibration,
+               'hybrid_uncertainty':uncertainty,
                'data_errors':failures,
                'caveats':['Previously explored seasons; not an untouched holdout',
                           'Models frozen within each test fold',
                           'Teams unseen in Dixon-Coles training excluded from both',
                           'No bookmaker inputs',
                           '50/50 blend is diagnostic only and not deployed',
-                          'Calibration bins are descriptive, not a calibration fit']}
+                          'Calibration bins are descriptive, not a calibration fit',
+                          'Block bootstrap intervals are exploratory and do not establish future superiority']}
     (out/'model_comparison.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(json.dumps(summary,indent=2))
     if frame.league.nunique()!=5 or len(frame)<800 or frame.groupby('model').size().nunique()!=1:
