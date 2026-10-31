@@ -280,7 +280,7 @@ def show_card(model,home,away,data):
     winner=['Home win','Draw','Away win'][int(np.argmax(probs))]
     safe_home,safe_away=html.escape(home),html.escape(away)
     st.markdown(f'<div class="match-card"><div class="label">MATCH CENTRE / PRE-MATCH</div><div class="fixture">{safe_home} <span style="color:#8b97a4">—</span> {safe_away}</div><div class="pick">Model lean: <b>{winner}</b> · {max(probs):.1%} estimated probability</div></div>',unsafe_allow_html=True)
-    st.markdown('<div class="analysis-title">01 / Match analysis</div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">Match analysis</div>',unsafe_allow_html=True)
     home_form=team_stats(data,home)
     away_form=team_stats(data,away)
     home_venue=team_stats(data,home,'home')
@@ -308,7 +308,7 @@ def show_card(model,home,away,data):
             for m in h2h.itertuples():
                 st.write(f'{m.Date.date()} · {m.HomeTeam} {int(m.FTHG)}–{int(m.FTAG)} {m.AwayTeam}')
             st.caption('Head-to-head is descriptive, not a causal predictor.')
-    st.markdown('<div class="analysis-title">02 / What drives the forecast</div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">How the model sees this match</div>',unsafe_allow_html=True)
     reasons=[f'The model estimates {lam:.2f} goals for {home} and {mu:.2f} for {away}, using team attacking and defensive strength plus a home advantage term.']
     if home_form and away_form:
         reasons.append(f'Across their last five recorded matches, {home} averaged {home_form["gf"]:.2f} goals scored and {away} averaged {away_form["gf"]:.2f}. These are context, not separate model inputs.')
@@ -316,7 +316,7 @@ def show_card(model,home,away,data):
         reasons.append(f'At the relevant venues, {home} scored {home_venue["gf"]:.2f} per home match and {away} scored {away_venue["gf"]:.2f} per away match (up to five games each).')
     for reason in reasons:st.write(reason)
     st.caption('No verified lineups, injuries, live form feed or tactical assessment. Avoid interpreting this as a complete scouting report.')
-    st.markdown('<div class="analysis-title">03 / MatchLab expert assessment</div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">MatchLab assessment</div>',unsafe_allow_html=True)
     under25=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
     under35=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=3))
     btts=float(grid[1:,1:].sum())
@@ -340,7 +340,7 @@ def show_card(model,home,away,data):
     with st.expander('Compare supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
-    st.markdown('<div class="analysis-title">04 / Outcome probabilities</div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">Outcome probabilities</div>',unsafe_allow_html=True)
     a,b,c=st.columns(3)
     a.metric('Home',f'{probs[0]:.1%}')
     b.metric('Draw',f'{probs[1]:.1%}')
