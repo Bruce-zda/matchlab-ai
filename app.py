@@ -11,33 +11,29 @@ from scipy.stats import poisson
 
 st.set_page_config(page_title='MatchLab AI V2', page_icon='⚽', layout='wide')
 st.markdown("""<style>
-:root{color-scheme:dark}
-.block-container{max-width:1040px;padding-top:1.2rem;padding-bottom:3rem}
-[data-testid="stAppViewContainer"]{background:radial-gradient(ellipse at 85% 0%,#183e36 0%,#0d161b 34%,#0b1117 70%);color:#edf8f3}
-[data-testid="stHeader"]{background:transparent}
-h1,h2,h3{letter-spacing:-.035em}
-h1{font-size:clamp(2rem,5vw,3.3rem)!important}
-div[data-testid="stMetric"]{background:#17242b;border:1px solid #30413f;border-radius:16px;padding:14px}
-div[data-testid="stMetricValue"]{color:#7ff5b0}
-.stTabs [data-baseweb="tab-list"]{gap:10px;overflow-x:auto}
-.stTabs [data-baseweb="tab"]{background:#17242b;border-radius:12px 12px 0 0;padding:10px 14px}
-.stTabs [aria-selected="true"]{color:#7ff5b0!important}
-div[data-testid="stAlert"]{border-radius:14px}
-.hero{border:1px solid #325348;background:linear-gradient(125deg,#193a32,#142129);border-radius:22px;padding:22px 24px;margin:8px 0 20px}
-.hero .eyebrow{color:#85f5b2;font-size:.8rem;font-weight:800;letter-spacing:.13em}
-.hero h1{margin:.2rem 0 .35rem}
-.hero p{margin:0;color:#bbd0ca}
-.match-card{background:#16252b;border:1px solid #315047;border-radius:22px;padding:20px;margin:16px 0}
-.match-card .label{color:#8aeeb3;font-size:.78rem;letter-spacing:.11em;font-weight:800}
-.match-card .fixture{font-size:clamp(1.25rem,3.5vw,2rem);font-weight:800;margin:10px 0}
-.match-card .pick{color:#d8eee5}
-.status{border:1px solid #4e694d;background:#283526;border-radius:14px;padding:14px 17px;margin:10px 0;color:#f1eec7}
-@media(max-width:640px){.block-container{padding-left:1rem;padding-right:1rem}.hero,.match-card{padding:17px}.stTabs [data-baseweb="tab"]{padding:8px}}
+.block-container{max-width:980px;padding:2.8rem 1.25rem 4rem}
+[data-testid="stAppViewContainer"]{background:#0d1117;color:#e6e9ed}
+[data-testid="stHeader"]{background:#0d1117}
+h1,h2,h3{letter-spacing:-.03em}
+.stTabs [data-baseweb="tab-list"]{gap:8px;border-bottom:1px solid #303741}
+.stTabs [data-baseweb="tab"]{font-size:.9rem;padding:10px 14px}
+.stTabs [aria-selected="true"]{color:#e5e9ed!important}
+div[data-testid="stMetric"]{background:#161d26;border:1px solid #29333e;border-radius:9px;padding:12px}
+div[data-testid="stMetricValue"]{color:#f0f2f5}
+div[data-testid="stAlert"]{border-radius:8px}
+.brand{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid #29333e;padding:0 0 19px;margin-bottom:20px}
+.brand b{font-size:1.5rem;letter-spacing:-.05em}
+.brand span{font-size:.7rem;letter-spacing:.13em;color:#a6afb9}
+.match-card{border:1px solid #303945;background:#151b24;border-radius:11px;padding:22px;margin:18px 0}
+.match-card .label{font-size:.72rem;color:#9faab6;letter-spacing:.14em;font-weight:700}
+.match-card .fixture{font-size:clamp(1.35rem,4vw,2.15rem);font-weight:750;margin:14px 0}
+.match-card .pick{color:#c2ccd4;font-size:.93rem}
+.status{border-left:3px solid #d5ad65;background:#1a2028;padding:12px 15px;margin:14px 0;font-size:.87rem;color:#cbd3dc}
+.analysis-title{font-size:1.05rem;font-weight:750;margin:24px 0 9px}
+.form-strip{font-family:monospace;letter-spacing:.15em;font-size:1.05rem}
+@media(max-width:640px){.block-container{padding:2rem .9rem 3rem}.match-card{padding:16px}.brand b{font-size:1.3rem}}
 </style>""",unsafe_allow_html=True)
-st.markdown("""<div class="hero"><div class="eyebrow">MATCH INTELLIGENCE · PROTOTYPE</div>
-<h1>⚽ MatchLab AI <span style="color:#86f5b2">V2.1</span></h1>
-<p>Five major leagues · fixture forecasts · transparent probabilities</p></div>""",unsafe_allow_html=True)
-
+st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE / BETA</span></div>',unsafe_allow_html=True)
 @st.cache_data(ttl=3600)
 def load_csv(upload):
     df=pd.read_csv(upload)
@@ -155,29 +151,77 @@ def get_league(code):
 @st.cache_data(ttl=21600,show_spinner=False)
 def train_cached(df):
     return fit_dc(df)
-def show_card(model,home,away):
+def team_stats(data,team,venue=None,n=5):
+    games=data[(data.HomeTeam==team)|(data.AwayTeam==team)].sort_values('Date',ascending=False)
+    if venue=='home':games=games[games.HomeTeam==team]
+    if venue=='away':games=games[games.AwayTeam==team]
+    games=games.head(n)
+    if games.empty:return None
+    scored=np.where(games.HomeTeam==team,games.FTHG,games.FTAG)
+    conceded=np.where(games.HomeTeam==team,games.FTAG,games.FTHG)
+    wins=int(np.sum(scored>conceded))
+    draws=int(np.sum(scored==conceded))
+    losses=int(np.sum(scored<conceded))
+    form=''.join('W' if x>y else 'D' if x==y else 'L' for x,y in zip(scored[::-1],conceded[::-1]))
+    return dict(n=len(games),wins=wins,draws=draws,losses=losses,gf=float(np.mean(scored)),ga=float(np.mean(conceded)),form=form)
+def show_card(model,home,away,data):
     lam,mu,grid=forecast(model,home,away)
     probs=[float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum())]
     winner=['Home win','Draw','Away win'][int(np.argmax(probs))]
     safe_home,safe_away=html.escape(home),html.escape(away)
-    st.markdown(f'<div class="match-card"><div class="label">MATCH FORECAST</div><div class="fixture">{safe_home} <span style="color:#86f5b2">vs</span> {safe_away}</div><div class="pick">Model pick: <b>{winner}</b> · {max(probs):.1%} estimated probability</div></div>',unsafe_allow_html=True)
+    st.markdown(f'<div class="match-card"><div class="label">MATCH CENTRE / PRE-MATCH</div><div class="fixture">{safe_home} <span style="color:#8b97a4">—</span> {safe_away}</div><div class="pick">Model lean: <b>{winner}</b> · {max(probs):.1%} estimated probability</div></div>',unsafe_allow_html=True)
+    st.markdown('<div class="analysis-title">01 / Match analysis</div>',unsafe_allow_html=True)
+    home_form=team_stats(data,home)
+    away_form=team_stats(data,away)
+    home_venue=team_stats(data,home,'home')
+    away_venue=team_stats(data,away,'away')
+    if home_form and away_form:
+        left,right=st.columns(2)
+        with left:
+            st.markdown(f'**{home}** · Last {home_form["n"]}')
+            st.markdown(f'<div class="form-strip">{home_form["form"]}</div>',unsafe_allow_html=True)
+            st.caption(f'{home_form["wins"]}W · {home_form["draws"]}D · {home_form["losses"]}L')
+        with right:
+            st.markdown(f'**{away}** · Last {away_form["n"]}')
+            st.markdown(f'<div class="form-strip">{away_form["form"]}</div>',unsafe_allow_html=True)
+            st.caption(f'{away_form["wins"]}W · {away_form["draws"]}D · {away_form["losses"]}L')
+        comparison=pd.DataFrame({
+            'Measure':['Recent goals scored / match','Recent goals conceded / match','Venue goals scored / match','Venue goals conceded / match'],
+            home:[home_form['gf'],home_form['ga'],home_venue['gf'] if home_venue else np.nan,home_venue['ga'] if home_venue else np.nan],
+            away:[away_form['gf'],away_form['ga'],away_venue['gf'] if away_venue else np.nan,away_venue['ga'] if away_venue else np.nan]
+        })
+        st.dataframe(comparison,hide_index=True,use_container_width=True)
+    h2h=data[((data.HomeTeam==home)&(data.AwayTeam==away))|((data.HomeTeam==away)&(data.AwayTeam==home))].sort_values('Date',ascending=False).head(5)
+    with st.expander(f'Head-to-head · {len(h2h)} recorded meetings'):
+        if h2h.empty:st.write('No recorded meetings in this dataset.')
+        else:
+            for m in h2h.itertuples():
+                st.write(f'{m.Date.date()} · {m.HomeTeam} {int(m.FTHG)}–{int(m.FTAG)} {m.AwayTeam}')
+            st.caption('Head-to-head is descriptive, not a causal predictor.')
+    st.markdown('<div class="analysis-title">02 / What drives the forecast</div>',unsafe_allow_html=True)
+    reasons=[f'The model estimates {lam:.2f} goals for {home} and {mu:.2f} for {away}, using team attacking and defensive strength plus a home advantage term.']
+    if home_form and away_form:
+        reasons.append(f'Across their last five recorded matches, {home} averaged {home_form["gf"]:.2f} goals scored and {away} averaged {away_form["gf"]:.2f}. These are context, not separate model inputs.')
+    if home_venue and away_venue:
+        reasons.append(f'At the relevant venues, {home} scored {home_venue["gf"]:.2f} per home match and {away} scored {away_venue["gf"]:.2f} per away match (up to five games each).')
+    for reason in reasons:st.write(reason)
+    st.caption('No verified lineups, injuries, live form feed or tactical assessment. Avoid interpreting this as a complete scouting report.')
+    st.markdown('<div class="analysis-title">03 / Outcome probabilities</div>',unsafe_allow_html=True)
     a,b,c=st.columns(3)
-    a.metric('Home win',f'{probs[0]:.1%}')
+    a.metric('Home',f'{probs[0]:.1%}')
     b.metric('Draw',f'{probs[1]:.1%}')
-    c.metric('Away win',f'{probs[2]:.1%}')
-    st.progress(float(max(probs)),text=f'Model confidence in top outcome: {max(probs):.1%} (not calibrated confidence)')
+    c.metric('Away',f'{probs[2]:.1%}')
     top=sorted(((i,j,float(grid[i,j])) for i in range(grid.shape[0]) for j in range(grid.shape[1])),key=lambda x:x[2],reverse=True)[:3]
-    st.write('**Top exact scores:** '+' · '.join(f'{i}–{j} ({p:.1%})' for i,j,p in top))
-    with st.expander('Advanced analysis'):
+    st.write('**Likely scorelines:** '+' · '.join(f'{i}–{j} ({p:.1%})' for i,j,p in top))
+    with st.expander('Full statistical breakdown'):
         a,b=st.columns(2)
-        a.metric('Home expected goals',f'{lam:.2f}')
-        b.metric('Away expected goals',f'{mu:.2f}')
+        a.metric('Home model goals',f'{lam:.2f}')
+        b.metric('Away model goals',f'{mu:.2f}')
         under=float(sum(grid[i,j] for i in range(grid.shape[0]) for j in range(grid.shape[1]) if i+j<=2))
-        a.metric('Over 2.5 goals',f'{1-under:.1%}')
+        a.metric('Over 2.5',f'{1-under:.1%}')
         b.metric('Both teams score',f'{grid[1:,1:].sum():.1%}')
-        st.write('**Exact score probabilities** (home goals = rows)')
         st.dataframe(pd.DataFrame(grid[:6,:6]).style.format('{:.1%}'),use_container_width=True)
-        st.caption('Time-decayed Dixon–Coles. No injuries, lineup changes, or live odds included.')
+        st.caption('Model expected goals are not event-data xG. Probabilities have not been calibrated.')
 
 st.caption('Research prototype · Not betting advice · Estimates are not guarantees.')
 league=st.selectbox('Choose league',list(LEAGUES))
@@ -228,12 +272,12 @@ with tab1:
         m=options.iloc[k]
         h=map_team(m.HomeTeam,teams)
         a=map_team(m.AwayTeam,teams)
-        if h and a and h!=a:show_card(model,h,a)
+        if h and a and h!=a:show_card(model,h,a,played)
         else:st.info('One team has no recorded results yet.')
 with tab2:
     home=st.selectbox('Home team',teams)
     away=st.selectbox('Away team',[t for t in teams if t!=home])
-    show_card(model,home,away)
+    show_card(model,home,away,played)
 with tab3:
     st.caption('80/20 chronological holdout. Historical accuracy is not betting profitability.')
     if st.button('Run historical test'):
