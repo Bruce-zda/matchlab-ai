@@ -2,6 +2,13 @@ name: MatchLab historical calibration report
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/calibration_report.py'
+      - '.github/workflows/calibration-report.yml'
+      - 'calibration.py'
+      - 'app.py'
 
 jobs:
   calibration:
