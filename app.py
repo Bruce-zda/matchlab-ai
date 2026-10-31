@@ -9,6 +9,7 @@ import streamlit as st
 from scipy.optimize import minimize
 from scipy.stats import poisson
 from calibration import chronological_calibration_report
+from selection_policy import MarketEvidence, assess_market_evidence, describe_candidate
 
 st.set_page_config(page_title='MatchLab | Football Intelligence', page_icon='⚽', layout='wide')
 st.markdown("""<style>
@@ -736,6 +737,17 @@ with tab4:
                 dc_validation.append({'Market':market,'Model Brier':float(model_col.mean()),'Club baseline Brier':float(base_col.mean()),'Beats club baseline':int((model_col<base_col).sum()),'Folds':len(rolling)})
             st.dataframe(pd.DataFrame(dc_validation).style.format({'Model Brier':'{:.3f}','Club baseline Brier':'{:.3f}'}),hide_index=True,use_container_width=True)
             st.caption('Double chance is evaluated as a binary event against the training-only club-specific baseline. No odds or betting value assessed.')
+            st.markdown('**Expert-pick evidence screening**')
+            policy_rows=[]
+            for row in dc_validation:
+                status=assess_market_evidence(MarketEvidence(
+                    row['Market'],row['Folds'],row['Beats club baseline'],
+                    row['Model Brier'],row['Club baseline Brier']))
+                policy_rows.append({'Market':row['Market'],'Evidence status':status,
+                                    'Expert pick':'Not endorsed — no verified odds or untouched final test'})
+            st.dataframe(pd.DataFrame(policy_rows),hide_index=True,use_container_width=True)
+            st.caption('Preliminary support means historical model reliability only, never a bet recommendation. The system abstains from expert picks until independent final testing and verified odds are available.')
+
             st.markdown('**Asian handicap — settlement validation**')
             ah_validation=[]
             for line in (-1.0,-.5,-.25,0.,.25,.5,1.0):
