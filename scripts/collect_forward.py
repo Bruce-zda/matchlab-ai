@@ -93,20 +93,18 @@ def team_key(name):
     return TEAM_ALIASES.get(key,key)
 
 def canonicalize_history(history):
-    """Merge verified spelling variants before training, without merging distinct clubs."""
+    """Merge approved historical spelling variants across both team columns."""
     history=history.copy()
+    counts=history['HomeTeam'].value_counts().add(
+        history['AwayTeam'].value_counts(),fill_value=0)
+    groups={}
+    for name in set(history['HomeTeam'].dropna())|set(history['AwayTeam'].dropna()):
+        groups.setdefault(team_key(name),[]).append(name)
+    replacement={}
+    for names in groups.values():
+        selected=sorted(names,key=lambda n:(-counts.get(n,0),str(n)))[0]
+        replacement.update({n:selected for n in names})
     for column in ('HomeTeam','AwayTeam'):
-        values=history[column].dropna().unique()
-        groups={}
-        for name in values:
-            groups.setdefault(team_key(name),[]).append(name)
-        replacement={}
-        for names in groups.values():
-            # Prefer the most frequent historical spelling for stable model IDs.
-            counts=history['HomeTeam'].value_counts().add(
-                history['AwayTeam'].value_counts(),fill_value=0)
-            selected=sorted(names,key=lambda n:(-counts.get(n,0),str(n)))[0]
-            replacement.update({n:selected for n in names})
         history[column]=history[column].replace(replacement)
     return history
 
