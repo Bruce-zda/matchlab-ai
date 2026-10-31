@@ -24,6 +24,9 @@ from forward_validation import append_snapshot,utc_time
 from bayesian_goals import BayesianGoals
 from elo_baseline import EloBaseline
 from data_quality import valid_score_pair,valid_team_pair
+from football_data_provider import get_matches,upcoming_fixtures
+import os
+import re
 
 LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1',
          'Bundesliga':'de.1','Ligue 1':'fr.1'}
@@ -48,6 +51,22 @@ def models_from_app():
     exec(compile(ast.fix_missing_locations(ast.Module(body=nodes,type_ignores=[])),
                  str(ROOT/'app.py'),'exec'),ns)
     return ns
+
+def canonical_name(name):
+    return re.sub(r'[^a-z0-9]', '', str(name).casefold().replace('&','and'))
+
+def match_team(provider_name,training_names):
+    aliases={'manchesterunitedfc':'manchesterunited','manchestercityfc':'manchestercity',
+             'tottenhamhotspurfc':'tottenhamhotspur','newcastleunitedfc':'newcastleunited',
+             'brightonandhovealbionfc':'brightonandhovealbion',
+             'wolverhamptonwanderersfc':'wolverhamptonwanderers'}
+    def key(name):
+        result=canonical_name(name)
+        return aliases.get(result,result)
+    matches=[name for name in training_names if key(name)==key(provider_name)]
+    if len(matches)!=1:
+        raise ValueError('No unique exact team-name match: '+str(provider_name))
+    return matches[0]
 
 def collect(fixtures,ledger,now,model_version):
     now=utc_time(now)
@@ -88,7 +107,8 @@ def collect(fixtures,ledger,now,model_version):
                     elo.observe(match.HomeTeam,match.AwayTeam,match.FTHG,match.FTAG)
                 cache[league]=(dc,bayes,elo)
             dc,bayes,elo=cache[league]
-            home,away=fixture['home'],fixture['away']
+            home=match_team(fixture['home'],dc[0])
+            away=match_team(fixture['away'],dc[0])
             if home not in dc[0] or away not in dc[0]:
                 raise ValueError('Team names not matched to model training data')
             _,_,grid=ns['forecast'](dc,home,away)
@@ -102,6 +122,7 @@ def collect(fixtures,ledger,now,model_version):
                         'kickoff_utc':kickoff.isoformat(),
                         'captured_at_utc':now.isoformat(),
                         'model':model,'model_version':model_version,
+                        'provider_match_id':fixture.get('provider_match_id'),
                         'p_home':float(probs[0]),'p_draw':float(probs[1]),
                         'p_away':float(probs[2])}
                 output=append_snapshot(output,record)
@@ -112,10 +133,15 @@ def collect(fixtures,ledger,now,model_version):
 
 def main():
     if len(sys.argv)!=3:
-        raise SystemExit('Usage: python scripts/collect_forward.py fixtures.json ledger.json')
-    fixture_path=pathlib.Path(sys.argv[1])
+        raise SystemExit('Usage: python scripts/collect_forward.py fixtures.json|--provider ledger.json')
     ledger_path=pathlib.Path(sys.argv[2])
-    fixtures=json.loads(fixture_path.read_text())
+    if sys.argv[1]=='--provider':
+        token=os.environ.get('FOOTBALL_DATA_TOKEN','')
+        now=dt.datetime.now(dt.timezone.utc)
+        matches=get_matches(token,now.date().isoformat(),(now+dt.timedelta(days=7)).date().isoformat())
+        fixtures=upcoming_fixtures(matches,now.isoformat())
+    else:
+        fixtures=json.loads(pathlib.Path(sys.argv[1]).read_text())
     ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else []
     if not isinstance(fixtures,list) or not isinstance(ledger,list):
         raise SystemExit('Expected JSON arrays')
