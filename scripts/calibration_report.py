@@ -21,6 +21,7 @@ from scipy.stats import poisson
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from calibration import chronological_calibration_report
+from selection_policy import assess_calibration_gate
 SOURCE = (ROOT / "app.py").read_text(encoding="utf-8")
 TREE = ast.parse(SOURCE)
 NAMES = {
@@ -77,6 +78,8 @@ for market in ("1X", "X2", "12"):
                 "mean_raw_brier": float(valid[raw].mean()),
                 "mean_calibrated_brier": float(valid[adjusted].mean()),
             }
+summary["calibration_gate"] = {market: assess_calibration_gate(summary, market) for market in ("1X", "X2", "12")}
+summary["live_calibration_enabled"] = False
 (output / "calibration_report.json").write_text(
     json.dumps(summary, indent=2, allow_nan=False) + "\n", encoding="utf-8"
 )
