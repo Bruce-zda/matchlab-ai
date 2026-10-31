@@ -152,6 +152,7 @@ def collect(fixtures,ledger,now,model_version):
             elo_p=elo.predict(home,away)
             probabilities={'Dixon-Coles':dc_p,'Bayesian Goals':bayes_p,
                            'Elo':elo_p,'DC + Bayesian (50/50)':(dc_p+bayes_p)/2}
+            new_records=[]
             for model,probs in probabilities.items():
                 record={'league':league,'home':home,'away':away,
                         'kickoff_utc':kickoff.isoformat(),
@@ -160,8 +161,15 @@ def collect(fixtures,ledger,now,model_version):
                         'provider_match_id':fixture.get('provider_match_id'),
                         'p_home':float(probs[0]),'p_draw':float(probs[1]),
                         'p_away':float(probs[2])}
+                new_records.append(record)
+            existing_ids={snapshot_id(item) for item in output}
+            fresh=[item for item in new_records if snapshot_id(item) not in existing_ids]
+            if fresh and len(fresh)!=len(new_records):
+                raise ValueError('Incomplete existing fixture snapshot; manual review required')
+            for record in fresh:
                 output=append_snapshot(output,record)
-            audit.append({**label,'status':'recorded','models':len(probabilities)})
+            audit.append({**label,'status':'recorded' if fresh else 'already_recorded',
+                          'models':len(fresh)})
         except (KeyError,ValueError,TypeError,requests.RequestException) as exc:
             audit.append({**label,'status':'skipped','reason':str(exc)})
     return output,audit
@@ -189,7 +197,7 @@ def main():
     output.write_text(json.dumps(updated,indent=2)+'\n')
     print(json.dumps({'existing_snapshots':len(ledger),'candidate_snapshots':len(updated),
                       'audit':audit,'candidate_path':str(output)},indent=2))
-    recorded=sum(item['status']=='recorded' for item in audit)
+    recorded=sum(item['status'] in ('recorded','already_recorded') for item in audit)
     skipped=sum(item['status']=='skipped' for item in audit)
     print(f'PREVIEW COVERAGE: {recorded}/{len(audit)} fixtures recorded; {skipped} skipped.')
     for item in audit:
