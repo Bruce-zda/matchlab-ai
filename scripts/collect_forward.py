@@ -55,17 +55,40 @@ def models_from_app():
 def canonical_name(name):
     return re.sub(r'[^a-z0-9]', '', str(name).casefold().replace('&','and'))
 
+# Only approved normalization variants. No fuzzy or substring matching.
+TEAM_ALIASES={
+    'manutd':'manchesterunited',
+    'manchesterunited':'manchesterunited',
+    'mancity':'manchestercity',
+    'manchestercity':'manchestercity',
+    'spurs':'tottenhamhotspur',
+    'tottenham':'tottenhamhotspur',
+    'tottenhamhotspur':'tottenhamhotspur',
+    'newcastle':'newcastleunited',
+    'newcastleunited':'newcastleunited',
+    'brighton':'brightonandhovealbion',
+    'brightonandhovealbion':'brightonandhovealbion',
+    'wolves':'wolverhamptonwanderers',
+    'wolverhamptonwanderers':'wolverhamptonwanderers',
+    'nottmforest':'nottinghamforest',
+    'nottinghamforest':'nottinghamforest',
+    'psg':'parissaintgermain',
+    'parissaintgermain':'parissaintgermain',
+    'inter':'internazionale',
+    'internazionale':'internazionale',
+    'bayern':'bayernmunchen',
+    'bayernmunchen':'bayernmunchen',
+}
+def team_key(name):
+    key=canonical_name(name)
+    if key.endswith('fc'):
+        key=key[:-2]
+    return TEAM_ALIASES.get(key,key)
+
 def match_team(provider_name,training_names):
-    aliases={'manchesterunitedfc':'manchesterunited','manchestercityfc':'manchestercity',
-             'tottenhamhotspurfc':'tottenhamhotspur','newcastleunitedfc':'newcastleunited',
-             'brightonandhovealbionfc':'brightonandhovealbion',
-             'wolverhamptonwanderersfc':'wolverhamptonwanderers'}
-    def key(name):
-        result=canonical_name(name)
-        return aliases.get(result,result)
-    matches=[name for name in training_names if key(name)==key(provider_name)]
+    matches=[name for name in training_names if team_key(name)==team_key(provider_name)]
     if len(matches)!=1:
-        raise ValueError('No unique exact team-name match: '+str(provider_name))
+        raise ValueError('No unique approved team-name match: '+str(provider_name))
     return matches[0]
 
 def collect(fixtures,ledger,now,model_version):
