@@ -3,6 +3,7 @@ import datetime as dt
 import pandas as pd
 import requests
 import streamlit as st
+from forward_integrity import verify
 
 BASE='https://raw.githubusercontent.com/Bruce-zda/matchlab-ai/main/artifacts/'
 
@@ -11,6 +12,12 @@ def load_forward_evidence():
     payload={}
     for name in ('forward_ledger.json','forward_settlements.json','forward_results_report.json'):
         response=requests.get(BASE+name,timeout=12)
+        response.raise_for_status()
+        payload[name]=response.json()
+    for name in ('forward_coverage.json','forward_integrity.json'):
+        response=requests.get(BASE+name,timeout=12)
+        if response.status_code==404:
+            continue
         response.raise_for_status()
         payload[name]=response.json()
     return payload
@@ -31,6 +38,28 @@ def show_forward_performance():
     if not isinstance(ledger,list) or not isinstance(settled,list) or not isinstance(report,dict):
         st.warning('Unexpected forward evidence format.')
         return
+    proof=data.get('forward_integrity.json')
+    if proof is not None:
+        try:
+            verify(ledger,proof)
+            st.caption('Full-record SHA-256 manifest: verified against published ledger.')
+        except (ValueError,TypeError):
+            st.error('FORECAST INTEGRITY CHECK FAILED. Published manifest and ledger disagree.')
+            return
+    coverage=data.get('forward_coverage.json')
+    if isinstance(coverage,dict) and coverage.get('fixture_count'):
+        count=coverage['fixture_count']
+        covered=coverage.get('covered',0)
+        pct=covered/count*100
+        st.metric('Latest collection coverage',f'{pct:.1f}%',f'{covered}/{count} fixtures',delta_color='off')
+        if pct<90:
+            st.warning('Coverage below 90% target. Skipped fixtures require review; no guesses are substituted.')
+        else:
+            st.success('Latest collection reached the 90% fixture coverage target.')
+        skipped=[x for x in coverage.get('details',[]) if x.get('status')=='skipped']
+        if skipped:
+            with st.expander(f'Skipped fixtures ({len(skipped)})'):
+                st.dataframe(pd.DataFrame(skipped),hide_index=True,use_container_width=True)
     fixture_ids={r.get('provider_match_id') for r in ledger}
     settled_ids={r.get('provider_match_id') for r in settled}
     a,b,c=st.columns(3)
