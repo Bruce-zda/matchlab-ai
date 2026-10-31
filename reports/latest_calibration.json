@@ -1,5 +1,5 @@
 {
-  "date_utc": "2026-10-31T12:40:49.655512+00:00",
+  "date_utc": "2026-10-31T12:50:25.026843+00:00",
   "evaluation_type": "exploratory_rolling_historical_not_untouched",
   "folds": 15,
   "errors": [],
@@ -7,20 +7,20 @@
     "1X": {
       "folds": 13,
       "improved_folds": 9,
-      "mean_raw_brier": 0.19338076535281123,
-      "mean_calibrated_brier": 0.19221831106515058
+      "mean_raw_brier": 0.19337835529003533,
+      "mean_calibrated_brier": 0.1922156317411997
     },
     "X2": {
       "folds": 13,
       "improved_folds": 4,
-      "mean_raw_brier": 0.2159671169126455,
-      "mean_calibrated_brier": 0.2167247979576705
+      "mean_raw_brier": 0.21596795474648128,
+      "mean_calibrated_brier": 0.2167261497376106
     },
     "12": {
       "folds": 13,
       "improved_folds": 6,
-      "mean_raw_brier": 0.20300742316676537,
-      "mean_calibrated_brier": 0.20288579183056474
+      "mean_raw_brier": 0.20300727858992043,
+      "mean_calibrated_brier": 0.2028854018104385
     }
   },
   "calibration_gate": {
