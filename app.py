@@ -245,18 +245,35 @@ def rolling_league_evaluation():
                 ag=train.FTAG.to_numpy()
                 labels=np.where(hg>ag,0,np.where(hg==ag,1,2))
                 baseline=np.bincount(labels,minlength=3)/len(labels)
-                preds=[]; actual=[]
+                # Stronger benchmark: smoothed home/away outcome rates for each club.
+                # Both club-specific rates use training data only.
+                home_counts={}
+                away_counts={}
+                for row in train.itertuples():
+                    outcome=0 if row.FTHG>row.FTAG else 1 if row.FTHG==row.FTAG else 2
+                    home_counts.setdefault(row.HomeTeam,np.zeros(3))[outcome]+=1
+                    away_counts.setdefault(row.AwayTeam,np.zeros(3))[outcome]+=1
+                def club_baseline(home_team,away_team):
+                    h=home_counts.get(home_team,np.zeros(3))
+                    a=away_counts.get(away_team,np.zeros(3))
+                    # Prior strength equivalent to 12 training matches per team.
+                    hp=(h+12*baseline)/(h.sum()+12)
+                    ap=(a+12*baseline)/(a.sum()+12)
+                    return (hp+ap)/2
+                preds=[]; actual=[]; strong_preds=[]
                 for m in test.itertuples():
                     if m.HomeTeam not in model[0] or m.AwayTeam not in model[0]:continue
                     _,_,g=forecast(model,m.HomeTeam,m.AwayTeam)
                     preds.append([float(np.tril(g,-1).sum()),float(np.trace(g)),float(np.triu(g,1).sum())])
+                    strong_preds.append(club_baseline(m.HomeTeam,m.AwayTeam))
                     actual.append(0 if m.FTHG>m.FTAG else 1 if m.FTHG==m.FTAG else 2)
                 if len(actual)<20:continue
                 p=np.array(preds);y=np.array(actual)
                 target=np.eye(3)[y]
                 model_brier=float(np.mean((p-target)**2))
                 base_brier=float(np.mean((baseline-target)**2))
-                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Improvement':base_brier-model_brier})
+                strong_brier=float(np.mean((np.array(strong_preds)-target)**2))
+                results.append({'League':league_name,'Fold':fold,'Test start':str(cutoff.date()),'Test matches':len(y),'Accuracy':float(np.mean(p.argmax(axis=1)==y)),'Model Brier':model_brier,'Baseline Brier':base_brier,'Club baseline Brier':strong_brier,'Improvement':base_brier-model_brier,'Club improvement':strong_brier-model_brier})
         except Exception as exc:
             errors.append(f'{league_name}: {type(exc).__name__}: {str(exc)[:90]}')
     return pd.DataFrame(results),errors
@@ -513,11 +530,11 @@ with tab4:
         if rolling.empty:
             st.error('No rolling folds completed.')
         else:
-            st.dataframe(rolling.style.format({'Accuracy':'{:.1%}','Model Brier':'{:.3f}','Baseline Brier':'{:.3f}','Improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
-            grouped=rolling.groupby('League').agg(Folds=('Fold','count'),Matches=('Test matches','sum'),Positive_folds=('Improvement',lambda x:int((x>0).sum())),Mean_improvement=('Improvement','mean')).reset_index()
+            st.dataframe(rolling.style.format({'Accuracy':'{:.1%}','Model Brier':'{:.3f}','Baseline Brier':'{:.3f}','Club baseline Brier':'{:.3f}','Improvement':'{:+.3f}','Club improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
+            grouped=rolling.groupby('League').agg(Folds=('Fold','count'),Matches=('Test matches','sum'),Positive_folds=('Improvement',lambda x:int((x>0).sum())),Club_baseline_wins=('Club improvement',lambda x:int((x>0).sum())),Mean_improvement=('Improvement','mean'),Mean_club_improvement=('Club improvement','mean')).reset_index()
             st.markdown('**Consistency by competition**')
-            st.dataframe(grouped.style.format({'Mean_improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
-            st.caption('Positive folds compare against a training-only frequency baseline. Folds can be correlated and do not guarantee future performance.')
+            st.dataframe(grouped.style.format({'Mean_improvement':'{:+.3f}','Mean_club_improvement':'{:+.3f}'}),hide_index=True,use_container_width=True)
+            st.caption('Two training-only benchmarks: league-wide frequencies and a stronger smoothed team home/away outcome model. Positive club improvement means MatchLab beats that stronger benchmark. Folds can be correlated and do not guarantee future performance.')
             st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
 
 with st.expander('About the data and limitations'):
