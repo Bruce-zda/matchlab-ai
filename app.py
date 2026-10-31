@@ -68,6 +68,35 @@ div[data-testid="stMetric"]{padding:11px}
 div[data-testid="stMetricValue"]{font-size:1.35rem}
 .stTabs [data-baseweb="tab"]{font-size:.83rem;padding:9px 11px}
 }
+
+/* Editorial match-centre layout: deliberate typography and thumb-friendly controls */
+[data-testid="stAppViewContainer"]{background:#0b1017;color:#eef2f6}
+.block-container{max-width:1040px}
+.brand{border-bottom:1px solid #27313d;padding-bottom:22px}
+.brand b{font-size:1.9rem;letter-spacing:-.065em}
+.match-card{background:linear-gradient(125deg,#1b2c3c 0%,#131e2a 62%,#151b24 100%);border:1px solid #3a4b5c;border-radius:18px;padding:34px 32px}
+.match-card .fixture{font-size:clamp(1.65rem,4.5vw,2.65rem);margin:20px 0 14px}
+.match-card .pick{color:#d5dee8}
+.analysis-title{font-size:1.28rem;margin:34px 0 16px}
+.insight-card{background:#151e29;border:1px solid #344657;border-radius:15px;padding:24px;margin:18px 0}
+.insight-eyebrow{font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:#dcb977;font-weight:750}
+.insight-pick{font-size:clamp(1.5rem,4vw,2.25rem);font-weight:800;letter-spacing:-.04em;margin:10px 0}
+.insight-note{color:#aebdca;font-size:.88rem;line-height:1.6}
+.prob-row{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:.93rem;margin:14px 0 7px}
+.prob-track{height:8px;background:#2a3440;border-radius:99px;overflow:hidden}
+.prob-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#9bafbe,#e2bb78)}
+[data-testid="stDataFrame"]{border-radius:12px}
+@media(max-width:650px){
+.block-container{padding:1.1rem 1rem 4rem!important}
+.brand b{font-size:1.7rem}
+.match-card{padding:24px 19px;border-radius:15px}
+.match-card .fixture{font-size:1.85rem;line-height:1.25}
+.insight-card{padding:20px 17px}
+.analysis-title{font-size:1.17rem;margin-top:27px}
+[data-testid="stMarkdownContainer"] p{line-height:1.65}
+.stTabs [data-baseweb="tab"]{font-size:.91rem;min-height:46px}
+[data-testid="stSelectbox"]>div,[data-testid="stRadio"]{min-height:44px}
+}
 </style>""",unsafe_allow_html=True)
 st.markdown('<div class="brand"><b>MATCHLAB<span style="color:#d5ad65">.</span></b><span>FOOTBALL INTELLIGENCE</span></div>',unsafe_allow_html=True)
 @st.cache_data(ttl=3600)
@@ -498,19 +527,20 @@ def show_card(model,home,away,data):
     st.dataframe(pd.DataFrame([{'Settlement':key,'Estimated probability':f'{value:.1%}'} for key,value in settlement.items()]),hide_index=True,use_container_width=True)
     st.caption(f'Estimated full-or-half-win probability: {settlement["Full win"]+settlement["Half win"]:.1%}; push probability: {settlement["Push"]:.1%}. Half-wins are not equivalent to full wins.')
     st.caption('Quarter-goal lines split the stake between adjacent half-lines. A push returns the stake; half outcomes settle half the stake. These are unvalidated model estimates, not a recommended bet. Corners require a separate verified corner-statistics dataset.')
-    # Prioritise the markets that have shown stronger rolling historical performance.
-    # This is a descriptive model lean, NOT a validated betting recommendation.
+    # Descriptive market lean only: historical development folds are not an independent test.
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
     dc_candidates=[('Home or draw (1X)',probs[0]+probs[1]),('Draw or away (X2)',probs[1]+probs[2])]
     dc_name,dc_prob=max(dc_candidates,key=lambda item:item[1])
-    st.markdown('**MatchLab market assessment · preliminary**')
-    st.markdown(f'**Model lean: {dc_name} — {dc_prob:.1%}**')
-    st.caption('1X and X2 each beat a training-only club benchmark in 13 of 15 development folds. This is encouraging but not independent validation. No expert-approved bet or profitability claim is being made.')
-    if abs(dc_candidates[0][1]-dc_candidates[1][1])<.05:
-        st.info('The two double-chance options are close. MatchLab does not identify a clear directional advantage here.')
-    st.markdown('**Expert recommendation: Not yet validated**')
-    st.caption('The model ranks outcomes, but no bookmaker odds, independent final holdout, or proven betting edge are available. Asian handicaps are supported as settlement estimates; corners remain unavailable without verified corner data.')
-    with st.expander('Compare supported markets'):
+    close_dc=abs(dc_candidates[0][1]-dc_candidates[1][1])<.05
+    headline='No clear directional lean' if close_dc else dc_name
+    probability_text='Two options are closely matched' if close_dc else f'{dc_prob:.1%} estimated probability'
+    st.markdown(f'<div class="insight-card"><div class="insight-eyebrow">MatchLab outlook · preliminary</div><div class="insight-pick">{html.escape(headline)}</div><div class="insight-note">{html.escape(probability_text)}<br>Model estimate only — not a betting recommendation. No bookmaker odds or independently verified betting edge.</div></div>',unsafe_allow_html=True)
+    st.caption('1X and X2 each beat a training-only club benchmark in 13 of 15 development folds. These folds have already informed development; independent validation remains outstanding.')
+    st.markdown('**Compare double-chance probabilities**')
+    for market_name,probability in [('Home or draw · 1X',probs[0]+probs[1]),('Draw or away · X2',probs[1]+probs[2]),('Home or away · 12',probs[0]+probs[2])]:
+        st.markdown(f'<div class="prob-row"><span>{html.escape(market_name)}</span><strong>{probability:.1%}</strong></div><div class="prob-track"><div class="prob-fill" style="width:{max(0,min(100,probability*100)):.1f}%"></div></div>',unsafe_allow_html=True)
+    st.caption('Higher probability is not necessarily better value. An expert-approved pick requires independent evaluation and market odds.')
+    with st.expander('Explore all supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
     st.markdown('<div class="analysis-title">Outcome probabilities</div>',unsafe_allow_html=True)
