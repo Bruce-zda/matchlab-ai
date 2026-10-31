@@ -224,11 +224,9 @@ def show_card(model,home,away,data):
     # High probability alone does not establish betting value or model calibration.
     ranked_markets=sorted(markets.items(),key=lambda item:item[1],reverse=True)
     best_name,best_prob=ranked_markets[0]
-    if best_prob>=.75:
-        st.markdown(f'**Highest estimated probability (unvalidated):** {best_name} · **{best_prob:.1%}**')
-    else:
-        st.markdown('**No strong pick** — none of the supported markets exceeds the 75% screening threshold.')
-    st.caption('Not an expert-endorsed pick until independent backtesting passes. Screening threshold is provisional, not validated confidence. These are mathematical estimates, not betting recommendations. Short odds can make high-probability outcomes poor value.')
+    st.markdown('**Expert pick: Withheld pending independent validation**')
+    st.write(f'**Highest raw model probability:** {best_name} · {best_prob:.1%}. This is a probability ranking, not a recommendation.')
+    st.caption('A high probability is not proof of reliability or betting value. Early Premier League holdout results show that some goals markets underperform a simple baseline. Expert recommendations will remain disabled until per-market out-of-sample validation across leagues and time periods is complete.')
     with st.expander('Compare supported markets'):
         st.dataframe(pd.DataFrame([{'Market':name,'Model probability':f'{p:.1%}'} for name,p in ranked_markets]),hide_index=True,use_container_width=True)
 
@@ -305,7 +303,7 @@ with tab2:
     away=st.selectbox('Away team',[t for t in teams if t!=home])
     show_card(model,home,away,played)
 with tab3:
-    st.caption('Chronological 80/20 holdout. One fixed model trained before the test period; no future scores enter training.')
+    st.caption('Chronological 80/20 holdout. One fixed model trained before the test period; no future scores enter training. This is an initial test, not full rolling validation.')
     if st.button('Run market-by-market evaluation',type='primary'):
         ordered=played.sort_values('Date').reset_index(drop=True)
         cutoff=ordered.iloc[int(len(ordered)*0.8)].Date
