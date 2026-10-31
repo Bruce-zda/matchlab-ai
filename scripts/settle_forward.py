@@ -14,7 +14,12 @@ def reconcile(ledger,provider_matches,previous=None):
     previous=previous or []
     scores=finished_scores(provider_matches)
     by_id={}
+    kickoff_by_id={}
     conflicting=set()
+    for match in provider_matches:
+        mid=match.get('id')
+        if isinstance(mid,int) and match.get('utcDate'):
+            kickoff_by_id[mid]=utc_time(match['utcDate'])
     for score in scores:
         key=score['provider_match_id']
         if not isinstance(key,int):
@@ -29,7 +34,8 @@ def reconcile(ledger,provider_matches,previous=None):
         raise ValueError('Duplicate settlement snapshot IDs')
     settled=list(previous)
     audit={'total_snapshots':len(ledger),'newly_settled':0,'already_settled':0,
-           'awaiting_verified_result':0,'conflicting_provider_results':len(conflicting)}
+           'awaiting_verified_result':0,'conflicting_provider_results':len(conflicting),
+           'invalid_actual_kickoff':0}
     for record in ledger:
         sid=snapshot_id(record)
         if record.get('snapshot_id')!=sid:
@@ -37,6 +43,10 @@ def reconcile(ledger,provider_matches,previous=None):
         match_id=record.get('provider_match_id')
         if not isinstance(match_id,int) or match_id not in by_id:
             audit['awaiting_verified_result']+=1
+            continue
+        actual_kickoff=kickoff_by_id.get(match_id)
+        if actual_kickoff is not None and utc_time(record['captured_at_utc'])>=actual_kickoff:
+            audit['invalid_actual_kickoff']+=1
             continue
         hg,ag=by_id[match_id]
         outcome=settle_snapshot(record,hg,ag)
