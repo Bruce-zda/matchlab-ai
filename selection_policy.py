@@ -65,3 +65,30 @@ def describe_candidate(probability, evidence_status, odds_available=False):
     if not odds_available:
         return "Model probability only — no verified market odds to assess value."
     return "Research candidate only — independent final validation required."
+
+
+def rank_model_outlooks(market_probabilities, supported_markets, minimum_probability=0.65,
+                        minimum_separation=0.05):
+    """Rank descriptive model outlooks, abstaining when evidence is inadequate.
+
+    supported_markets maps market labels to evidence statuses. This is not a
+    betting edge, expected return, or expert endorsement.
+    """
+    candidates = []
+    for market, probability in market_probabilities.items():
+        if not isinstance(probability, (int, float)) or not math.isfinite(probability):
+            raise ValueError("Market probabilities must be finite")
+        if not 0 <= probability <= 1:
+            raise ValueError("Market probabilities must be in [0, 1]")
+        if supported_markets.get(market) != "PRELIMINARY_SUPPORT":
+            continue
+        if probability >= minimum_probability:
+            candidates.append((market, float(probability)))
+    candidates.sort(key=lambda pair: (-pair[1], pair[0]))
+    if not candidates:
+        return {"status": "ABSTAIN", "reason": "No supported market clears the screening threshold.", "ranking": []}
+    if len(candidates) > 1 and candidates[0][1] - candidates[1][1] < minimum_separation:
+        return {"status": "ABSTAIN", "reason": "Top supported markets are too closely matched.", "ranking": candidates}
+    return {"status": "DESCRIPTIVE_OUTLOOK_ONLY",
+            "reason": "Probability ranking only; no verified odds or independent final validation.",
+            "ranking": candidates}
