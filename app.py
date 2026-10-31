@@ -633,18 +633,25 @@ with st.spinner('Loading football results and fixtures…'):
     raw,errors=get_league(LEAGUES[league])
     upcoming=pd.DataFrame()
     data_source='OpenFootball (fallback)'
+    new_results=pd.DataFrame()
     try:
         new_results=matchday_csv(LEAGUES[league],'results')
+        data_source='open-matchday results + OpenFootball archive'
+    except (requests.RequestException,ValueError,KeyError,pd.errors.ParserError) as exc:
+        st.warning(f'Results feed unavailable ({type(exc).__name__}); historical fallback in use.')
+    try:
         upcoming=matchday_csv(LEAGUES[league],'fixtures')
-        current_names=set(new_results.HomeTeam)|set(new_results.AwayTeam)|set(upcoming.HomeTeam)|set(upcoming.AwayTeam)
+    except (requests.RequestException,ValueError,KeyError,pd.errors.ParserError) as exc:
+        st.info(f'Upcoming fixture feed unavailable ({type(exc).__name__}); schedule may be incomplete.')
+    if not new_results.empty:
+        current_names=set(new_results.HomeTeam)|set(new_results.AwayTeam)
+        if not upcoming.empty:
+            current_names|=set(upcoming.HomeTeam)|set(upcoming.AwayTeam)
         archive=raw.copy()
         for col in ('HomeTeam','AwayTeam'):
             archive[col]=archive[col].map(lambda x:map_team(x,current_names) or x)
         archive=archive.dropna(subset=['HomeTeam','AwayTeam'])
         raw=pd.concat([archive,new_results],ignore_index=True).sort_values('Date').drop_duplicates(['Date','HomeTeam','AwayTeam'],keep='last')
-        data_source='open-matchday daily feed + OpenFootball archive'
-    except Exception as exc:
-        st.warning(f'Open-matchday feed unavailable ({type(exc).__name__}); historical fallback in use.')
 
 if raw.empty:
     st.error('No football records available for this league.')
