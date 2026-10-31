@@ -8,6 +8,7 @@ on:
       - 'scripts/model_comparison.py'
       - 'elo_baseline.py'
       - 'bayesian_goals.py'
+      - 'model_uncertainty.py'
       - 'app.py'
       - '.github/workflows/model-comparison.yml'
 
