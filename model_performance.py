@@ -6,11 +6,11 @@ import streamlit as st
 
 REPORT_URL = 'https://raw.githubusercontent.com/Bruce-zda/matchlab-ai/main/artifacts/model_comparison.json'
 
-@st.cache_data(ttl=1800, show_spinner=False)
+@st.cache_data(ttl=120, show_spinner=False)
 def load_public_comparison():
     response = requests.get(REPORT_URL, timeout=12)
     if response.status_code == 404:
-        return None
+        raise FileNotFoundError('Report has not been published yet')
     response.raise_for_status()
     report = response.json()
     if not isinstance(report, dict) or not report.get('models'):
@@ -20,8 +20,13 @@ def load_public_comparison():
 def show_model_performance():
     st.subheader('Model Performance')
     st.caption('Independent of bookmaker odds · Historical evidence, not guaranteed outcomes')
+    if st.button('Refresh model results', key='refresh_model_results'):
+        load_public_comparison.clear()
     try:
         report = load_public_comparison()
+    except FileNotFoundError:
+        st.info('The evaluation report has not been published yet. Try refreshing in a moment.')
+        return
     except (requests.RequestException, ValueError, TypeError) as exc:
         st.warning('The published evaluation report is temporarily unavailable.')
         return
