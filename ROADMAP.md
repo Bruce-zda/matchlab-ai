@@ -19,6 +19,10 @@ Legend: [x] implemented and user-verified at prototype level; [ ] outstanding; [
 - Historical holdout: five leagues, 495 matches evaluated, MatchLab beat the league-frequency baseline in each league.
 - Rolling validation: 15 historical folds, 14 beat league-frequency baseline, 11 beat smoothed club-specific baseline. Folds can be correlated; these are exploratory findings, not independent proof of future performance.
 - Goal markets and BTTS have mixed results. Expert picks remain withheld.
+- Goal-rate shrinkage challenger improved current goal Brier in 14/15 rolling folds, but beat league goal-frequency baseline in only 7/15 folds.
+- Independent venue-based goals benchmark improved current goal Brier in 9/15 folds and beat league goal-frequency baseline in 7/15 folds.
+- Decision: do not promote either goal challenger. Keep goals markets explicitly exploratory; postpone further goal-model tuning until genuinely new evaluation data are available.
+- Milestone 6 remains open: the required independently validated calibration improvement has not been demonstrated. UI/release engineering can proceed in parallel.
 - No live odds, injury/lineup feed, independent final holdout, or demonstrated betting value.
 
 ## Release rules
