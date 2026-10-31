@@ -1,0 +1,13 @@
+{
+  "audit": {
+    "total_snapshots": 116,
+    "newly_settled": 0,
+    "already_settled": 0,
+    "awaiting_verified_result": 116,
+    "conflicting_provider_results": 0
+  },
+  "status": "pilot_forward_results_not_validated",
+  "settled_forecasts": 0,
+  "settled_fixtures": 0,
+  "models": []
+}
