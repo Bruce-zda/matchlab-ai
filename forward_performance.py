@@ -81,6 +81,20 @@ def show_forward_performance():
             st.dataframe(table.style.format({'Brier ↓':'{:.4f}','Log loss ↓':'{:.4f}'}),
                          hide_index=True,use_container_width=True)
         st.warning('Pilot sample only. No model promotion or claims of superiority from these results.')
+    paired=report.get('paired_comparison',{})
+    if isinstance(paired,dict):
+        st.markdown('**Head-to-head · Dixon–Coles vs 50/50 Hybrid**')
+        n=paired.get('paired_fixtures',0)
+        st.caption(f'Identical settled fixtures: {n} · Negative deltas favor the hybrid.')
+        if n:
+            st.metric('Paired Brier difference',f"{paired['mean_brier_delta']:+.5f}")
+            st.metric('Paired log-loss difference',f"{paired['mean_log_loss_delta']:+.5f}")
+            ci=paired.get('bootstrap_95pct_ci')
+            if ci:
+                st.caption(f"League-month bootstrap 95% intervals: Brier {ci['brier_delta']} · Log loss {ci['log_loss_delta']}")
+        else:
+            st.info('Awaiting verified paired results; no head-to-head performance claims yet.')
+        st.caption('Pilot comparison only; model promotion remains disabled.')
     audit=report.get('audit',{})
     st.caption(f"Awaiting verified results: {audit.get('awaiting_verified_result','?')} forecasts · "
                f"Provider conflicts: {audit.get('conflicting_provider_results','?')}")
