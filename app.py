@@ -616,6 +616,12 @@ with tab4:
                 market_rows.append({'Market':market,'Challenger beats current':int((challenger<current).sum()),'Challenger beats baseline':int((challenger<baseline_goals).sum()),'Total folds':len(rolling),'Average current Brier':float(current.mean()),'Average challenger Brier':float(challenger.mean()),'Average baseline Brier':float(baseline_goals.mean())})
             st.markdown('**Goal-market breakdown**')
             st.dataframe(pd.DataFrame(market_rows).style.format({'Average current Brier':'{:.3f}','Average challenger Brier':'{:.3f}','Average baseline Brier':'{:.3f}'}),hide_index=True,use_container_width=True)
+            st.markdown('**Goal-model promotion gate**')
+            if baseline_wins < len(rolling)*.6:
+                st.warning(f'NOT PASSED — the challenger beat the simple goals baseline in only {baseline_wins}/{len(rolling)} folds. Live goal predictions remain unchanged.')
+            else:
+                st.info('Preliminary consistency threshold met, but no promotion without an untouched final test and per-market checks.')
+            st.caption('The 60% fold threshold is a screening rule, not a statistical significance test. These folds have already been examined during development.')
             st.caption('Exploratory diagnostic only. These historical folds have already influenced development; a separate untouched final test is necessary before promoting any challenger.')
 
             st.download_button('Download rolling validation',rolling.to_csv(index=False),file_name='matchlab_rolling.csv',mime='text/csv')
