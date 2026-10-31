@@ -20,7 +20,8 @@ def load_forecast():
 class ForecastInvariantTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.forecast = load_forecast()
+        # Keep the extracted function unbound: unittest instances must not become its first argument.
+        cls.forecast = staticmethod(load_forecast())
 
     def test_grid_is_valid_probability_distribution(self):
         model = (["Home", "Away"], {"Home": 0.1, "Away": -0.1},
