@@ -47,6 +47,16 @@ class SourceContractTests(unittest.TestCase):
             with self.subTest(feature=feature):
                 self.assertIn(feature, self.source)
 
+    def test_calibration_is_evaluation_only(self):
+        """Calibration must not silently alter the live match forecast."""
+        self.assertIn("from calibration import chronological_calibration_report", self.source)
+        self.assertIn("report=chronological_calibration_report(binary_p,binary_y)", self.source)
+        forecast = next(n for n in self.tree.body if isinstance(n, ast.FunctionDef) and n.name == "forecast")
+        live_source = ast.get_source_segment(self.source, forecast)
+        self.assertNotIn("calibrat", live_source.lower())
+        self.assertIn("calibration raw Brier", self.source)
+        self.assertIn("calibration adjusted Brier", self.source)
+
 
 if __name__ == "__main__":
     unittest.main()
