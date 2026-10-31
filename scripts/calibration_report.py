@@ -10,6 +10,7 @@ import io
 import json
 import pathlib
 import re
+import sys
 
 import numpy as np
 import pandas as pd
@@ -17,9 +18,9 @@ import requests
 from scipy.optimize import minimize
 from scipy.stats import poisson
 
-from calibration import chronological_calibration_report
-
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from calibration import chronological_calibration_report
 SOURCE = (ROOT / "app.py").read_text(encoding="utf-8")
 TREE = ast.parse(SOURCE)
 NAMES = {
