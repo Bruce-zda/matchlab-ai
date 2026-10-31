@@ -1,0 +1,30 @@
+name: MatchLab forward prediction dry run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install 'numpy>=1.24,<3' 'pandas>=2.0' 'scipy>=1.11,<2' 'requests>=2.31'
+      - name: Generate pre-kickoff forecasts (not published)
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: python scripts/collect_forward.py --provider artifacts/forward_ledger.json
+      - name: Upload candidate forecast ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matchlab-forward-candidate
+          path: artifacts/forward_ledger.candidate.json
+          if-no-files-found: warn
