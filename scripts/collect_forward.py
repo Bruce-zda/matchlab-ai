@@ -66,6 +66,7 @@ TEAM_ALIASES={
     'tottenhamhotspur':'tottenhamhotspur',
     'newcastle':'newcastleunited',
     'newcastleunited':'newcastleunited',
+    'newcastleunitedfootballclub':'newcastleunited',
     'brighton':'brightonandhovealbion',
     'brightonandhovealbion':'brightonandhovealbion',
     'wolves':'wolverhamptonwanderers',
@@ -81,7 +82,9 @@ TEAM_ALIASES={
 }
 def team_key(name):
     key=canonical_name(name)
-    if key.endswith('fc'):
+    if key.endswith('footballclub'):
+        key=key[:-12]
+    elif key.endswith('fc'):
         key=key[:-2]
     return TEAM_ALIASES.get(key,key)
 
@@ -180,6 +183,9 @@ def main():
     recorded=sum(item['status']=='recorded' for item in audit)
     skipped=sum(item['status']=='skipped' for item in audit)
     print(f'PREVIEW COVERAGE: {recorded}/{len(audit)} fixtures recorded; {skipped} skipped.')
+    for item in audit:
+        if item['status']=='skipped':
+            print('SKIPPED:',json.dumps(item,ensure_ascii=True))
     if skipped:
         print('WARNING: skipped fixtures require review; this is NOT complete coverage.',file=sys.stderr)
     if recorded==0:
