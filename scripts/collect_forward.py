@@ -92,6 +92,24 @@ def team_key(name):
         key=key[:-2]
     return TEAM_ALIASES.get(key,key)
 
+def canonicalize_history(history):
+    """Merge verified spelling variants before training, without merging distinct clubs."""
+    history=history.copy()
+    for column in ('HomeTeam','AwayTeam'):
+        values=history[column].dropna().unique()
+        groups={}
+        for name in values:
+            groups.setdefault(team_key(name),[]).append(name)
+        replacement={}
+        for names in groups.values():
+            # Prefer the most frequent historical spelling for stable model IDs.
+            counts=history['HomeTeam'].value_counts().add(
+                history['AwayTeam'].value_counts(),fill_value=0)
+            selected=sorted(names,key=lambda n:(-counts.get(n,0),str(n)))[0]
+            replacement.update({n:selected for n in names})
+        history[column]=history[column].replace(replacement)
+    return history
+
 def match_team(provider_name,training_names):
     matches=[name for name in training_names if team_key(name)==team_key(provider_name)]
     if len(matches)!=1:
@@ -133,6 +151,7 @@ def collect(fixtures,ledger,now,model_version):
                 history=pd.concat(frames,ignore_index=True)
                 history=history.drop_duplicates(['Date','HomeTeam','AwayTeam'])
                 history=history[history.Date.dt.date<now.date()].sort_values('Date')
+                history=canonicalize_history(history)
                 if len(history)<150:
                     raise ValueError('Insufficient historical training data')
                 dc=ns['fit_dc'](history)
