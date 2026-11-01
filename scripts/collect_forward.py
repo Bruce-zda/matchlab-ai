@@ -190,6 +190,16 @@ def collect(fixtures,ledger,now,model_version,preview=False):
             audit.append({**label,'status':'skipped','reason':str(exc)})
     return output,audit
 
+def json_native(value):
+    """Convert NumPy scalar values without changing archived forecast semantics."""
+    if isinstance(value,np.integer):
+        return int(value)
+    if isinstance(value,np.floating):
+        return float(value)
+    if isinstance(value,np.ndarray):
+        return value.tolist()
+    raise TypeError(f'Unsupported JSON value: {type(value).__name__}')
+
 def main():
     preview='--preview' in sys.argv
     args=[a for a in sys.argv[1:] if a!='--preview']
@@ -212,20 +222,20 @@ def main():
     # Never overwrite an existing ledger in place. Output a candidate append-only
     # ledger; a separate reviewed publishing process must preserve old snapshots.
     output=(ROOT/'artifacts'/'goal_market_preview.json') if preview else ledger_path.with_name(ledger_path.stem+'.candidate.json')
-    output.write_text(json.dumps(updated,indent=2)+'\n')
+    output.write_text(json.dumps(updated,indent=2,default=json_native)+'\n')
     coverage={'fixture_count':len(audit),'covered':sum(x['status'] in ('recorded','already_recorded') for x in audit),
               'skipped':sum(x['status']=='skipped' for x in audit),'details':audit,
               'collected_at_utc':dt.datetime.now(dt.timezone.utc).isoformat()}
     if not preview:
-        (ROOT/'artifacts'/'forward_coverage.json').write_text(json.dumps(coverage,indent=2)+'\n')
+        (ROOT/'artifacts'/'forward_coverage.json').write_text(json.dumps(coverage,indent=2,default=json_native)+'\n')
     print(json.dumps({'existing_snapshots':len(ledger),'candidate_snapshots':len(updated),
-                      'audit':audit,'candidate_path':str(output)},indent=2))
+                      'audit':audit,'candidate_path':str(output)},indent=2,default=json_native))
     recorded=sum(item['status'] in ('recorded','already_recorded','preview') for item in audit)
     skipped=sum(item['status']=='skipped' for item in audit)
     print(f'PREVIEW COVERAGE: {recorded}/{len(audit)} fixtures recorded; {skipped} skipped.')
     for item in audit:
         if item['status']=='skipped':
-            print('SKIPPED:',json.dumps(item,ensure_ascii=True))
+            print('SKIPPED:',json.dumps(item,ensure_ascii=True,default=json_native))
     if skipped:
         print('WARNING: skipped fixtures require review; this is NOT complete coverage.',file=sys.stderr)
     if recorded==0 and fixtures:
