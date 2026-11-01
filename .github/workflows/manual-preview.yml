@@ -1,0 +1,70 @@
+name: MatchLab manual prediction preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      league:
+        description: Supported competition
+        required: true
+        type: choice
+        options:
+          - Premier League
+          - La Liga
+          - Serie A
+          - Bundesliga
+          - Ligue 1
+      home:
+        description: Home team (provider name)
+        required: true
+        type: string
+      away:
+        description: Away team (provider name)
+        required: true
+        type: string
+      kickoff_utc:
+        description: Independently checked kickoff (ISO 8601 UTC)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: manual-preview-${{ github.actor }}
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install standalone model dependencies
+        run: python -m pip install 'numpy>=1.24,<3' 'scipy>=1.11,<2' 'pandas>=2,<3' 'requests>=2.31,<3'
+      - name: Generate isolated non-archived preview
+        env:
+          PREVIEW_LEAGUE: ${{ inputs.league }}
+          PREVIEW_HOME: ${{ inputs.home }}
+          PREVIEW_AWAY: ${{ inputs.away }}
+          PREVIEW_KICKOFF: ${{ inputs.kickoff_utc }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from scripts.manual_preview import preview, json_native
+          import json
+          result=preview(os.environ['PREVIEW_LEAGUE'],os.environ['PREVIEW_HOME'],os.environ['PREVIEW_AWAY'],os.environ['PREVIEW_KICKOFF'])
+          Path('/tmp/matchlab_manual_preview.json').write_text(json.dumps(result,indent=2,default=json_native)+'\n')
+          print('Generated',len(result['forecasts']),'non-archived model previews')
+          PY
+      - name: Upload temporary preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manual-prediction-preview
+          path: /tmp/matchlab_manual_preview.json
+          retention-days: 3
+          if-no-files-found: error
