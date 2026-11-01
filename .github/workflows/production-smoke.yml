@@ -1,0 +1,55 @@
+name: MatchLab production smoke check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 6,18 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/app/api/health/route.ts'
+      - '.github/workflows/production-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check public website and archive health endpoint
+        env:
+          SITE_URL: https://matchlab-ai-iota.vercel.app
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,time,urllib.error,urllib.request
+          base=os.environ['SITE_URL'].rstrip('/')
+          summary=os.environ.get('GITHUB_STEP_SUMMARY')
+          lines=['## MatchLab production smoke check','']
+          for path,expected in [('/', 'MATCHLAB'),('/api/health','"status":"ok"')]:
+              url=base+path
+              last=''
+              for attempt in range(3):
+                  try:
+                      with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'MatchLab-Production-Smoke/1.0'}),timeout=15) as response:
+                          body=response.read(200000).decode('utf-8','replace')
+                          if response.status!=200 or expected not in body.replace(' ',''):
+                              raise ValueError(f'Unexpected response HTTP {response.status} or missing expected marker')
+                          if path=='/api/health':
+                              data=json.loads(body)
+                              if data.get('status')!='ok' or data.get('archived_forecasts',0)<1:
+                                  raise ValueError('Unhealthy archive response')
+                          lines.append(f'- PASS {path}: HTTP 200')
+                          break
+                  except (urllib.error.URLError,TimeoutError,ValueError) as exc:
+                      last=f'{type(exc).__name__}: {exc}'
+                      if attempt<2:time.sleep(8)
+              else:
+                  lines.append(f'- FAIL {path}: {last}')
+          if summary:
+              with open(summary,'a') as f:f.write('\n'.join(lines)+'\n')
+          print('\n'.join(lines))
+          if any(line.startswith('- FAIL') for line in lines):raise SystemExit(1)
+          PY
