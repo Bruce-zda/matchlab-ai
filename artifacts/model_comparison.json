@@ -10,14 +10,14 @@
     {
       "model": "DC + Bayesian (50/50)",
       "predictions": 5190,
-      "mean_brier": 0.19788797369929828,
-      "mean_log_loss": 0.9948982301490289
+      "mean_brier": 0.19788809118252132,
+      "mean_log_loss": 0.9948988577514705
     },
     {
       "model": "Dixon-Coles",
       "predictions": 5190,
-      "mean_brier": 0.19825902863617417,
-      "mean_log_loss": 0.9978968897142952
+      "mean_brier": 0.1982583146757607,
+      "mean_log_loss": 0.9978910347093419
     },
     {
       "model": "Elo",
@@ -40,15 +40,15 @@
       "league": "Bundesliga",
       "model": "DC + Bayesian (50/50)",
       "predictions": 851,
-      "mean_brier": 0.19790346035508777,
-      "mean_log_loss": 0.996948012949823
+      "mean_brier": 0.19790253631948426,
+      "mean_log_loss": 0.9969436687352369
     },
     {
       "league": "Bundesliga",
       "model": "Dixon-Coles",
       "predictions": 851,
-      "mean_brier": 0.2003484531710791,
-      "mean_log_loss": 1.018677438184201
+      "mean_brier": 0.20034608358720543,
+      "mean_log_loss": 1.0186613329794987
     },
     {
       "league": "Bundesliga",
@@ -68,15 +68,15 @@
       "league": "La Liga",
       "model": "DC + Bayesian (50/50)",
       "predictions": 1165,
-      "mean_brier": 0.1949288418072935,
-      "mean_log_loss": 0.9825654090682698
+      "mean_brier": 0.19492742827999762,
+      "mean_log_loss": 0.9825608764647022
     },
     {
       "league": "La Liga",
       "model": "Dixon-Coles",
       "predictions": 1165,
-      "mean_brier": 0.1951303264557252,
-      "mean_log_loss": 0.9831614540575326
+      "mean_brier": 0.19512340620343757,
+      "mean_log_loss": 0.9831236255110061
     },
     {
       "league": "La Liga",
@@ -96,15 +96,15 @@
       "league": "Ligue 1",
       "model": "DC + Bayesian (50/50)",
       "predictions": 880,
-      "mean_brier": 0.1980985078854787,
-      "mean_log_loss": 0.9969777154504933
+      "mean_brier": 0.19809831611406514,
+      "mean_log_loss": 0.9969765313609482
     },
     {
       "league": "Ligue 1",
       "model": "Dixon-Coles",
       "predictions": 880,
-      "mean_brier": 0.1986077140647174,
-      "mean_log_loss": 0.9993879423101971
+      "mean_brier": 0.1986072504086951,
+      "mean_log_loss": 0.9993846145796912
     },
     {
       "league": "Ligue 1",
@@ -124,15 +124,15 @@
       "league": "Premier League",
       "model": "DC + Bayesian (50/50)",
       "predictions": 1151,
-      "mean_brier": 0.20011301102532733,
-      "mean_log_loss": 1.0037067461463023
+      "mean_brier": 0.20011508198062325,
+      "mean_log_loss": 1.0037156527596478
     },
     {
       "league": "Premier League",
       "model": "Dixon-Coles",
       "predictions": 1151,
-      "mean_brier": 0.19879985872794315,
-      "mean_log_loss": 0.997455465425282
+      "mean_brier": 0.19880423797191568,
+      "mean_log_loss": 0.9974743744504735
     },
     {
       "league": "Premier League",
@@ -152,15 +152,15 @@
       "league": "Serie A",
       "model": "DC + Bayesian (50/50)",
       "predictions": 1143,
-      "mean_brier": 0.19848982974830146,
-      "mean_log_loss": 0.9954711281520545
+      "mean_brier": 0.19849055410597785,
+      "mean_log_loss": 0.9954737748303394
     },
     {
       "league": "Serie A",
       "model": "Dixon-Coles",
       "predictions": 1143,
-      "mean_brier": 0.19907923786476103,
-      "mean_log_loss": 0.9967407119929464
+      "mean_brier": 0.19908076075429113,
+      "mean_log_loss": 0.9967481944295589
     },
     {
       "league": "Serie A",
@@ -240,7 +240,7 @@
       "outcome": "home",
       "bin": 8,
       "count": 67,
-      "mean_probability": 0.828777361046734,
+      "mean_probability": 0.8287773610467342,
       "observed_frequency": 0.8805970149253731
     },
     {
@@ -256,7 +256,7 @@
       "outcome": "draw",
       "bin": 0,
       "count": 17,
-      "mean_probability": 0.0846631369428973,
+      "mean_probability": 0.08466313694289729,
       "observed_frequency": 0.0
     },
     {
@@ -336,7 +336,7 @@
       "outcome": "away",
       "bin": 6,
       "count": 220,
-      "mean_probability": 0.6435237157687346,
+      "mean_probability": 0.6435237157687345,
       "observed_frequency": 0.6409090909090909
     },
     {
@@ -360,7 +360,7 @@
       "outcome": "home",
       "bin": 0,
       "count": 28,
-      "mean_probability": 0.08461405339783627,
+      "mean_probability": 0.08462155418438848,
       "observed_frequency": 0.03571428571428571
     },
     {
@@ -368,7 +368,7 @@
       "outcome": "home",
       "bin": 1,
       "count": 368,
-      "mean_probability": 0.16250057230379322,
+      "mean_probability": 0.16250485260431546,
       "observed_frequency": 0.14945652173913043
     },
     {
@@ -376,31 +376,31 @@
       "outcome": "home",
       "bin": 2,
       "count": 770,
-      "mean_probability": 0.25307851232537776,
+      "mean_probability": 0.25308306492078114,
       "observed_frequency": 0.2675324675324675
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "home",
       "bin": 3,
-      "count": 1110,
-      "mean_probability": 0.35143224611435486,
-      "observed_frequency": 0.35315315315315315
+      "count": 1109,
+      "mean_probability": 0.3513866986412739,
+      "observed_frequency": 0.3534715960324617
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "home",
       "bin": 4,
-      "count": 1140,
-      "mean_probability": 0.448178881320534,
-      "observed_frequency": 0.4324561403508772
+      "count": 1141,
+      "mean_probability": 0.44813268013593194,
+      "observed_frequency": 0.43207712532865905
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "home",
       "bin": 5,
       "count": 888,
-      "mean_probability": 0.5467308261809283,
+      "mean_probability": 0.546720394568834,
       "observed_frequency": 0.5529279279279279
     },
     {
@@ -408,7 +408,7 @@
       "outcome": "home",
       "bin": 6,
       "count": 554,
-      "mean_probability": 0.6485048112021546,
+      "mean_probability": 0.6484929048638658,
       "observed_frequency": 0.6588447653429603
     },
     {
@@ -416,7 +416,7 @@
       "outcome": "home",
       "bin": 7,
       "count": 259,
-      "mean_probability": 0.7420530017399589,
+      "mean_probability": 0.7420397521679711,
       "observed_frequency": 0.7915057915057915
     },
     {
@@ -424,7 +424,7 @@
       "outcome": "home",
       "bin": 8,
       "count": 70,
-      "mean_probability": 0.8260521757662262,
+      "mean_probability": 0.8260322745484541,
       "observed_frequency": 0.8571428571428571
     },
     {
@@ -432,7 +432,7 @@
       "outcome": "home",
       "bin": 9,
       "count": 3,
-      "mean_probability": 0.9061129029513246,
+      "mean_probability": 0.9060980238925747,
       "observed_frequency": 1.0
     },
     {
@@ -440,31 +440,31 @@
       "outcome": "draw",
       "bin": 0,
       "count": 12,
-      "mean_probability": 0.08217997543058947,
+      "mean_probability": 0.0821864611016947,
       "observed_frequency": 0.0
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "draw",
       "bin": 1,
-      "count": 699,
-      "mean_probability": 0.17002320815771835,
-      "observed_frequency": 0.15164520743919885
+      "count": 700,
+      "mean_probability": 0.17006995695988053,
+      "observed_frequency": 0.15285714285714286
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "draw",
       "bin": 2,
-      "count": 4213,
-      "mean_probability": 0.2513110592472659,
-      "observed_frequency": 0.2653690956563019
+      "count": 4212,
+      "mean_probability": 0.2513250476592837,
+      "observed_frequency": 0.26519468186134854
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "draw",
       "bin": 3,
       "count": 266,
-      "mean_probability": 0.31423160782420634,
+      "mean_probability": 0.31424583342951007,
       "observed_frequency": 0.3007518796992481
     },
     {
@@ -472,7 +472,7 @@
       "outcome": "away",
       "bin": 0,
       "count": 212,
-      "mean_probability": 0.07506848085737661,
+      "mean_probability": 0.07507461060036345,
       "observed_frequency": 0.05660377358490566
     },
     {
@@ -480,7 +480,7 @@
       "outcome": "away",
       "bin": 1,
       "count": 967,
-      "mean_probability": 0.15370880318366825,
+      "mean_probability": 0.15371765590823458,
       "observed_frequency": 0.1375387797311272
     },
     {
@@ -488,7 +488,7 @@
       "outcome": "away",
       "bin": 2,
       "count": 1387,
-      "mean_probability": 0.2511110420413276,
+      "mean_probability": 0.25111491084936477,
       "observed_frequency": 0.25234318673395817
     },
     {
@@ -496,7 +496,7 @@
       "outcome": "away",
       "bin": 3,
       "count": 1170,
-      "mean_probability": 0.34913726990296606,
+      "mean_probability": 0.34913880596103136,
       "observed_frequency": 0.3247863247863248
     },
     {
@@ -504,31 +504,31 @@
       "outcome": "away",
       "bin": 4,
       "count": 740,
-      "mean_probability": 0.4468808230429235,
+      "mean_probability": 0.44687412931587456,
       "observed_frequency": 0.43108108108108106
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "away",
       "bin": 5,
-      "count": 444,
-      "mean_probability": 0.5461312846373406,
-      "observed_frequency": 0.5427927927927928
+      "count": 445,
+      "mean_probability": 0.5462462406976774,
+      "observed_frequency": 0.5415730337078651
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "away",
       "bin": 6,
-      "count": 218,
-      "mean_probability": 0.6385433117874307,
-      "observed_frequency": 0.6330275229357798
+      "count": 217,
+      "mean_probability": 0.6387158361834778,
+      "observed_frequency": 0.6359447004608295
     },
     {
       "model": "DC + Bayesian (50/50)",
       "outcome": "away",
       "bin": 7,
       "count": 48,
-      "mean_probability": 0.7351670387911758,
+      "mean_probability": 0.7351568051811753,
       "observed_frequency": 0.8125
     },
     {
@@ -536,7 +536,7 @@
       "outcome": "away",
       "bin": 8,
       "count": 4,
-      "mean_probability": 0.8138681296150201,
+      "mean_probability": 0.8138535894666012,
       "observed_frequency": 0.75
     },
     {
@@ -544,7 +544,7 @@
       "outcome": "home",
       "bin": 0,
       "count": 75,
-      "mean_probability": 0.06776062885377994,
+      "mean_probability": 0.06781931008907384,
       "observed_frequency": 0.16
     },
     {
@@ -552,7 +552,7 @@
       "outcome": "home",
       "bin": 1,
       "count": 440,
-      "mean_probability": 0.1623863009967885,
+      "mean_probability": 0.16241522998414204,
       "observed_frequency": 0.16818181818181818
     },
     {
@@ -560,55 +560,55 @@
       "outcome": "home",
       "bin": 2,
       "count": 778,
-      "mean_probability": 0.25155126964407815,
+      "mean_probability": 0.25154909062279424,
       "observed_frequency": 0.2763496143958869
     },
     {
       "model": "Dixon-Coles",
       "outcome": "home",
       "bin": 3,
-      "count": 1057,
-      "mean_probability": 0.3525459150076427,
-      "observed_frequency": 0.35383159886471144
+      "count": 1056,
+      "mean_probability": 0.3524960822024573,
+      "observed_frequency": 0.35321969696969696
     },
     {
       "model": "Dixon-Coles",
       "outcome": "home",
       "bin": 4,
-      "count": 1100,
-      "mean_probability": 0.44744322546429666,
-      "observed_frequency": 0.44636363636363635
+      "count": 1101,
+      "mean_probability": 0.4473862893952546,
+      "observed_frequency": 0.44686648501362397
     },
     {
       "model": "Dixon-Coles",
       "outcome": "home",
       "bin": 5,
-      "count": 778,
-      "mean_probability": 0.5484057818947189,
-      "observed_frequency": 0.5501285347043702
+      "count": 779,
+      "mean_probability": 0.5484598009405036,
+      "observed_frequency": 0.5507060333761232
     },
     {
       "model": "Dixon-Coles",
       "outcome": "home",
       "bin": 6,
       "count": 562,
-      "mean_probability": 0.6477027264190198,
-      "observed_frequency": 0.6405693950177936
+      "mean_probability": 0.6478579258639444,
+      "observed_frequency": 0.6387900355871886
     },
     {
       "model": "Dixon-Coles",
       "outcome": "home",
       "bin": 7,
-      "count": 311,
-      "mean_probability": 0.7477073307629497,
-      "observed_frequency": 0.7813504823151125
+      "count": 310,
+      "mean_probability": 0.7478220553799525,
+      "observed_frequency": 0.7838709677419354
     },
     {
       "model": "Dixon-Coles",
       "outcome": "home",
       "bin": 8,
       "count": 82,
-      "mean_probability": 0.834939924437511,
+      "mean_probability": 0.8348981384599748,
       "observed_frequency": 0.8170731707317073
     },
     {
@@ -616,7 +616,7 @@
       "outcome": "home",
       "bin": 9,
       "count": 7,
-      "mean_probability": 0.9110492032948986,
+      "mean_probability": 0.9109063951989489,
       "observed_frequency": 1.0
     },
     {
@@ -624,7 +624,7 @@
       "outcome": "draw",
       "bin": 0,
       "count": 25,
-      "mean_probability": 0.08411372483035075,
+      "mean_probability": 0.08414962133175624,
       "observed_frequency": 0.04
     },
     {
@@ -632,31 +632,31 @@
       "outcome": "draw",
       "bin": 1,
       "count": 732,
-      "mean_probability": 0.1687737938677049,
+      "mean_probability": 0.16878294593326373,
       "observed_frequency": 0.1598360655737705
     },
     {
       "model": "Dixon-Coles",
       "outcome": "draw",
       "bin": 2,
-      "count": 3865,
-      "mean_probability": 0.2537814676484108,
-      "observed_frequency": 0.26209573091849936
+      "count": 3864,
+      "mean_probability": 0.2537720306220985,
+      "observed_frequency": 0.26216356107660455
     },
     {
       "model": "Dixon-Coles",
       "outcome": "draw",
       "bin": 3,
-      "count": 543,
-      "mean_probability": 0.31818084679410574,
-      "observed_frequency": 0.3001841620626151
+      "count": 544,
+      "mean_probability": 0.3181643759691793,
+      "observed_frequency": 0.29963235294117646
     },
     {
       "model": "Dixon-Coles",
       "outcome": "draw",
       "bin": 4,
       "count": 25,
-      "mean_probability": 0.4260478139471455,
+      "mean_probability": 0.42612234901014795,
       "observed_frequency": 0.4
     },
     {
@@ -664,7 +664,7 @@
       "outcome": "away",
       "bin": 0,
       "count": 334,
-      "mean_probability": 0.07006187452131829,
+      "mean_probability": 0.07009591465159125,
       "observed_frequency": 0.08982035928143713
     },
     {
@@ -672,7 +672,7 @@
       "outcome": "away",
       "bin": 1,
       "count": 988,
-      "mean_probability": 0.15420207105646264,
+      "mean_probability": 0.15421040307019196,
       "observed_frequency": 0.14271255060728744
     },
     {
@@ -680,7 +680,7 @@
       "outcome": "away",
       "bin": 2,
       "count": 1265,
-      "mean_probability": 0.252208990705272,
+      "mean_probability": 0.2522168438370473,
       "observed_frequency": 0.258498023715415
     },
     {
@@ -688,7 +688,7 @@
       "outcome": "away",
       "bin": 3,
       "count": 1108,
-      "mean_probability": 0.34662077120731943,
+      "mean_probability": 0.3466251364877597,
       "observed_frequency": 0.322202166064982
     },
     {
@@ -696,7 +696,7 @@
       "outcome": "away",
       "bin": 4,
       "count": 691,
-      "mean_probability": 0.44678805286992074,
+      "mean_probability": 0.44679016507400937,
       "observed_frequency": 0.4399421128798842
     },
     {
@@ -704,7 +704,7 @@
       "outcome": "away",
       "bin": 5,
       "count": 501,
-      "mean_probability": 0.5477527738467661,
+      "mean_probability": 0.5477351665440003,
       "observed_frequency": 0.530938123752495
     },
     {
@@ -712,7 +712,7 @@
       "outcome": "away",
       "bin": 6,
       "count": 223,
-      "mean_probability": 0.6398821146834103,
+      "mean_probability": 0.6398460199362612,
       "observed_frequency": 0.5829596412556054
     },
     {
@@ -720,7 +720,7 @@
       "outcome": "away",
       "bin": 7,
       "count": 68,
-      "mean_probability": 0.739910237589558,
+      "mean_probability": 0.7398725881810149,
       "observed_frequency": 0.7352941176470589
     },
     {
@@ -728,7 +728,7 @@
       "outcome": "away",
       "bin": 8,
       "count": 12,
-      "mean_probability": 0.8279719949299772,
+      "mean_probability": 0.8278888475771153,
       "observed_frequency": 0.8333333333333334
     },
     {
@@ -911,9 +911,9 @@
   "hybrid_uncertainty": [
     {
       "metric": "brier",
-      "difference": -0.000371054936875862,
-      "ci95_lower": -0.0009352539141527828,
-      "ci95_upper": 0.0001460198528797731,
+      "difference": -0.0003702234932393536,
+      "ci95_lower": -0.0009343087284535391,
+      "ci95_upper": 0.00014628857461700318,
       "blocks": 171,
       "paired_fixtures": 5190,
       "repetitions": 1000,
@@ -922,9 +922,9 @@
     },
     {
       "metric": "log_loss",
-      "difference": -0.002998659565266204,
-      "ci95_lower": -0.006225540337304273,
-      "ci95_upper": 8.198126227356333e-05,
+      "difference": -0.0029921769578714467,
+      "ci95_lower": -0.006214584298075763,
+      "ci95_upper": 8.251977621825588e-05,
       "blocks": 171,
       "paired_fixtures": 5190,
       "repetitions": 1000,
