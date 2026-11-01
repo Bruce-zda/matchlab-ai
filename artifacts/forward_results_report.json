@@ -52,5 +52,10 @@
       ]
     },
     "promotion_eligible": false
+  },
+  "goal_market_evaluation": {
+    "settled_market_predictions": 0,
+    "status": "awaiting_archived_goal_market_settlements",
+    "markets": []
   }
 }
