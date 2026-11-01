@@ -5,7 +5,6 @@ Fixture JSON is an array of {league,home,away,kickoff_utc}.
 Date-only fixtures are rejected: we never invent kickoff times.
 This script does not fetch a live schedule or publish forecasts on its own.
 """
-import ast
 import datetime as dt
 import io
 import json
@@ -33,25 +32,9 @@ LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1',
          'Bundesliga':'de.1','Ligue 1':'fr.1'}
 
 def models_from_app():
-    tree=ast.parse((ROOT/'app.py').read_text(encoding='utf-8'))
-    names={'fetch_season','fit_dc','forecast'}
-    nodes=[]
-    for node in tree.body:
-        if isinstance(node,ast.FunctionDef) and node.name in names:
-            node.decorator_list=[]
-            nodes.append(node)
-    if {n.name for n in nodes}!=names:
-        raise RuntimeError('App model API changed')
-    class WarningSink:
-        @staticmethod
-        def warning(message):
-            print('MODEL WARNING:',message,file=sys.stderr)
-    ns={'pd':pd,'np':np,'requests':requests,'poisson':poisson,
-        'minimize':minimize,'st':WarningSink,'valid_team_pair':valid_team_pair,
-        'valid_score_pair':valid_score_pair}
-    exec(compile(ast.fix_missing_locations(ast.Module(body=nodes,type_ignores=[])),
-                 str(ROOT/'app.py'),'exec'),ns)
-    return ns
+    """Compatibility shim: standalone models, never load the Streamlit app."""
+    from football_models import fetch_season,fit_dc,forecast
+    return {'fetch_season':fetch_season,'fit_dc':fit_dc,'forecast':forecast}
 
 def canonical_name(name):
     return re.sub(r'[^a-z0-9]', '', str(name).casefold().replace('&','and'))
@@ -133,7 +116,7 @@ def collect(fixtures,ledger,now,model_version,preview=False):
             code=LEAGUES[league]
             kickoff=utc_time(fixture['kickoff_utc'])
             if not now<kickoff<=now+dt.timedelta(days=14):
-                raise ValueError('Kickoff outside next seven days')
+                raise ValueError('Kickoff outside next fourteen days')
             if league not in cache:
                 year=now.year if now.month>=7 else now.year-1
                 frames=[]
