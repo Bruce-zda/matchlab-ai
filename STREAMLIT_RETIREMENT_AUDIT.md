@@ -30,3 +30,10 @@ The forecast archive must remain append-only throughout migration.
 - `scripts/calibration_report.py` calls this module directly, with a regression test preventing `app.py` AST extraction.
 - Workflow report publication now retries on concurrent commits after a confirmed non-fast-forward push failure.
 - Pending: full calibration workflow completion and independent parity review; do not retire `app.py` or `discover.py` yet.
+
+## Verified CI evidence (2026-11-01)
+- Standalone historical model comparison succeeded on five leagues and 5,190 paired fixtures; historical exploratory evaluation, not untouched proof.
+- Standalone historical calibration succeeded on 15 folds with no data-source errors. Calibration gates remain closed and live calibration disabled.
+- Calibration publishing conflict was fixed by rebuilding the generated report commit atop current `main`; workflow run 41338234157 succeeded.
+- Vercel public URL was not independently reachable through the available read-only web check; do not claim a verified production deployment from a GitHub build alone.
+- Streamlit entry points `app.py` and `discover.py` remain for a separate decommission decision; do not delete until hosting ownership and parity are verified.
