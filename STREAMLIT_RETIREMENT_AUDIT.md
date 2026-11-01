@@ -71,3 +71,8 @@ The forecast archive must remain append-only throughout migration.
 
 ### Decision
 **Do not delete `app.py`, `discover.py`, or Streamlit dependencies yet.** The Next.js public site is healthy, but legacy feature parity is incomplete. Retirement can proceed only after choosing which legacy interactive tools to rebuild versus explicitly discontinue, and confirming any remaining Streamlit hosting dependencies. This is distinct from safely keeping Next.js as the sole advertised public site.
+
+## Manual matchup migration progress
+- Next.js `/manual` archived matchup explorer is implemented and its full frontend build passed (GitHub Actions 41346189459); this is archive browsing, **not** arbitrary on-demand forecasting.
+- `scripts/manual_preview.py` adds an independent CLI for freshly fitted four-model previews using the production collector, with explicit future UTC kickoff, validated league/team inputs, isolated empty ledger, and `official_forward_archive: false` output. Supplied fixtures are explicitly **not independently verified**.
+- `tests/test_manual_preview.py` guards preview validation and non-publication. This CLI is **not** yet a website feature; exposing it requires a secure compute backend, rate limiting, independent fixture verification and resource controls. Never run scipy model fitting inside a standard Next.js route without a designed runtime.
