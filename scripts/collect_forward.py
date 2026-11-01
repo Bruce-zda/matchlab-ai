@@ -22,6 +22,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from forward_validation import append_snapshot,utc_time,snapshot_id
 from bayesian_goals import BayesianGoals
+from goal_markets import market_probabilities
 from elo_baseline import EloBaseline
 from data_quality import valid_score_pair,valid_team_pair
 from football_data_provider import get_matches,upcoming_fixtures
@@ -165,10 +166,13 @@ def collect(fixtures,ledger,now,model_version):
                 raise ValueError('Team names not matched to model training data')
             _,_,grid=ns['forecast'](dc,home,away)
             dc_p=np.array([np.tril(grid,-1).sum(),np.trace(grid),np.triu(grid,1).sum()])
-            bayes_p=bayes.predict(home,away)
+            bayes_grid=bayes.score_grid(home,away)
+            bayes_p=np.array([np.tril(bayes_grid,-1).sum(),np.trace(bayes_grid),np.triu(bayes_grid,1).sum()])
             elo_p=elo.predict(home,away)
             probabilities={'Dixon-Coles':dc_p,'Bayesian Goals':bayes_p,
                            'Elo':elo_p,'DC + Bayesian (50/50)':(dc_p+bayes_p)/2}
+            goal_grids={'Dixon-Coles':grid,'Bayesian Goals':bayes_grid,
+                        'DC + Bayesian (50/50)':(grid+bayes_grid)/2}
             new_records=[]
             for model,probs in probabilities.items():
                 record={'league':league,'home':home,'away':away,
@@ -178,6 +182,8 @@ def collect(fixtures,ledger,now,model_version):
                         'provider_match_id':fixture.get('provider_match_id'),
                         'p_home':float(probs[0]),'p_draw':float(probs[1]),
                         'p_away':float(probs[2])}
+                if model in goal_grids:
+                    record['goal_markets']=market_probabilities(goal_grids[model])
                 new_records.append(record)
             existing_ids={snapshot_id(item) for item in output}
             fresh=[item for item in new_records if snapshot_id(item) not in existing_ids]
