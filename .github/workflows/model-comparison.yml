@@ -9,7 +9,7 @@ on:
       - 'elo_baseline.py'
       - 'bayesian_goals.py'
       - 'model_uncertainty.py'
-      - 'app.py'
+      - 'football_models.py'
       - '.github/workflows/model-comparison.yml'
 
 permissions:
