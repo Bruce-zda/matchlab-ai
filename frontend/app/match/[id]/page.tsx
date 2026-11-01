@@ -16,7 +16,7 @@ export default async function MatchPage({params}:{params:Promise<{id:string}>}){
  let ledger:Forecast[];let settled:Settlement[];
  try{[ledger,settled]=await Promise.all([read<Forecast[]>('forward_ledger.json'),read<Settlement[]>('forward_settlements.json')])}catch{return <main className="detail-page"><Link href="/">← Back to Discover</Link><h1>Data temporarily unavailable</h1><p>Try again shortly.</p></main>}
  const raw=ledger.filter(x=>String(x.provider_match_id)===id).sort((a,b)=>b.captured_at_utc.localeCompare(a.captured_at_utc));
- const forecasts=Array.from(new Map(raw.map(x=>[x.model,x])).values());
+ const forecasts=Array.from(new Map(raw.slice().reverse().map(x=>[x.model,x])).values());
  if(!forecasts.length)return <main className="detail-page"><Link href="/">← Back to Discover</Link><h1>Match not found</h1><p>No archived forecasts for this fixture.</p></main>;
  const main=forecasts.find(x=>x.model==='Dixon-Coles')||forecasts[0];const top=winner(main);
  const result=settled.find(x=>x.provider_match_id===main.provider_match_id);
