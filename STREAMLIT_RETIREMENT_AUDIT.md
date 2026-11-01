@@ -24,3 +24,9 @@ The forecast archive must remain append-only throughout migration.
 - Historical calibration (`scripts/calibration_report.py`) **still extracts eight functions from `app.py` using AST**. It is not yet independent and must be migrated carefully with parity tests before deleting the legacy app.
 - `discover.py` is another Streamlit UI entry point; preserve it until retirement is authorized.
 - Workflow triggers for model comparison and calibration no longer react to changes in the legacy `app.py`.
+
+## 2026-11-01 calibration migration
+- `historical_calibration.py` now owns the extracted exploratory rolling evaluation functions, imports standalone `football_models.py`, and has no Streamlit dependency.
+- `scripts/calibration_report.py` calls this module directly, with a regression test preventing `app.py` AST extraction.
+- Workflow report publication now retries on concurrent commits after a confirmed non-fast-forward push failure.
+- Pending: full calibration workflow completion and independent parity review; do not retire `app.py` or `discover.py` yet.
