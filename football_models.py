@@ -70,31 +70,3 @@ def forecast(model,home_team,away_team,max_goals=12):
     grid[1,1]*=1-rho
     grid=np.maximum(grid,0);grid/=grid.sum()
     return lam,mu,grid
-
-
-LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1','Bundesliga':'de.1','Ligue 1':'fr.1'}
-TODAY=dt.date.today()
-
-OPEN_MATCHDAY='https://raw.githubusercontent.com/oladeeayo/open-matchday/master/data'
-FOLDERS={'en.1':'ENG_1_premier-league','es.1':'ESP_1_la-liga','it.1':'ITA_1_serie-a','de.1':'GER_1_bundesliga','fr.1':'FRA_1_ligue-1'}
-
-def forecast(model,home_team,away_team,max_goals=12):
-    teams,attack,defense,home,base,rho=model
-    lam=float(np.exp(base+home+attack[home_team]+defense[away_team]))
-    mu=float(np.exp(base+attack[away_team]+defense[home_team]))
-    goals=np.arange(max_goals+1)
-    grid=np.outer(poisson.pmf(goals,lam),poisson.pmf(goals,mu))
-    grid[0,0]*=1-lam*mu*rho
-    grid[0,1]*=1+lam*rho
-    grid[1,0]*=1+mu*rho
-    grid[1,1]*=1-rho
-    grid=np.maximum(grid,0);grid/=grid.sum()
-    return lam,mu,grid
-
-
-LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1','Bundesliga':'de.1','Ligue 1':'fr.1'}
-TODAY=dt.date.today()
-
-OPEN_MATCHDAY='https://raw.githubusercontent.com/oladeeayo/open-matchday/master/data'
-FOLDERS={'en.1':'ENG_1_premier-league','es.1':'ESP_1_la-liga','it.1':'ITA_1_serie-a','de.1':'GER_1_bundesliga','fr.1':'FRA_1_ligue-1'}
-
