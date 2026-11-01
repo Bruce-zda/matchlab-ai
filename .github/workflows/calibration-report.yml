@@ -44,5 +44,14 @@ jobs:
           git add reports/latest_calibration.json
           if ! git diff --cached --quiet; then
             git commit -m "Publish latest historical calibration audit [skip ci]"
-            git push
+            for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep 3
+          done
+          echo "Calibration publication failed after retries" >&2
+          exit 1
           fi
