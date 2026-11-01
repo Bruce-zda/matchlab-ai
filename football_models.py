@@ -62,7 +62,7 @@ def fit_dc(df, half_life=365):
         if np.isfinite(retry.fun) and (retry.success or retry.fun<res.fun):
             res=retry
     if not res.success:
-        raise RuntimeError(f'Dixon-Coles fit failed to converge: {res.message}')
+        raise ValueError(f'Dixon-Coles fit failed to converge: {res.message}')
     attack,defense,home,base,rho=unpack(res.x)
     return teams,dict(zip(teams,attack)),dict(zip(teams,defense)),home,base,rho
 
