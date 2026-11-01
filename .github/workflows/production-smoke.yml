@@ -28,7 +28,7 @@ jobs:
           base=os.environ['SITE_URL'].rstrip('/')
           summary=os.environ.get('GITHUB_STEP_SUMMARY')
           lines=['## MatchLab production smoke check','']
-          for path,expected in [('/', 'MATCHLAB'),('/api/health','"status":"ok"')]:
+          for path,expected in [('/', 'Evidence-first'),('/api/health','"status":"ok"')]:
               url=base+path
               last=''
               for attempt in range(3):
