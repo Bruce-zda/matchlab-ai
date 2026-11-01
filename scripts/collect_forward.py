@@ -199,7 +199,7 @@ def main():
     if args[0]=='--provider':
         token=os.environ.get('FOOTBALL_DATA_TOKEN','')
         now=dt.datetime.now(dt.timezone.utc)
-        matches=get_matches(token,now.date().isoformat(),(now+dt.timedelta(days=14)).date().isoformat())
+        matches=get_matches(token,now.date().isoformat(),(now+dt.timedelta(days=7)).date().isoformat())
         fixtures=upcoming_fixtures(matches,now.isoformat())
     else:
         fixtures=json.loads(pathlib.Path(args[0]).read_text())
