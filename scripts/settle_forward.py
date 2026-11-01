@@ -10,6 +10,7 @@ sys.path.insert(0,str(ROOT))
 from forward_validation import settle_snapshot,snapshot_id,utc_time
 from football_data_provider import finished_scores
 from paired_metrics import compare,uncertainty
+from goal_market_evaluation import evaluate_goal_markets
 
 def reconcile(ledger,provider_matches,previous=None):
     previous=previous or []
@@ -95,6 +96,20 @@ def main():
         'mean_log_loss_delta':sum(r['log_loss_delta'] for r in pairs)/len(pairs) if pairs else None,
         'bootstrap_95pct_ci':uncertainty(pairs),
         'promotion_eligible':False}
+    goal_rows=[]
+    by_id={r['snapshot_id']:r for r in ledger}
+    for settled_row in settled:
+        forecast=by_id.get(settled_row['snapshot_id'])
+        if forecast is not None:
+            goal_rows.extend(evaluate_goal_markets(forecast,settled_row))
+    grouped={}
+    for row in goal_rows:
+        key=row['market']
+        grouped.setdefault(key,[]).append(row['brier'])
+    report['goal_market_evaluation']={'settled_market_predictions':len(goal_rows),
+        'status':'descriptive_only' if goal_rows else 'awaiting_archived_goal_market_settlements',
+        'markets':[{'market':name,'n':len(scores),'mean_brier':sum(scores)/len(scores)}
+                   for name,scores in sorted(grouped.items())]}
     (ROOT/'artifacts'/'forward_results_report.json').write_text(json.dumps(
         {'audit':audit,**report},indent=2)+'\n')
     print(json.dumps({'audit':audit,'report':report},indent=2))
