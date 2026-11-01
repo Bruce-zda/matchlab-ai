@@ -120,7 +120,7 @@ def match_team(provider_name,training_names):
                          '; training-name candidates (diagnostic only): '+repr(candidates))
     return matches[0]
 
-def collect(fixtures,ledger,now,model_version):
+def collect(fixtures,ledger,now,model_version,preview=False):
     now=utc_time(now)
     ns=models_from_app()
     output=list(ledger)
@@ -132,7 +132,7 @@ def collect(fixtures,ledger,now,model_version):
             league=fixture['league']
             code=LEAGUES[league]
             kickoff=utc_time(fixture['kickoff_utc'])
-            if not now<kickoff<=now+dt.timedelta(days=7):
+            if not now<kickoff<=now+dt.timedelta(days=14):
                 raise ValueError('Kickoff outside next seven days')
             if league not in cache:
                 year=now.year if now.month>=7 else now.year-1
@@ -188,6 +188,13 @@ def collect(fixtures,ledger,now,model_version):
                 if model in goal_grids:
                     record['goal_markets']=market_probabilities(goal_grids[model])
                 new_records.append(record)
+            if preview:
+                for record in new_records:
+                    record['snapshot_id']=snapshot_id(record)
+                    record['preview_only']=True
+                output.extend(new_records)
+                audit.append({**label,'status':'preview','models':len(new_records)})
+                continue
             existing_ids={snapshot_id(item) for item in output}
             fresh=[item for item in new_records if snapshot_id(item) not in existing_ids]
             if fresh and len(fresh)!=len(new_records):
@@ -201,33 +208,36 @@ def collect(fixtures,ledger,now,model_version):
     return output,audit
 
 def main():
-    if len(sys.argv)!=3:
-        raise SystemExit('Usage: python scripts/collect_forward.py fixtures.json|--provider ledger.json')
-    ledger_path=pathlib.Path(sys.argv[2])
-    if sys.argv[1]=='--provider':
+    preview='--preview' in sys.argv
+    args=[a for a in sys.argv[1:] if a!='--preview']
+    if len(args)!=2:
+        raise SystemExit('Usage: python scripts/collect_forward.py fixtures.json|--provider ledger.json [--preview]')
+    ledger_path=pathlib.Path(args[1])
+    if args[0]=='--provider':
         token=os.environ.get('FOOTBALL_DATA_TOKEN','')
         now=dt.datetime.now(dt.timezone.utc)
-        matches=get_matches(token,now.date().isoformat(),(now+dt.timedelta(days=7)).date().isoformat())
+        matches=get_matches(token,now.date().isoformat(),(now+dt.timedelta(days=14)).date().isoformat())
         fixtures=upcoming_fixtures(matches,now.isoformat())
     else:
-        fixtures=json.loads(pathlib.Path(sys.argv[1]).read_text())
-    ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else []
+        fixtures=json.loads(pathlib.Path(args[0]).read_text())
+    ledger=[] if preview else (json.loads(ledger_path.read_text()) if ledger_path.exists() else [])
     if not isinstance(fixtures,list) or not isinstance(ledger,list):
         raise SystemExit('Expected JSON arrays')
     version=__import__('subprocess').check_output(
         ['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    updated,audit=collect(fixtures,ledger,dt.datetime.now(dt.timezone.utc).isoformat(),version)
+    updated,audit=collect(fixtures,ledger,dt.datetime.now(dt.timezone.utc).isoformat(),version,preview=preview)
     # Never overwrite an existing ledger in place. Output a candidate append-only
     # ledger; a separate reviewed publishing process must preserve old snapshots.
-    output=ledger_path.with_name(ledger_path.stem+'.candidate.json')
+    output=(ROOT/'artifacts'/'goal_market_preview.json') if preview else ledger_path.with_name(ledger_path.stem+'.candidate.json')
     output.write_text(json.dumps(updated,indent=2)+'\n')
     coverage={'fixture_count':len(audit),'covered':sum(x['status'] in ('recorded','already_recorded') for x in audit),
               'skipped':sum(x['status']=='skipped' for x in audit),'details':audit,
               'collected_at_utc':dt.datetime.now(dt.timezone.utc).isoformat()}
-    (ROOT/'artifacts'/'forward_coverage.json').write_text(json.dumps(coverage,indent=2)+'\n')
+    if not preview:
+        (ROOT/'artifacts'/'forward_coverage.json').write_text(json.dumps(coverage,indent=2)+'\n')
     print(json.dumps({'existing_snapshots':len(ledger),'candidate_snapshots':len(updated),
                       'audit':audit,'candidate_path':str(output)},indent=2))
-    recorded=sum(item['status'] in ('recorded','already_recorded') for item in audit)
+    recorded=sum(item['status'] in ('recorded','already_recorded','preview') for item in audit)
     skipped=sum(item['status']=='skipped' for item in audit)
     print(f'PREVIEW COVERAGE: {recorded}/{len(audit)} fixtures recorded; {skipped} skipped.')
     for item in audit:
