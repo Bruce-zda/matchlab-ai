@@ -32,7 +32,7 @@ class BayesianGoals:
         count,total=table.get(team,(0,0.0))
         return (total+self.prior_matches*prior)/(count+self.prior_matches)
 
-    def predict(self,home,away):
+    def score_grid(self,home,away):
         if home not in self.teams or away not in self.teams:
             raise ValueError('Unseen team')
         home_attack=self._posterior(self.hf,home,self.home_mean)
@@ -44,4 +44,8 @@ class BayesianGoals:
         goals=np.arange(self.max_goals+1)
         grid=np.outer(poisson.pmf(goals,lam),poisson.pmf(goals,mu))
         grid/=grid.sum()
+        return grid
+
+    def predict(self,home,away):
+        grid=self.score_grid(home,away)
         return np.array([np.tril(grid,-1).sum(),np.trace(grid),np.triu(grid,1).sum()])
