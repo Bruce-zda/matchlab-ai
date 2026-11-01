@@ -83,6 +83,12 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     if not os.environ.get("MATCHLAB_PREVIEW_SERVICE_TOKEN") or not os.environ.get("FOOTBALL_DATA_TOKEN"):
         raise SystemExit("Configure MATCHLAB_PREVIEW_SERVICE_TOKEN and FOOTBALL_DATA_TOKEN")
+    from pathlib import Path
+    from preview_jobs import DB_PATH
+    if str(DB_PATH).startswith("/tmp/") or not os.environ.get("MATCHLAB_PREVIEW_DB"):
+        raise SystemExit("MATCHLAB_PREVIEW_DB must point to a mounted persistent volume")
+    if not DB_PATH.parent.is_dir() or not os.access(DB_PATH.parent, os.W_OK):
+        raise SystemExit("Persistent queue directory must exist and be writable")
     connect().close()
     start_worker()
     ThreadingHTTPServer(("0.0.0.0", int(os.environ.get("PORT", "8080"))), Handler).serve_forever()
