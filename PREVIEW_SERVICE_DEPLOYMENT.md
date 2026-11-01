@@ -23,3 +23,11 @@ The Python preview service is intentionally **not deployed automatically**. It r
 ## Deployment gate
 
 **Do not claim public on-demand predictions are live until the private service is deployed, environment variables are configured, a real end-to-end verified fixture test passes, and distributed rate limiting is operational.**
+
+## Async job architecture (2026-11-01)
+
+The backend now exposes authenticated `POST /jobs` (returns HTTP 202 and opaque job ID) and `GET /jobs/{id}` (queued/running/complete/failed). Next.js proxies these through `POST /api/manual-preview` and `GET /api/manual-preview?job_id=...`. The browser polls while a single background worker verifies the provider fixture and fits models.
+
+**Important deployment changes:** Set `MATCHLAB_PREVIEW_BACKEND_URL` to the exact HTTPS endpoint ending in **`/jobs`** (not `/preview`). Set `MATCHLAB_PREVIEW_DB` to a file on a **persistent mounted volume**. Deploy **exactly one process/replica**; the in-process worker and SQLite quota database are not a distributed multi-replica architecture. Persistent quotas survive process restarts only if the mounted volume persists. Jobs in the running state are requeued after restart. Finished jobs and identifiers expire after 24 hours. A job ID is a bearer capability: keep it private.
+
+The public site remains disabled until hosting, secrets and full integration testing are complete. For production at scale, replace this single-worker architecture with a managed durable queue, central quota enforcement, monitoring and a shared data store. The browser currently polls for up to three minutes; jobs may need longer and should support resume by ID in a later iteration.
