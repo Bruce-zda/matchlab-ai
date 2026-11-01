@@ -42,6 +42,20 @@ jobs:
           pathlib.Path('artifacts/forward_integrity.json').write_text(json.dumps(proof,indent=2)+'\n')
           print('Integrity digest:',proof['sha256'])
           PY
+      - name: Summarize collection health
+        if: always()
+        run: |
+          python - <<'PY'
+          import json,pathlib,os
+          p=pathlib.Path('artifacts/forward_coverage.json')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('## MatchLab collection health\n\n')
+            if not p.exists():
+              f.write('Collection coverage report unavailable; inspect collector logs.\n')
+            else:
+              data=json.loads(p.read_text())
+              f.write('```json\n'+json.dumps(data,indent=2)[:12000]+'\n```\n')
+          PY
       - name: Publish append-only pilot ledger
         run: |
           git config user.name 'github-actions[bot]'
