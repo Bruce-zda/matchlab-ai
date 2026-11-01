@@ -15,6 +15,11 @@ class StandaloneModelTests(unittest.TestCase):
             names=[a.name for a in node.names] if isinstance(node,ast.Import) else [node.module or '']
             self.assertNotIn('streamlit',names)
 
+    def test_historical_comparison_does_not_extract_streamlit_app(self):
+        source=(ROOT/'scripts'/'model_comparison.py').read_text()
+        self.assertNotIn("ROOT / 'app.py'",source)
+        self.assertIn('from football_models import fit_dc, forecast, fetch_season',source)
+
     def test_collector_loads_standalone_functions(self):
         from scripts.collect_forward import models_from_app
         models=models_from_app()
