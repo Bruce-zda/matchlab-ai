@@ -28,6 +28,21 @@ class StandaloneModelTests(unittest.TestCase):
         payload={'goals':np.int64(3),'probability':np.float64(0.6),'grid':np.array([1,2])}
         self.assertEqual(json.loads(json.dumps(payload,default=json_native)),{'goals':3,'probability':0.6,'grid':[1,2]})
 
+    def test_optimizer_converges_on_reproducible_history(self):
+        import pandas as pd
+        rng=np.random.default_rng(2026)
+        teams=['Alpha','Bravo','Charlie','Delta','Echo','Foxtrot']
+        rows=[]
+        for i in range(180):
+            home=teams[i%6]
+            away=teams[(i+1+(i//6)%5)%6]
+            rows.append({'Date':pd.Timestamp('2025-01-01')+pd.Timedelta(days=i),
+                         'HomeTeam':home,'AwayTeam':away,
+                         'FTHG':int(rng.poisson(1.5)),'FTAG':int(rng.poisson(1.1))})
+        model=fit_dc(pd.DataFrame(rows))
+        self.assertEqual(set(model[0]),set(teams))
+        self.assertTrue(all(np.isfinite(v) for v in model[3:]))
+
     def test_score_grid_is_normalized(self):
         model=(['Home','Away'],{'Home':0.,'Away':0.},{'Home':0.,'Away':0.},0.2,0.0,0.0)
         lam,mu,grid=forecast(model,'Home','Away')
