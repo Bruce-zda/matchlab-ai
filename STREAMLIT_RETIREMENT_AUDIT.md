@@ -49,3 +49,25 @@ The forecast archive must remain append-only throughout migration.
 - Earlier smoke failures were recorded before the healthy endpoint was observed; consistent with deployment propagation, but the precise cause is not proven.
 - Automated smoke workflow retry window increased to tolerate delayed propagation. A fresh passing CI run is still required before marking automated production monitoring green.
 - Streamlit deletion remains deferred until legacy feature parity and hosting ownership are confirmed; do not modify immutable forward forecast archives.
+
+## Feature-level parity audit (2026-11-01)
+
+| Legacy Streamlit capability | Next.js status | Retirement gate |
+| --- | --- | --- |
+| Archived forecast discovery and league browsing (`discover.py`) | Present on homepage | Verify filtering and archive freshness before retirement |
+| Archived per-match probability/model comparison | Present at `/match/[id]` | Verify representative fixtures and missing-market behavior |
+| Settled forward model performance | Present at `/performance` | Preserve snapshot-level audit and sample-size warnings |
+| Model descriptions and transparency | Present at `/methodology` | Keep methodology current |
+| Manual home/away team selection and on-demand model analysis (`app.py`, Manual matchup tab) | **Not implemented as interactive Next.js feature** | Feature parity blocker |
+| Current market odds loading and market-by-market evaluation (`app.py`) | **Not implemented as interactive Next.js feature** | Feature parity blocker; requires secured provider credentials |
+| Historical test, five-league cross-league evaluation, rolling-origin validation and CSV exports (`app.py`) | Standalone CI artifacts exist, but **not equivalent interactive Next.js UI/exports** | Feature parity blocker if user-facing analysis must remain |
+| Asian handicap side controls (`app.py`) | Not verified on Next.js | Audit market-specific parity before removal |
+| Discover competition and Upcoming/All archived/Completed filters (`discover.py`) | League browsing present; complete filter parity not established | Verify period filtering |
+
+### CI confirmation
+- Production smoke check run 41344124063 **success** after retry-window adjustment.
+- Historical calibration run 41344138847 **success** after standalone module added to trigger paths.
+- Quality runs 41344154426, 41344138839 and 41344124034 **success**.
+
+### Decision
+**Do not delete `app.py`, `discover.py`, or Streamlit dependencies yet.** The Next.js public site is healthy, but legacy feature parity is incomplete. Retirement can proceed only after choosing which legacy interactive tools to rebuild versus explicitly discontinue, and confirming any remaining Streamlit hosting dependencies. This is distinct from safely keeping Next.js as the sole advertised public site.
