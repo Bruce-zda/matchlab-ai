@@ -171,8 +171,11 @@ def collect(fixtures,ledger,now,model_version):
             elo_p=elo.predict(home,away)
             probabilities={'Dixon-Coles':dc_p,'Bayesian Goals':bayes_p,
                            'Elo':elo_p,'DC + Bayesian (50/50)':(dc_p+bayes_p)/2}
+            side=max(grid.shape[0],grid.shape[1],bayes_grid.shape[0],bayes_grid.shape[1])
+            dc_full=np.pad(grid,((0,side-grid.shape[0]),(0,side-grid.shape[1])))
+            bayes_full=np.pad(bayes_grid,((0,side-bayes_grid.shape[0]),(0,side-bayes_grid.shape[1])))
             goal_grids={'Dixon-Coles':grid,'Bayesian Goals':bayes_grid,
-                        'DC + Bayesian (50/50)':(grid+bayes_grid)/2}
+                        'DC + Bayesian (50/50)':(dc_full+bayes_full)/2}
             new_records=[]
             for model,probs in probabilities.items():
                 record={'league':league,'home':home,'away':away,
