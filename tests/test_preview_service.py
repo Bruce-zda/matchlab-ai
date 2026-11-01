@@ -25,8 +25,8 @@ class PreviewServiceTests(unittest.TestCase):
 
     def test_unmatched_kickoff_rejected(self):
         with patch.dict(os.environ, {"FOOTBALL_DATA_TOKEN": "test"}), patch(
-            "preview_service.get_matches", return_value=[]
-        ), patch("preview_service.upcoming_fixtures", return_value=[RECORD]):
+            "preview_jobs.get_matches", return_value=[]
+        ), patch("preview_jobs.upcoming_fixtures", return_value=[RECORD]):
             with self.assertRaises(ValueError):
                 validate_fixture("Premier League", "Arsenal FC", "Chelsea FC", (NOW + dt.timedelta(days=3)).isoformat())
 
