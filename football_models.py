@@ -54,7 +54,15 @@ def fit_dc(df, half_life=365):
     init=np.r_[np.zeros(2*(n-1)),0.2,np.log(max((hg.mean()+ag.mean())/2,0.2)),0.0]
     bounds=[(-2.5,2.5)]*(2*(n-1))+[(0,1.5),(-2,1.5),(-0.15,0.15)]
     res=minimize(loss,init,method='L-BFGS-B',bounds=bounds,options={'maxiter':400})
-    if not res.success: print('MODEL WARNING: Optimizer did not fully converge; treat results cautiously.')
+    if not res.success:
+        # Retry with a larger iteration budget rather than silently accepting
+        # a potentially unstable score distribution.
+        retry=minimize(loss,res.x,method='L-BFGS-B',bounds=bounds,
+                       options={'maxiter':1200,'maxfun':20000,'ftol':1e-10})
+        if np.isfinite(retry.fun) and (retry.success or retry.fun<res.fun):
+            res=retry
+    if not res.success:
+        raise RuntimeError(f'Dixon-Coles fit failed to converge: {res.message}')
     attack,defense,home,base,rho=unpack(res.x)
     return teams,dict(zip(teams,attack)),dict(zip(teams,defense)),home,base,rho
 
