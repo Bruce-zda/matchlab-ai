@@ -22,6 +22,12 @@ class StandaloneModelTests(unittest.TestCase):
         self.assertIs(models['fit_dc'],fit_dc)
         self.assertIs(models['fetch_season'],fetch_season)
 
+    def test_numpy_json_serialization(self):
+        import json
+        from scripts.collect_forward import json_native
+        payload={'goals':np.int64(3),'probability':np.float64(0.6),'grid':np.array([1,2])}
+        self.assertEqual(json.loads(json.dumps(payload,default=json_native)),{'goals':3,'probability':0.6,'grid':[1,2]})
+
     def test_score_grid_is_normalized(self):
         model=(['Home','Away'],{'Home':0.,'Away':0.},{'Home':0.,'Away':0.},0.2,0.0,0.0)
         lam,mu,grid=forecast(model,'Home','Away')
