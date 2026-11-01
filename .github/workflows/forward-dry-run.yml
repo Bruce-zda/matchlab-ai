@@ -20,11 +20,11 @@ jobs:
       - name: Generate pre-kickoff forecasts (not published)
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-        run: python scripts/collect_forward.py --provider artifacts/forward_ledger.json
+        run: python scripts/collect_forward.py --provider artifacts/forward_ledger.json --preview
       - name: Upload candidate forecast ledger
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: matchlab-forward-candidate
-          path: artifacts/forward_ledger.candidate.json
+          name: matchlab-goal-market-preview
+          path: artifacts/goal_market_preview.json
           if-no-files-found: warn
