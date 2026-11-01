@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   if (!backend || !secret) return response('On-demand compute is not configured. Archived comparisons remain available.', 503);
   let parsed: URL;
   try { parsed = new URL(backend); } catch { return response('Preview backend configuration invalid.', 503); }
-  if (parsed.protocol !== 'https:') return response('Preview backend must use HTTPS.', 503);
+  if (parsed.protocol !== 'https:' || parsed.username || parsed.password || parsed.search || parsed.hash || parsed.pathname !== '/preview') return response('Preview backend must use HTTPS.', 503);
 
   const origin = request.headers.get('origin');
   if (origin && origin !== request.nextUrl.origin) return response('Cross-origin requests are not accepted.', 403);
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     const result: unknown = await upstream.json();
     if (!result || typeof result !== 'object' || Array.isArray(result)) return response('Unexpected compute response.', 502);
     const preview = result as Record<string, unknown>;
-    if (preview.kind !== 'on_demand_preview' || preview.official_forward_archive !== false ||
+    if (preview.kind !== 'on_demand_preview' || preview.official_forward_archive !== false || preview.fixture_verified !== true ||
         !Array.isArray(preview.forecasts) || preview.forecasts.length !== 4) return response('Invalid preview response.', 502);
     return NextResponse.json(preview, { headers: { 'Cache-Control': 'no-store' } });
   } catch { return response('Prediction compute timed out or unavailable.', 502); }
