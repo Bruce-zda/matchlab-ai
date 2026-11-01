@@ -33,6 +33,7 @@ function MatchCard({ match }: {match:Match}) {
      <div className="model-rows">{match.forecasts.map(f=><div className="model-row" key={f.snapshot_id}><span>{f.model}</span><span>{pct(f.p_home)} / {pct(f.p_draw)} / {pct(f.p_away)}</span></div>)}</div>
      <small>Probabilities are archived model estimates, not guarantees. This analysis does not claim to use unverified injuries, lineups or breaking news.</small></div>
    </details>
+   <a className="open-match" href={"/match/"+match.id}>Open full match analysis <ArrowUpRight size={15}/></a>
    <div className="card-foot"><span><CircleDot size={12}/> {match.result?'Provider result recorded':'Archived pre-match forecast'}</span><span>Dixon–Coles primary</span></div>
  </article>;
 }
