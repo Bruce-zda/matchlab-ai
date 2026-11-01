@@ -23,41 +23,8 @@ sys.path.insert(0, str(ROOT))
 from calibration import chronological_calibration_report
 from selection_policy import assess_calibration_gate
 from data_quality import valid_score_pair, valid_team_pair
-SOURCE = (ROOT / "app.py").read_text(encoding="utf-8")
-TREE = ast.parse(SOURCE)
-NAMES = {
-    "fit_dc", "forecast", "matchday_csv", "normalized", "map_team",
-    "fetch_season", "get_league", "rolling_league_evaluation",
-}
-# Only explicitly audited model/data functions are executed. This deliberately
-# avoids executing the Streamlit app, widgets, and top-level UI side effects.
-functions = []
-for node in TREE.body:
-    if isinstance(node, ast.FunctionDef) and node.name in NAMES:
-        node.decorator_list = []
-        functions.append(node)
-if {n.name for n in functions} != NAMES:
-    raise RuntimeError("MatchLab model/data function contract changed")
-namespace = {
-    "dt": dt, "io": io, "re": re, "np": np, "pd": pd,
-    "requests": requests, "minimize": minimize, "poisson": poisson,
-    "chronological_calibration_report": chronological_calibration_report,
-    "valid_score_pair": valid_score_pair, "valid_team_pair": valid_team_pair,
-    "LEAGUES": {
-        "Premier League": "en.1", "La Liga": "es.1", "Serie A": "it.1",
-        "Bundesliga": "de.1", "Ligue 1": "fr.1",
-    },
-    "TODAY": dt.date.today(),
-    "OPEN_MATCHDAY": "https://raw.githubusercontent.com/oladeeayo/open-matchday/master/data",
-    "FOLDERS": {
-        "en.1": "ENG_1_premier-league", "es.1": "ESP_1_la-liga",
-        "it.1": "ITA_1_serie-a", "de.1": "GER_1_bundesliga",
-        "fr.1": "FRA_1_ligue-1",
-    },
-}
-module = ast.fix_missing_locations(ast.Module(body=functions, type_ignores=[]))
-exec(compile(module, str(ROOT / "app.py"), "exec"), namespace)
-rolling, errors = namespace["rolling_league_evaluation"]()
+from historical_calibration import rolling_league_evaluation
+rolling, errors = rolling_league_evaluation()
 output = ROOT / "artifacts"
 output.mkdir(exist_ok=True)
 rolling.to_csv(output / "rolling_validation.csv", index=False)
