@@ -42,3 +42,10 @@ The forecast archive must remain append-only throughout migration.
 - Public homepage returned HTTP 200 in two GitHub Actions checks.
 - New `/api/health` route returned HTTP 404 on the public Vercel URL in both checks, despite a successful Next.js build. This is a **deployment parity blocker**, not proof of an archive-data failure.
 - Production smoke workflow fails loudly until the route is deployed. Investigate Vercel project root directory (`frontend`), connected repository/branch, deployment status, and production domain alias; do not weaken the check or delete legacy hosting before resolution.
+
+## Verified production recovery (2026-11-01)
+- User independently opened the production `/api/health` URL and captured `status: ok`, `source: verified-repository-archive`, `archived_forecasts: 208`, `settled_forecasts: 28` at 2026-11-01T19:47:56.572Z.
+- Vercel dashboard showed `main` deployments Ready, Next.js framework and `frontend` root, and the deployed `/api/health` function in Resources.
+- Earlier smoke failures were recorded before the healthy endpoint was observed; consistent with deployment propagation, but the precise cause is not proven.
+- Automated smoke workflow retry window increased to tolerate delayed propagation. A fresh passing CI run is still required before marking automated production monitoring green.
+- Streamlit deletion remains deferred until legacy feature parity and hosting ownership are confirmed; do not modify immutable forward forecast archives.
