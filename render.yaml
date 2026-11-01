@@ -1,0 +1,23 @@
+# Optional paid Render Blueprint for the isolated prediction service.
+# Creating this service requires explicit hosting-account action and billing approval.
+services:
+  - type: web
+    name: matchlab-preview-worker
+    runtime: docker
+    dockerfilePath: ./Dockerfile.preview
+    dockerContext: .
+    plan: standard
+    numInstances: 1
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: MATCHLAB_PREVIEW_DB
+        value: /data/jobs.sqlite3
+      - key: MATCHLAB_PREVIEW_SERVICE_TOKEN
+        sync: false
+      - key: FOOTBALL_DATA_TOKEN
+        sync: false
+    disk:
+      name: matchlab-preview-data
+      mountPath: /data
+      sizeGB: 5
