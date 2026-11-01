@@ -39,3 +39,14 @@ Build with `docker build -f Dockerfile.preview -t matchlab-preview .`. Run with 
 CI runs `tests/test_preview_integration.py`: a real local HTTP server, authenticated submission, durable queue, mocked provider/model computation, and job polling. **This is a mocked integration test, not proof of real provider availability or a successful external deployment.** Before enabling the site, test one verified upcoming match with live provider credentials and real model fitting, record latency and resource use, and configure upstream access controls and quotas.
 
 Deployment is blocked until a hosting account, writable persistent volume, football-data.org token, and private service secret are available. No credentials should be committed or pasted into public issues.
+
+## Opt-in Render deployment blueprint
+
+A repository-root `render.yaml` defines a **paid**, single-instance Render Docker web service with a 5 GB persistent disk and auto-deploy disabled. This is configuration only; no Render service, disk, billable plan or secret has been created. Review expected costs before approving the Blueprint. See the official Render Blueprint specification and deployment guide.
+
+1. In your own Render account, create a Blueprint connected to this repository's `main` branch. Review the `standard` plan and persistent-disk charges **before** confirming. The Blueprint prompts for `MATCHLAB_PREVIEW_SERVICE_TOKEN` and `FOOTBALL_DATA_TOKEN`; supply secrets in Render, never in GitHub files.
+2. Confirm the mounted `/data` volume is writable by container UID 10001, or adjust volume ownership using the host's supported mechanism. The service refuses to start without writable persistent storage.
+3. Verify the Render HTTPS service's `/health` endpoint, then set Vercel's `MATCHLAB_PREVIEW_BACKEND_URL` to `https://<your-host>/jobs` and `MATCHLAB_PREVIEW_BACKEND_TOKEN` to the **same** secret. Both variables must be server-side only.
+4. Test a real provider-verified upcoming fixture, complete the queue lifecycle, measure compute latency, verify the immutable forward ledger did not change, and review cost/abuse protections before enabling public access.
+
+**Security note:** A secret-bearing HTTPS service is not the same as a private network. Render's public web endpoint remains reachable; bearer authentication, persistent quotas, upstream traffic controls, monitoring, and credential rotation remain essential. The existing 3/hour quota is global to the service, not per-user, and can be exhausted by one client. The optional Blueprint intentionally does not activate the Vercel feature on its own.
