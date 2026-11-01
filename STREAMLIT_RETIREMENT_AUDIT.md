@@ -37,3 +37,8 @@ The forecast archive must remain append-only throughout migration.
 - Calibration publishing conflict was fixed by rebuilding the generated report commit atop current `main`; workflow run 41338234157 succeeded.
 - Vercel public URL was not independently reachable through the available read-only web check; do not claim a verified production deployment from a GitHub build alone.
 - Streamlit entry points `app.py` and `discover.py` remain for a separate decommission decision; do not delete until hosting ownership and parity are verified.
+
+## Production smoke result (2026-11-01)
+- Public homepage returned HTTP 200 in two GitHub Actions checks.
+- New `/api/health` route returned HTTP 404 on the public Vercel URL in both checks, despite a successful Next.js build. This is a **deployment parity blocker**, not proof of an archive-data failure.
+- Production smoke workflow fails loudly until the route is deployed. Investigate Vercel project root directory (`frontend`), connected repository/branch, deployment status, and production domain alias; do not weaken the check or delete legacy hosting before resolution.
