@@ -21,28 +21,8 @@ from elo_baseline import EloBaseline
 from bayesian_goals import BayesianGoals
 from model_uncertainty import paired_interval
 
-source = (ROOT / 'app.py').read_text()
-tree = ast.parse(source)
-names = {'fit_dc', 'forecast', 'fetch_season'}
-nodes = []
-for node in tree.body:
-    if isinstance(node, ast.FunctionDef) and node.name in names:
-        node.decorator_list = []
-        nodes.append(node)
-if {n.name for n in nodes} != names:
-    raise RuntimeError('Model function contract changed')
-# Streamlit warning is only invoked for optimizer nonconvergence.
-class WarningSink:
-    @staticmethod
-    def warning(message):
-        print('MODEL WARNING:', message)
-
-namespace = {'np': np, 'pd': pd, 'requests': requests,
-             'minimize': minimize, 'poisson': poisson,
-             'valid_score_pair': valid_score_pair, 'valid_team_pair': valid_team_pair,
-             'st': WarningSink}
-exec(compile(ast.fix_missing_locations(ast.Module(body=nodes, type_ignores=[])),
-             str(ROOT / 'app.py'), 'exec'), namespace)
+from football_models import fit_dc, forecast, fetch_season
+namespace = {'fit_dc': fit_dc, 'forecast': forecast, 'fetch_season': fetch_season}
 
 LEAGUES = {'Premier League': 'en.1', 'La Liga': 'es.1', 'Serie A': 'it.1',
            'Bundesliga': 'de.1', 'Ligue 1': 'fr.1'}
