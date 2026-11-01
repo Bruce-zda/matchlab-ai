@@ -8,7 +8,7 @@ on:
       - 'scripts/calibration_report.py'
       - '.github/workflows/calibration-report.yml'
       - 'calibration.py'
-      - 'app.py'
+      - 'football_models.py'
 
 jobs:
   calibration:
