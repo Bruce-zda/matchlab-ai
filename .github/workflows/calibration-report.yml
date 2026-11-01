@@ -9,6 +9,7 @@ on:
       - '.github/workflows/calibration-report.yml'
       - 'calibration.py'
       - 'football_models.py'
+      - 'historical_calibration.py'
 
 jobs:
   calibration:
