@@ -36,6 +36,9 @@ def validate_forecast(record):
         raise ValueError('Invalid probabilities')
     if abs(sum(probs)-1)>1e-6:
         raise ValueError('Probabilities must sum to one')
+    if 'goal_markets' in record:
+        from goal_markets import validate_goal_markets
+        validate_goal_markets(record['goal_markets'])
     return True
 
 def snapshot_id(record):
