@@ -15,6 +15,14 @@ class StandaloneModelTests(unittest.TestCase):
             names=[a.name for a in node.names] if isinstance(node,ast.Import) else [node.module or '']
             self.assertNotIn('streamlit',names)
 
+    def test_calibration_uses_standalone_module(self):
+        source=(ROOT/'scripts'/'calibration_report.py').read_text()
+        self.assertIn('from historical_calibration import rolling_league_evaluation',source)
+        self.assertNotIn('ast.parse(',source)
+        self.assertNotIn('app.py',source)
+        import historical_calibration
+        self.assertIs(historical_calibration.fit_dc,fit_dc)
+
     def test_historical_comparison_does_not_extract_streamlit_app(self):
         source=(ROOT/'scripts'/'model_comparison.py').read_text()
         self.assertNotIn("ROOT / 'app.py'",source)
