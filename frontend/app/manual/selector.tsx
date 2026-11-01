@@ -3,7 +3,12 @@ import {useMemo,useState} from 'react';
 import Link from 'next/link';
 type Forecast={snapshot_id:string;provider_match_id:number;league:string;home:string;away:string;kickoff_utc:string;captured_at_utc:string;model:string;p_home:number;p_draw:number;p_away:number};
 const pct=(n:number)=>(n*100).toFixed(1)+'%';
-export default function ManualExplorer({forecasts,computeEnabled=false}:{forecasts:Forecast[];computeEnabled?:boolean}){\n const [kickoff,setKickoff]=useState('');\n const [preview,setPreview]=useState<Forecast[]|null>(null);\n const [busy,setBusy]=useState(false);\n const [message,setMessage]=useState('');\n const leagues=useMemo(()=>[...new Set(forecasts.map(f=>f.league))].sort(),[forecasts]);
+export default function ManualExplorer({forecasts,computeEnabled=false}:{forecasts:Forecast[];computeEnabled?:boolean}){
+ const [kickoff,setKickoff]=useState('');
+ const [preview,setPreview]=useState<Forecast[]|null>(null);
+ const [busy,setBusy]=useState(false);
+ const [message,setMessage]=useState('');
+ const leagues=useMemo(()=>[...new Set(forecasts.map(f=>f.league))].sort(),[forecasts]);
  const [league,setLeague]=useState(leagues[0]||'');
  const teams=useMemo(()=>[...new Set(forecasts.filter(f=>f.league===league).flatMap(f=>[f.home,f.away]))].sort(),[forecasts,league]);
  const [home,setHome]=useState('');
