@@ -12,3 +12,5 @@
 
 
 .lab-search{margin:16px 0 24px}.lab-search label{display:block;color:#b6c5d0;font-size:13px;font-weight:700;margin-bottom:9px}.lab-search>div{display:flex;gap:10px;max-width:600px}.lab-search input{min-width:0;flex:1;background:#111923;border:1px solid #34424e;border-radius:10px;padding:12px 14px;color:#f1f5f7;font:inherit}.lab-search input:focus-visible,.lab-search button:focus-visible{outline:2px solid var(--green);outline-offset:3px}.lab-search button{background:var(--green);color:#101820;border:0;border-radius:10px;padding:12px 19px;font-weight:800;cursor:pointer}@media(max-width:460px){.lab-search>div{flex-direction:column}.lab-search button{width:100%}}
+
+.lab-search select{min-width:0;flex:1;background:#111923;border:1px solid #34424e;border-radius:10px;padding:12px 14px;color:#f1f5f7;font:inherit}.lab-search select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
