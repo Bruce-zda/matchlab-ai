@@ -18,3 +18,9 @@
 5. After parity and deployment checks, retire the hosted Streamlit service, then remove unused dependencies in a separately reviewed change.
 
 The forecast archive must remain append-only throughout migration.
+
+## Additional audit findings
+- Historical model comparison formerly extracted functions from `app.py` using AST. It now imports standalone `football_models.py` directly, with a regression guard.
+- Historical calibration (`scripts/calibration_report.py`) **still extracts eight functions from `app.py` using AST**. It is not yet independent and must be migrated carefully with parity tests before deleting the legacy app.
+- `discover.py` is another Streamlit UI entry point; preserve it until retirement is authorized.
+- Workflow triggers for model comparison and calibration no longer react to changes in the legacy `app.py`.
