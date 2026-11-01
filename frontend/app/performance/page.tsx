@@ -4,7 +4,8 @@ type Forecast={snapshot_id:string;model:string;p_home:number;p_draw:number;p_awa
 const BASE='https://raw.githubusercontent.com/Bruce-zda/matchlab-ai/main/artifacts/';
 async function load<T>(name:string):Promise<T>{const r=await fetch(BASE+name,{next:{revalidate:120}});if(!r.ok)throw new Error('Feed unavailable');return r.json() as Promise<T>;}
 export const metadata={title:'Performance Lab | MatchLab',description:'Auditable pre-kickoff forecast results, model scores and sample-size limitations.'};
-export default async function Performance(){
+export default async function Performance({searchParams}:{searchParams:Promise<{league?:string}>}){
+ const params=await searchParams;
  let rows:Settlement[]=[];let forecasts:Forecast[]=[];let error=false;
  try{[rows,forecasts]=await Promise.all([load<Settlement[]>('forward_settlements.json'),load<Forecast[]>('forward_ledger.json')]);}catch{error=true;}
  const byId=new Map(forecasts.map(f=>[f.snapshot_id,f]));
