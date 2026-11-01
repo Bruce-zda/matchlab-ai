@@ -21,16 +21,16 @@
     },
     {
       "league": "Serie A",
-      "home": "SS Lazio",
-      "away": "Cagliari Calcio",
+      "home": "Frosinone Calcio",
+      "away": "Torino FC",
       "kickoff_utc": "2026-11-01T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
       "league": "Serie A",
-      "home": "Frosinone Calcio",
-      "away": "Torino FC",
+      "home": "SS Lazio",
+      "away": "Cagliari Calcio",
       "kickoff_utc": "2026-11-01T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -53,16 +53,16 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Olympique Lyonnais",
-      "away": "Angers SCO",
+      "home": "Paris FC",
+      "away": "AS Monaco FC",
       "kickoff_utc": "2026-11-01T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
       "league": "Ligue 1",
-      "home": "Paris FC",
-      "away": "AS Monaco FC",
+      "home": "Olympique Lyonnais",
+      "away": "Angers SCO",
       "kickoff_utc": "2026-11-01T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -188,17 +188,17 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Everton FC",
-      "away": "Coventry City FC",
+      "league": "La Liga",
+      "home": "Sevilla FC",
+      "away": "Deportivo Alav\u00e9s",
       "kickoff_utc": "2026-11-06T20:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "La Liga",
-      "home": "Sevilla FC",
-      "away": "Deportivo Alav\u00e9s",
+      "league": "Premier League",
+      "home": "Everton FC",
+      "away": "Coventry City FC",
       "kickoff_utc": "2026-11-06T20:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -237,16 +237,16 @@
     },
     {
       "league": "Bundesliga",
-      "home": "1. FSV Mainz 05",
-      "away": "FC Bayern M\u00fcnchen",
+      "home": "SC Paderborn 07",
+      "away": "Eintracht Frankfurt",
       "kickoff_utc": "2026-11-07T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
       "league": "Bundesliga",
-      "home": "SC Paderborn 07",
-      "away": "Eintracht Frankfurt",
+      "home": "1. FSV Mainz 05",
+      "away": "FC Bayern M\u00fcnchen",
       "kickoff_utc": "2026-11-07T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -332,17 +332,17 @@
       "models": 0
     },
     {
-      "league": "Serie A",
-      "home": "AS Roma",
-      "away": "US Sassuolo Calcio",
+      "league": "Ligue 1",
+      "home": "Paris Saint-Germain FC",
+      "away": "ES Troyes AC",
       "kickoff_utc": "2026-11-07T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Ligue 1",
-      "home": "Paris Saint-Germain FC",
-      "away": "ES Troyes AC",
+      "league": "Serie A",
+      "home": "AS Roma",
+      "away": "US Sassuolo Calcio",
       "kickoff_utc": "2026-11-07T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -356,5 +356,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-01T11:37:30.988894+00:00"
+  "collected_at_utc": "2026-11-01T11:57:35.953346+00:00"
 }
