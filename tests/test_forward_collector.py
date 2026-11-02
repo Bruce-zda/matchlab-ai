@@ -19,6 +19,19 @@ class CollectorSafetyTests(unittest.TestCase):
         self.assertEqual(ledger,[])
         self.assertEqual(audit[0]['status'],'skipped')
 
+    def test_precomputed_models_expire_on_utc_day_change(self):
+        cache = {('Premier League', '2026-10-31', 'test-sha'): object()}
+        fixtures = [{'league': 'Premier League', 'home': 'Alpha', 'away': 'Beta',
+                     'kickoff_utc': '2026-11-04T14:00:00+00:00'}]
+        from unittest.mock import patch
+        with patch('scripts.collect_forward.models_from_app', return_value={
+            'fetch_season': lambda season, code: pd.DataFrame()}):
+            ledger, audit = collect(fixtures, [], '2026-11-02T12:00:00+00:00',
+                                    'test-sha', preview=True, fitted_cache=cache)
+        self.assertEqual(ledger, [])
+        self.assertEqual(audit[0]['status'], 'skipped')
+        self.assertEqual(cache, {})
+
     def test_history_merges_approved_aliases_across_venues(self):
         frame=pd.DataFrame({'HomeTeam':['Aston Villa','Chelsea','Aston Villa FC'],
                             'AwayTeam':['Chelsea','Aston Villa FC','Chelsea']})
