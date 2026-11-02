@@ -9,12 +9,21 @@ import preview_jobs
 class QueueTests(unittest.TestCase):
     def test_persists_jobs_and_enforces_hourly_quota(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(preview_jobs, "DB_PATH", Path(temp) / "jobs.db"):
-            ids = [preview_jobs.submit({"league": "Premier League"}) for _ in range(3)]
+            ids = [preview_jobs.submit({"league": "Premier League", "home": f"Team {i}"}) for i in range(3)]
             self.assertEqual(len(set(ids)), 3)
             self.assertEqual(preview_jobs.get_job(ids[0])["status"], "queued")
             with self.assertRaises(OverflowError):
-                preview_jobs.submit({"league": "Premier League"})
+                preview_jobs.submit({"league": "Premier League", "home": "Fourth team"})
             self.assertIsNone(preview_jobs.get_job("unknown"))
+
+    def test_identical_requests_share_job_and_quota(self):
+        with tempfile.TemporaryDirectory() as temp, patch.object(preview_jobs, "DB_PATH", Path(temp) / "jobs.db"):
+            payload = {"league": "Premier League", "home": "Arsenal", "away": "Chelsea"}
+            first = preview_jobs.submit(payload)
+            second = preview_jobs.submit({"away": "Chelsea", "home": "Arsenal", "league": "Premier League"})
+            self.assertEqual(first, second)
+            with preview_jobs.connect() as db:
+                self.assertEqual(db.execute("SELECT count(*) FROM jobs").fetchone()[0], 1)
 
     def test_completes_without_archiving(self):
         with tempfile.TemporaryDirectory() as temp, patch.object(preview_jobs, "DB_PATH", Path(temp) / "jobs.db"):
