@@ -14,6 +14,21 @@ class FakeElo:
         return np.array([0.4,0.3,0.3])
 
 class CollectorIntegrationTests(unittest.TestCase):
+    def test_truncated_grids_are_normalized_before_capture(self):
+        fixture={"league":"Premier League","home":"Alpha","away":"Beta",
+                 "kickoff_utc":"2026-11-03T15:00:00Z","provider_match_id":124}
+        now="2026-11-02T12:00:00Z"
+        cache={("Premier League","2026-11-02","test-version"):
+               ((["Alpha","Beta"],None,None,None,None,0.1),FakeBayes(),FakeElo())}
+        models={"forecast":lambda dc,home,away:(1.2,1.0,np.ones((4,4))/20)}
+        with patch.object(collector,"models_from_app",return_value=models), patch.object(
+                collector,"match_team",side_effect=lambda name,names:name):
+            records,audit=collector.collect([fixture],[],now,"test-version",fitted_cache=cache)
+        self.assertEqual(audit[0]["status"],"recorded",audit)
+        self.assertEqual(len(records),4)
+        self.assertTrue(all(validate_forecast(row) for row in records))
+
+
     def test_capture_and_immutable_replay(self):
         fixture={"league":"Premier League","home":"Alpha","away":"Beta",
                  "kickoff_utc":"2026-11-03T15:00:00Z","provider_match_id":123}
