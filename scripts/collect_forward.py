@@ -22,6 +22,7 @@ sys.path.insert(0,str(ROOT))
 from forward_validation import append_snapshot,utc_time,snapshot_id
 from bayesian_goals import BayesianGoals
 from goal_markets import market_probabilities
+from scenario_engine import simulate_score_grid, stress_expected_goals
 from elo_baseline import EloBaseline
 from data_quality import valid_score_pair,valid_team_pair
 from football_data_provider import get_matches,upcoming_fixtures
@@ -187,7 +188,7 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             away=match_team(fixture['away'],dc[0])
             if home not in dc[0] or away not in dc[0]:
                 raise ValueError('Team names not matched to model training data')
-            _,_,grid=ns['forecast'](dc,home,away)
+            home_lambda,away_lambda,grid=ns['forecast'](dc,home,away)
             dc_p=np.array([np.tril(grid,-1).sum(),np.trace(grid),np.triu(grid,1).sum()])
             bayes_grid=bayes.score_grid(home,away)
             bayes_p=np.array([np.tril(bayes_grid,-1).sum(),np.trace(bayes_grid),np.triu(bayes_grid,1).sum()])
@@ -210,6 +211,9 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                         'p_away':float(probs[2])}
                 if model in goal_grids:
                     record['goal_markets']=market_probabilities(goal_grids[model])
+                if preview and model=='DC + Bayesian (50/50)':
+                    record['simulation']=simulate_score_grid(goal_grids[model])
+                    record['scenarios']=stress_expected_goals(home_lambda,away_lambda,dc[5])
                 new_records.append(record)
             if preview:
                 for record in new_records:
