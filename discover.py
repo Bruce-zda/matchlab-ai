@@ -42,6 +42,8 @@ def show_discover():
     .ml-legend{display:flex;justify-content:space-between;gap:6px;font-size:.78rem;color:#cad7df}
     .ml-legend strong{font-size:.94rem;color:#f4f8fa}
     .ml-foot{font-size:.73rem;color:#8ca0ae;margin-top:13px;line-height:1.5}
+    .ml-section-label{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:#9db2c4;font-weight:750;margin:18px 0 7px}
+    .ml-health{font-size:.78rem;color:#8fe0c5;margin:8px 0 16px}
     .ml-pill{display:inline-block;padding:4px 9px;border:1px solid #42665d;border-radius:30px;
     color:#8fe0c5;background:#19352f;font-size:.68rem;font-weight:750}
     @media(max-width:650px){.ml-hero{padding:22px 18px}.ml-fixture{padding:17px 15px}
@@ -82,6 +84,7 @@ def show_discover():
         metadata[fid] = row
     now = dt.datetime.now(dt.timezone.utc)
     settled_ids = {r.get('provider_match_id') for r in settled if isinstance(r, dict)}
+    st.markdown('<div class="ml-health">● Archive integrity verified · Pre-match snapshots</div>', unsafe_allow_html=True)
     leagues = sorted({r.get('league', 'Unknown') for r in metadata.values()})
     col1, col2 = st.columns([1.2, 1])
     with col1:
@@ -107,7 +110,12 @@ def show_discover():
     if not candidates:
         st.info('No fixtures match these filters. Try All archived.')
         return
-    for kickoff, fid, row in candidates[:24]:
+    page_size = 12
+    total_pages = (len(candidates) + page_size - 1) // page_size
+    page = st.number_input('Results page', min_value=1, max_value=total_pages, value=1, step=1,
+                           key='ml_discover_page') if total_pages > 1 else 1
+    start = (page - 1) * page_size
+    for kickoff, fid, row in candidates[start:start + page_size]:
         models = fixtures[fid]
         primary = models.get('Dixon-Coles')
         if not primary:
@@ -131,7 +139,9 @@ def show_discover():
                 f'<div class="ml-foot">Recorded {_safe(primary.get("captured_at_utc","unknown"))}'
                 ' · Forecast, not a guaranteed outcome.</div></div>',
                 unsafe_allow_html=True)
-            with st.expander(f'Model intelligence · {row.get("home","")} vs {row.get("away","")}', expanded=False):
+            with st.expander(f'Open Match Centre · {row.get("home","")} vs {row.get("away","")}', expanded=False):
+                st.markdown('### Match Centre')
+                st.caption('01 / Probability breakdown · 02 / Prediction markets · 03 / Analysis · 04 / Research outlook')
                 entries = []
                 for name in MODEL_NAMES:
                     item = models.get(name)
@@ -160,10 +170,20 @@ def show_discover():
                         st.error('Archived goal-market integrity check failed; market details withheld.')
                         market_rows, frozen = [], None
                     if market_rows:
-                        st.markdown('#### Goal-market intelligence')
+                        st.markdown('#### 02 / Prediction markets')
                         st.caption('Frozen pre-match hybrid probabilities · research-stage estimates')
-                        st.dataframe(pd.DataFrame(market_rows).style.format({'Probability': '{:.1%}'}),
-                                     hide_index=True, use_container_width=True)
+                        groups = {
+                            'Totals': [r for r in market_rows if r['Market'].startswith('Total goals')],
+                            'Both teams to score': [r for r in market_rows if r['Market'].startswith('Both teams')],
+                            'Home team goals': [r for r in market_rows if r['Market'].startswith('Home goals')],
+                            'Away team goals': [r for r in market_rows if r['Market'].startswith('Away goals')],
+                        }
+                        tabs = st.tabs(list(groups))
+                        for tab, group in zip(tabs, groups.values()):
+                            with tab:
+                                st.dataframe(pd.DataFrame(group).style.format({'Probability': '{:.1%}'}),
+                                             hide_index=True, use_container_width=True)
+                        st.markdown('#### 04 / MatchLab research outlook')
                         if isinstance(frozen, dict):
                             candidate = frozen.get('candidate')
                             if frozen.get('status') == 'RESEARCH_SCREEN_ONLY' and isinstance(candidate, dict):
@@ -183,7 +203,7 @@ def show_discover():
                 confidence = ('close contest' if margin < 0.08 else
                               'moderate separation' if margin < 0.18 else
                               'clear probability leader')
-                st.markdown('#### Expert analysis')
+                st.markdown('#### 03 / Model-based analysis')
                 st.markdown(f'**Most likely result: {labels[winner_index]} — {probs[winner_index]:.1%}**')
                 st.caption('Highest-probability 1X2 outcome from the primary Dixon–Coles model; '
                            'not a guaranteed result or a predicted exact score.')
@@ -206,5 +226,5 @@ def show_discover():
                            'form or news claims are inferred without verified inputs.')
                 st.caption('Model probabilities are descriptive, not betting recommendations. '
                            'The hybrid is experimental and has not been promoted.')
-    if len(candidates) > 24:
-        st.caption('Showing the first 24 matching fixtures. Narrow by league to explore more.')
+    if total_pages > 1:
+        st.caption(f'Page {page} of {total_pages} · {len(candidates)} archived fixtures')
