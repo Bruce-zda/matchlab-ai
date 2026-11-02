@@ -22,6 +22,7 @@ sys.path.insert(0,str(ROOT))
 from forward_validation import append_snapshot,utc_time,snapshot_id
 from bayesian_goals import BayesianGoals
 from goal_markets import market_probabilities
+from intelligence_selection import screen_outlook
 from scenario_engine import simulate_score_grid, stress_expected_goals
 from elo_baseline import EloBaseline
 from data_quality import valid_score_pair,valid_team_pair
@@ -215,6 +216,21 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                     record['simulation']=simulate_score_grid(goal_grids[model])
                     record['scenarios']=stress_expected_goals(home_lambda,away_lambda,dc[5])
                 new_records.append(record)
+            # Freeze the actual 80%/10%-disagreement research screen before kickoff.
+            # Only goal markets backed by BOTH independent goal-grid models are eligible.
+            dc_markets=market_probabilities(goal_grids['Dixon-Coles'])['markets']
+            bayes_markets=market_probabilities(goal_grids['Bayesian Goals'])['markets']
+            hybrid=next(row for row in new_records if row['model']=='DC + Bayesian (50/50)')
+            hybrid_probs=hybrid['goal_markets']['markets']
+            screen_markets=[]
+            for key, probability in sorted(hybrid_probs.items()):
+                spread=abs(dc_markets[key]-bayes_markets[key])
+                screen_markets.append({'key':key,'probability':float(probability),
+                                       'model_range':{'spread':float(spread)},
+                                       'conditional':False})
+            hybrid['screen_markets']=screen_markets
+            hybrid['frozen_screen']=screen_outlook(screen_markets)
+            hybrid['screen_policy_version']='intelligence_selection.screen_outlook_default_80pct_10pct_spread'
             if preview:
                 for record in new_records:
                     record['snapshot_id']=snapshot_id(record)
