@@ -21,6 +21,7 @@ jobs:
           python -m unittest discover -s tests -p 'test_forward_*validation.py' -v
           python -m unittest discover -s tests -p 'test_frozen_screen_integrity.py' -v
           python -m unittest discover -s tests -p 'test_collector_integration.py' -v
+          python -m unittest discover -s tests -p 'test_match_intelligence_view.py' -v
       - name: Evaluate existing archived snapshots without backfilling
         run: python scripts/validate_live_screen.py
       - name: Upload read-only forward screen report
