@@ -37,7 +37,7 @@ function MatchCard({ match }: {match:Match}) {
    <div className="card-foot"><span><CircleDot size={12}/> {match.result?'Provider result recorded':'Archived pre-match forecast'}</span><span>Dixon–Coles primary</span></div>
  </article>;
 }
-export default async function Home({searchParams}:{searchParams:Promise<{league?:string;view?:string;q?:string}>}) {
+export default async function Home({searchParams}:{searchParams:Promise<{league?:string;view?:string;q?:string;page?:string}>}) {
  const params = await searchParams;
  let forecasts:Forecast[]=[];let settlements:Settlement[]=[];let error=false;
  try { [forecasts,settlements]=await Promise.all([getJson<Forecast[]>('forward_ledger.json'),getJson<Settlement[]>('forward_settlements.json')]); } catch {error=true;}
@@ -49,6 +49,10 @@ export default async function Home({searchParams}:{searchParams:Promise<{league?
  const leagues=[...new Set(all.map(m=>m.league))].sort();
  const league=params.league||'All leagues';const view=params.view||'upcoming';const query=(params.q||'').trim().toLocaleLowerCase().slice(0,100);
  const filtered=all.filter(m=>(!query||[m.home,m.away,m.league].some(v=>v.toLocaleLowerCase().includes(query)))&&(league==='All leagues'||m.league===league)&&(view==='all'||(view==='results'?!!m.result:new Date(m.kickoff).getTime()>=now&&!m.result))).sort((a,b)=>view==='results'?Date.parse(b.kickoff)-Date.parse(a.kickoff):Date.parse(a.kickoff)-Date.parse(b.kickoff));
+ const pageSize=24;const pageCount=Math.max(1,Math.ceil(filtered.length/pageSize));
+ const requestedPage=Number(params.page||'1');const page=Number.isSafeInteger(requestedPage)?Math.min(pageCount,Math.max(1,requestedPage)):1;
+ const pageFixtures=filtered.slice((page-1)*pageSize,page*pageSize);
+ const pageHref=(n:number)=>'/?league='+encodeURIComponent(league)+'&view='+encodeURIComponent(view)+(query?'&q='+encodeURIComponent(query):'')+'&page='+n;
  const featured=filtered[0];const settled=new Set(settlements.map(s=>s.provider_match_id)).size;
  const href=(l:string,v:string)=>'/?league='+encodeURIComponent(l)+'&view='+v+(query?'&q='+encodeURIComponent(query):'');
  return <div className="site">
@@ -60,7 +64,8 @@ export default async function Home({searchParams}:{searchParams:Promise<{league?
  <div className="stats"><Stat icon={<Target size={18}/>} label="ARCHIVED FORECASTS" value={String(forecasts.length)} note="Immutable model snapshots"/><Stat icon={<CircleDot size={18}/>} label="TRACKED FIXTURES" value={String(all.length)} note="Across supported leagues"/><Stat icon={<ShieldCheck size={18}/>} label="SETTLED FIXTURES" value={String(settled)} note="Provider outcomes recorded"/><Stat icon={<TrendingUp size={18}/>} label="MODEL COVERAGE" value="4" note="Models per complete fixture"/></div>
  <section id="fixtures" className="fixtures"><div className="section-heading"><div><div className="section-kicker">MATCH INTELLIGENCE / 01</div><h2>Match Centre <span className="count">{filtered.length}</span></h2><p>Real predictions, clear probabilities, transparent reasoning.</p></div><div className="section-time"><Clock3 size={15}/> All times UTC</div></div>
  <form action="/" method="get" className="lab-search"><input type="hidden" name="view" value={view}/><input type="hidden" name="league" value={league}/><label htmlFor="fixture-search">Search teams or leagues</label><div><input id="fixture-search" name="q" type="search" defaultValue={params.q||""} maxLength={100} placeholder="Search a team or league…"/><button type="submit">Search</button></div></form><div className="filters"><div className="filter-tabs"><a className={view==='upcoming'?'selected':''} href={href(league,'upcoming')}>Upcoming</a><a className={view==='results'?'selected':''} href={href(league,'results')}>Results</a><a className={view==='all'?'selected':''} href={href(league,'all')}>All archived</a></div><div className="league-filters"><a className={league==='All leagues'?'selected':''} href={href('All leagues',view)}>All leagues</a>{leagues.map(l=><a key={l} className={league===l?'selected':''} href={href(l,view)}>{l}</a>)}</div></div>
- {error?<div className="empty">Forecast feed temporarily unavailable. Please retry shortly.</div>:filtered.length===0?<div className="empty"><CircleDot size={27}/><h3>No matches in this view</h3><p>Try the All archived tab to browse published forecasts.</p><a href={href(league,'all')}>Browse archive <ArrowUpRight size={14}/></a></div>:<div className="match-grid">{filtered.slice(0,24).map(m=><MatchCard match={m} key={m.id}/>)}</div>}
+ {error?<div className="empty">Forecast feed temporarily unavailable. Please retry shortly.</div>:filtered.length===0?<div className="empty"><CircleDot size={27}/><h3>No matches in this view</h3><p>Try the All archived tab to browse published forecasts.</p><a href={href(league,'all')}>Browse archive <ArrowUpRight size={14}/></a></div>:<div className="match-grid">{pageFixtures.map(m=><MatchCard match={m} key={m.id}/>)}</div>}
+ {filtered.length>pageSize&&<nav className="pagination" aria-label="Match results pages"><span>Page {page} of {pageCount} · {filtered.length} fixtures</span><div>{page>1&&<a href={pageHref(page-1)}>← Previous</a>}{page<pageCount&&<a href={pageHref(page+1)}>Next →</a>}</div></nav>}
  {featured&&<p className="data-note"><ShieldCheck size={15}/> All forecasts shown are from the published MatchLab ledger. Predictions are probabilistic, not certainties. Publication timing and model performance require ongoing independent audit.</p>}
  </section><footer className="footer"><span>MATCHLAB © 2026</span><span>BUILT ON EVIDENCE, NOT HYPE.</span><a href="https://github.com/Bruce-zda/matchlab-ai" target="_blank" rel="noreferrer">Open methodology <ArrowUpRight size={13}/></a></footer></div></main></div>;
 }
