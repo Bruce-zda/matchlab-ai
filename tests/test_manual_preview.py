@@ -17,7 +17,11 @@ class ManualPreviewTests(unittest.TestCase):
             preview("Premier League", "Arsenal", "Chelsea", "2026-10-30T15:00:00Z", NOW)
 
     def test_preview_does_not_use_existing_ledger(self):
-        records = [dict(model=name) for name in ("Dixon-Coles", "Bayesian Goals", "Elo", "DC + Bayesian (50/50)")]
+        records = [dict(model=name, league="Premier League", home="Arsenal",
+                        away="Chelsea", kickoff_utc="2026-11-05T15:00:00+00:00",
+                        p_home=.5, p_draw=.3, p_away=.2,
+                        goal_markets={"markets": {"btts_yes": .55, "btts_no": .45}})
+                   for name in ("Dixon-Coles", "Bayesian Goals", "Elo", "DC + Bayesian (50/50)")]
         with patch("scripts.manual_preview.subprocess.check_output", return_value="testsha"), patch(
             "scripts.manual_preview.collect", return_value=(records, [{"status": "preview"}])
         ) as collect:
@@ -27,6 +31,8 @@ class ManualPreviewTests(unittest.TestCase):
         self.assertFalse(result["official_forward_archive"])
         self.assertFalse(result["fixture_verified"])
         self.assertEqual(len(result["forecasts"]), 4)
+        self.assertIn("intelligence", result)
+        self.assertFalse(result["intelligence"]["verdict"]["expert_pick"])
 
 if __name__ == "__main__":
     unittest.main()
