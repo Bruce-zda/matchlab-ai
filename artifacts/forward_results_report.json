@@ -1,54 +1,54 @@
 {
   "audit": {
-    "total_snapshots": 208,
-    "newly_settled": 0,
+    "total_snapshots": 304,
+    "newly_settled": 64,
     "already_settled": 28,
-    "awaiting_verified_result": 180,
+    "awaiting_verified_result": 212,
     "conflicting_provider_results": 0,
     "invalid_actual_kickoff": 0
   },
   "status": "pilot_forward_results_not_validated",
-  "settled_forecasts": 28,
-  "settled_fixtures": 7,
+  "settled_forecasts": 92,
+  "settled_fixtures": 23,
   "models": [
     {
       "model": "Bayesian Goals",
-      "n": 7,
-      "mean_brier": 0.20185715178599142,
-      "mean_log_loss": 1.0040898124132271
+      "n": 23,
+      "mean_brier": 0.16968854040227424,
+      "mean_log_loss": 0.8735732343415618
     },
     {
       "model": "DC + Bayesian (50/50)",
-      "n": 7,
-      "mean_brier": 0.20265604345757374,
-      "mean_log_loss": 1.000730389547399
+      "n": 23,
+      "mean_brier": 0.1630280733792552,
+      "mean_log_loss": 0.8443812192144431
     },
     {
       "model": "Dixon-Coles",
-      "n": 7,
-      "mean_brier": 0.20718812684358645,
-      "mean_log_loss": 1.0241989285346371
+      "n": 23,
+      "mean_brier": 0.15908461090476428,
+      "mean_log_loss": 0.8282289903390686
     },
     {
       "model": "Elo",
-      "n": 7,
-      "mean_brier": 0.1859675766276546,
-      "mean_log_loss": 0.9548313053644454
+      "n": 23,
+      "mean_brier": 0.15612879403690014,
+      "mean_log_loss": 0.8219080815746203
     }
   ],
   "paired_comparison": {
-    "paired_fixtures": 7,
+    "paired_fixtures": 23,
     "status": "descriptive_only",
-    "mean_brier_delta": -0.004532083386012726,
-    "mean_log_loss_delta": -0.023468538987238146,
+    "mean_brier_delta": 0.003943462474490906,
+    "mean_log_loss_delta": 0.01615222887537423,
     "bootstrap_95pct_ci": {
       "brier_delta": [
-        -0.044413742217687624,
-        0.012844031862374195
+        -0.010248111741605701,
+        0.013265416300482053
       ],
       "log_loss_delta": [
-        -0.21791044760204062,
-        0.06010985235278909
+        -0.05187123200296535,
+        0.058659174863778515
       ]
     },
     "promotion_eligible": false
