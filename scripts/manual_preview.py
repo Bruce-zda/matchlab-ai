@@ -19,7 +19,7 @@ from forward_validation import utc_time
 from scripts.collect_forward import LEAGUES, collect, json_native
 
 
-def preview(league, home, away, kickoff_utc, now=None):
+def preview(league, home, away, kickoff_utc, now=None, fitted_cache=None):
     if league not in LEAGUES:
         raise ValueError("Unsupported league")
     if not home.strip() or not away.strip() or home.casefold().strip() == away.casefold().strip():
@@ -30,7 +30,7 @@ def preview(league, home, away, kickoff_utc, now=None):
         raise ValueError("Verified kickoff must be in the next 14 days")
     fixture = dict(league=league, home=home.strip(), away=away.strip(), kickoff_utc=kickoff.isoformat())
     version = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-    records, audit = collect([fixture], [], now.isoformat(), version, preview=True)
+    records, audit = collect([fixture], [], now.isoformat(), version, preview=True, fitted_cache=fitted_cache)
     if len(records) != 4 or audit[0]["status"] != "preview":
         raise ValueError("Preview unavailable: " + str(audit))
     return {
