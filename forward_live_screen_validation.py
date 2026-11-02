@@ -39,6 +39,10 @@ def evaluate_live_screen(snapshots, settlements, min_selections=100):
         for item in markets:
             _settles(item["key"], 0, 0)
         decision = screen_outlook(markets)
+        # When the collector froze a decision, never silently rescore a tampered one.
+        frozen = row.get("frozen_screen")
+        if frozen is not None and frozen != decision:
+            raise ValueError("Frozen research-screen decision does not match captured markets")
         if decision["status"] == "ABSTAIN":
             abstained += 1
             continue
