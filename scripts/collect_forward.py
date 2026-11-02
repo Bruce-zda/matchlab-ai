@@ -120,6 +120,11 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             if not now<kickoff<=now+dt.timedelta(days=14):
                 raise ValueError('Kickoff outside next fourteen days')
             cache_key=(league,now.date().isoformat(),model_version)
+            # Remove stale fits on day/version rollover; a worker must never
+            # keep accumulating models trained at previous UTC cutoffs.
+            for stale_key in list(cache):
+                if stale_key[1:] != cache_key[1:]:
+                    del cache[stale_key]
             if cache_key not in cache:
                 year=now.year if now.month>=7 else now.year-1
                 frames=[]
