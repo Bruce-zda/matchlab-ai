@@ -16,6 +16,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from forward_validation import utc_time
+from intelligence_report import build_intelligence_report
 from scripts.collect_forward import LEAGUES, collect, json_native
 
 
@@ -41,6 +42,7 @@ def preview(league, home, away, kickoff_utc, now=None, fitted_cache=None):
         "generated_at_utc": now.isoformat(),
         "warning": "Kickoff supplied by user, not independently verified. Fresh analysis; never a pre-existing archived forecast. No guarantee of accuracy.",
         "forecasts": records,
+        "intelligence": build_intelligence_report(records),
     }
 
 
