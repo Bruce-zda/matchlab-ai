@@ -25,6 +25,13 @@ class LiveScreenValidationTests(unittest.TestCase):
         r = evaluate_live_screen([s], [FINAL])
         self.assertEqual(r["abstained"], 1)
 
+    def test_tampered_frozen_decision_rejected(self):
+        from intelligence_selection import screen_outlook
+        frozen = screen_outlook(SNAP["screen_markets"])
+        altered = {**frozen, "status": "ABSTAIN"}
+        with self.assertRaisesRegex(ValueError, "Frozen research-screen"):
+            evaluate_live_screen([{**SNAP, "frozen_screen": altered}], [FINAL])
+
     def test_post_kickoff_is_rejected(self):
         with self.assertRaises(ValueError):
             evaluate_live_screen([{**SNAP, "captured_at_utc": "2026-11-03T15:01:00Z"}], [FINAL])
