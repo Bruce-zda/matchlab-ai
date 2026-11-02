@@ -231,6 +231,10 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             hybrid['screen_markets']=screen_markets
             hybrid['frozen_screen']=screen_outlook(screen_markets)
             hybrid['screen_policy_version']='intelligence_selection.screen_outlook_default_80pct_10pct_spread'
+            # Validate the entire frozen capture before preview or publication.
+            from forward_validation import validate_forecast
+            for record in new_records:
+                validate_forecast(record)
             if preview:
                 for record in new_records:
                     record['snapshot_id']=snapshot_id(record)
