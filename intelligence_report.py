@@ -90,6 +90,8 @@ def build_intelligence_report(forecasts):
                 "Historical reliability and scenario stress testing not yet validated",
             ],
         },
+        "simulation": primary.get("simulation"),
+        "scenarios": primary.get("scenarios"),
         "markets": [{"key": name, "label": LABELS.get(name, name.replace("_", " ").title()),
                      "probability": round(probability, 6),
                      "model_range": sensitivity.get(name),
