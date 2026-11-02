@@ -29,7 +29,7 @@ class FrozenCaptureIntegrityTests(unittest.TestCase):
 
     def test_decision_tampering_rejected(self):
         r=sample()
-        r["frozen_screen"]["status"]="RESEARCH_SCREEN_ONLY"
+        r["frozen_screen"]["status"]="TAMPERED_STATUS"
         with self.assertRaises(ValueError):
             validate_forecast(r)
 
