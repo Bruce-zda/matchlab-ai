@@ -92,3 +92,45 @@
 .ml-fixture{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 180px 90px 18px;gap:22px;align-items:center;padding:19px 30px;border-top:1px solid #26352e;transition:background .15s}.ml-fixture:hover{background:#1b2923}.ml-fixture-time{font-size:10px;color:#809a8b}.ml-fixture-teams{display:grid;grid-template-columns:minmax(0,1fr) 35px minmax(0,1fr);align-items:center;gap:12px;font:700 15px 'Space Grotesk',sans-serif;margin-top:8px}.ml-fixture-teams>span:last-child{text-align:right}.ml-fixture-vs{color:#6f8c78;font-size:11px;text-align:center}.ml-fixture-forecast{display:flex;flex-direction:column;gap:5px}.ml-fixture-forecast small{color:#789585;font-size:9px;letter-spacing:1px}.ml-fixture-forecast strong{font-size:13px;color:#e5f1e7}.ml-fixture-forecast>span{color:#c4f77b;font-size:11px}.ml-fixture-bars{height:8px;display:flex;border-radius:10px;overflow:hidden;gap:2px;background:#304039}.ml-fixture-bars span:first-child{background:#c4f77b}.ml-fixture-bars span:nth-child(2){background:#809889}.ml-fixture-bars span:nth-child(3){background:#4d7366}.ml-fixture-arrow{color:#789382}.ml-state{padding:70px 25px;text-align:center;color:#9eb0a6}.ml-state svg{color:#c4f77b}.ml-state h3{color:#e8f3ea}.ml-state a{display:inline-flex;gap:8px;color:#c4f77b;align-items:center}.ml-pagination{padding:22px 30px;display:flex;justify-content:space-between;align-items:center;color:#92a699;font-size:12px}.ml-pagination>div{display:flex;gap:12px}.ml-pagination a{color:#c4f77b}.ml-footer{display:flex;justify-content:space-between;gap:20px;padding-bottom:45px;color:#80968b;font-size:11px}.ml-footer>span:first-child{display:flex;gap:8px;align-items:center}.ml-footer svg{color:#c4f77b}
 @media(max-width:850px){.ml-header{padding:0 20px;gap:22px}.ml-header-tag{display:none}.ml-main{padding:0 18px}.ml-intro{padding:48px 0;align-items:start}.ml-intro h1{letter-spacing:-3px}.ml-intro-side{width:175px}.ml-intro-side strong{font-size:48px}.ml-fixture{grid-template-columns:minmax(0,1fr) 150px 18px;gap:14px}.ml-fixture-bars{display:none}}
 @media(max-width:600px){.ml-header{height:66px;padding:0 14px;gap:18px}.ml-logo{font-size:19px}.ml-mark{width:30px;height:30px;margin-right:5px}.ml-header nav{gap:14px;font-size:11px;overflow-x:auto}.ml-header nav a:last-child{display:none}.ml-main{padding:0 12px}.ml-intro{padding:36px 6px 32px}.ml-intro h1{font-size:clamp(37px,10vw,54px);letter-spacing:-2px;margin:17px 0}.ml-intro p{font-size:12px;line-height:1.7}.ml-intro-side{display:none}.ml-board{border-radius:13px}.ml-board-title{padding:23px 16px 16px}.ml-board-title h2{font-size:23px}.ml-utc{display:none}.ml-controls{padding:0 16px 14px;flex-direction:column;align-items:stretch;gap:12px}.ml-segments{width:100%;justify-content:space-between}.ml-segments a{flex:1;text-align:center;padding:10px 7px}.ml-search{min-width:0}.ml-leagues{padding:0 16px 17px}.ml-league-heading{padding:14px 16px}.ml-fixture{padding:15px 16px;grid-template-columns:minmax(0,1fr) 100px 12px;gap:9px}.ml-fixture-teams{font-size:12px;gap:5px;grid-template-columns:minmax(0,1fr) 21px minmax(0,1fr)}.ml-fixture-vs{font-size:9px}.ml-fixture-forecast small{font-size:8px}.ml-fixture-forecast strong{font-size:11px}.ml-fixture-forecast>span{font-size:10px}.ml-fixture-arrow{width:12px}.ml-footer{flex-direction:column;gap:12px;padding:0 6px 30px}.ml-pagination{padding:18px 16px}}
+
+
+/* Mobile-first correction: each fixture is a full-width vertical card, not a compressed desktop table */
+@media(max-width:650px){
+ .ml-app{overflow-x:clip}
+ .ml-header{height:auto;min-height:62px;display:grid;grid-template-columns:1fr auto;gap:0;padding:12px 16px 0}
+ .ml-logo{grid-column:1;grid-row:1;align-self:center;font-size:20px}
+ .ml-header nav{grid-column:1/-1;grid-row:2;display:flex;gap:25px;height:43px;overflow-x:auto;scrollbar-width:none;margin-top:9px}
+ .ml-header nav a,.ml-header nav a:last-child{display:flex;flex-shrink:0;font-size:12px}
+ .ml-main{padding:0 12px}
+ .ml-intro{padding:31px 5px 28px}
+ .ml-intro h1{font-size:clamp(36px,10vw,48px);line-height:1.06;letter-spacing:-1.8px}
+ .ml-intro p{max-width:38ch;font-size:13px}
+ .ml-board{background:transparent;border:0;border-radius:0;overflow:visible}
+ .ml-board-title{padding:7px 4px 19px}
+ .ml-controls{padding:0 0 16px}
+ .ml-segments{border-radius:12px}
+ .ml-segments a{min-height:43px;display:grid;place-items:center}
+ .ml-search{min-height:45px}
+ .ml-search input{font-size:13px}
+ .ml-leagues{padding:0 0 18px}
+ .ml-league-groups{display:grid;gap:20px}
+ .ml-league-group{border:0;background:transparent}
+ .ml-league-heading{padding:9px 4px 13px;background:transparent}
+ .ml-league-heading h3{font-size:15px}
+ .ml-league-heading>span:last-child{font-size:11px}
+ .ml-fixture{display:grid;grid-template-columns:minmax(0,1fr) 16px;grid-template-rows:auto auto auto;gap:0 8px;padding:18px 16px;margin-bottom:10px;background:#141f1b;border:1px solid #2e4035;border-radius:15px;box-shadow:0 8px 24px #0002}
+ .ml-fixture-main{grid-column:1/-1;grid-row:1}
+ .ml-fixture-time{display:block;margin-bottom:13px;font-size:11px;letter-spacing:.3px}
+ .ml-fixture-teams{display:grid;grid-template-columns:minmax(0,1fr) 35px minmax(0,1fr);gap:10px;align-items:center;margin:0;font-size:clamp(13px,3.7vw,17px);line-height:1.3}
+ .ml-fixture-teams>span{overflow-wrap:anywhere}
+ .ml-fixture-vs{font-size:11px}
+ .ml-fixture-forecast{grid-column:1;grid-row:2;margin-top:17px;padding-top:13px;border-top:1px solid #2c3b32;display:grid;grid-template-columns:1fr auto;gap:5px 8px}
+ .ml-fixture-forecast small{grid-column:1/-1;font-size:9px}
+ .ml-fixture-forecast strong{font-size:14px}
+ .ml-fixture-forecast>span{font-size:12px;text-align:right}
+ .ml-fixture-bars{display:flex;grid-column:1/-1;grid-row:3;margin-top:13px;height:6px}
+ .ml-fixture-arrow{display:none}
+ .ml-pagination{padding:16px 3px}
+ .ml-footer{padding:0 4px 30px}
+}
+@media(max-width:360px){.ml-fixture{padding:15px 12px}.ml-fixture-teams{gap:6px;font-size:12px}.ml-fixture-forecast strong{font-size:12px}.ml-fixture-forecast>span{font-size:11px}}
