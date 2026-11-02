@@ -149,35 +149,25 @@ def show_discover():
                                    for k in ('Home','Draw','Away')]
                         st.caption(f'Maximum model disagreement: {max(spreads):.1%} '
                                    'percentage points across the three outcomes.')
+                from match_intelligence_view import (
+                    archived_goal_market_rows, archived_research_screen, LABELS)
                 hybrid = models.get('DC + Bayesian (50/50)')
-                if hybrid and isinstance(hybrid.get('goal_markets'), dict):
-                    goal_probs = hybrid['goal_markets'].get('markets', {})
-                    if goal_probs:
+                if hybrid:
+                    try:
+                        market_rows = archived_goal_market_rows(hybrid)
+                        frozen = archived_research_screen(hybrid)
+                    except ValueError:
+                        st.error('Archived goal-market integrity check failed; market details withheld.')
+                        market_rows, frozen = [], None
+                    if market_rows:
                         st.markdown('#### Goal-market intelligence')
                         st.caption('Frozen pre-match hybrid probabilities · research-stage estimates')
-                        market_labels = {
-                            'btts_yes': 'Both teams to score · Yes',
-                            'btts_no': 'Both teams to score · No',
-                        }
-                        for threshold in ('1_5', '2_5', '3_5'):
-                            market_labels['over_' + threshold] = 'Total goals over ' + threshold.replace('_', '.')
-                            market_labels['under_' + threshold] = 'Total goals under ' + threshold.replace('_', '.')
-                        for side in ('home', 'away'):
-                            for threshold in ('0_5', '1_5', '2_5'):
-                                market_labels[side + '_over_' + threshold] = side.title() + ' goals over ' + threshold.replace('_', '.')
-                                market_labels[side + '_under_' + threshold] = side.title() + ' goals under ' + threshold.replace('_', '.')
-                        market_rows = [
-                            {'Market': market_labels.get(key, key), 'Probability': float(value)}
-                            for key, value in goal_probs.items() if key in market_labels
-                        ]
-                        market_rows.sort(key=lambda item: (-item['Probability'], item['Market']))
                         st.dataframe(pd.DataFrame(market_rows).style.format({'Probability': '{:.1%}'}),
                                      hide_index=True, use_container_width=True)
-                        frozen = hybrid.get('frozen_screen')
                         if isinstance(frozen, dict):
                             candidate = frozen.get('candidate')
                             if frozen.get('status') == 'RESEARCH_SCREEN_ONLY' and isinstance(candidate, dict):
-                                label = market_labels.get(candidate.get('market'), candidate.get('market'))
+                                label = LABELS.get(candidate.get('market'), candidate.get('market'))
                                 st.info(f"Research screen: {label} · {candidate['probability']:.1%} model probability. Not a verified expert pick.")
                             else:
                                 st.caption('Research screen abstained: no market met its evidence thresholds.')
