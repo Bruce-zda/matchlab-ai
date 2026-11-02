@@ -61,6 +61,14 @@ def submit(payload):
     with LOCK, connect() as db:
         db.execute("BEGIN IMMEDIATE")
         db.execute("DELETE FROM jobs WHERE created < ?", (now - RETENTION_SECONDS,))
+        # Identical requests share one existing queued/running/completed job.
+        # This avoids refitting all models for repeated button presses and
+        # prevents duplicate requests from consuming the global compute quota.
+        request_json = json.dumps(payload, sort_keys=True, separators=(',', ':'))
+        existing = db.execute("SELECT id FROM jobs WHERE request=? AND state IN ('queued','running','complete') ORDER BY created DESC LIMIT 1", (request_json,)).fetchone()
+        if existing is not None:
+            db.rollback()
+            return existing['id']
         hourly = db.execute("SELECT count(*) FROM jobs WHERE created > ?", (now - 3600,)).fetchone()[0]
         daily = db.execute("SELECT count(*) FROM jobs WHERE created > ?", (now - 86400,)).fetchone()[0]
         pending = db.execute("SELECT count(*) FROM jobs WHERE state IN ('queued','running')").fetchone()[0]
@@ -69,7 +77,7 @@ def submit(payload):
             raise OverflowError("Compute quota or queue capacity reached")
         job_id = secrets.token_urlsafe(24)
         db.execute("INSERT INTO jobs(id,created,updated,state,request) VALUES (?,?,?,?,?)",
-                   (job_id, now, now, "queued", json.dumps(payload)))
+                   (job_id, now, now, "queued", request_json))
         db.commit()
         return job_id
 
