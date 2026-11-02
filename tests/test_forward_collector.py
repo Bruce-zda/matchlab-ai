@@ -19,6 +19,38 @@ class CollectorSafetyTests(unittest.TestCase):
         self.assertEqual(ledger,[])
         self.assertEqual(audit[0]['status'],'skipped')
 
+    def test_persistent_snapshot_reuses_fitted_models(self):
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch
+        import numpy as np
+        from bayesian_goals import BayesianGoals
+        from elo_baseline import EloBaseline
+        history = pd.DataFrame({
+            'Date': pd.date_range('2025-01-01', periods=180),
+            'HomeTeam': ['Alpha', 'Beta'] * 90,
+            'AwayTeam': ['Beta', 'Alpha'] * 90,
+            'FTHG': [2, 1] * 90, 'FTAG': [0, 1] * 90})
+        dc = (['Alpha', 'Beta'], {'Alpha': .2, 'Beta': -.2},
+              {'Alpha': -.1, 'Beta': .1}, .15, 0.0, -.05)
+        fixtures = [{'league': 'Premier League', 'home': 'Alpha', 'away': 'Beta',
+                     'kickoff_utc': '2026-11-04T14:00:00+00:00'}]
+        fake = {'fetch_season': lambda season, code: history,
+                'fit_dc': lambda frame: dc,
+                'forecast': lambda model, home, away: (__import__('football_models').forecast(model, home, away))}
+        with tempfile.TemporaryDirectory() as temp, patch.dict('os.environ', {'MATCHLAB_FITTED_SNAPSHOT_DIR': temp}), patch(
+            'scripts.collect_forward.models_from_app', return_value=fake):
+            first, audit = collect(fixtures, [], '2026-11-02T12:00:00+00:00', 'test-sha', preview=True)
+            self.assertEqual(audit[0]['status'], 'preview')
+            self.assertEqual(len(list(Path(temp).glob('*.json'))), 1)
+            with patch('scripts.collect_forward.BayesianGoals.fit', side_effect=AssertionError('refitted')), patch(
+                'scripts.collect_forward.EloBaseline.observe', side_effect=AssertionError('retrained')):
+                second, audit = collect(fixtures, [], '2026-11-02T12:00:00+00:00', 'test-sha', preview=True)
+            self.assertEqual(audit[0]['status'], 'preview')
+            for a, b in zip(first, second):
+                np.testing.assert_allclose([a['p_home'], a['p_draw'], a['p_away']],
+                                           [b['p_home'], b['p_draw'], b['p_away']])
+
     def test_precomputed_models_expire_on_utc_day_change(self):
         cache = {('Premier League', '2026-10-31', 'test-sha'): object()}
         fixtures = [{'league': 'Premier League', 'home': 'Alpha', 'away': 'Beta',
