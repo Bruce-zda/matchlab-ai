@@ -22,6 +22,7 @@ from bayesian_goals import BayesianGoals
 from model_uncertainty import paired_interval
 
 from football_models import fit_dc, forecast, fetch_season
+from goal_markets import market_probabilities
 namespace = {'fit_dc': fit_dc, 'forecast': forecast, 'fetch_season': fetch_season}
 
 LEAGUES = {'Premier League': 'en.1', 'La Liga': 'es.1', 'Serie A': 'it.1',
@@ -36,6 +37,7 @@ def score(probabilities, actual):
 def run():
     year = dt.date.today().year if dt.date.today().month >= 7 else dt.date.today().year - 1
     rows = []
+    market_rows = []
     failures = []
     for league, code in LEAGUES.items():
         frames = []
@@ -76,7 +78,31 @@ def run():
                 _, _, grid = namespace['forecast'](dc, match.HomeTeam, match.AwayTeam)
                 dc_p = (float(np.tril(grid,-1).sum()),float(np.trace(grid)),float(np.triu(grid,1).sum()))
                 elo_p = elo.predict(match.HomeTeam, match.AwayTeam)
+                bayesian_grid = bayesian.score_grid(match.HomeTeam, match.AwayTeam)
                 bayesian_p = bayesian.predict(match.HomeTeam, match.AwayTeam)
+                side = max(grid.shape[0], grid.shape[1], bayesian_grid.shape[0], bayesian_grid.shape[1])
+                dc_full = np.pad(grid, ((0, side-grid.shape[0]), (0, side-grid.shape[1])))
+                bayes_full = np.pad(bayesian_grid, ((0, side-bayesian_grid.shape[0]), (0, side-bayesian_grid.shape[1])))
+                mixture_grid = (dc_full + bayes_full) / 2
+                market_probs = market_probabilities(mixture_grid)['markets']
+                h, a = int(match.FTHG), int(match.FTAG)
+                for market, probability in market_probs.items():
+                    if market.startswith('btts_'):
+                        occurred = (h>0 and a>0) if market=='btts_yes' else (h==0 or a==0)
+                    else:
+                        parts = market.split('_')
+                        if parts[0] in ('home','away'):
+                            goals = h if parts[0]=='home' else a
+                            direction = parts[1]
+                            threshold = float(parts[2]+'.'+parts[3])
+                        else:
+                            goals = h+a
+                            direction = parts[0]
+                            threshold = float(parts[1]+'.'+parts[2])
+                        occurred = goals>threshold if direction=='over' else goals<threshold
+                    market_rows.append({'league':league,'fold':fold,'date':match.Date.date().isoformat(),
+                        'home':match.HomeTeam,'away':match.AwayTeam,'market':market,
+                        'probability':probability,'actual':int(occurred)})
                 actual = 0 if match.FTHG > match.FTAG else 1 if match.FTHG == match.FTAG else 2
                 for model, probabilities in (('Dixon-Coles', dc_p), ('Elo', elo_p), ('Bayesian Goals', bayesian_p)):
                     brier, logloss = score(probabilities, actual)
@@ -114,6 +140,7 @@ def run():
     blend_frame['brier'],blend_frame['log_loss'] = blend_brier,blend_log
     frame = pd.concat([frame,blend_frame],ignore_index=True)
     frame.to_csv(out/'model_comparison_predictions.csv',index=False)
+    pd.DataFrame(market_rows).to_csv(out/'historical_market_predictions.csv', index=False)
     grouped = frame.groupby('model').agg(predictions=('brier','size'),
                                          mean_brier=('brier','mean'),
                                          mean_log_loss=('log_loss','mean'))
