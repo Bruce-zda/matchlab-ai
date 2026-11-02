@@ -50,3 +50,8 @@
 @keyframes ml-shimmer{to{background-position-x:-200%}}
 @media(prefers-reduced-motion:reduce){.skeleton{animation:none}.match-card{transition:none}.match-card:hover{transform:none}}
 @media(max-width:480px){.detail-wrap{padding:24px 14px 55px}.detail-panel{padding:18px 15px}.detail-head{gap:14px;margin-bottom:22px}.detail-head h1{font-size:clamp(26px,8vw,38px);letter-spacing:-1px;overflow-wrap:anywhere}.detail-meta{flex-wrap:wrap;line-height:1.6}.detail-score{padding:12px 17px}.detail-pick{overflow-wrap:anywhere}.detail-prob{font-size:36px}.detail-insight{align-items:flex-start;flex-direction:column;gap:8px;padding:16px 0}.detail-insight strong{text-align:left;font-size:15px}.detail-triple strong{font-size:15px}.detail-triple span{font-size:8px}.detail-section-label{font-size:10px;line-height:1.5;flex-wrap:wrap}.detail-bottom{overflow-wrap:anywhere}}
+
+.pagination{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:25px 0;color:#a8b9bd;font-size:12px}
+.pagination>div{display:flex;gap:10px}.pagination a{border:1px solid #456744;color:#cafa8a;padding:11px 16px;border-radius:9px;font-weight:800;min-height:42px;display:inline-flex;align-items:center}
+.pagination a:hover{background:#1c3323}.pagination a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+@media(max-width:480px){.pagination{align-items:stretch;flex-direction:column}.pagination>div{width:100%}.pagination a{flex:1;justify-content:center}}
