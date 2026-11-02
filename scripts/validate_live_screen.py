@@ -12,10 +12,23 @@ def main():
     hybrid=[r for r in ledger if r.get("model")=="DC + Bayesian (50/50)"]
     eligible=[r for r in hybrid if isinstance(r.get("screen_markets"),list)]
     excluded=len(hybrid)-len(eligible)
-    finals=[{**r,"status":"final"} for r in settlements if
-            r.get("provider_match_id") is not None and
-            isinstance(r.get("home_goals"),int) and isinstance(r.get("away_goals"),int)]
+    # Multiple model settlements may reference the same fixture. Accept identical
+    # scores once; reject any conflict rather than silently choosing a result.
+    unique_finals={}
+    for r in settlements:
+        fid=r.get("provider_match_id")
+        h,a=r.get("home_goals"),r.get("away_goals")
+        if fid is None or type(h) is not int or type(a) is not int or h<0 or a<0:
+            continue
+        key=str(fid)
+        score=(h,a)
+        if key in unique_finals and unique_finals[key]!=score:
+            raise ValueError("Conflicting final scores for fixture "+key)
+        unique_finals[key]=score
+    finals=[{"provider_match_id":key,"status":"final","home_goals":score[0],
+             "away_goals":score[1]} for key,score in unique_finals.items()]
     report=evaluate_live_screen(eligible,finals)
+    report["unique_final_fixtures"]=len(unique_finals)
     report["legacy_hybrid_snapshots_excluded"]=excluded
     report["note"]="Existing historical snapshots cannot be retrospectively assigned screen decisions."
     output=ROOT/"reports/forward_live_screen_validation.json"
