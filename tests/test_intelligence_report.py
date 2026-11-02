@@ -26,7 +26,9 @@ class IntelligenceReportTests(unittest.TestCase):
         self.assertAlmostEqual(market["home_draw_no_bet"], .53 / .75, places=5)
         self.assertAlmostEqual(market["btts_yes"] + market["btts_no"], 1)
         self.assertFalse(report["verdict"]["expert_pick"])
-        self.assertEqual(len(report["analysis_sections"]), 4)
+        self.assertEqual(len(report["analysis_sections"]), 6)
+        self.assertFalse(report["selection_screen"]["expert_pick"])
+        self.assertEqual(report["selection_screen"]["calibration"], "NOT_VERIFIED")
         self.assertAlmostEqual(report["verdict"]["model_disagreement"],
                                report["markets"][next(i for i, m in enumerate(report["markets"])
                                if m["key"] == report["verdict"]["market"])]["model_range"]["spread"], places=6)
