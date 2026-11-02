@@ -23,6 +23,7 @@ class ManualPreviewTests(unittest.TestCase):
         ) as collect:
             result = preview("Premier League", "Arsenal", "Chelsea", KICKOFF, NOW)
         self.assertEqual(collect.call_args.args[1], [])
+        self.assertIsNone(collect.call_args.kwargs['fitted_cache'])
         self.assertFalse(result["official_forward_archive"])
         self.assertFalse(result["fixture_verified"])
         self.assertEqual(len(result["forecasts"]), 4)
