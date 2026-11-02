@@ -64,3 +64,15 @@
 .analysis-point p{font-size:12px;line-height:1.85;color:#b0c1c4;margin:0}
 .detail-page a:focus-visible,.site a:focus-visible,.intelligence summary:focus-visible{outline:3px solid var(--green);outline-offset:4px}
 @media(max-width:650px){.analysis-grid{grid-template-columns:1fr}.analysis-point{padding:17px}.detail-nav{height:64px}.detail-brand{font-size:19px}}
+
+/* Match Centre redesign: mobile-first segmented workspace */
+.match-workspace{margin-top:26px;min-width:0}
+.match-tabbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:7px;background:#101b1b;border:1px solid #34433b;border-radius:16px;margin-bottom:22px;position:sticky;top:8px;z-index:15;box-shadow:0 12px 36px #0009}
+.match-tabbar button{appearance:none;border:1px solid transparent;background:transparent;color:#a9bab4;border-radius:11px;padding:15px 12px;font:700 13px 'Space Grotesk',sans-serif;display:flex;justify-content:center;align-items:center;gap:9px;cursor:pointer;transition:background .15s,color .15s}
+.match-tabbar button[aria-selected=true]{color:#142014;background:#b7fb5b;box-shadow:0 3px 18px #b7fb5b26}
+.match-tabbar button:hover:not([aria-selected=true]){background:#24332d;color:white}
+.match-tabbar button:focus-visible{outline:3px solid #b7fb5b;outline-offset:2px}
+.match-workspace [role=tabpanel][hidden]{display:none}
+.match-workspace [role=tabpanel]>section,.match-workspace [role=tabpanel]>.detail-panels{margin-bottom:18px}
+.match-workspace [role=tabpanel]>.detail-panels{margin-top:0}
+@media(max-width:650px){.match-workspace{margin-top:18px}.match-tabbar{top:4px;gap:4px;padding:5px;border-radius:13px;margin-bottom:15px}.match-tabbar button{padding:12px 5px;font-size:12px;gap:5px}.match-tabbar button svg{width:15px;height:15px}.match-workspace [role=tabpanel]>section{margin-bottom:14px}}
