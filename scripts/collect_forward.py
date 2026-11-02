@@ -103,12 +103,14 @@ def match_team(provider_name,training_names):
                          '; training-name candidates (diagnostic only): '+repr(candidates))
     return matches[0]
 
-def collect(fixtures,ledger,now,model_version,preview=False):
+def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
     now=utc_time(now)
     ns=models_from_app()
     output=list(ledger)
     audit=[]
-    cache={}
+    # Optional caller-owned in-memory fitted models. The UTC training cutoff
+    # and code revision are part of the key; never reuse across cutoff days.
+    cache={} if fitted_cache is None else fitted_cache
     for fixture in fixtures:
         label={k:fixture.get(k) for k in ('league','home','away','kickoff_utc')}
         try:
@@ -117,7 +119,8 @@ def collect(fixtures,ledger,now,model_version,preview=False):
             kickoff=utc_time(fixture['kickoff_utc'])
             if not now<kickoff<=now+dt.timedelta(days=14):
                 raise ValueError('Kickoff outside next fourteen days')
-            if league not in cache:
+            cache_key=(league,now.date().isoformat(),model_version)
+            if cache_key not in cache:
                 year=now.year if now.month>=7 else now.year-1
                 frames=[]
                 for y in range(year-7,year+1):
@@ -141,8 +144,8 @@ def collect(fixtures,ledger,now,model_version,preview=False):
                 elo=EloBaseline()
                 for match in history.itertuples():
                     elo.observe(match.HomeTeam,match.AwayTeam,match.FTHG,match.FTAG)
-                cache[league]=(dc,bayes,elo)
-            dc,bayes,elo=cache[league]
+                cache[cache_key]=(dc,bayes,elo)
+            dc,bayes,elo=cache[cache_key]
             home=match_team(fixture['home'],dc[0])
             away=match_team(fixture['away'],dc[0])
             if home not in dc[0] or away not in dc[0]:
