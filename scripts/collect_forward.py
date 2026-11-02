@@ -27,6 +27,9 @@ from data_quality import valid_score_pair,valid_team_pair
 from football_data_provider import get_matches,upcoming_fixtures
 import os
 import re
+import hashlib
+import json
+from fitted_model_snapshots import pack, unpack, training_digest
 
 LEAGUES={'Premier League':'en.1','La Liga':'es.1','Serie A':'it.1',
          'Bundesliga':'de.1','Ligue 1':'fr.1'}
@@ -144,12 +147,41 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                 history=canonicalize_history(history)
                 if len(history)<150:
                     raise ValueError('Insufficient historical training data')
-                dc=ns['fit_dc'](history)
-                bayes=BayesianGoals().fit(history)
-                elo=EloBaseline()
-                for match in history.itertuples():
-                    elo.observe(match.HomeTeam,match.AwayTeam,match.FTHG,match.FTAG)
-                cache[cache_key]=(dc,bayes,elo)
+                # Optional persistent snapshot store. Never trust a saved fit
+                # without recomputing its training-data digest and cutoff.
+                digest=training_digest(history)
+                snapshot_dir=os.environ.get('MATCHLAB_FITTED_SNAPSHOT_DIR') if preview else None
+                snapshot_file=None
+                loaded=None
+                if snapshot_dir:
+                    folder=pathlib.Path(snapshot_dir)
+                    identity=hashlib.sha256(json.dumps([league,cache_key[1],model_version,digest]).encode()).hexdigest()
+                    snapshot_file=folder/(identity+'.json')
+                    if snapshot_file.is_file():
+                        try:
+                            loaded=unpack(json.loads(snapshot_file.read_text()),league=league,
+                                cutoff_utc_date=cache_key[1],model_version=model_version,
+                                history_sha256=digest)
+                        except (ValueError,KeyError,TypeError,OverflowError,UnicodeError,json.JSONDecodeError):
+                            loaded=None
+                if loaded is None:
+                    dc=ns['fit_dc'](history)
+                    bayes=BayesianGoals().fit(history)
+                    elo=EloBaseline()
+                    for match in history.itertuples():
+                        elo.observe(match.HomeTeam,match.AwayTeam,match.FTHG,match.FTAG)
+                    if snapshot_file is not None:
+                        try:
+                            snapshot_file.parent.mkdir(parents=True,exist_ok=True)
+                            content=pack(dc,bayes,elo,league=league,cutoff_utc_date=cache_key[1],
+                                model_version=model_version,history_sha256=digest)
+                            temp=snapshot_file.with_suffix('.tmp')
+                            temp.write_text(json.dumps(content,sort_keys=True,allow_nan=False))
+                            temp.replace(snapshot_file)
+                        except (OSError,TypeError,ValueError):
+                            pass  # Disk cache is optional; never block a valid fresh fit.
+                    loaded=(dc,bayes,elo)
+                cache[cache_key]=loaded
             dc,bayes,elo=cache[cache_key]
             home=match_team(fixture['home'],dc[0])
             away=match_team(fixture['away'],dc[0])
