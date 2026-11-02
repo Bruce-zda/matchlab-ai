@@ -2910,5 +2910,5741 @@
     "p_draw": 0.2312074308178243,
     "p_away": 0.571893702529843,
     "snapshot_id": "dcac370654a2760a7c453207"
+  },
+  {
+    "league": "Serie A",
+    "home": "SSC Napoli",
+    "away": "SS Lazio",
+    "kickoff_utc": "2026-11-08T11:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558533,
+    "p_home": 0.47242189941843077,
+    "p_draw": 0.27782163687775085,
+    "p_away": 0.24975646370381827,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4563798812889644,
+        "btts_no": 0.5436201187110355,
+        "over_1_5": 0.6751860040149309,
+        "under_1_5": 0.3248139959850691,
+        "over_2_5": 0.4082485177287471,
+        "under_2_5": 0.5917514822712528,
+        "over_3_5": 0.20395147196598978,
+        "under_3_5": 0.7960485280340102,
+        "home_over_0_5": 0.7499956897054293,
+        "home_under_0_5": 0.2500043102945707,
+        "home_over_1_5": 0.40342043364278773,
+        "home_under_1_5": 0.5965795663572122,
+        "home_over_2_5": 0.16319575916945697,
+        "home_under_2_5": 0.8368042408305431,
+        "away_over_0_5": 0.6054098357050963,
+        "away_under_0_5": 0.3945901642949037,
+        "away_over_1_5": 0.23847743850771708,
+        "away_under_1_5": 0.7615225614922829,
+        "away_over_2_5": 0.06787082397944633,
+        "away_under_2_5": 0.9321291760205537
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.13443007322543613
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12949480352123058
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.1009743558784386
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09479029376812134
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08940956688119428
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08814621567045935
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "d0ca3760013860d5fadc1e77"
+  },
+  {
+    "league": "Serie A",
+    "home": "SSC Napoli",
+    "away": "SS Lazio",
+    "kickoff_utc": "2026-11-08T11:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558533,
+    "p_home": 0.4699499116292167,
+    "p_draw": 0.2556756962179645,
+    "p_away": 0.274374392152819,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5217370922285524,
+        "btts_no": 0.4782629077714476,
+        "over_1_5": 0.7370566052519854,
+        "under_1_5": 0.26294339474801465,
+        "over_2_5": 0.48737001498621324,
+        "under_2_5": 0.5126299850137868,
+        "over_3_5": 0.2690470353383277,
+        "under_3_5": 0.7309529646616724,
+        "home_over_0_5": 0.7818721697645878,
+        "home_under_0_5": 0.21812783023541216,
+        "home_over_1_5": 0.4497345896030188,
+        "home_under_1_5": 0.5502654103969812,
+        "home_over_2_5": 0.19686595739655957,
+        "home_under_2_5": 0.8031340426034405,
+        "away_over_0_5": 0.6672920618029428,
+        "away_under_0_5": 0.33270793819705724,
+        "away_over_1_5": 0.301150224204855,
+        "away_under_1_5": 0.6988497757951451,
+        "away_over_2_5": 0.09968246547602175,
+        "away_under_2_5": 0.9003175345239782
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12160946393573913
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11050480949331548
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09258578566698801
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08413140125612104
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07986572459367751
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07257286066102166
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "c79b230041822beb6cb644e3"
+  },
+  {
+    "league": "Serie A",
+    "home": "SSC Napoli",
+    "away": "SS Lazio",
+    "kickoff_utc": "2026-11-08T11:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558533,
+    "p_home": 0.5134645118019687,
+    "p_draw": 0.2164826297656336,
+    "p_away": 0.2700528584323977,
+    "snapshot_id": "dc9842b08866c252fe006138"
+  },
+  {
+    "league": "Serie A",
+    "home": "SSC Napoli",
+    "away": "SS Lazio",
+    "kickoff_utc": "2026-11-08T11:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558533,
+    "p_home": 0.4711859055238237,
+    "p_draw": 0.26674866654785767,
+    "p_away": 0.26206542792831866,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.48905848675875846,
+        "btts_no": 0.5109415132412416,
+        "over_1_5": 0.7061213046334582,
+        "under_1_5": 0.29387869536654176,
+        "over_2_5": 0.4478092663574802,
+        "under_2_5": 0.5521907336425198,
+        "over_3_5": 0.2364992536521588,
+        "under_3_5": 0.7635007463478412,
+        "home_over_0_5": 0.7659339297350088,
+        "home_under_0_5": 0.23406607026499116,
+        "home_over_1_5": 0.4265775116229034,
+        "home_under_1_5": 0.5734224883770966,
+        "home_over_2_5": 0.1800308582830083,
+        "home_under_2_5": 0.8199691417169916,
+        "away_over_0_5": 0.6363509487540197,
+        "away_under_0_5": 0.36364905124598035,
+        "away_over_1_5": 0.2698138313562861,
+        "away_under_1_5": 0.7301861686437139,
+        "away_over_2_5": 0.08377664472773406,
+        "away_under_2_5": 0.916223355272266
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12555213372848487
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.12246744135937582
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09036600066872369
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08946084751212119
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08677360826973013
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.0846376457374359
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "f09764c54c921031a1715ccf"
+  },
+  {
+    "league": "La Liga",
+    "home": "Elche CF",
+    "away": "Real Betis Balompi\u00e9",
+    "kickoff_utc": "2026-11-08T13:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564738,
+    "p_home": 0.33564624792289316,
+    "p_draw": 0.24838696663852367,
+    "p_away": 0.4159667854385832,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5832801471526415,
+        "btts_no": 0.4167198528473583,
+        "over_1_5": 0.7848653527079595,
+        "under_1_5": 0.21513464729204046,
+        "over_2_5": 0.5522599736418545,
+        "under_2_5": 0.44774002635814547,
+        "over_3_5": 0.3286612515934913,
+        "under_3_5": 0.6713387484065088,
+        "home_over_0_5": 0.7423663764930043,
+        "home_under_0_5": 0.2576336235069957,
+        "home_over_1_5": 0.392959335870418,
+        "home_under_1_5": 0.607040664129582,
+        "home_over_2_5": 0.15602349190958723,
+        "home_under_2_5": 0.8439765080904128,
+        "away_over_0_5": 0.7847839467239729,
+        "away_under_0_5": 0.2152160532760271,
+        "away_over_1_5": 0.45418779815492705,
+        "away_under_1_5": 0.545812201845073,
+        "away_over_2_5": 0.20027129939702323,
+        "away_under_2_5": 0.7997287006029767
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11619555420602215
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08872021239624783
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08448975138001338
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07833007747140704
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0745150719763626
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.06541742764320829
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "df6e0941651fd1ca3f9d3c3b"
+  },
+  {
+    "league": "La Liga",
+    "home": "Elche CF",
+    "away": "Real Betis Balompi\u00e9",
+    "kickoff_utc": "2026-11-08T13:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564738,
+    "p_home": 0.29909695995718755,
+    "p_draw": 0.26183143207396975,
+    "p_away": 0.43907160796884265,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5182079460352232,
+        "btts_no": 0.48179205396477676,
+        "over_1_5": 0.7278837582012737,
+        "under_1_5": 0.2721162417987263,
+        "over_2_5": 0.4754484909383443,
+        "under_2_5": 0.5245515090616557,
+        "over_3_5": 0.25871751399600673,
+        "under_3_5": 0.7412824860039933,
+        "home_over_0_5": 0.679706869587689,
+        "home_under_0_5": 0.320293130412311,
+        "home_over_1_5": 0.3150471606592178,
+        "home_under_1_5": 0.6849528393407822,
+        "home_over_2_5": 0.10746121720701585,
+        "home_under_2_5": 0.8925387827929842,
+        "away_over_0_5": 0.762399159434079,
+        "away_under_0_5": 0.237600840565921,
+        "away_over_1_5": 0.42092798494291883,
+        "away_under_1_5": 0.5790720150570812,
+        "away_over_2_5": 0.17555308910785633,
+        "away_under_2_5": 0.8244469108921437
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12452077909740969
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10937087142334215
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08947833809356785
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08664345336192888
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.07859189351160689
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07610191701345526
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "374593378fd3d57c2b2f7a25"
+  },
+  {
+    "league": "La Liga",
+    "home": "Elche CF",
+    "away": "Real Betis Balompi\u00e9",
+    "kickoff_utc": "2026-11-08T13:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564738,
+    "p_home": 0.26042247998538565,
+    "p_draw": 0.21437391748786105,
+    "p_away": 0.5252036025267534,
+    "snapshot_id": "4d5619fc9b462cad14beffde"
+  },
+  {
+    "league": "La Liga",
+    "home": "Elche CF",
+    "away": "Real Betis Balompi\u00e9",
+    "kickoff_utc": "2026-11-08T13:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564738,
+    "p_home": 0.3173716039400404,
+    "p_draw": 0.2551091993562467,
+    "p_away": 0.4275191967037129,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5507440465939324,
+        "btts_no": 0.4492559534060675,
+        "over_1_5": 0.7563745554546166,
+        "under_1_5": 0.24362544454538337,
+        "over_2_5": 0.5138542322900993,
+        "under_2_5": 0.4861457677099007,
+        "over_3_5": 0.293689382794749,
+        "under_3_5": 0.706310617205251,
+        "home_over_0_5": 0.7110366230403468,
+        "home_under_0_5": 0.28896337695965324,
+        "home_over_1_5": 0.3540032482648178,
+        "home_under_1_5": 0.6459967517351821,
+        "home_over_2_5": 0.13174235455830155,
+        "home_under_2_5": 0.8682576454416985,
+        "away_over_0_5": 0.7735915530790258,
+        "away_under_0_5": 0.22640844692097417,
+        "away_over_1_5": 0.43755789154892294,
+        "away_under_1_5": 0.5624421084510771,
+        "away_over_2_5": 0.18791219425243977,
+        "away_under_2_5": 0.8120878057475602
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12035816665171592
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09693031140167777
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08909927524490785
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08057926266914575
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07460734669494298
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.07200466057740759
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "c2623edd13aed8be28489cc3"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "Atalanta BC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558538,
+    "p_home": 0.14931941489531525,
+    "p_draw": 0.20336319135328898,
+    "p_away": 0.6473173937513959,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5192515393017131,
+        "btts_no": 0.48074846069828703,
+        "over_1_5": 0.7996241706627967,
+        "under_1_5": 0.20037582933720333,
+        "over_2_5": 0.5723863254323404,
+        "under_2_5": 0.42761367456765964,
+        "over_3_5": 0.3483589675961119,
+        "under_3_5": 0.6516410324038882,
+        "home_over_0_5": 0.5908447564168899,
+        "home_under_0_5": 0.40915524358311006,
+        "home_over_1_5": 0.22519882517809853,
+        "home_under_1_5": 0.7748011748219015,
+        "home_over_2_5": 0.06181713921868885,
+        "home_under_2_5": 0.9381828607813112,
+        "away_over_0_5": 0.8758990062926354,
+        "away_under_0_5": 0.1241009937073646,
+        "away_over_1_5": 0.6169424377020752,
+        "away_under_1_5": 0.38305756229792476,
+        "away_over_2_5": 0.34676529240731613,
+        "away_under_2_5": 0.6532347075926839
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.11054439569366653
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10422223361617183
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09878917389074045
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09641761995564238
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.07688951965807972
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.0687131362943688
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "5f804b0d4db4c4e272a88e90"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "Atalanta BC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558538,
+    "p_home": 0.17245843546801798,
+    "p_draw": 0.22120464376206894,
+    "p_away": 0.6063369207699132,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.49588067019196697,
+        "btts_no": 0.5041193298080331,
+        "over_1_5": 0.7607636433353405,
+        "under_1_5": 0.23923635666465948,
+        "over_2_5": 0.519221670408225,
+        "under_2_5": 0.480778329591775,
+        "over_3_5": 0.2975821412111007,
+        "under_3_5": 0.7024178587888993,
+        "home_over_0_5": 0.5861819441034027,
+        "home_under_0_5": 0.41381805589659726,
+        "home_over_1_5": 0.22105832220435917,
+        "home_under_1_5": 0.7789416777956408,
+        "home_over_2_5": 0.059978763967311284,
+        "home_under_2_5": 0.9400212360326887,
+        "away_over_0_5": 0.8459500931070876,
+        "away_under_0_5": 0.15404990689291242,
+        "away_over_1_5": 0.5578030148775499,
+        "away_under_1_5": 0.4421969851224501,
+        "away_over_2_5": 0.2883165206405351,
+        "away_under_2_5": 0.7116834793594649
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.11924046372523191
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.1115183771355511
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10520930484279574
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09839588482869462
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.06953091845066016
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.06374863298147694
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "2618e0129ca6e15b583be35e"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "Atalanta BC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558538,
+    "p_home": 0.20916083428164334,
+    "p_draw": 0.1704334319805622,
+    "p_away": 0.6204057337377944,
+    "snapshot_id": "546b355afb0c8bcdf48e2f0e"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "Atalanta BC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558538,
+    "p_home": 0.16088892518166661,
+    "p_draw": 0.21228391755767895,
+    "p_away": 0.6268271572606545,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.50756610474684,
+        "btts_no": 0.49243389525316,
+        "over_1_5": 0.7801939069990685,
+        "under_1_5": 0.21980609300093146,
+        "over_2_5": 0.5458039979202827,
+        "under_2_5": 0.45419600207971733,
+        "over_3_5": 0.3229705544036063,
+        "under_3_5": 0.6770294455963937,
+        "home_over_0_5": 0.5885133502601463,
+        "home_under_0_5": 0.4114866497398537,
+        "home_over_1_5": 0.22312857369122885,
+        "home_under_1_5": 0.7768714263087712,
+        "home_over_2_5": 0.060897951593000064,
+        "home_under_2_5": 0.939102048407,
+        "away_over_0_5": 0.8609245496998613,
+        "away_under_0_5": 0.13907545030013868,
+        "away_over_1_5": 0.5873727262898126,
+        "away_under_1_5": 0.41262727371018737,
+        "away_over_2_5": 0.3175409065239256,
+        "away_under_2_5": 0.6824590934760744
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.11173134867070186
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.1110313864146088
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10081346239921905
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09859252935971752
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.07321021905436993
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06503113685790268
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "9b5bd80976f259e6ca3eaa8e"
+  },
+  {
+    "league": "Premier League",
+    "home": "Sunderland AFC",
+    "away": "Chelsea FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560636,
+    "p_home": 0.32504748959358376,
+    "p_draw": 0.27795455695068333,
+    "p_away": 0.39699795345573285,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5600192804818026,
+        "btts_no": 0.4399807195181974,
+        "over_1_5": 0.7640887775049234,
+        "under_1_5": 0.23591122249507657,
+        "over_2_5": 0.5091976450019782,
+        "under_2_5": 0.49080235499802183,
+        "over_3_5": 0.28845316950324273,
+        "under_3_5": 0.7115468304967573,
+        "home_over_0_5": 0.7212625366935712,
+        "home_under_0_5": 0.2787374633064288,
+        "home_over_1_5": 0.36517962703114537,
+        "home_under_1_5": 0.6348203729688546,
+        "home_over_2_5": 0.13773435101837658,
+        "home_under_2_5": 0.8622656489816234,
+        "away_over_0_5": 0.7616590326478127,
+        "away_under_0_5": 0.23834096735218735,
+        "away_over_1_5": 0.4198654535739527,
+        "away_under_1_5": 0.5801345464260472,
+        "away_over_2_5": 0.17479039997753437,
+        "away_under_2_5": 0.8252096000224656
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13237000663922407
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08726703817028761
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.0846075207068034
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0777393349318462
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07709771114041862
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07420599064785453
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "f2bd9176d47cc78ff339c0ae"
+  },
+  {
+    "league": "Premier League",
+    "home": "Sunderland AFC",
+    "away": "Chelsea FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560636,
+    "p_home": 0.3290644407095635,
+    "p_draw": 0.2640927157603459,
+    "p_away": 0.4068428435300907,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.523096616812761,
+        "btts_no": 0.47690338318723907,
+        "over_1_5": 0.7284874478280343,
+        "under_1_5": 0.2715125521719657,
+        "over_2_5": 0.47622641253792997,
+        "under_2_5": 0.52377358746207,
+        "over_3_5": 0.2593858069680284,
+        "under_3_5": 0.7406141930319716,
+        "home_over_0_5": 0.7007828145364012,
+        "home_under_0_5": 0.29921718546359877,
+        "home_over_1_5": 0.3397516681547325,
+        "home_under_1_5": 0.6602483318452674,
+        "home_over_2_5": 0.12194417749253807,
+        "home_under_2_5": 0.878055822507462,
+        "away_over_0_5": 0.7464461256214061,
+        "away_under_0_5": 0.2535538743785939,
+        "away_over_1_5": 0.3985248342046093,
+        "away_under_1_5": 0.6014751657953907,
+        "away_over_2_5": 0.1598196964546989,
+        "away_under_2_5": 0.840180303545301
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12561042269079672
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10410402958059448
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09154084593641738
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08617998952904429
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07586767665495382
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07577986343144257
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "0ba0f028c013e06c58de0333"
+  },
+  {
+    "league": "Premier League",
+    "home": "Sunderland AFC",
+    "away": "Chelsea FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560636,
+    "p_home": 0.424824129132044,
+    "p_draw": 0.23040723290053236,
+    "p_away": 0.3447686379674237,
+    "snapshot_id": "9bdc2f52ae0465533f840cce"
+  },
+  {
+    "league": "Premier League",
+    "home": "Sunderland AFC",
+    "away": "Chelsea FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560636,
+    "p_home": 0.32705596515157365,
+    "p_draw": 0.27102363635551463,
+    "p_away": 0.4019203984929118,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5415579486472818,
+        "btts_no": 0.45844205135271826,
+        "over_1_5": 0.7462881126664789,
+        "under_1_5": 0.2537118873335211,
+        "over_2_5": 0.492712028769954,
+        "under_2_5": 0.507287971230046,
+        "over_3_5": 0.2739194882356355,
+        "under_3_5": 0.7260805117643645,
+        "home_over_0_5": 0.7110226756149862,
+        "home_under_0_5": 0.2889773243850138,
+        "home_over_1_5": 0.35246564759293897,
+        "home_under_1_5": 0.647534352407061,
+        "home_over_2_5": 0.12983926425545733,
+        "home_under_2_5": 0.8701607357445427,
+        "away_over_0_5": 0.7540525791346093,
+        "away_under_0_5": 0.24594742086539068,
+        "away_over_1_5": 0.409195143889281,
+        "away_under_1_5": 0.590804856110719,
+        "away_over_2_5": 0.16730504821611664,
+        "away_under_2_5": 0.8326949517838833
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1289902146650104
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09435577514369894
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08672351384966595
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08287341829213596
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07675959918164438
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07648269389768622
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "d604e5ce3a81bf1200dc3d53"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brighton & Hove Albion FC",
+    "away": "Brentford FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560638,
+    "p_home": 0.4501879089737999,
+    "p_draw": 0.2551139493786016,
+    "p_away": 0.29469814164759844,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6164900693709839,
+        "btts_no": 0.38350993062901617,
+        "over_1_5": 0.819256658463729,
+        "under_1_5": 0.18074334153627103,
+        "over_2_5": 0.5903304585177955,
+        "under_2_5": 0.40966954148220447,
+        "over_3_5": 0.36642556351221384,
+        "under_3_5": 0.6335744364877862,
+        "home_over_0_5": 0.8190859243342762,
+        "home_under_0_5": 0.18091407566572382,
+        "home_over_1_5": 0.5097711380595263,
+        "home_under_1_5": 0.49022886194047366,
+        "home_over_2_5": 0.24534827141377513,
+        "home_under_2_5": 0.7546517285862249,
+        "away_over_0_5": 0.7410806986782703,
+        "away_under_0_5": 0.2589193013217297,
+        "away_over_1_5": 0.39121888074184163,
+        "away_under_1_5": 0.6087811192581584,
+        "away_over_2_5": 0.15484544117024715,
+        "away_under_2_5": 0.8451545588297529
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11769873372850369
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09251146482864436
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07311379994211523
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07060626806293657
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.06846418388540686
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06250254249043725
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "10e5d6bb2d5bb8a48612cc14"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brighton & Hove Albion FC",
+    "away": "Brentford FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560638,
+    "p_home": 0.4206429152217995,
+    "p_draw": 0.257932643027963,
+    "p_away": 0.32142444175023754,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.540518089034723,
+        "btts_no": 0.4594819109652769,
+        "over_1_5": 0.7464299651908078,
+        "under_1_5": 0.25357003480919216,
+        "over_2_5": 0.4997805205177477,
+        "under_2_5": 0.5002194794822523,
+        "over_3_5": 0.2800018571182028,
+        "under_3_5": 0.7199981428817972,
+        "home_over_0_5": 0.764008946831326,
+        "home_under_0_5": 0.23599105316867397,
+        "home_over_1_5": 0.42324697767356634,
+        "home_under_1_5": 0.5767530223264337,
+        "home_over_2_5": 0.17722341435381953,
+        "home_under_2_5": 0.8227765856461805,
+        "away_over_0_5": 0.7074761248235168,
+        "away_under_0_5": 0.29252387517648315,
+        "away_over_1_5": 0.34790314712311066,
+        "away_under_1_5": 0.6520968528768893,
+        "away_over_2_5": 0.1269079784136623,
+        "away_under_2_5": 0.8730920215863377
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12252879593710965
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09968101173079702
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08846342524734585
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08485600569851497
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07530674886378293
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07196776612701919
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "83223cdb95e73476e5ffd438"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brighton & Hove Albion FC",
+    "away": "Brentford FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560638,
+    "p_home": 0.4798607785327904,
+    "p_draw": 0.21370946687879608,
+    "p_away": 0.3064297545884135,
+    "snapshot_id": "bda69c0261544904c72346c3"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brighton & Hove Albion FC",
+    "away": "Brentford FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560638,
+    "p_home": 0.43541541209779966,
+    "p_draw": 0.2565232962032823,
+    "p_away": 0.308061291698918,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5785040792028535,
+        "btts_no": 0.42149592079714654,
+        "over_1_5": 0.7828433118272684,
+        "under_1_5": 0.2171566881727316,
+        "over_2_5": 0.5450554895177716,
+        "under_2_5": 0.4549445104822284,
+        "over_3_5": 0.32321371031520835,
+        "under_3_5": 0.6767862896847916,
+        "home_over_0_5": 0.791547435582801,
+        "home_under_0_5": 0.20845256441719895,
+        "home_over_1_5": 0.4665090578665464,
+        "home_under_1_5": 0.5334909421334536,
+        "home_over_2_5": 0.21128584288379731,
+        "home_under_2_5": 0.7887141571162026,
+        "away_over_0_5": 0.7242784117508937,
+        "away_under_0_5": 0.2757215882491063,
+        "away_over_1_5": 0.36956101393247615,
+        "away_under_1_5": 0.6304389860675239,
+        "away_over_2_5": 0.14087670979195469,
+        "away_under_2_5": 0.8591232902080453
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12011376483280667
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0904874450379951
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0851436398968668
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07421027440294908
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07021597500621302
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06933481640670595
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "8dd3a359d339094d6cbdaed8"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Rennais FC 1901",
+    "away": "Lille OSC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559636,
+    "p_home": 0.35233883707684976,
+    "p_draw": 0.2674076462344496,
+    "p_away": 0.38025351668870067,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5602479699542967,
+        "btts_no": 0.43975203004570323,
+        "over_1_5": 0.7627294460905482,
+        "under_1_5": 0.23727055390945184,
+        "over_2_5": 0.5142770899005452,
+        "under_2_5": 0.4857229100994548,
+        "over_3_5": 0.2930618447613958,
+        "under_3_5": 0.7069381552386043,
+        "home_over_0_5": 0.7370386906049964,
+        "home_under_0_5": 0.2629613093950036,
+        "home_over_1_5": 0.38578854962816056,
+        "home_under_1_5": 0.6142114503718394,
+        "home_over_2_5": 0.1511976476051593,
+        "home_under_2_5": 0.8488023523948407,
+        "away_over_0_5": 0.7525742871211096,
+        "away_under_0_5": 0.24742571287889037,
+        "away_over_1_5": 0.4070084282369491,
+        "away_under_1_5": 0.592991571763051,
+        "away_over_2_5": 0.16569203181860495,
+        "away_under_2_5": 0.8343079681813951
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1269516594414083
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08529884794282226
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08476241826196537
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08133671373843868
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08106660654398838
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07063499222819092
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "c5143377567c55b83403c74d"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Rennais FC 1901",
+    "away": "Lille OSC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559636,
+    "p_home": 0.36708239620039773,
+    "p_draw": 0.2675192672500102,
+    "p_away": 0.3653983365495919,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5172779136454878,
+        "btts_no": 0.4827220863545122,
+        "over_1_5": 0.7208879703485732,
+        "under_1_5": 0.2791120296514268,
+        "over_2_5": 0.4665010014457426,
+        "under_2_5": 0.5334989985542574,
+        "over_3_5": 0.2510882722617091,
+        "under_3_5": 0.7489117277382908,
+        "home_over_0_5": 0.7197200192423919,
+        "home_under_0_5": 0.28027998075760807,
+        "home_over_1_5": 0.36321334449584014,
+        "home_under_1_5": 0.6367866555041599,
+        "home_over_2_5": 0.13648111625161244,
+        "home_under_2_5": 0.8635188837483876,
+        "away_over_0_5": 0.7187210301444675,
+        "away_under_0_5": 0.28127896985553247,
+        "away_over_1_5": 0.36194444230836803,
+        "away_under_1_5": 0.638055557691632,
+        "away_over_2_5": 0.13567524469763476,
+        "away_under_2_5": 0.8643247553023652
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12719323495686882
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10027783021933145
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09999733517346703
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08089275074545128
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08066647923777291
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.0788368642586285
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "160b6f90ead4cbfed3e9c9ac"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Rennais FC 1901",
+    "away": "Lille OSC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559636,
+    "p_home": 0.40246665606738524,
+    "p_draw": 0.24360876000277193,
+    "p_away": 0.3539245839298429,
+    "snapshot_id": "815c89ace4082220e1b48b71"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Rennais FC 1901",
+    "away": "Lille OSC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559636,
+    "p_home": 0.35971061663862375,
+    "p_draw": 0.26746345674222993,
+    "p_away": 0.37282592661914626,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5387629417998924,
+        "btts_no": 0.46123705820010774,
+        "over_1_5": 0.7418087082195607,
+        "under_1_5": 0.2581912917804393,
+        "over_2_5": 0.490389045673144,
+        "under_2_5": 0.509610954326856,
+        "over_3_5": 0.27207505851155245,
+        "under_3_5": 0.7279249414884476,
+        "home_over_0_5": 0.7283793549236942,
+        "home_under_0_5": 0.2716206450763058,
+        "home_over_1_5": 0.37450094706200043,
+        "home_under_1_5": 0.6254990529379996,
+        "home_over_2_5": 0.14383938192838588,
+        "home_under_2_5": 0.8561606180716141,
+        "away_over_0_5": 0.7356476586327886,
+        "away_under_0_5": 0.2643523413672114,
+        "away_over_1_5": 0.3844764352726586,
+        "away_under_1_5": 0.6155235647273414,
+        "away_over_2_5": 0.15068363825811984,
+        "away_under_2_5": 0.8493163617418802
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12707244719913857
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09264809155814464
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09080727197888507
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08271444874986915
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08097967864471985
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07473592824340972
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "39173813cbbed97b2a2a1868"
+  },
+  {
+    "league": "Premier League",
+    "home": "Crystal Palace FC",
+    "away": "Liverpool FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560635,
+    "p_home": 0.24101437344313037,
+    "p_draw": 0.2561340458550761,
+    "p_away": 0.5028515807017936,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5717237448054777,
+        "btts_no": 0.4282762551945221,
+        "over_1_5": 0.7925291861499508,
+        "under_1_5": 0.20747081385004917,
+        "over_2_5": 0.5502249191024583,
+        "under_2_5": 0.4497750808975417,
+        "over_3_5": 0.3267022016119603,
+        "under_3_5": 0.6732977983880397,
+        "home_over_0_5": 0.6818404310454612,
+        "home_under_0_5": 0.3181595689545388,
+        "home_over_1_5": 0.3174833821600265,
+        "home_under_1_5": 0.6825166178399735,
+        "home_over_2_5": 0.10885212912442747,
+        "home_under_2_5": 0.8911478708755726,
+        "away_over_0_5": 0.8241923058190377,
+        "away_under_0_5": 0.17580769418096232,
+        "away_over_1_5": 0.5185744390096304,
+        "away_under_1_5": 0.4814255609903696,
+        "away_over_2_5": 0.2529368031022051,
+        "away_under_2_5": 0.7470631968977949
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12111013177880987
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09678694509213302
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08747914102741437
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08451515573840915
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.0656910079409786
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0637614385025135
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "5f2ea8a716d48886b124f183"
+  },
+  {
+    "league": "Premier League",
+    "home": "Crystal Palace FC",
+    "away": "Liverpool FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560635,
+    "p_home": 0.20537986999687638,
+    "p_draw": 0.22585986849175077,
+    "p_away": 0.568760261511373,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5389250874935387,
+        "btts_no": 0.4610749125064614,
+        "over_1_5": 0.7808672728810092,
+        "under_1_5": 0.2191327271189908,
+        "over_2_5": 0.5474827694180429,
+        "under_2_5": 0.45251723058195714,
+        "over_3_5": 0.32407184946557344,
+        "under_3_5": 0.6759281505344266,
+        "home_over_0_5": 0.6391888429594312,
+        "home_under_0_5": 0.36081115704056876,
+        "home_over_1_5": 0.27137774442671275,
+        "home_under_1_5": 0.7286222555732873,
+        "home_over_2_5": 0.08390432299280476,
+        "home_under_2_5": 0.9160956770071953,
+        "away_over_0_5": 0.8431390713866761,
+        "away_under_0_5": 0.1568609286133239,
+        "away_over_1_5": 0.5525705524934472,
+        "away_under_1_5": 0.4474294475065528,
+        "away_over_2_5": 0.28344660646628717,
+        "away_under_2_5": 0.7165533935337128
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10687432613314349
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10484036350143035
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09898677422970972
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.0971029223533832
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06112089358858586
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.05995768051324704
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "3c4b8bef45c143f6e7ed4954"
+  },
+  {
+    "league": "Premier League",
+    "home": "Crystal Palace FC",
+    "away": "Liverpool FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560635,
+    "p_home": 0.3154562781667784,
+    "p_draw": 0.21819017036586097,
+    "p_away": 0.4663535514673607,
+    "snapshot_id": "cffb876119ad89300acda15b"
+  },
+  {
+    "league": "Premier League",
+    "home": "Crystal Palace FC",
+    "away": "Liverpool FC",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560635,
+    "p_home": 0.2231971217200034,
+    "p_draw": 0.24099695717341343,
+    "p_away": 0.5358059211065833,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5553244161495084,
+        "btts_no": 0.4446755838504918,
+        "over_1_5": 0.7866982295154803,
+        "under_1_5": 0.2133017704845197,
+        "over_2_5": 0.5488538442602507,
+        "under_2_5": 0.45114615573974925,
+        "over_3_5": 0.325387025538767,
+        "under_3_5": 0.674612974461233,
+        "home_over_0_5": 0.6605146370024464,
+        "home_under_0_5": 0.3394853629975536,
+        "home_over_1_5": 0.2944305632933698,
+        "home_under_1_5": 0.7055694367066302,
+        "home_over_2_5": 0.09637822605861614,
+        "home_under_2_5": 0.9036217739413839,
+        "away_over_0_5": 0.8336656886028573,
+        "away_under_0_5": 0.16633431139714272,
+        "away_over_1_5": 0.535572495751539,
+        "away_under_1_5": 0.464427504248461,
+        "away_over_2_5": 0.26819170478424625,
+        "away_under_2_5": 0.7318082952157537
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1139922289559767
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09788685966092141
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09615975226442237
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.0908090390458962
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.06114409054420505
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.05911765645020516
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "ec8c079e5648d0750dfda5a8"
+  },
+  {
+    "league": "Serie A",
+    "home": "Genoa CFC",
+    "away": "AC Milan",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558536,
+    "p_home": 0.21093568687178088,
+    "p_draw": 0.2562116898484074,
+    "p_away": 0.5328526232798116,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.47343761841789694,
+        "btts_no": 0.526562381582103,
+        "over_1_5": 0.711513631181586,
+        "under_1_5": 0.28848636881841405,
+        "over_2_5": 0.4519991276398171,
+        "under_2_5": 0.5480008723601829,
+        "over_3_5": 0.23894544750189636,
+        "under_3_5": 0.7610545524981036,
+        "home_over_0_5": 0.5926551167081106,
+        "home_under_0_5": 0.40734488329188945,
+        "home_over_1_5": 0.2268206838961192,
+        "home_under_1_5": 0.7731793161038808,
+        "home_over_2_5": 0.06254363302302655,
+        "home_under_2_5": 0.9374563669769734,
+        "away_over_0_5": 0.795176319428578,
+        "away_under_0_5": 0.20482368057142197,
+        "away_over_1_5": 0.47040670772597415,
+        "away_under_1_5": 0.5295932922740259,
+        "away_over_2_5": 0.21292842105716095,
+        "away_under_2_5": 0.7870715789428391
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.13012093555232215
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12098421071522
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.10488246263330342
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09419442296488861
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08560618228120842
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0727592509848834
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "609bd3c01f01fea82bff1093"
+  },
+  {
+    "league": "Serie A",
+    "home": "Genoa CFC",
+    "away": "AC Milan",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558536,
+    "p_home": 0.18971423176745858,
+    "p_draw": 0.21789471140740216,
+    "p_away": 0.5923910568251395,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5389980027406277,
+        "btts_no": 0.4610019972593721,
+        "over_1_5": 0.7897352961939059,
+        "under_1_5": 0.21026470380609408,
+        "over_2_5": 0.5603387654492736,
+        "under_2_5": 0.43966123455072637,
+        "over_3_5": 0.3364971373337911,
+        "under_3_5": 0.663502862666209,
+        "home_over_0_5": 0.6302598791877301,
+        "home_under_0_5": 0.3697401208122699,
+        "home_over_1_5": 0.26238513560169485,
+        "home_under_1_5": 0.7376148643983051,
+        "home_over_2_5": 0.07937574691108536,
+        "home_under_2_5": 0.9206242530889146,
+        "away_over_0_5": 0.855199609778875,
+        "away_under_0_5": 0.144800390221125,
+        "away_over_1_5": 0.5753874450047786,
+        "away_under_1_5": 0.42461255499522144,
+        "away_over_2_5": 0.30503303699523493,
+        "away_under_2_5": 0.694966963004765
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10345778360831724
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10293582836852423
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.09996087147957831
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09945655852386517
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.06438810420030093
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06406325954197227
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "f8828d661801a9361105f299"
+  },
+  {
+    "league": "Serie A",
+    "home": "Genoa CFC",
+    "away": "AC Milan",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558536,
+    "p_home": 0.2500153702780571,
+    "p_draw": 0.20209846540342993,
+    "p_away": 0.5478861643185131,
+    "snapshot_id": "956224ba5da3fc064af24ae8"
+  },
+  {
+    "league": "Serie A",
+    "home": "Genoa CFC",
+    "away": "AC Milan",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558536,
+    "p_home": 0.20032495931961974,
+    "p_draw": 0.2370532006279048,
+    "p_away": 0.5626218400524756,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5062178105792624,
+        "btts_no": 0.49378218942073765,
+        "over_1_5": 0.750624463687746,
+        "under_1_5": 0.24937553631225395,
+        "over_2_5": 0.5061689465445455,
+        "under_2_5": 0.4938310534554545,
+        "over_3_5": 0.2877212924178438,
+        "under_3_5": 0.7122787075821562,
+        "home_over_0_5": 0.6114574979479204,
+        "home_under_0_5": 0.38854250205207963,
+        "home_over_1_5": 0.24460290974890703,
+        "home_under_1_5": 0.7553970902510929,
+        "home_over_2_5": 0.07095968996705597,
+        "home_under_2_5": 0.9290403100329441,
+        "away_over_0_5": 0.8251879646037266,
+        "away_under_0_5": 0.17481203539627344,
+        "away_over_1_5": 0.5228970763653763,
+        "away_under_1_5": 0.4771029236346237,
+        "away_over_2_5": 0.25898072902619795,
+        "away_under_2_5": 0.741019270973802
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.11678935958031972
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11196001954187212
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.10242166705644087
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09682549074437691
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.06957234802761547
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.06301382870431876
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "18ff7cf1c4e0e68d59aa153b"
+  },
+  {
+    "league": "Premier League",
+    "home": "Ipswich Town FC",
+    "away": "AFC Bournemouth",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560637,
+    "p_home": 0.20190876982221245,
+    "p_draw": 0.22784967358475083,
+    "p_away": 0.5702415565930365,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6064053168038754,
+        "btts_no": 0.3935946831961245,
+        "over_1_5": 0.8383325720303629,
+        "under_1_5": 0.16166742796963707,
+        "over_2_5": 0.6218908448299987,
+        "under_2_5": 0.3781091551700013,
+        "over_3_5": 0.3993970219404796,
+        "under_3_5": 0.6006029780595203,
+        "home_over_0_5": 0.6864777485917917,
+        "home_under_0_5": 0.31352225140820833,
+        "home_over_1_5": 0.3228280094406788,
+        "home_under_1_5": 0.6771719905593212,
+        "home_over_2_5": 0.11193208069766036,
+        "home_under_2_5": 0.8880679193023396,
+        "away_over_0_5": 0.8711012373149497,
+        "away_under_0_5": 0.1288987626850503,
+        "away_over_1_5": 0.6070227021995781,
+        "away_under_1_5": 0.3929772978004219,
+        "away_over_2_5": 0.33651012606618136,
+        "away_under_2_5": 0.6634898739338186
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10444579102649772
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09837182774800528
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08481171190357692
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07438079626156813
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06717904715084809
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.05791871639825326
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "e3e566a88c25c9c66c21ff74"
+  },
+  {
+    "league": "Premier League",
+    "home": "Ipswich Town FC",
+    "away": "AFC Bournemouth",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560637,
+    "p_home": 0.22188584091795086,
+    "p_draw": 0.21488948376085606,
+    "p_away": 0.5632246753211932,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6015961560944004,
+        "btts_no": 0.39840384390559946,
+        "over_1_5": 0.8279995096182295,
+        "under_1_5": 0.17200049038177045,
+        "over_2_5": 0.6188186847013346,
+        "under_2_5": 0.3811813152986654,
+        "over_3_5": 0.3961187896127901,
+        "under_3_5": 0.6038812103872099,
+        "home_over_0_5": 0.6950897812656358,
+        "home_under_0_5": 0.3049102187343642,
+        "home_over_1_5": 0.3329363550190943,
+        "home_under_1_5": 0.6670636449809058,
+        "home_over_2_5": 0.11786467804068065,
+        "home_under_2_5": 0.8821353219593193,
+        "away_over_0_5": 0.865494174002961,
+        "away_under_0_5": 0.13450582599703897,
+        "away_over_1_5": 0.595655582949714,
+        "away_under_1_5": 0.404344417050286,
+        "away_over_2_5": 0.3249875108351111,
+        "away_under_2_5": 0.6750124891648889
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0980233696918494
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.0977229702834728
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08252946107287217
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08227654382101816
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.0655497950166176
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.05821303617420184
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "9da2e8b3603e41cc7b42f0ea"
+  },
+  {
+    "league": "Premier League",
+    "home": "Ipswich Town FC",
+    "away": "AFC Bournemouth",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560637,
+    "p_home": 0.26335821670273335,
+    "p_draw": 0.18891291536730606,
+    "p_away": 0.5477288679299607,
+    "snapshot_id": "a91db077dc082524b9eaa613"
+  },
+  {
+    "league": "Premier League",
+    "home": "Ipswich Town FC",
+    "away": "AFC Bournemouth",
+    "kickoff_utc": "2026-11-08T14:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560637,
+    "p_home": 0.21189730537008167,
+    "p_draw": 0.22136957867280344,
+    "p_away": 0.566733115957115,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6040007364491381,
+        "btts_no": 0.39599926355086207,
+        "over_1_5": 0.8331660408242962,
+        "under_1_5": 0.16683395917570376,
+        "over_2_5": 0.6203547647656668,
+        "under_2_5": 0.37964523523433324,
+        "over_3_5": 0.39775790577663495,
+        "under_3_5": 0.602242094223365,
+        "home_over_0_5": 0.6907837649287139,
+        "home_under_0_5": 0.30921623507128615,
+        "home_over_1_5": 0.32788218222988663,
+        "home_under_1_5": 0.6721178177701134,
+        "home_over_2_5": 0.11489837936917054,
+        "home_under_2_5": 0.8851016206308294,
+        "away_over_0_5": 0.8682977056589556,
+        "away_under_0_5": 0.1317022943410444,
+        "away_over_1_5": 0.601339142574646,
+        "away_under_1_5": 0.39866085742535395,
+        "away_over_2_5": 0.3307488184506463,
+        "away_under_2_5": 0.6692511815493537
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10108438065498528
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09819759871992735
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08367058648822455
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07832867004129317
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06636442108373286
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.05763151857726052
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "4356e46262fefa86b6cb755e"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "1. FC K\u00f6ln",
+    "away": "Bayer 04 Leverkusen",
+    "kickoff_utc": "2026-11-08T14:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565855,
+    "p_home": 0.19277434350922878,
+    "p_draw": 0.21961969440228196,
+    "p_away": 0.5876059620884893,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6161574289437403,
+        "btts_no": 0.3838425710562598,
+        "over_1_5": 0.8504159759626653,
+        "under_1_5": 0.14958402403733473,
+        "over_2_5": 0.6424211895688822,
+        "under_2_5": 0.35757881043111783,
+        "over_3_5": 0.4216969796551325,
+        "under_3_5": 0.5783030203448676,
+        "home_over_0_5": 0.6893612799478944,
+        "home_under_0_5": 0.3106387200521056,
+        "home_over_1_5": 0.3261858751041543,
+        "home_under_1_5": 0.6738141248958457,
+        "home_over_2_5": 0.11388720438259914,
+        "home_under_2_5": 0.8861127956174009,
+        "away_over_0_5": 0.8823560419815477,
+        "away_under_0_5": 0.11764395801845229,
+        "away_over_1_5": 0.6305870356055513,
+        "away_under_1_5": 0.3694129643944487,
+        "away_over_2_5": 0.36118249652325374,
+        "away_under_2_5": 0.6388175034767463
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09933164929129103
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09784110254795468
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08368748119675239
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07031386341584764
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06979635159664507
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.0596996631245368
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "fac225a98e26176cb1a5dbdf"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "1. FC K\u00f6ln",
+    "away": "Bayer 04 Leverkusen",
+    "kickoff_utc": "2026-11-08T14:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565855,
+    "p_home": 0.21148751386535117,
+    "p_draw": 0.2165710361065043,
+    "p_away": 0.5719414500281446,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.579989112823925,
+        "btts_no": 0.42001088717607515,
+        "over_1_5": 0.8143637312269003,
+        "under_1_5": 0.1856362687730997,
+        "over_2_5": 0.5973898577050102,
+        "under_2_5": 0.4026101422949898,
+        "over_3_5": 0.37366639947880764,
+        "under_3_5": 0.6263336005211924,
+        "home_over_0_5": 0.6735671032989358,
+        "home_under_0_5": 0.32643289670106423,
+        "home_over_1_5": 0.30811539690594153,
+        "home_under_1_5": 0.6918846030940584,
+        "home_over_2_5": 0.10354816263626518,
+        "home_under_2_5": 0.8964518373637348,
+        "away_over_0_5": 0.8610710202195253,
+        "away_under_0_5": 0.1389289797804747,
+        "away_over_1_5": 0.5868540290888898,
+        "away_under_1_5": 0.41314597091111016,
+        "away_over_2_5": 0.31623029621632226,
+        "away_under_2_5": 0.6837697037836777
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10021306733064331
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09889990496872166
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08951344673942342
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08834048903764727
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.065069299931715
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.05812193428419379
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "1657e78fdb5bcf74ac4ca1b9"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "1. FC K\u00f6ln",
+    "away": "Bayer 04 Leverkusen",
+    "kickoff_utc": "2026-11-08T14:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565855,
+    "p_home": 0.22994393129339913,
+    "p_draw": 0.17401601945700354,
+    "p_away": 0.5960400492495974,
+    "snapshot_id": "609695b6856788e3e12fd0aa"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "1. FC K\u00f6ln",
+    "away": "Bayer 04 Leverkusen",
+    "kickoff_utc": "2026-11-08T14:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565855,
+    "p_home": 0.20213092868729,
+    "p_draw": 0.21809536525439313,
+    "p_away": 0.5797737060583169,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5980732708838327,
+        "btts_no": 0.4019267291161675,
+        "over_1_5": 0.832389853594783,
+        "under_1_5": 0.167610146405217,
+        "over_2_5": 0.6199055236369463,
+        "under_2_5": 0.3800944763630537,
+        "over_3_5": 0.3976816895669701,
+        "under_3_5": 0.6023183104330299,
+        "home_over_0_5": 0.6814641916234152,
+        "home_under_0_5": 0.3185358083765848,
+        "home_over_1_5": 0.31715063600504795,
+        "home_under_1_5": 0.682849363994952,
+        "home_over_2_5": 0.10871768350943216,
+        "home_under_2_5": 0.8912823164905679,
+        "away_over_0_5": 0.8717135311005367,
+        "away_under_0_5": 0.12828646889946327,
+        "away_over_1_5": 0.6087205323472207,
+        "away_under_1_5": 0.3912794676527793,
+        "away_over_2_5": 0.338706396369788,
+        "away_under_2_5": 0.661293603630212
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09977235831096719
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09837050375833818
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08601398511719983
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07991365507763555
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.06743282576418004
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 3,
+          "probability": 0.058910798704365296
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "b7e42cebc65f94bb8be903a2"
+  },
+  {
+    "league": "La Liga",
+    "home": "Real Sociedad de F\u00fatbol",
+    "away": "Rayo Vallecano de Madrid",
+    "kickoff_utc": "2026-11-08T15:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564743,
+    "p_home": 0.48894887347964755,
+    "p_draw": 0.25922628084275096,
+    "p_away": 0.2518248456776014,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4981309358963333,
+        "btts_no": 0.5018690641036668,
+        "over_1_5": 0.7198833619997105,
+        "under_1_5": 0.2801166380002895,
+        "over_2_5": 0.46430996155155335,
+        "under_2_5": 0.5356900384484466,
+        "over_3_5": 0.24923605952967767,
+        "under_3_5": 0.7507639404703224,
+        "home_over_0_5": 0.7810209217823194,
+        "home_under_0_5": 0.2189790782176806,
+        "home_over_1_5": 0.44844007532446034,
+        "home_under_1_5": 0.5515599246755396,
+        "home_over_2_5": 0.19588165665975152,
+        "home_under_2_5": 0.8041183433402485,
+        "away_over_0_5": 0.636868524784709,
+        "away_under_0_5": 0.363131475215291,
+        "away_over_1_5": 0.26901985561647734,
+        "away_under_1_5": 0.7309801443835227,
+        "away_over_2_5": 0.08270628512714426,
+        "away_under_2_5": 0.9172937148728557
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1230627153752014
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.12004727978775862
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09290327819304624
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09171191114775679
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08024148932930487
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07982786888322603
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "44e9efc414d52349dd63520e"
+  },
+  {
+    "league": "La Liga",
+    "home": "Real Sociedad de F\u00fatbol",
+    "away": "Rayo Vallecano de Madrid",
+    "kickoff_utc": "2026-11-08T15:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564743,
+    "p_home": 0.5034930736948232,
+    "p_draw": 0.281394812202032,
+    "p_away": 0.21511211410314476,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.39914379914434167,
+        "btts_no": 0.6008562008556585,
+        "over_1_5": 0.6262195169471162,
+        "under_1_5": 0.3737804830528838,
+        "over_2_5": 0.35652803968283453,
+        "under_2_5": 0.6434719603171655,
+        "over_3_5": 0.16569215045665253,
+        "under_3_5": 0.8343078495433475,
+        "home_over_0_5": 0.740247673725886,
+        "home_under_0_5": 0.25975232627411404,
+        "home_over_1_5": 0.39009460369997834,
+        "home_under_1_5": 0.6099053963000216,
+        "home_over_2_5": 0.15408676075349811,
+        "home_under_2_5": 0.8459132392465019,
+        "away_over_0_5": 0.5392030442126655,
+        "away_under_0_5": 0.4607969557873345,
+        "away_over_1_5": 0.18217858768594872,
+        "away_under_1_5": 0.8178214123140513,
+        "away_over_2_5": 0.04386771024058487,
+        "away_under_2_5": 0.9561322897594151
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.16134946872752753
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12501320952716105
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.1196930812057903
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.10875169557167343
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09273793311956606
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08426057186400984
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "04d9e98d9c977ca3cf412a6a"
+  },
+  {
+    "league": "La Liga",
+    "home": "Real Sociedad de F\u00fatbol",
+    "away": "Rayo Vallecano de Madrid",
+    "kickoff_utc": "2026-11-08T15:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564743,
+    "p_home": 0.41353516702497983,
+    "p_draw": 0.2564821684822844,
+    "p_away": 0.3299826644927357,
+    "snapshot_id": "c54893244c90d9c60dddb1b0"
+  },
+  {
+    "league": "La Liga",
+    "home": "Real Sociedad de F\u00fatbol",
+    "away": "Rayo Vallecano de Madrid",
+    "kickoff_utc": "2026-11-08T15:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564743,
+    "p_home": 0.4962209735872354,
+    "p_draw": 0.2703105465223915,
+    "p_away": 0.23346847989037306,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.44863736752033745,
+        "btts_no": 0.5513626324796626,
+        "over_1_5": 0.6730514394734134,
+        "under_1_5": 0.3269485605265866,
+        "over_2_5": 0.41041900061719394,
+        "under_2_5": 0.5895809993828061,
+        "over_3_5": 0.2074641049931651,
+        "under_3_5": 0.7925358950068349,
+        "home_over_0_5": 0.7606342977541027,
+        "home_under_0_5": 0.23936570224589726,
+        "home_over_1_5": 0.41926733951221934,
+        "home_under_1_5": 0.5807326604877807,
+        "home_over_2_5": 0.17498420870662484,
+        "home_under_2_5": 0.8250157912933751,
+        "away_over_0_5": 0.5880357844986873,
+        "away_under_0_5": 0.4119642155013127,
+        "away_over_1_5": 0.22559922165121304,
+        "away_under_1_5": 0.774400778348787,
+        "away_over_2_5": 0.06328699768386456,
+        "away_under_2_5": 0.9367130023161354
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.1406983742576431
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12403796245118122
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.1002318033597151
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.09996728526754757
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08858192502852803
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08628290100139605
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "8e9a68527dc2a9deb6f38555"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Mans FC",
+    "away": "AS Monaco",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559631,
+    "p_home": 0.3429344414203937,
+    "p_draw": 0.21595004224437156,
+    "p_away": 0.4411155163352349,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.7351327070425178,
+        "btts_no": 0.26486729295748235,
+        "over_1_5": 0.903169874532667,
+        "under_1_5": 0.09683012546733305,
+        "over_2_5": 0.7445613150408135,
+        "under_2_5": 0.25543868495918653,
+        "over_3_5": 0.543751317316698,
+        "under_3_5": 0.456248682683302,
+        "home_over_0_5": 0.8374385948914734,
+        "home_under_0_5": 0.16256140510852657,
+        "home_over_1_5": 0.5421133647924399,
+        "home_under_1_5": 0.4578866352075601,
+        "home_over_2_5": 0.2738547597600195,
+        "home_under_2_5": 0.7261452402399805,
+        "away_over_0_5": 0.8736028451568277,
+        "away_under_0_5": 0.12639715484317227,
+        "away_over_1_5": 0.6121722466134514,
+        "away_under_1_5": 0.3878277533865486,
+        "away_over_2_5": 0.34181031505119264,
+        "away_under_2_5": 0.6581896849488074
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.0807510195709412
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07984469964864321
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.07252691461476225
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07013100767803686
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.05504830559822907
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 3,
+          "probability": 0.050003115765718115
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "35902fe66c395bc51ae7fdd3"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Mans FC",
+    "away": "AS Monaco",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559631,
+    "p_home": 0.3474743388400554,
+    "p_draw": 0.22980119229177118,
+    "p_away": 0.4227244688681734,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6493467319558275,
+        "btts_no": 0.3506532680441725,
+        "over_1_5": 0.839912005261953,
+        "under_1_5": 0.16008799473804702,
+        "over_2_5": 0.6381189592719173,
+        "under_2_5": 0.3618810407280827,
+        "over_3_5": 0.41696675286457857,
+        "under_3_5": 0.5830332471354214,
+        "home_over_0_5": 0.7887366840246192,
+        "home_under_0_5": 0.21126331597538084,
+        "home_over_1_5": 0.46029617146094143,
+        "home_under_1_5": 0.5397038285390585,
+        "home_over_2_5": 0.2049911512896637,
+        "home_under_2_5": 0.7950088487103363,
+        "away_over_0_5": 0.8232744147799258,
+        "away_under_0_5": 0.1767255852200742,
+        "away_over_1_5": 0.5169812019937172,
+        "away_under_1_5": 0.4830187980062828,
+        "away_over_2_5": 0.25155406510782113,
+        "away_under_2_5": 0.7484459348921788
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10059909980227788
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08717702488711317
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07819819486870842
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06776488053665823
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.0647085197939673
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.05804384179279711
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "388969df9e3a2866913922c9"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Mans FC",
+    "away": "AS Monaco",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559631,
+    "p_home": 0.3068011242854902,
+    "p_draw": 0.22391176519479347,
+    "p_away": 0.4692871105197163,
+    "snapshot_id": "13b4f40be3134d74f25ccbad"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Mans FC",
+    "away": "AS Monaco",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559631,
+    "p_home": 0.3452043901302245,
+    "p_draw": 0.22287561726807137,
+    "p_away": 0.4319199926017041,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6922397194991727,
+        "btts_no": 0.30776028050082743,
+        "over_1_5": 0.8715409398973102,
+        "under_1_5": 0.12845906010268981,
+        "over_2_5": 0.6913401371563656,
+        "under_2_5": 0.30865986284363445,
+        "over_3_5": 0.4803590350906383,
+        "under_3_5": 0.5196409649093616,
+        "home_over_0_5": 0.8130876394580464,
+        "home_under_0_5": 0.1869123605419536,
+        "home_over_1_5": 0.5012047681266908,
+        "home_under_1_5": 0.4987952318733092,
+        "home_over_2_5": 0.23942295552484164,
+        "home_under_2_5": 0.7605770444751584,
+        "away_over_0_5": 0.8484386299683769,
+        "away_under_0_5": 0.15156137003162307,
+        "away_over_1_5": 0.5645767243035844,
+        "away_under_1_5": 0.4354232756964156,
+        "away_over_2_5": 0.29668219007950697,
+        "away_under_2_5": 0.7033178099204931
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.09067505968660956
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0835108622678782
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07416460127337265
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.07014589757571026
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 3,
+          "probability": 0.052706066895448114
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.05183153866517556
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "07ab4dd83ba29208db42da76"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Havre AC",
+    "away": "FC Lorient",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559633,
+    "p_home": 0.3420807804787233,
+    "p_draw": 0.28766044041033956,
+    "p_away": 0.37025877911093713,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4964667470207882,
+        "btts_no": 0.503533252979212,
+        "over_1_5": 0.7000286181047167,
+        "under_1_5": 0.2999713818952833,
+        "over_2_5": 0.43328441203556955,
+        "under_2_5": 0.5667155879644304,
+        "over_3_5": 0.22367733426475506,
+        "under_3_5": 0.7763226657352449,
+        "home_over_0_5": 0.6916828757481167,
+        "home_under_0_5": 0.3083171242518833,
+        "home_over_1_5": 0.3289088071766048,
+        "home_under_1_5": 0.6710911928233951,
+        "home_over_2_5": 0.1154840336625464,
+        "home_under_2_5": 0.8845159663374536,
+        "away_over_0_5": 0.709118970445307,
+        "away_under_0_5": 0.29088102955469297,
+        "away_over_1_5": 0.34992716958092435,
+        "away_under_1_5": 0.6500728304190757,
+        "away_over_2_5": 0.12815480098454013,
+        "away_under_2_5": 0.8718451990154599
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13628676929273487
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10476368480172711
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09954279626619172
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.09566490082736456
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0804532644524513
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07666042874758765
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "0fb2e032437910361435b3b7"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Havre AC",
+    "away": "FC Lorient",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559633,
+    "p_home": 0.38683679178155056,
+    "p_draw": 0.269195403186857,
+    "p_away": 0.34396780503159236,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5101645851256638,
+        "btts_no": 0.48983541487433624,
+        "over_1_5": 0.7143752978031749,
+        "under_1_5": 0.2856247021968251,
+        "over_2_5": 0.45828128949486563,
+        "under_2_5": 0.5417187105051344,
+        "over_3_5": 0.2441720556894333,
+        "under_3_5": 0.7558279443105667,
+        "home_over_0_5": 0.7272326806353527,
+        "home_under_0_5": 0.27276731936464726,
+        "home_over_1_5": 0.372870793140252,
+        "home_under_1_5": 0.627129206859748,
+        "home_over_2_5": 0.14268862248728637,
+        "home_under_2_5": 0.8573113775127137,
+        "away_over_0_5": 0.7015149328547149,
+        "away_under_0_5": 0.2984850671452851,
+        "away_over_1_5": 0.34063592796582526,
+        "away_under_1_5": 0.6593640720341747,
+        "away_over_2_5": 0.12247818658339793,
+        "away_under_2_5": 0.8775218134166021
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12788176532978057
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10577173178270513
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09843599877852384
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0830679126884068
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08141697163559619
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.077306789007945
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "042e56baed4f940efca08291"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Havre AC",
+    "away": "FC Lorient",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559633,
+    "p_home": 0.38246724837710167,
+    "p_draw": 0.2471322389166424,
+    "p_away": 0.37040051270625596,
+    "snapshot_id": "f31d601ccae39a15dff283be"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Le Havre AC",
+    "away": "FC Lorient",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559633,
+    "p_home": 0.36445878613013694,
+    "p_draw": 0.27842792179859827,
+    "p_away": 0.35711329207126474,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.503315666073226,
+        "btts_no": 0.4966843339267741,
+        "over_1_5": 0.7072019579539457,
+        "under_1_5": 0.2927980420460543,
+        "over_2_5": 0.4457828507652175,
+        "under_2_5": 0.5542171492347825,
+        "over_3_5": 0.23392469497709414,
+        "under_3_5": 0.7660753050229059,
+        "home_over_0_5": 0.7094577781917346,
+        "home_under_0_5": 0.2905422218082654,
+        "home_over_1_5": 0.3508898001584284,
+        "home_under_1_5": 0.6491101998415716,
+        "home_over_2_5": 0.12908632807491635,
+        "home_under_2_5": 0.8709136719250836,
+        "away_over_0_5": 0.7053169516500108,
+        "away_under_0_5": 0.29468304834998915,
+        "away_over_1_5": 0.3452815487733748,
+        "away_under_1_5": 0.6547184512266252,
+        "away_over_2_5": 0.125316493783969,
+        "away_under_2_5": 0.874683506216031
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13208426731125772
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10265726402444841
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10159984179012546
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08854093623148038
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07986417071799722
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07888002673019814
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "59783c2b24d6d4fdbbb5af68"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Brestois 29",
+    "away": "Olympique Lyonnais",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559632,
+    "p_home": 0.2926132178086279,
+    "p_draw": 0.24850650592145468,
+    "p_away": 0.4588802762699174,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6001595995673589,
+        "btts_no": 0.39984040043264113,
+        "over_1_5": 0.8056209353926878,
+        "under_1_5": 0.19437906460731225,
+        "over_2_5": 0.5763698556494438,
+        "under_2_5": 0.42363014435055624,
+        "over_3_5": 0.35232818478793093,
+        "under_3_5": 0.6476718152120691,
+        "home_over_0_5": 0.7299081232272143,
+        "home_under_0_5": 0.2700918767727857,
+        "home_over_1_5": 0.376359721486965,
+        "home_under_1_5": 0.623640278513035,
+        "home_over_2_5": 0.14496351315479447,
+        "home_under_2_5": 0.8550364868452055,
+        "away_over_0_5": 0.8153038757948707,
+        "away_under_0_5": 0.18469612420512926,
+        "away_over_1_5": 0.503344104917792,
+        "away_under_1_5": 0.496655895082208,
+        "away_over_2_5": 0.23988730780169767,
+        "away_under_2_5": 0.7601126921983024
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11535555612689653
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09314472954800032
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07919512226774743
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07218630813312868
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.07115754078163294
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06096290391200214
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "2d18746e02099c8d18496685"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Brestois 29",
+    "away": "Olympique Lyonnais",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559632,
+    "p_home": 0.33288755240798446,
+    "p_draw": 0.24440634084257198,
+    "p_away": 0.4227061067494437,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5907722595893704,
+        "btts_no": 0.4092277404106294,
+        "over_1_5": 0.7918153354956364,
+        "under_1_5": 0.20818466450436357,
+        "over_2_5": 0.5633902092758205,
+        "under_2_5": 0.4366097907241795,
+        "over_3_5": 0.33948149328249294,
+        "under_3_5": 0.660518506717507,
+        "home_over_0_5": 0.7456332511722499,
+        "home_under_0_5": 0.2543667488277501,
+        "home_over_1_5": 0.39741072662469695,
+        "home_under_1_5": 0.6025892733753031,
+        "home_over_2_5": 0.15905621063333186,
+        "home_under_2_5": 0.8409437893666681,
+        "away_over_0_5": 0.7923094345116529,
+        "away_under_0_5": 0.20769056548834708,
+        "away_over_1_5": 0.4658809294397812,
+        "away_under_1_5": 0.5341190705602188,
+        "away_over_2_5": 0.20935611168286822,
+        "away_under_2_5": 0.7906438883171318
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11366975812041079
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08932771964841318
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08303255755983473
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07780570833219082
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07232253303906108
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.06525138388645708
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "7108498ab8ce94c08a5d6f57"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Brestois 29",
+    "away": "Olympique Lyonnais",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559632,
+    "p_home": 0.31115613964203526,
+    "p_draw": 0.2261811355908066,
+    "p_away": 0.46266272476715825,
+    "snapshot_id": "801606b9fc86e106a7d9e4e2"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Stade Brestois 29",
+    "away": "Olympique Lyonnais",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559632,
+    "p_home": 0.3127503851083062,
+    "p_draw": 0.24645642338201335,
+    "p_away": 0.44079319150968055,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5954659295783647,
+        "btts_no": 0.4045340704216353,
+        "over_1_5": 0.798718135444162,
+        "under_1_5": 0.20128186455583796,
+        "over_2_5": 0.5698800324626322,
+        "under_2_5": 0.4301199675373678,
+        "over_3_5": 0.3459048390352119,
+        "under_3_5": 0.654095160964788,
+        "home_over_0_5": 0.737770687199732,
+        "home_under_0_5": 0.26222931280026796,
+        "home_over_1_5": 0.38688522405583103,
+        "home_under_1_5": 0.613114775944169,
+        "home_over_2_5": 0.15200986189406318,
+        "home_under_2_5": 0.8479901381059368,
+        "away_over_0_5": 0.8038066551532619,
+        "away_under_0_5": 0.19619334484673812,
+        "away_over_1_5": 0.4846125171787867,
+        "away_under_1_5": 0.5153874828212133,
+        "away_over_2_5": 0.224621709742283,
+        "away_under_2_5": 0.775378290257717
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11451265712365366
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09123622459820675
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.08111383991379108
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07499600823265976
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.06820446233404501
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.06627943741667609
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "ad0bd6359652518acaac8cac"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Angers SCO",
+    "away": "OGC Nice",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559634,
+    "p_home": 0.2991084893046482,
+    "p_draw": 0.3061289741920307,
+    "p_away": 0.39476253650332116,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.436270274679433,
+        "btts_no": 0.563729725320567,
+        "over_1_5": 0.6384097555152847,
+        "under_1_5": 0.36159024448471533,
+        "over_2_5": 0.36299379372304613,
+        "under_2_5": 0.6370062062769539,
+        "over_3_5": 0.17029321960610266,
+        "under_3_5": 0.8297067803938973,
+        "home_over_0_5": 0.6243940890105937,
+        "home_under_0_5": 0.3756059109894063,
+        "home_over_1_5": 0.256595224119681,
+        "home_under_1_5": 0.7434047758803191,
+        "home_over_2_5": 0.07651817919418266,
+        "home_under_2_5": 0.9234818208058173,
+        "away_over_0_5": 0.6888878947213319,
+        "away_under_0_5": 0.31111210527866806,
+        "away_over_1_5": 0.3256327892533506,
+        "away_under_1_5": 0.6743672107466494,
+        "away_over_2_5": 0.11356410177755999,
+        "away_under_2_5": 0.8864358982224401
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13973756068143345
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.1303080195863728
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.12298829094750724
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10829393395083518
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.079654252551672
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07799862253250153
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "d5651bdb6d57a53b77393196"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Angers SCO",
+    "away": "OGC Nice",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559634,
+    "p_home": 0.2629632805692424,
+    "p_draw": 0.2716465603873357,
+    "p_away": 0.46539015904342185,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.46667766183574383,
+        "btts_no": 0.5333223381642564,
+        "over_1_5": 0.6830146204989584,
+        "under_1_5": 0.31698537950104155,
+        "over_2_5": 0.4201212446969151,
+        "under_2_5": 0.5798787553030849,
+        "over_3_5": 0.21320692063223853,
+        "under_3_5": 0.7867930793677614,
+        "home_over_0_5": 0.6215907396214289,
+        "home_under_0_5": 0.37840926037857114,
+        "home_over_1_5": 0.2538605784497274,
+        "home_under_1_5": 0.7461394215502726,
+        "home_over_2_5": 0.0751843598761093,
+        "home_under_2_5": 0.9248156401238907,
+        "away_over_0_5": 0.7507796240979512,
+        "away_under_0_5": 0.24922037590204882,
+        "away_over_1_5": 0.4045084143081671,
+        "away_under_1_5": 0.5954915856918329,
+        "away_over_2_5": 0.1639507345933944,
+        "away_under_2_5": 0.8360492654066056
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.13103223238694528
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12733436778511734
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.09430729811636383
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09164584899773247
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.09102925365925234
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08846031433260386
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "69eee7ba758dc94cb4f22e4a"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Angers SCO",
+    "away": "OGC Nice",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559634,
+    "p_home": 0.4049094100746665,
+    "p_draw": 0.24306205637487552,
+    "p_away": 0.35202853355045793,
+    "snapshot_id": "5367467a22364feeaa09136e"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Angers SCO",
+    "away": "OGC Nice",
+    "kickoff_utc": "2026-11-08T16:15:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559634,
+    "p_home": 0.2810358849369453,
+    "p_draw": 0.28888776728968324,
+    "p_away": 0.4300763477733715,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.45147396825758834,
+        "btts_no": 0.5485260317424117,
+        "over_1_5": 0.6607121880071216,
+        "under_1_5": 0.3392878119928784,
+        "over_2_5": 0.3915575192099806,
+        "under_2_5": 0.6084424807900194,
+        "over_3_5": 0.1917500701191706,
+        "under_3_5": 0.8082499298808294,
+        "home_over_0_5": 0.6229924143160114,
+        "home_under_0_5": 0.3770075856839886,
+        "home_over_1_5": 0.25522790128470424,
+        "home_under_1_5": 0.7447720987152957,
+        "home_over_2_5": 0.07585126953514598,
+        "home_under_2_5": 0.924148730464854,
+        "away_over_0_5": 0.7198337594096413,
+        "away_under_0_5": 0.28016624059035866,
+        "away_over_1_5": 0.3650706017807588,
+        "away_under_1_5": 0.6349293982192412,
+        "away_over_2_5": 0.13875741818547718,
+        "away_under_2_5": 0.8612425818145228
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1335359642332754
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.13067012598665906
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.10864779453193554
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09996989147428384
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08534175310546216
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08322946843255269
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "66d6550da3677850ac49ca89"
+  },
+  {
+    "league": "Premier League",
+    "home": "Manchester United FC",
+    "away": "Aston Villa FC",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560639,
+    "p_home": 0.4483497603878258,
+    "p_draw": 0.2587769075465896,
+    "p_away": 0.29287333206558464,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6043714762549653,
+        "btts_no": 0.39562852374503465,
+        "over_1_5": 0.8090143984559393,
+        "under_1_5": 0.19098560154406075,
+        "over_2_5": 0.5744934716073175,
+        "under_2_5": 0.42550652839268255,
+        "over_3_5": 0.3504556445903486,
+        "under_3_5": 0.6495443554096514,
+        "home_over_0_5": 0.8121634087666855,
+        "home_under_0_5": 0.18783659123331453,
+        "home_over_1_5": 0.49806626971194856,
+        "home_under_1_5": 0.5019337302880514,
+        "home_over_2_5": 0.2354523346032472,
+        "home_under_2_5": 0.7645476653967528,
+        "away_over_0_5": 0.7321948242548685,
+        "away_under_0_5": 0.2678051757451315,
+        "away_over_1_5": 0.3793627047859527,
+        "away_under_1_5": 0.6206372952140473,
+        "away_over_2_5": 0.14693533630334332,
+        "away_under_2_5": 0.8530646636966567
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12053319119861274
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09265863132647544
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07440720761878962
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0730047714784087
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07032937104490633
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06103866586417819
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "7b9d15f4a8c966b51e030f76"
+  },
+  {
+    "league": "Premier League",
+    "home": "Manchester United FC",
+    "away": "Aston Villa FC",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560639,
+    "p_home": 0.5196853196524821,
+    "p_draw": 0.23746075723852203,
+    "p_away": 0.24285392310899603,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5506680083896265,
+        "btts_no": 0.44933199161037335,
+        "over_1_5": 0.775101620113725,
+        "under_1_5": 0.22489837988627503,
+        "over_2_5": 0.5392546284444127,
+        "under_2_5": 0.46074537155558726,
+        "over_3_5": 0.31624352397100813,
+        "under_3_5": 0.6837564760289918,
+        "home_over_0_5": 0.8227446582033764,
+        "home_under_0_5": 0.1772553417966236,
+        "home_over_1_5": 0.5160638439472256,
+        "home_under_1_5": 0.4839361560527744,
+        "home_over_2_5": 0.25075978913140845,
+        "home_under_2_5": 0.7492402108685916,
+        "away_over_0_5": 0.6693060877382269,
+        "away_under_0_5": 0.33069391226177314,
+        "away_over_1_5": 0.3033727483036318,
+        "away_under_1_5": 0.6966272516963682,
+        "away_over_2_5": 0.10090877188220411,
+        "away_under_2_5": 0.8990912281177958
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11222473450127403
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10141747828199264
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0970835987442908
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08773443582595444
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06486363915625903
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.062091817146461566
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "aedcc4cde82103c877fc4156"
+  },
+  {
+    "league": "Premier League",
+    "home": "Manchester United FC",
+    "away": "Aston Villa FC",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560639,
+    "p_home": 0.5003092645174289,
+    "p_draw": 0.20658778936695368,
+    "p_away": 0.2931029461156175,
+    "snapshot_id": "9b3d0c4076e1ea5f7f355219"
+  },
+  {
+    "league": "Premier League",
+    "home": "Manchester United FC",
+    "away": "Aston Villa FC",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 560639,
+    "p_home": 0.48401754002015396,
+    "p_draw": 0.24811883239255583,
+    "p_away": 0.2678636275872903,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5775197423222959,
+        "btts_no": 0.42248025767770403,
+        "over_1_5": 0.7920580092848322,
+        "under_1_5": 0.20794199071516783,
+        "over_2_5": 0.5568740500258651,
+        "under_2_5": 0.4431259499741349,
+        "over_3_5": 0.33334958428067835,
+        "under_3_5": 0.6666504157193216,
+        "home_over_0_5": 0.8174540334850308,
+        "home_under_0_5": 0.18254596651496924,
+        "home_over_1_5": 0.507065056829587,
+        "home_under_1_5": 0.492934943170413,
+        "home_over_2_5": 0.2431060618673278,
+        "home_under_2_5": 0.7568939381326723,
+        "away_over_0_5": 0.7007504559965476,
+        "away_under_0_5": 0.2992495440034524,
+        "away_over_1_5": 0.3413677265447922,
+        "away_under_1_5": 0.6586322734552078,
+        "away_over_2_5": 0.12392205409277371,
+        "away_under_2_5": 0.8760779459072263
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11637896284994338
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09487111503538312
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08791234295039115
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07903190343543039
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.06754829431243513
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06071439492405931
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "d07ebcca7387e98cf44f75ea"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "SC Freiburg",
+    "away": "1. FC Union Berlin",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565854,
+    "p_home": 0.5703698620841324,
+    "p_draw": 0.2367161527303205,
+    "p_away": 0.1929139851855469,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5650440842308264,
+        "btts_no": 0.4349559157691736,
+        "over_1_5": 0.8072665948847746,
+        "under_1_5": 0.1927334051152254,
+        "over_2_5": 0.5731302190871003,
+        "under_2_5": 0.42686978091289973,
+        "over_3_5": 0.34909843373273913,
+        "under_3_5": 0.6509015662672608,
+        "home_over_0_5": 0.8552907194651813,
+        "home_under_0_5": 0.14470928053481869,
+        "home_over_1_5": 0.5755635338885834,
+        "home_under_1_5": 0.4244364661114166,
+        "home_over_2_5": 0.3052032015677503,
+        "home_under_2_5": 0.6947967984322496,
+        "away_over_0_5": 0.6502693815975762,
+        "away_under_0_5": 0.3497306184024238,
+        "away_over_1_5": 0.2828451628391672,
+        "away_under_1_5": 0.7171548371608327,
+        "away_over_2_5": 0.08983867523606265,
+        "away_under_2_5": 0.9101613247639373
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11165325962402695
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09933693388624588
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09455328621404978
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08895444459761623
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.064007046489144
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06092473715098216
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "cef419b9cc28f1e6bba9647c"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "SC Freiburg",
+    "away": "1. FC Union Berlin",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565854,
+    "p_home": 0.5726893003512993,
+    "p_draw": 0.22718772244213925,
+    "p_away": 0.2001229772065614,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5263178009967571,
+        "btts_no": 0.47368219900324293,
+        "over_1_5": 0.7719432953260186,
+        "under_1_5": 0.22805670467398143,
+        "over_2_5": 0.5347899080963906,
+        "under_2_5": 0.4652100919036094,
+        "over_3_5": 0.3120358456461503,
+        "under_3_5": 0.6879641543538497,
+        "home_over_0_5": 0.8400575682707224,
+        "home_under_0_5": 0.15994243172927758,
+        "home_over_1_5": 0.5468924622619423,
+        "home_under_1_5": 0.4531075377380577,
+        "home_over_2_5": 0.27821523117353114,
+        "home_under_2_5": 0.7217847688264689,
+        "away_over_0_5": 0.626525872602034,
+        "away_under_0_5": 0.37347412739796604,
+        "away_over_1_5": 0.2586887591873708,
+        "away_under_1_5": 0.7413112408126292,
+        "away_over_2_5": 0.07754616847043126,
+        "away_under_2_5": 0.9224538315295687
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.1094895821501613
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10783700634817335
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.10034399443244606
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09882945712380559
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06130822081227533
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.060382868096632035
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "e33ce4fa86a138c733ded109"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "SC Freiburg",
+    "away": "1. FC Union Berlin",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565854,
+    "p_home": 0.6191397729533309,
+    "p_draw": 0.16431444038573106,
+    "p_away": 0.21654578666093802,
+    "snapshot_id": "e906ebfcb9526df0f7aa2283"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "SC Freiburg",
+    "away": "1. FC Union Berlin",
+    "kickoff_utc": "2026-11-08T16:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565854,
+    "p_home": 0.5715295812177159,
+    "p_draw": 0.2319519375862299,
+    "p_away": 0.19651848119605414,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5456809426137919,
+        "btts_no": 0.4543190573862083,
+        "over_1_5": 0.7896049451053967,
+        "under_1_5": 0.2103950548946033,
+        "over_2_5": 0.5539600635917455,
+        "under_2_5": 0.44603993640825446,
+        "over_3_5": 0.3305671396894447,
+        "under_3_5": 0.6694328603105553,
+        "home_over_0_5": 0.847674143867952,
+        "home_under_0_5": 0.15232585613204797,
+        "home_over_1_5": 0.561227998075263,
+        "home_under_1_5": 0.438772001924737,
+        "home_over_2_5": 0.29170921637064073,
+        "home_under_2_5": 0.7082907836293593,
+        "away_over_0_5": 0.6383976270998051,
+        "away_under_0_5": 0.3616023729001949,
+        "away_over_1_5": 0.2707669610132691,
+        "away_under_1_5": 0.729233038986731,
+        "away_over_2_5": 0.08369242185324696,
+        "away_under_2_5": 0.916307578146753
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10974513298610017
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09922201337388878
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09908319550502576
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09744864032324793
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.06219495729288803
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06111647898162875
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "75fe68933822c9ae534c7bce"
+  },
+  {
+    "league": "Serie A",
+    "home": "FC Internazionale Milano",
+    "away": "Como 1907",
+    "kickoff_utc": "2026-11-08T17:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558530,
+    "p_home": 0.5260501742281447,
+    "p_draw": 0.2288916219806597,
+    "p_away": 0.24505820379119572,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5992448112463065,
+        "btts_no": 0.40075518875369354,
+        "over_1_5": 0.8172408986368035,
+        "under_1_5": 0.1827591013631965,
+        "over_2_5": 0.5989197640119894,
+        "under_2_5": 0.40108023598801057,
+        "over_3_5": 0.37524571303733373,
+        "under_3_5": 0.6247542869626663,
+        "home_over_0_5": 0.8473767855193227,
+        "home_under_0_5": 0.15262321448067728,
+        "home_over_1_5": 0.5604782388237203,
+        "home_under_1_5": 0.4395217611762797,
+        "home_over_2_5": 0.29082471207772964,
+        "home_under_2_5": 0.7091752879222704,
+        "away_over_0_5": 0.7049469475589446,
+        "away_under_0_5": 0.2950530524410554,
+        "away_over_1_5": 0.3448051620314553,
+        "away_under_1_5": 0.6551948379685447,
+        "away_over_2_5": 0.12501061218716994,
+        "away_under_2_5": 0.8749893878128301
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10521328773434543
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0971135025960857
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08276115908129075
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07956209616790033
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.06305873692193961
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.060850775233505995
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "79c900c0a4f4d699eab06d76"
+  },
+  {
+    "league": "Serie A",
+    "home": "FC Internazionale Milano",
+    "away": "Como 1907",
+    "kickoff_utc": "2026-11-08T17:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558530,
+    "p_home": 0.5788242843196396,
+    "p_draw": 0.2265782219051457,
+    "p_away": 0.1945974937752146,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.519223822293542,
+        "btts_no": 0.48077617770645786,
+        "over_1_5": 0.7684210774326964,
+        "under_1_5": 0.2315789225673036,
+        "over_2_5": 0.5298457144015151,
+        "under_2_5": 0.47015428559848493,
+        "over_3_5": 0.30740899510925235,
+        "under_3_5": 0.6925910048907477,
+        "home_over_0_5": 0.8404206075997048,
+        "home_under_0_5": 0.15957939240029517,
+        "home_over_1_5": 0.547558304233216,
+        "home_under_1_5": 0.45244169576678395,
+        "home_over_2_5": 0.2788258336959782,
+        "home_under_2_5": 0.7211741663040219,
+        "away_over_0_5": 0.6178142439611026,
+        "away_under_0_5": 0.3821857560388974,
+        "away_over_1_5": 0.250209441581582,
+        "away_under_1_5": 0.749790558418418,
+        "away_over_2_5": 0.07341937471324347,
+        "away_under_2_5": 0.9265806252867566
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11192780082741441
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10765758915344928
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.10270572242447495
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09878734672480166
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06282898642848267
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.0609889707327347
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "64c21de5bcc2717c1565943f"
+  },
+  {
+    "league": "Serie A",
+    "home": "FC Internazionale Milano",
+    "away": "Como 1907",
+    "kickoff_utc": "2026-11-08T17:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558530,
+    "p_home": 0.6384997489891513,
+    "p_draw": 0.1623595165675753,
+    "p_away": 0.19914073444327346,
+    "snapshot_id": "3a9820e6792ff2b3d8a87328"
+  },
+  {
+    "league": "Serie A",
+    "home": "FC Internazionale Milano",
+    "away": "Como 1907",
+    "kickoff_utc": "2026-11-08T17:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558530,
+    "p_home": 0.5524372292738922,
+    "p_draw": 0.2277349219429027,
+    "p_away": 0.21982784878320516,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5592343167699241,
+        "btts_no": 0.44076568323007564,
+        "over_1_5": 0.7928309880347497,
+        "under_1_5": 0.20716901196525028,
+        "over_2_5": 0.5643827392067522,
+        "under_2_5": 0.4356172607932478,
+        "over_3_5": 0.34132735407329295,
+        "under_3_5": 0.658672645926707,
+        "home_over_0_5": 0.8438986965595136,
+        "home_under_0_5": 0.15610130344048645,
+        "home_over_1_5": 0.5540182715284679,
+        "home_under_1_5": 0.44598172847153206,
+        "home_over_2_5": 0.28482527288685383,
+        "home_under_2_5": 0.7151747271131461,
+        "away_over_0_5": 0.6613805957600235,
+        "away_under_0_5": 0.3386194042399765,
+        "away_over_1_5": 0.2975073018065185,
+        "away_under_1_5": 0.7024926981934815,
+        "away_over_2_5": 0.09921499345020669,
+        "away_under_2_5": 0.9007850065497933
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10643543844389733
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09795042466044365
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09734447995435255
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09113390929618763
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.06064137130375008
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.05741694155865838
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "c85b41b046d8002e41cee154"
+  },
+  {
+    "league": "La Liga",
+    "home": "Villarreal CF",
+    "away": "Getafe CF",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564747,
+    "p_home": 0.5904502020373493,
+    "p_draw": 0.2470467697062866,
+    "p_away": 0.16250302825636398,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4111901889033786,
+        "btts_no": 0.5888098110966213,
+        "over_1_5": 0.6785621218791236,
+        "under_1_5": 0.32143787812087643,
+        "over_2_5": 0.414111214648419,
+        "under_2_5": 0.5858887853515811,
+        "over_3_5": 0.20849950058147185,
+        "under_3_5": 0.7915004994185282,
+        "home_over_0_5": 0.8024517132095027,
+        "home_under_0_5": 0.1975482867904973,
+        "home_over_1_5": 0.4820733829292065,
+        "home_under_1_5": 0.5179266170707935,
+        "home_over_2_5": 0.22228303956357634,
+        "home_under_2_5": 0.7777169604364237,
+        "away_over_0_5": 0.5115912194730504,
+        "away_under_0_5": 0.4884087805269496,
+        "away_over_1_5": 0.16159623762591738,
+        "away_under_1_5": 0.8384037623740827,
+        "away_over_2_5": 0.03619258785326989,
+        "away_under_2_5": 0.9638074121467302
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.15581265122516905
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.12688388479588492
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11279374626495778
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.09714725622082568
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09092531651031414
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06859225460067535
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "cc878464ffafe1b2c091d37e"
+  },
+  {
+    "league": "La Liga",
+    "home": "Villarreal CF",
+    "away": "Getafe CF",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564747,
+    "p_home": 0.5759875383654921,
+    "p_draw": 0.23222346725308904,
+    "p_away": 0.19178899438141891,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.49708561828343717,
+        "btts_no": 0.5029143817165629,
+        "over_1_5": 0.748594786578766,
+        "under_1_5": 0.251405213421234,
+        "over_2_5": 0.5026803457553634,
+        "under_2_5": 0.49731965424463664,
+        "over_3_5": 0.28259144108103407,
+        "under_3_5": 0.7174085589189659,
+        "home_over_0_5": 0.8298646283349035,
+        "home_under_0_5": 0.1701353716650965,
+        "home_over_1_5": 0.5285275090370095,
+        "home_under_1_5": 0.4714724909629905,
+        "home_over_2_5": 0.2616692461782524,
+        "home_under_2_5": 0.7383307538217476,
+        "away_over_0_5": 0.5989960305704598,
+        "away_under_0_5": 0.4010039694295402,
+        "away_over_1_5": 0.2325650382488813,
+        "away_under_1_5": 0.7674349617511187,
+        "away_over_2_5": 0.06514565793103957,
+        "away_under_2_5": 0.9348543420689605
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.12083738097491845
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11041925964765321
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.10701122268143325
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.097785138068547
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.06822495937807381
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06317803143025857
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "850346da0ae895ba7d5fd3c0"
+  },
+  {
+    "league": "La Liga",
+    "home": "Villarreal CF",
+    "away": "Getafe CF",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564747,
+    "p_home": 0.597958354969034,
+    "p_draw": 0.1825568200613137,
+    "p_away": 0.21948482496965221,
+    "snapshot_id": "f08532b1f9c12addf914f957"
+  },
+  {
+    "league": "La Liga",
+    "home": "Villarreal CF",
+    "away": "Getafe CF",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564747,
+    "p_home": 0.5832188702014207,
+    "p_draw": 0.23963511847968783,
+    "p_away": 0.17714601131889146,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.45413790359340794,
+        "btts_no": 0.5458620964065922,
+        "over_1_5": 0.713578454228945,
+        "under_1_5": 0.28642154577105505,
+        "over_2_5": 0.4583957802018912,
+        "under_2_5": 0.5416042197981088,
+        "over_3_5": 0.24554547083125303,
+        "under_3_5": 0.754454529168747,
+        "home_over_0_5": 0.8161581707722033,
+        "home_under_0_5": 0.18384182922779668,
+        "home_over_1_5": 0.505300445983108,
+        "home_under_1_5": 0.49469955401689203,
+        "home_over_2_5": 0.24197614287091443,
+        "home_under_2_5": 0.7580238571290856,
+        "away_over_0_5": 0.5552936250217552,
+        "away_under_0_5": 0.44470637497824483,
+        "away_over_1_5": 0.19708063793739936,
+        "away_under_1_5": 0.8029193620626006,
+        "away_over_2_5": 0.050669122892154736,
+        "away_under_2_5": 0.9493308771078453
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.13832501610004377
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.1169475537386591
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11160650295630552
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09435522728943059
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08268610779944975
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06588514301546698
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "c5a536ad0721824eb742fd5b"
+  },
+  {
+    "league": "La Liga",
+    "home": "RC Celta de Vigo",
+    "away": "Levante UD",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564742,
+    "p_home": 0.5528911265994313,
+    "p_draw": 0.22618764130662614,
+    "p_away": 0.2209212320939425,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5664522772099965,
+        "btts_no": 0.4335477227900035,
+        "over_1_5": 0.7981443893352299,
+        "under_1_5": 0.2018556106647701,
+        "over_2_5": 0.5718335234491282,
+        "under_2_5": 0.4281664765508718,
+        "over_3_5": 0.34781007047139123,
+        "under_3_5": 0.6521899295286088,
+        "home_over_0_5": 0.8464722470393767,
+        "home_under_0_5": 0.15352775296062326,
+        "home_over_1_5": 0.5587805783299106,
+        "home_under_1_5": 0.44121942167008943,
+        "home_over_2_5": 0.28923160542836207,
+        "home_under_2_5": 0.7107683945716379,
+        "away_over_0_5": 0.6684563087772906,
+        "away_under_0_5": 0.33154369122270944,
+        "away_over_1_5": 0.3024335060390262,
+        "away_under_1_5": 0.6975664939609738,
+        "away_over_2_5": 0.10038970959353695,
+        "away_under_2_5": 0.899610290406463
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10592427437712267
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09866107053664532
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09475979430632163
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08936726144106946
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.06162613918763771
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.05812631695179852
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "7efe39bd9f9076c2ea56b6c0"
+  },
+  {
+    "league": "La Liga",
+    "home": "RC Celta de Vigo",
+    "away": "Levante UD",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564742,
+    "p_home": 0.5084750439221544,
+    "p_draw": 0.233235843516607,
+    "p_away": 0.2582891125612386,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5810965602811012,
+        "btts_no": 0.41890343971889876,
+        "over_1_5": 0.7976513265535189,
+        "under_1_5": 0.2023486734464811,
+        "over_2_5": 0.5720263748875791,
+        "under_2_5": 0.4279736251124209,
+        "over_3_5": 0.3480015369496607,
+        "under_3_5": 0.6519984630503393,
+        "home_over_0_5": 0.8307791667628166,
+        "home_under_0_5": 0.1692208332371834,
+        "home_over_1_5": 0.5301497658369765,
+        "home_under_1_5": 0.4698502341630235,
+        "home_over_2_5": 0.26310806957504657,
+        "home_under_2_5": 0.7368919304249535,
+        "away_over_0_5": 0.6994597162870378,
+        "away_under_0_5": 0.30054028371296215,
+        "away_over_1_5": 0.3381581578504966,
+        "away_under_1_5": 0.6618418421495034,
+        "away_over_2_5": 0.12098458212221345,
+        "away_under_2_5": 0.8790154178777866
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10861787106634974
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0964825810269728
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09035124544670979
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08025678715775113
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0652887619681163
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.061139750768524494
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "2700c6ab7fbf6cac855f5cbc"
+  },
+  {
+    "league": "La Liga",
+    "home": "RC Celta de Vigo",
+    "away": "Levante UD",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564742,
+    "p_home": 0.5048080285709834,
+    "p_draw": 0.22290075011962035,
+    "p_away": 0.2722912213093963,
+    "snapshot_id": "79fc2cfde5f06f531250914d"
+  },
+  {
+    "league": "La Liga",
+    "home": "RC Celta de Vigo",
+    "away": "Levante UD",
+    "kickoff_utc": "2026-11-08T17:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564742,
+    "p_home": 0.5306830852607929,
+    "p_draw": 0.22971174241161657,
+    "p_away": 0.23960517232759054,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5737744187455489,
+        "btts_no": 0.4262255812544512,
+        "over_1_5": 0.7978978579443745,
+        "under_1_5": 0.2021021420556255,
+        "over_2_5": 0.5719299491683538,
+        "under_2_5": 0.4280700508316462,
+        "over_3_5": 0.347905803710526,
+        "under_3_5": 0.652094196289474,
+        "home_over_0_5": 0.8386257069010968,
+        "home_under_0_5": 0.16137429309890317,
+        "home_over_1_5": 0.5444651720834437,
+        "home_under_1_5": 0.4555348279165563,
+        "home_over_2_5": 0.2761698375017043,
+        "home_under_2_5": 0.7238301624982957,
+        "away_over_0_5": 0.6839580125321644,
+        "away_under_0_5": 0.31604198746783563,
+        "away_over_1_5": 0.32029583194476136,
+        "away_under_1_5": 0.6797041680552387,
+        "away_over_2_5": 0.11068714585787519,
+        "away_under_2_5": 0.8893128541421248
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10727107272173621
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09757182578180906
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09255551987651571
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.0848120242994103
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.061707539459957404
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.05938077013344734
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "b3060a998f4bb077cfd4713f"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "TSG 1899 Hoffenheim",
+    "away": "FC Schalke 04",
+    "kickoff_utc": "2026-11-08T18:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565856,
+    "p_home": 0.5372681564682386,
+    "p_draw": 0.2601629757503919,
+    "p_away": 0.20256886778136965,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5134208375934683,
+        "btts_no": 0.4865791624065314,
+        "over_1_5": 0.7529215984233738,
+        "under_1_5": 0.2470784015766262,
+        "over_2_5": 0.49527795037538996,
+        "under_2_5": 0.5047220496246101,
+        "over_3_5": 0.27600348224426563,
+        "under_3_5": 0.7239965177557344,
+        "home_over_0_5": 0.8166253111900785,
+        "home_under_0_5": 0.18337468880992147,
+        "home_over_1_5": 0.5055808048955673,
+        "home_under_1_5": 0.49441919510443266,
+        "home_over_2_5": 0.24178026207288245,
+        "home_under_2_5": 0.7582197379271176,
+        "away_over_0_5": 0.6166217868967354,
+        "away_under_0_5": 0.3833782131032646,
+        "away_over_1_5": 0.24906433688389,
+        "away_under_1_5": 0.75093566311611,
+        "away_over_2_5": 0.07286955788694685,
+        "away_under_2_5": 0.9271304421130532
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12419860455645446
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10937580803643737
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.10113538072303213
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09696185483191047
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08017373950665427
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.057528854033534235
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "ded13cca5309cb9468c71b67"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "TSG 1899 Hoffenheim",
+    "away": "FC Schalke 04",
+    "kickoff_utc": "2026-11-08T18:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565856,
+    "p_home": 0.6605234082149015,
+    "p_draw": 0.18528025851072585,
+    "p_away": 0.15419633327437274,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5786505588762803,
+        "btts_no": 0.4213494411237196,
+        "over_1_5": 0.8460019855819663,
+        "under_1_5": 0.15399801441803374,
+        "over_2_5": 0.6482066284551984,
+        "under_2_5": 0.3517933715448016,
+        "over_3_5": 0.42810662093012103,
+        "under_3_5": 0.571893379069879,
+        "home_over_0_5": 0.9007273628182759,
+        "home_under_0_5": 0.09927263718172408,
+        "home_over_1_5": 0.6714188564424123,
+        "home_under_1_5": 0.3285811435575877,
+        "home_over_2_5": 0.4065805657053864,
+        "home_under_2_5": 0.5934194342946135,
+        "away_over_0_5": 0.6424258690951131,
+        "away_under_0_5": 0.3575741309048869,
+        "away_over_1_5": 0.27469213485503846,
+        "away_under_1_5": 0.7253078651449616,
+        "away_over_2_5": 0.08560113579990802,
+        "away_under_2_5": 0.914398864200092
+      },
+      "correct_scores": [
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09738997362248518
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09469932164062776
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.0843244733426103
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08199478987644707
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.07498658919300602
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.07291488912655988
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "5e02b6456858d05df0b9e8e1"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "TSG 1899 Hoffenheim",
+    "away": "FC Schalke 04",
+    "kickoff_utc": "2026-11-08T18:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565856,
+    "p_home": 0.6340239633642565,
+    "p_draw": 0.15800421520318597,
+    "p_away": 0.2079718214325575,
+    "snapshot_id": "3b37bd40e79ff20333fb38e6"
+  },
+  {
+    "league": "Bundesliga",
+    "home": "TSG 1899 Hoffenheim",
+    "away": "FC Schalke 04",
+    "kickoff_utc": "2026-11-08T18:30:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 565856,
+    "p_home": 0.59889578234157,
+    "p_draw": 0.22272161713055888,
+    "p_away": 0.1783826005278712,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5460356982348744,
+        "btts_no": 0.4539643017651256,
+        "over_1_5": 0.7994617920026703,
+        "under_1_5": 0.2005382079973297,
+        "over_2_5": 0.5717422894152945,
+        "under_2_5": 0.4282577105847055,
+        "over_3_5": 0.35205505158719347,
+        "under_3_5": 0.6479449484128066,
+        "home_over_0_5": 0.8586763370041773,
+        "home_under_0_5": 0.14132366299582266,
+        "home_over_1_5": 0.58849983066899,
+        "home_under_1_5": 0.41150016933100997,
+        "home_over_2_5": 0.32418041388913454,
+        "home_under_2_5": 0.6758195861108655,
+        "away_over_0_5": 0.6295238279959243,
+        "away_under_0_5": 0.3704761720040757,
+        "away_over_1_5": 0.2618782358694643,
+        "away_under_1_5": 0.7381217641305358,
+        "away_over_2_5": 0.07923534684342745,
+        "away_under_2_5": 0.9207646531565725
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1042615389495324
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09791735118182998
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09717591422719785
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09568529895644223
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.06504881738764928
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.06490479511612467
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "d4ef1252e7697e6a1c9ce396"
+  },
+  {
+    "league": "Serie A",
+    "home": "ACF Fiorentina",
+    "away": "Juventus FC",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558529,
+    "p_home": 0.24119782125267392,
+    "p_draw": 0.26542932897265265,
+    "p_away": 0.4933728497746734,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4821119954246654,
+        "btts_no": 0.5178880045753348,
+        "over_1_5": 0.706457738528517,
+        "under_1_5": 0.293542261471483,
+        "over_2_5": 0.44565185771047267,
+        "under_2_5": 0.5543481422895273,
+        "over_3_5": 0.23371659420245428,
+        "under_3_5": 0.7662834057975457,
+        "home_over_0_5": 0.6184862009433103,
+        "home_under_0_5": 0.3815137990566897,
+        "home_over_1_5": 0.25085635346968077,
+        "home_under_1_5": 0.7491436465303192,
+        "home_over_2_5": 0.0737307749353618,
+        "home_under_2_5": 0.9262692250646382,
+        "away_over_0_5": 0.7758603771753886,
+        "away_under_0_5": 0.22413962282461142,
+        "away_over_1_5": 0.44066268394401914,
+        "away_under_1_5": 0.5593373160559809,
+        "away_over_2_5": 0.1900209363321956,
+        "away_under_2_5": 0.8099790636678044
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.12562948709672306
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12548173511917632
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.09562328533359479
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09214338744505865
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.0877654173059666
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08014735706879329
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "dafaff856c528b2d19c0fac8"
+  },
+  {
+    "league": "Serie A",
+    "home": "ACF Fiorentina",
+    "away": "Juventus FC",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558529,
+    "p_home": 0.32313507576458117,
+    "p_draw": 0.26979454364679495,
+    "p_away": 0.40707038058862405,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5035216720541218,
+        "btts_no": 0.496478327945878,
+        "over_1_5": 0.7093619636716028,
+        "under_1_5": 0.29063803632839724,
+        "over_2_5": 0.45202475797185876,
+        "under_2_5": 0.5479752420281412,
+        "over_3_5": 0.2389666711568552,
+        "under_3_5": 0.7610333288431448,
+        "home_over_0_5": 0.6846204545181716,
+        "home_under_0_5": 0.31537954548182845,
+        "home_over_1_5": 0.3206792524535644,
+        "home_under_1_5": 0.6793207475464356,
+        "home_over_2_5": 0.11068909859328006,
+        "home_under_2_5": 0.88931090140672,
+        "away_over_0_5": 0.7354756474643965,
+        "away_under_0_5": 0.26452435253560347,
+        "away_over_1_5": 0.38370535351530327,
+        "away_under_1_5": 0.6162946464846968,
+        "away_over_2_5": 0.149809421970822,
+        "away_under_2_5": 0.850190578029178
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12802370363045323
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.1109411554196741
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09627131083716943
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08512436648431963
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08342557007155348
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07386829814984755
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "e422516e7e875a17fca705cd"
+  },
+  {
+    "league": "Serie A",
+    "home": "ACF Fiorentina",
+    "away": "Juventus FC",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558529,
+    "p_home": 0.30156846336934906,
+    "p_draw": 0.2366422137718667,
+    "p_away": 0.46178932285878427,
+    "snapshot_id": "900554ad967317b4f00e9d67"
+  },
+  {
+    "league": "Serie A",
+    "home": "ACF Fiorentina",
+    "away": "Juventus FC",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 558529,
+    "p_home": 0.28216644850862754,
+    "p_draw": 0.2676119363097238,
+    "p_away": 0.4502216151816487,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4928168337393937,
+        "btts_no": 0.5071831662606064,
+        "over_1_5": 0.7079098511000601,
+        "under_1_5": 0.2920901488999399,
+        "over_2_5": 0.44883830784116585,
+        "under_2_5": 0.5511616921588341,
+        "over_3_5": 0.2363416326796548,
+        "under_3_5": 0.7636583673203452,
+        "home_over_0_5": 0.6515533277307411,
+        "home_under_0_5": 0.34844667226925885,
+        "home_over_1_5": 0.2857678029616227,
+        "home_under_1_5": 0.7142321970383774,
+        "home_over_2_5": 0.09220993676432095,
+        "home_under_2_5": 0.907790063235679,
+        "away_over_0_5": 0.7556680123198926,
+        "away_under_0_5": 0.24433198768010744,
+        "away_over_1_5": 0.41218401872966126,
+        "away_under_1_5": 0.5878159812703387,
+        "away_over_2_5": 0.1699151791515088,
+        "away_under_2_5": 0.8300848208484912
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1267527193748148
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.11828532125819859
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08863387696468915
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08820933395298138
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08559549368876006
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08469463895707106
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "d6164bc92fd657c723428dcf"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Racing Club de Lens",
+    "away": "Olympique de Marseille",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559630,
+    "p_home": 0.46384726872249776,
+    "p_draw": 0.24330991829723395,
+    "p_away": 0.2928428129802683,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6172659229662668,
+        "btts_no": 0.3827340770337332,
+        "over_1_5": 0.8203613336667136,
+        "under_1_5": 0.1796386663332864,
+        "over_2_5": 0.5991138571307654,
+        "under_2_5": 0.40088614286923463,
+        "over_3_5": 0.3754463415198679,
+        "under_3_5": 0.6245536584801321,
+        "home_over_0_5": 0.8260775934479543,
+        "home_under_0_5": 0.17392240655204572,
+        "home_over_1_5": 0.5218619005312797,
+        "home_under_1_5": 0.4781380994687203,
+        "home_over_2_5": 0.2558030595472743,
+        "home_under_2_5": 0.7441969404527258,
+        "away_over_0_5": 0.7413123701241352,
+        "away_under_0_5": 0.2586876298758648,
+        "away_over_1_5": 0.39153202787082064,
+        "away_under_1_5": 0.6084679721291794,
+        "away_over_2_5": 0.15505707952181091,
+        "away_under_2_5": 0.8449429204781891
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11129305344814573
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09306215245890558
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07381245231073642
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07193939026942885
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.06882613098167197
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06291625067949007
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "cf9fa094373680ccf9b8ff87"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Racing Club de Lens",
+    "away": "Olympique de Marseille",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559630,
+    "p_home": 0.46540610295693624,
+    "p_draw": 0.24655682330773873,
+    "p_away": 0.2880370737353249,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5607429605733799,
+        "btts_no": 0.43925703942662003,
+        "over_1_5": 0.7713729767548495,
+        "under_1_5": 0.2286270232451505,
+        "over_2_5": 0.5339868640185931,
+        "under_2_5": 0.4660131359814069,
+        "over_3_5": 0.3112820284809949,
+        "under_3_5": 0.688717971519005,
+        "home_over_0_5": 0.7990010212284224,
+        "home_under_0_5": 0.20099897877157757,
+        "home_over_1_5": 0.47650711053947115,
+        "home_under_1_5": 0.5234928894605289,
+        "home_over_2_5": 0.2177935512291895,
+        "home_under_2_5": 0.7822064487708105,
+        "away_over_0_5": 0.7018050611640858,
+        "away_under_0_5": 0.2981949388359142,
+        "away_over_1_5": 0.34098684440164584,
+        "away_under_1_5": 0.6590131555983542,
+        "away_over_2_5": 0.12269040708473708,
+        "away_under_2_5": 0.8773095929152629
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11636167777153295
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09616605197284656
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09334856512259958
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07714707399455109
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.0725240930914322
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0703992717597954
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "485b166356e8875cb8bd70c6"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Racing Club de Lens",
+    "away": "Olympique de Marseille",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559630,
+    "p_home": 0.5061599110356905,
+    "p_draw": 0.2105042777207708,
+    "p_away": 0.28333581124353874,
+    "snapshot_id": "f83670955f0c45ed8f5a7c5e"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Racing Club de Lens",
+    "away": "Olympique de Marseille",
+    "kickoff_utc": "2026-11-08T19:45:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 559630,
+    "p_home": 0.464626685839717,
+    "p_draw": 0.24493337080248634,
+    "p_away": 0.2904399433577966,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5890044417698234,
+        "btts_no": 0.41099555823017664,
+        "over_1_5": 0.7958671552107817,
+        "under_1_5": 0.20413284478921834,
+        "over_2_5": 0.5665503605746793,
+        "under_2_5": 0.43344963942532067,
+        "over_3_5": 0.34336418500043153,
+        "under_3_5": 0.6566358149995685,
+        "home_over_0_5": 0.8125393073381884,
+        "home_under_0_5": 0.18746069266181165,
+        "home_over_1_5": 0.4991845055353754,
+        "home_under_1_5": 0.5008154944646246,
+        "home_over_2_5": 0.23679830538823196,
+        "home_under_2_5": 0.763201694611768,
+        "away_over_0_5": 0.7215587156441106,
+        "away_under_0_5": 0.27844128435588944,
+        "away_over_1_5": 0.36625943613623335,
+        "away_under_1_5": 0.6337405638637666,
+        "away_over_2_5": 0.13887374330327404,
+        "away_under_2_5": 0.8611262566967259
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11382736560983936
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09320535879075258
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0849892521417915
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07298660248811153
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07116933101461213
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.0642371738599024
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "82e80629b0f27291bc8f1c2a"
+  },
+  {
+    "league": "La Liga",
+    "home": "Club Atl\u00e9tico de Madrid",
+    "away": "FC Barcelona",
+    "kickoff_utc": "2026-11-08T20:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564746,
+    "p_home": 0.3363406465129187,
+    "p_draw": 0.23000759010335117,
+    "p_away": 0.4336517633837303,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6503079847474995,
+        "btts_no": 0.34969201525250027,
+        "over_1_5": 0.8416084896932045,
+        "under_1_5": 0.15839151030679555,
+        "over_2_5": 0.6399379671910321,
+        "under_2_5": 0.36006203280896787,
+        "over_3_5": 0.41896300328960046,
+        "under_3_5": 0.5810369967103995,
+        "home_over_0_5": 0.7840619509460715,
+        "home_under_0_5": 0.21593804905392855,
+        "home_over_1_5": 0.45307994091141135,
+        "home_under_1_5": 0.5469200590885887,
+        "home_over_2_5": 0.19942133038273854,
+        "home_under_2_5": 0.8005786696172614,
+        "away_over_0_5": 0.8286545488980834,
+        "away_under_0_5": 0.17134545110191657,
+        "away_over_1_5": 0.5263885571950403,
+        "away_under_1_5": 0.4736114428049597,
+        "away_over_2_5": 0.25977882477243763,
+        "away_under_2_5": 0.7402211752275624
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10063608797712462
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08824302513203591
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07667237146546528
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06762785427973866
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06467924606557457
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.057571185478126743
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "ba356008aacb64b4cb74f26e"
+  },
+  {
+    "league": "La Liga",
+    "home": "Club Atl\u00e9tico de Madrid",
+    "away": "FC Barcelona",
+    "kickoff_utc": "2026-11-08T20:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564746,
+    "p_home": 0.3839107506468227,
+    "p_draw": 0.2398766959645133,
+    "p_away": 0.376212553388664,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.615285861188694,
+        "btts_no": 0.3847141388113061,
+        "over_1_5": 0.8108912927048934,
+        "under_1_5": 0.18910870729510665,
+        "over_2_5": 0.5920405578097361,
+        "under_2_5": 0.4079594421902639,
+        "over_3_5": 0.36817264562815233,
+        "under_3_5": 0.6318273543718477,
+        "home_over_0_5": 0.786309917422329,
+        "home_under_0_5": 0.21369008257767097,
+        "home_over_1_5": 0.45653728397097865,
+        "home_under_1_5": 0.5434627160290213,
+        "home_over_2_5": 0.202080014682614,
+        "home_under_2_5": 0.797919985317386,
+        "away_over_0_5": 0.7824979026154423,
+        "away_under_0_5": 0.21750209738455772,
+        "away_over_1_5": 0.4506882750782626,
+        "away_under_1_5": 0.5493117249217374,
+        "away_over_2_5": 0.19759271818415566,
+        "away_under_2_5": 0.8024072818158443
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10942173467744742
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0844313717467001
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08346398831180572
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07172623943569768
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.0709044267084862
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06440200427629239
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "dc1b88da10edacb749ca5193"
+  },
+  {
+    "league": "La Liga",
+    "home": "Club Atl\u00e9tico de Madrid",
+    "away": "FC Barcelona",
+    "kickoff_utc": "2026-11-08T20:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "Elo",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564746,
+    "p_home": 0.2833440665117832,
+    "p_draw": 0.2304493781171883,
+    "p_away": 0.4862065553710284,
+    "snapshot_id": "45ff8f689c7c455d6df88f25"
+  },
+  {
+    "league": "La Liga",
+    "home": "Club Atl\u00e9tico de Madrid",
+    "away": "FC Barcelona",
+    "kickoff_utc": "2026-11-08T20:00:00+00:00",
+    "captured_at_utc": "2026-11-02T06:01:31.812617+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "ae0a2acd6219c754879cf0008f2555d96cf8e317",
+    "provider_match_id": 564746,
+    "p_home": 0.36012569857987065,
+    "p_draw": 0.23494214303393224,
+    "p_away": 0.4049321583861971,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6327969229680969,
+        "btts_no": 0.36720307703190314,
+        "over_1_5": 0.8262498911990489,
+        "under_1_5": 0.1737501088009511,
+        "over_2_5": 0.6159892625003842,
+        "under_2_5": 0.3840107374996158,
+        "over_3_5": 0.3935678244588763,
+        "under_3_5": 0.6064321755411237,
+        "home_over_0_5": 0.7851859341842001,
+        "home_under_0_5": 0.21481406581579987,
+        "home_over_1_5": 0.45480861244119497,
+        "home_under_1_5": 0.545191387558805,
+        "home_over_2_5": 0.20075067253267626,
+        "home_under_2_5": 0.7992493274673238,
+        "away_over_0_5": 0.8055762257567628,
+        "away_under_0_5": 0.1944237742432372,
+        "away_over_1_5": 0.48853841613665144,
+        "away_under_1_5": 0.5114615838633485,
+        "away_over_2_5": 0.22868577147829663,
+        "away_under_2_5": 0.7713142285217034
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10502891132728603
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08585350672192082
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.08055187160608268
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06779183638703039
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06601492927801553
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.06392350938678701
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "7c5ea9f2218901c47f8d5e12"
   }
 ]
