@@ -12,9 +12,10 @@ async function readArchive(name: string): Promise<unknown> {
 
 export async function GET() {
   try {
-    const [ledger, settlements] = await Promise.all([
+    const [ledger, settlements, coverage] = await Promise.all([
       readArchive('forward_ledger.json'),
       readArchive('forward_settlements.json'),
+      readArchive('forward_coverage.json').catch(() => null),
     ]);
     if (!Array.isArray(ledger) || !Array.isArray(settlements)) {
       throw new Error('Archive schema must contain arrays');
@@ -45,8 +46,17 @@ export async function GET() {
       }
       settledIds.add(record.snapshot_id);
     }
+    const validCoverage = coverage && typeof coverage === 'object' && !Array.isArray(coverage) ? coverage as Record<string, unknown> : null;
+    const coverageTimestamp = validCoverage && typeof validCoverage.collected_at_utc === 'string' ? Date.parse(validCoverage.collected_at_utc) : NaN;
+    const coverageAgeHours = Number.isFinite(coverageTimestamp) ? Math.max(0, (Date.now() - coverageTimestamp) / 3600000) : null;
+    const coverageFresh = coverageAgeHours !== null && coverageAgeHours <= 18;
+    const fixtureCount = validCoverage && typeof validCoverage.fixture_count === 'number' ? validCoverage.fixture_count : null;
+    const covered = validCoverage && typeof validCoverage.covered === 'number' ? validCoverage.covered : null;
+    const skipped = validCoverage && typeof validCoverage.skipped === 'number' ? validCoverage.skipped : null;
     return NextResponse.json({
       status: 'ok',
+      data_health: coverageFresh ? 'fresh' : 'stale_or_unavailable',
+      coverage: { fixture_count: fixtureCount, covered, skipped, collected_at_utc: validCoverage?.collected_at_utc ?? null, age_hours: coverageAgeHours === null ? null : Number(coverageAgeHours.toFixed(1)), freshness_threshold_hours: 18 },
       source: 'verified-repository-archive',
       archived_forecasts: ledger.length,
       settled_forecasts: settlements.length,
