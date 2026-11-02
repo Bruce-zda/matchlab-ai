@@ -1,16 +1,8 @@
 {
-  "fixture_count": 53,
-  "covered": 53,
+  "fixture_count": 52,
+  "covered": 52,
   "skipped": 0,
   "details": [
-    {
-      "league": "Serie A",
-      "home": "US Sassuolo Calcio",
-      "away": "ACF Fiorentina",
-      "kickoff_utc": "2026-11-02T17:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
     {
       "league": "Serie A",
       "home": "Atalanta BC",
@@ -101,14 +93,6 @@
     },
     {
       "league": "Serie A",
-      "home": "Torino FC",
-      "away": "US Lecce",
-      "kickoff_utc": "2026-11-07T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
       "home": "Cagliari Calcio",
       "away": "Frosinone Calcio",
       "kickoff_utc": "2026-11-07T14:00:00+00:00",
@@ -116,10 +100,10 @@
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "RB Leipzig",
-      "away": "FC Augsburg",
-      "kickoff_utc": "2026-11-07T14:30:00+00:00",
+      "league": "Serie A",
+      "home": "Torino FC",
+      "away": "US Lecce",
+      "kickoff_utc": "2026-11-07T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -133,8 +117,8 @@
     },
     {
       "league": "Bundesliga",
-      "home": "SC Paderborn 07",
-      "away": "Eintracht Frankfurt",
+      "home": "RB Leipzig",
+      "away": "FC Augsburg",
       "kickoff_utc": "2026-11-07T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -143,6 +127,14 @@
       "league": "Bundesliga",
       "home": "1. FSV Mainz 05",
       "away": "FC Bayern M\u00fcnchen",
+      "kickoff_utc": "2026-11-07T14:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Bundesliga",
+      "home": "SC Paderborn 07",
+      "away": "Eintracht Frankfurt",
       "kickoff_utc": "2026-11-07T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -252,22 +244,6 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Crystal Palace FC",
-      "away": "Liverpool FC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Premier League",
-      "home": "Ipswich Town FC",
-      "away": "AFC Bournemouth",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Ligue 1",
       "home": "Stade Rennais FC 1901",
       "away": "Lille OSC",
@@ -276,9 +252,25 @@
       "models": 0
     },
     {
+      "league": "Premier League",
+      "home": "Crystal Palace FC",
+      "away": "Liverpool FC",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
       "league": "Serie A",
       "home": "Genoa CFC",
       "away": "AC Milan",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Ipswich Town FC",
+      "away": "AFC Bournemouth",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -325,16 +317,16 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Angers SCO",
-      "away": "OGC Nice",
+      "home": "Stade Brestois 29",
+      "away": "Olympique Lyonnais",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
       "league": "Ligue 1",
-      "home": "Stade Brestois 29",
-      "away": "Olympique Lyonnais",
+      "home": "Angers SCO",
+      "away": "OGC Nice",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -356,17 +348,17 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Manchester United FC",
-      "away": "Aston Villa FC",
+      "league": "Bundesliga",
+      "home": "SC Freiburg",
+      "away": "1. FC Union Berlin",
       "kickoff_utc": "2026-11-08T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "SC Freiburg",
-      "away": "1. FC Union Berlin",
+      "league": "Premier League",
+      "home": "Manchester United FC",
+      "away": "Aston Villa FC",
       "kickoff_utc": "2026-11-08T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -428,5 +420,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-02T11:55:42.373316+00:00"
+  "collected_at_utc": "2026-11-02T17:57:47.344175+00:00"
 }
