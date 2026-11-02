@@ -4,6 +4,7 @@ No LLM-generated facts, bookmaker odds, invented injury reports or asserted
 historical win rates. Descriptive forecasts only, not wagering advice.
 """
 import math
+from intelligence_selection import screen_outlook
 
 LABELS = {
     "home_win": "Home win", "draw": "Draw", "away_win": "Away win",
@@ -90,6 +91,7 @@ def build_intelligence_report(forecasts):
                 "Historical reliability and scenario stress testing not yet validated",
             ],
         },
+        "selection_screen": screen_outlook([{"key": name, "probability": probability, "model_range": sensitivity.get(name), "conditional": name.endswith("_draw_no_bet")} for name, probability in outcomes.items()], primary.get("scenarios")),
         "simulation": primary.get("simulation"),
         "scenarios": primary.get("scenarios"),
         "markets": [{"key": name, "label": LABELS.get(name, name.replace("_", " ").title()),
@@ -122,6 +124,8 @@ def build_intelligence_report(forecasts):
                 f"For home wins, the Dixon-Coles and Bayesian estimates span "
                 f"{sensitivity['home_win']['minimum']:.1%}–{sensitivity['home_win']['maximum']:.1%}. "
                 "This is model sensitivity, not a probabilistic uncertainty interval.")},
+            {"title": "Historical validation", "text": ("Historical calibration research is exploratory. This particular selection policy has not passed untouched chronological or forward validation, and no 80% success rate is established.")},
+            {"title": "Scenario robustness", "text": ("Hypothetical goal-intensity scenarios test sensitivity to 15% scoring changes; they are not verified injury or tactical forecasts." if primary.get("scenarios") else "Scenario sensitivity unavailable for this preview.")},
             {"title": "Verdict and risk", "text": (
                 "The displayed leading event is descriptive only. Unverified team news, "
                 "model misspecification and changing match conditions may alter the outcome. "
