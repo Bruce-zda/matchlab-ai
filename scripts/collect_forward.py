@@ -191,7 +191,18 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                 raise ValueError('Team names not matched to model training data')
             home_lambda,away_lambda,grid=ns['forecast'](dc,home,away)
             dc_p=np.array([np.tril(grid,-1).sum(),np.trace(grid),np.triu(grid,1).sum()])
+            # Refuse invalid score grids before freezing any probabilities.
+            # Normalize truncation tails consistently for 1X2 and goal markets.
+            def normalized_grid(value, label):
+                matrix=np.asarray(value,dtype=float)
+                if (matrix.ndim!=2 or min(matrix.shape)<4 or
+                        not np.isfinite(matrix).all() or (matrix<0).any() or
+                        not np.isfinite(matrix.sum()) or matrix.sum()<=0):
+                    raise ValueError('Invalid '+label+' score grid')
+                return matrix/matrix.sum()
+            grid=normalized_grid(grid,'Dixon-Coles')
             bayes_grid=bayes.score_grid(home,away)
+            bayes_grid=normalized_grid(bayes_grid,'Bayesian Goals')
             bayes_p=np.array([np.tril(bayes_grid,-1).sum(),np.trace(bayes_grid),np.triu(bayes_grid,1).sum()])
             elo_p=elo.predict(home,away)
             probabilities={'Dixon-Coles':dc_p,'Bayesian Goals':bayes_p,
