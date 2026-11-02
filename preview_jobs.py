@@ -21,6 +21,8 @@ MAX_PENDING = 4
 MAX_PER_HOUR = 3
 MAX_PER_DAY = 12
 RETENTION_SECONDS = 86400
+# Worker-only, per-process cache. Never persisted or shared with public callers.
+FITTED_CACHE = {}
 
 
 def connect():
@@ -109,7 +111,7 @@ def process_one():
     try:
         data = json.loads(row["request"])
         fixture = validate_fixture(data["league"], data["home"], data["away"], data["kickoff_utc"])
-        result = preview(fixture["league"], fixture["home"], fixture["away"], fixture["kickoff_utc"])
+        result = preview(fixture["league"], fixture["home"], fixture["away"], fixture["kickoff_utc"], fitted_cache=FITTED_CACHE)
         result["fixture_verified"] = True
         result["provider_match_id"] = fixture["provider_match_id"]
         result["warning"] = "Fresh provider-verified preview, not an archived forecast."
