@@ -3,6 +3,9 @@
 ## What is optimized today
 Identical queued, running or completed preview requests now reuse one durable job ID (24-hour retention). This reduces duplicate model fits and quota consumption. It does not precompute league parameters or make first-time predictions faster. Real latency benchmarks remain necessary.
 
+## Reuse implementation (2026-11-02)
+The single-worker queue now passes a process-local fitted-model cache to the collector. Models are keyed by league, UTC training cutoff date and Git revision. This avoids repeated fitting for different verified fixtures in the same league on the same worker and day. It does not survive restarts, prewarm a cold instance, or share state across replicas. Actual latency improvement has not yet been measured. Persistent precomputed artifacts remain future work and require dataset provenance and freshness checks.
+
 ## Cloud Run feasibility
 The current Dockerfile.preview is a long-running HTTP service with a background worker and local SQLite database. It cannot be moved unchanged to scale-to-zero Cloud Run safely: CPU may be throttled after requests, local disk is ephemeral, and multiple replicas cannot share SQLite.
 
