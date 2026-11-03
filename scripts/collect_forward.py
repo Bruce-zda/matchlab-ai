@@ -254,9 +254,10 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                         'provider_match_id':fixture.get('provider_match_id'),
                         'p_home':float(probs[0]),'p_draw':float(probs[1]),
                         'p_away':float(probs[2])}
-                if historical_context is not None and model=='Dixon-Coles':
-                    record['historical_context']=historical_context
+                if model=='Dixon-Coles':
                     record['expected_goals']={'home':float(home_lambda),'away':float(away_lambda)}
+                    if historical_context is not None:
+                        record['historical_context']=historical_context
                 if model in goal_grids:
                     record['goal_markets']=market_probabilities(goal_grids[model])
                 if preview and model=='DC + Bayesian (50/50)':
