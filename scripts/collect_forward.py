@@ -108,6 +108,29 @@ def match_team(provider_name,training_names):
                          '; training-name candidates (diagnostic only): '+repr(candidates))
     return matches[0]
 
+def build_team_context(history,home,away):
+    """Historical completed league results, strictly before forecast cutoff.
+    This is not xG, tactical scouting, or live lineup information.
+    """
+    def summarize(team):
+        games=history[(history['HomeTeam']==team)|(history['AwayTeam']==team)].sort_values('Date').tail(10)
+        recent=[]
+        for row in games.itertuples():
+            is_home=row.HomeTeam==team
+            gf=int(row.FTHG if is_home else row.FTAG)
+            ga=int(row.FTAG if is_home else row.FTHG)
+            recent.append({'date':row.Date.date().isoformat(),'opponent':row.AwayTeam if is_home else row.HomeTeam,
+                           'venue':'home' if is_home else 'away','gf':gf,'ga':ga,
+                           'result':'W' if gf>ga else 'D' if gf==ga else 'L'})
+        return {'matches':recent,'played':len(recent),'wins':sum(x['result']=='W' for x in recent),
+                'draws':sum(x['result']=='D' for x in recent),'losses':sum(x['result']=='L' for x in recent),
+                'goals_for':sum(x['gf'] for x in recent),'goals_against':sum(x['ga'] for x in recent)}
+    h2h=history[((history['HomeTeam']==home)&(history['AwayTeam']==away))|
+                ((history['HomeTeam']==away)&(history['AwayTeam']==home))].sort_values('Date').tail(5)
+    return {'source':'historical league results used for training','home':summarize(home),'away':summarize(away),
+            'head_to_head':[{'date':r.Date.date().isoformat(),'home':r.HomeTeam,'away':r.AwayTeam,
+                             'home_goals':int(r.FTHG),'away_goals':int(r.FTAG)} for r in h2h.itertuples()]}
+
 def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
     now=utc_time(now)
     ns=models_from_app()
@@ -116,6 +139,7 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
     # Optional caller-owned in-memory fitted models. The UTC training cutoff
     # and code revision are part of the key; never reuse across cutoff days.
     cache={} if fitted_cache is None else fitted_cache
+    context_history={}
     for fixture in fixtures:
         label={k:fixture.get(k) for k in ('league','home','away','kickoff_utc')}
         try:
@@ -147,6 +171,7 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                 history=history.drop_duplicates(['Date','HomeTeam','AwayTeam'])
                 history=history[history.Date.dt.date<now.date()].sort_values('Date')
                 history=canonicalize_history(history)
+                context_history[cache_key]=history
                 if len(history)<150:
                     raise ValueError('Insufficient historical training data')
                 # Optional persistent snapshot store. Never trust a saved fit
@@ -212,6 +237,8 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             bayes_full=np.pad(bayes_grid,((0,side-bayes_grid.shape[0]),(0,side-bayes_grid.shape[1])))
             goal_grids={'Dixon-Coles':grid,'Bayesian Goals':bayes_grid,
                         'DC + Bayesian (50/50)':(dc_full+bayes_full)/2}
+            historical_context=(build_team_context(context_history[cache_key],home,away)
+                                if cache_key in context_history else None)
             new_records=[]
             for model,probs in probabilities.items():
                 record={'league':league,'home':home,'away':away,
@@ -221,6 +248,9 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                         'provider_match_id':fixture.get('provider_match_id'),
                         'p_home':float(probs[0]),'p_draw':float(probs[1]),
                         'p_away':float(probs[2])}
+                if historical_context is not None and model=='Dixon-Coles':
+                    record['historical_context']=historical_context
+                    record['expected_goals']={'home':float(home_lambda),'away':float(away_lambda)}
                 if model in goal_grids:
                     record['goal_markets']=market_probabilities(goal_grids[model])
                 if preview and model=='DC + Bayesian (50/50)':
