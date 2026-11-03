@@ -43,6 +43,11 @@ def market_probabilities(grid, top_n=6):
             win=float(grid[adjusted>0].sum())
             push=float(grid[np.isclose(adjusted,0)].sum())
             loss=float(grid[adjusted<0].sum())
+            # Normalize rounding drift before strict probability validation.
+            settlement_total=win+push+loss
+            if settlement_total<=0:
+                raise ValueError('Empty handicap settlement distribution')
+            win,push,loss=(min(1.0,max(0.0,v/settlement_total)) for v in (win,push,loss))
             handicap[key]={'side':side,'line':line,'win':win,'push':push,'loss':loss}
     scores=sorted(((int(i),int(j),float(grid[i,j])) for i,j in np.ndindex(grid.shape)),key=lambda x:(-x[2],x[0],x[1]))[:top_n]
     return {'markets':markets,'asian_handicap':handicap,'correct_scores':[{'home_goals':i,'away_goals':j,'probability':p} for i,j,p in scores],
