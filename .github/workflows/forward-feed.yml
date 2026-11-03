@@ -1,8 +1,6 @@
-name: Forward forecast candidate refresh
+name: Forward forecast candidate collection (manual dev verification)
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 5,11,17,23 * * *'
 permissions:
   contents: read
 jobs:
