@@ -3,7 +3,7 @@ import { Activity, ArrowUpRight, BarChart3, CalendarDays, ChevronRight, CircleDo
 type Forecast={snapshot_id:string;provider_match_id:number;league:string;home:string;away:string;kickoff_utc:string;captured_at_utc:string;model:string;p_home:number;p_draw:number;p_away:number};
 type Settlement={provider_match_id:number;home_goals:number;away_goals:number};
 type Fixture={id:number;league:string;home:string;away:string;kickoff:string;forecasts:Forecast[];result?:Settlement};
-const DATA_REF=process.env.VERCEL_ENV==='preview'?(process.env.VERCEL_GIT_COMMIT_REF||'feature/forward-multimarket-validation'):'main';
+const DATA_REF=process.env.VERCEL_ENV==='preview'?(process.env.VERCEL_GIT_COMMIT_SHA||'feature/forward-multimarket-validation'):'main';
 const BASE='https://raw.githubusercontent.com/Bruce-zda/matchlab-ai/'+encodeURIComponent(DATA_REF)+'/artifacts/';
 async function load<T>(name:string):Promise<T>{const r=await fetch(BASE+name,{next:{revalidate:120}});if(!r.ok)throw Error('Forecast feed unavailable');return r.json() as Promise<T>}
 const pct=(n:number)=>(100*n).toFixed(0)+'%';
