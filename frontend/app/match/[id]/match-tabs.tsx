@@ -1,23 +1,18 @@
-import type { ReactNode } from 'react';
+'use client';
+import { useState, type ReactNode } from 'react';
 import { BrainCircuit, ChartNoAxesColumn, Target } from 'lucide-react';
-
-/* All three core experiences are visible in one scrollable mobile match report.
-   No hidden tabs, duplicated legacy panels or client-side state required. */
+type Section='prediction'|'markets'|'analysis';
 export default function MatchTabs({prediction,analysis,markets}:{prediction:ReactNode;analysis:ReactNode;markets:ReactNode}){
- return <div className="match-workspace match-report">
-  <nav className="match-report-nav" aria-label="Jump to match intelligence">
-   <a href="#match-prediction"><Target size={16}/> Prediction</a>
-   <a href="#match-markets"><ChartNoAxesColumn size={16}/> Markets</a>
-   <a href="#match-analysis"><BrainCircuit size={16}/> Analysis</a>
-  </nav>
-  <section id="match-prediction" className="match-report-section" aria-labelledby="match-prediction-heading">
-   <h2 id="match-prediction-heading" className="match-report-heading"><Target size={19}/> Model prediction</h2>{prediction}
-  </section>
-  <section id="match-markets" className="match-report-section" aria-labelledby="match-markets-heading">
-   <h2 id="match-markets-heading" className="match-report-heading"><ChartNoAxesColumn size={19}/> Prediction markets</h2>{markets}
-  </section>
-  <section id="match-analysis" className="match-report-section" aria-labelledby="match-analysis-heading">
-   <h2 id="match-analysis-heading" className="match-report-heading"><BrainCircuit size={19}/> Match analysis</h2>{analysis}
-  </section>
+ const [active,setActive]=useState<Section>('prediction');
+ const sections:[Section,string,ReactNode,ReactNode][]=[
+  ['prediction','Prediction',<Target size={16} key="prediction"/>,prediction],
+  ['markets','Markets',<ChartNoAxesColumn size={16} key="markets"/>,markets],
+  ['analysis','Analysis',<BrainCircuit size={16} key="analysis"/>,analysis]
+ ];
+ return <div className="match-workspace ml-tab-experience">
+  <div className="ml-tab-navigation" role="tablist" aria-label="Match intelligence sections">
+   {sections.map(([id,label,icon])=><button type="button" key={id} id={'ml-tab-'+id} role="tab" aria-controls={'ml-panel-'+id} aria-selected={active===id} tabIndex={active===id?0:-1} className={active===id?'active':''} onClick={()=>setActive(id)} onKeyDown={e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;e.preventDefault();const i=sections.findIndex(s=>s[0]===active);const next=sections[(i+(e.key==='ArrowRight'?1:sections.length-1))%sections.length][0];setActive(next);requestAnimationFrame(()=>document.getElementById('ml-tab-'+next)?.focus());}}>{icon}<span>{label}</span></button>)}
+  </div>
+  {sections.map(([id,label,icon,content])=><section key={id} id={'ml-panel-'+id} role="tabpanel" aria-labelledby={'ml-tab-'+id} hidden={active!==id} className="ml-tab-panel"><h2 className="ml-tab-title">{icon}<span>{label==='Prediction'?'Match prediction':label==='Markets'?'Market probabilities':'Football analysis'}</span></h2>{content}</section>)}
  </div>;
 }
