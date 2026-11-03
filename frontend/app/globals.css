@@ -134,3 +134,15 @@
  .ml-footer{padding:0 4px 30px}
 }
 @media(max-width:360px){.ml-fixture{padding:15px 12px}.ml-fixture-teams{gap:6px;font-size:12px}.ml-fixture-forecast strong{font-size:12px}.ml-fixture-forecast>span{font-size:11px}}
+
+
+/* Visible match report: no hidden markets or analysis behind tabs */
+.match-report{display:flex;flex-direction:column;gap:25px}
+.match-report-nav{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px;background:#101b19;border:1px solid #33453b;border-radius:13px;box-shadow:0 10px 25px #0008}
+.match-report-nav a{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;padding:13px 8px;background:#1d2d24;color:#d7edda;font-weight:700;font-size:12px}
+.match-report-nav a:hover,.match-report-nav a:focus-visible{background:#c4f77b;color:#102011}
+.match-report-section{scroll-margin-top:85px;min-width:0}
+.match-report-heading{font:700 clamp(22px,3vw,29px) 'Space Grotesk',sans-serif;letter-spacing:-.7px;display:flex;align-items:center;gap:11px;margin:5px 0 18px;color:#f1f8ef}
+.match-report-heading svg{color:#c4f77b}
+.match-report-section>.detail-panels,.match-report-section>.detail-panel{margin-top:0}
+@media(max-width:600px){.match-report{gap:22px}.match-report-nav{top:0;padding:5px;gap:4px}.match-report-nav a{font-size:11px;gap:5px;padding:12px 4px}.match-report-nav svg{width:14px;height:14px}.match-report-heading{font-size:23px;margin:0 0 14px}.match-report-section{scroll-margin-top:70px}.market-section{margin-top:0}.detail-page{overflow-x:clip}}
