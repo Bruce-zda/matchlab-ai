@@ -30,8 +30,22 @@ def market_probabilities(grid, top_n=6):
             over=float(grid[counts>threshold].sum())
             markets[team+'_over_'+tag]=over
             markets[team+'_under_'+tag]=1-over
+    # Asian handicap is settled on the full-time goal difference.
+    # Half-goal lines cannot push. Integer lines explicitly expose push
+    # probability; a win probability alone must never be presented as a
+    # complete three-way settlement distribution.
+    difference=h-a
+    handicap={}
+    for side,sign in (('home',1),('away',-1)):
+        for line in (-1.5,-1.0,-0.5,0.0,0.5,1.0,1.5):
+            adjusted=sign*difference+line
+            key=side+'_'+('plus_' if line>=0 else 'minus_')+str(abs(line)).replace('.','_')
+            win=float(grid[adjusted>0].sum())
+            push=float(grid[np.isclose(adjusted,0)].sum())
+            loss=float(grid[adjusted<0].sum())
+            handicap[key]={'side':side,'line':line,'win':win,'push':push,'loss':loss}
     scores=sorted(((int(i),int(j),float(grid[i,j])) for i,j in np.ndindex(grid.shape)),key=lambda x:(-x[2],x[0],x[1]))[:top_n]
-    return {'markets':markets,'correct_scores':[{'home_goals':i,'away_goals':j,'probability':p} for i,j,p in scores],
+    return {'markets':markets,'asian_handicap':handicap,'correct_scores':[{'home_goals':i,'away_goals':j,'probability':p} for i,j,p in scores],
             'grid_max_goals':list(np.array(grid.shape)-1),'grid_truncated_and_renormalized':True}
 
 def validate_goal_markets(data):
@@ -51,6 +65,20 @@ def validate_goal_markets(data):
             raise ValueError('Invalid market probability')
         if abs(x+y-1)>1e-6:
             raise ValueError('Market probabilities do not sum to one')
+    handicap=data.get('asian_handicap')
+    if handicap is not None:
+        if not isinstance(handicap,dict):
+            raise ValueError('Invalid Asian handicap markets')
+        for key,row in handicap.items():
+            if not isinstance(row,dict) or row.get('side') not in ('home','away'):
+                raise ValueError('Invalid Asian handicap side')
+            if not isinstance(row.get('line'),(int,float)) or not math.isfinite(row['line']):
+                raise ValueError('Invalid Asian handicap line')
+            values=[row.get(k) for k in ('win','push','loss')]
+            if any(not isinstance(v,(int,float)) or not math.isfinite(v) or v<0 or v>1 for v in values):
+                raise ValueError('Invalid Asian handicap settlement probabilities')
+            if abs(sum(values)-1)>1e-6:
+                raise ValueError('Asian handicap settlement probabilities do not sum to one')
     scores=data.get('correct_scores')
     if not isinstance(scores,list) or not scores:
         raise ValueError('Missing correct-score forecasts')
