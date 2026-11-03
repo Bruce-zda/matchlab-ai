@@ -146,3 +146,19 @@
 .match-report-heading svg{color:#c4f77b}
 .match-report-section>.detail-panels,.match-report-section>.detail-panel{margin-top:0}
 @media(max-width:600px){.match-report{gap:22px}.match-report-nav{top:0;padding:5px;gap:4px}.match-report-nav a{font-size:11px;gap:5px;padding:12px 4px}.match-report-nav svg{width:14px;height:14px}.match-report-heading{font-size:23px;margin:0 0 14px}.match-report-section{scroll-margin-top:70px}.market-section{margin-top:0}.detail-page{overflow-x:clip}}
+
+
+/* Actual football evidence — responsive, data-driven report */
+.ml-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+.ml-form-team{min-width:0;border:1px solid #35473b;border-radius:13px;padding:19px;background:#16241f}
+.ml-form-team h3,.ml-football-context h3{font:700 18px 'Space Grotesk',sans-serif;margin:0 0 15px}
+.ml-form-record{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.ml-form-record strong{font:700 23px 'Space Grotesk',sans-serif;color:#c4f77b}.ml-form-record span{font-size:11px;color:#9eafa5}
+.ml-form-team p,.ml-xg-model p{font-size:12px;color:#aabbb0;line-height:1.7}
+.ml-form-results>div,.ml-h2h>div{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #304037;font-size:12px}
+.ml-form-results>div span{flex:1;color:#c5d5cb;overflow-wrap:anywhere}.ml-form-results>div strong{white-space:nowrap}
+.ml-form-results b{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;background:#3c4941;color:white;flex-shrink:0}
+.ml-form-results b.ml-result-W{background:#395f31;color:#d7ffc5}.ml-form-results b.ml-result-L{background:#663a3a;color:#ffd0c9}
+.ml-xg-model{background:#1b2b21;border:1px solid #40593c;border-radius:13px;padding:19px;margin:18px 0 26px}
+.ml-xg-model>div{display:grid;grid-template-columns:1fr 1fr;gap:15px}.ml-xg-model>div span{font-size:12px;color:#c2d2c7;display:flex;flex-direction:column;gap:8px}.ml-xg-model strong{font:700 35px 'Space Grotesk',sans-serif;color:#c4f77b}
+.ml-h2h{margin:12px 0 22px}.ml-h2h time{color:#8ca395;min-width:82px}.ml-h2h span{color:#e3efe6}.ml-h2h b{color:#c4f77b}
+@media(max-width:650px){.ml-form-grid{grid-template-columns:1fr}.ml-form-team{padding:16px}.ml-form-results>div{gap:8px;font-size:11px}.ml-h2h>div{font-size:11px;gap:8px}.ml-h2h time{min-width:72px}.ml-xg-model strong{font-size:29px}}
