@@ -154,7 +154,9 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             for stale_key in list(cache):
                 if stale_key[1:] != cache_key[1:]:
                     del cache[stale_key]
-            if cache_key not in cache:
+            # Historical evidence must be reconstructed even if the fitted model is cached.
+            # A cached fit alone is not a source for the recent-form and H2H panels.
+            if cache_key not in cache or cache_key not in context_history:
                 year=now.year if now.month>=7 else now.year-1
                 frames=[]
                 for y in range(year-7,year+1):
@@ -208,7 +210,8 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                         except (OSError,TypeError,ValueError):
                             pass  # Disk cache is optional; never block a valid fresh fit.
                     loaded=(dc,bayes,elo)
-                cache[cache_key]=loaded
+                if cache_key not in cache:
+                    cache[cache_key]=loaded
             dc,bayes,elo=cache[cache_key]
             home=match_team(fixture['home'],dc[0])
             away=match_team(fixture['away'],dc[0])
