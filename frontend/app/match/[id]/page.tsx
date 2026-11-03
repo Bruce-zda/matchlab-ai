@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 type Forecast={snapshot_id:string;provider_match_id:number;league:string;home:string;away:string;kickoff_utc:string;captured_at_utc:string;model:string;p_home:number;p_draw:number;p_away:number;goal_markets?:{markets:Record<string,number>;asian_handicap?:Record<string,{side:string;line:number;win:number;push:number;loss:number}>;correct_scores:{home_goals:number;away_goals:number;probability:number}[]};expected_goals?:{home:number;away:number};historical_context?:{source:string;home:TeamContext;away:TeamContext;head_to_head:{date:string;home:string;away:string;home_goals:number;away_goals:number}[]};frozen_screen?:{status:string;candidate?:{market:string;probability:number;model_disagreement:number}|null}};
 type TeamContext={played:number;wins:number;draws:number;losses:number;goals_for:number;goals_against:number;matches:{date:string;opponent:string;venue:string;gf:number;ga:number;result:string}[]};
 type Settlement={snapshot_id:string;provider_match_id:number;home_goals:number;away_goals:number;model:string;actual:number};
-const DATA_REF=process.env.VERCEL_ENV==='preview'?(process.env.VERCEL_GIT_COMMIT_REF||'feature/forward-multimarket-validation'):'main';
+const DATA_REF=process.env.VERCEL_ENV==='preview'?(process.env.VERCEL_GIT_COMMIT_SHA||'feature/forward-multimarket-validation'):'main';
 const BASE='https://raw.githubusercontent.com/Bruce-zda/matchlab-ai/'+encodeURIComponent(DATA_REF)+'/artifacts/';
 async function read<T>(name:string):Promise<T>{const r=await fetch(BASE+name,{next:{revalidate:120}});if(!r.ok)throw Error('Data feed unavailable');return r.json() as Promise<T>}
 const percent=(x:number)=>(x*100).toFixed(1)+'%';
