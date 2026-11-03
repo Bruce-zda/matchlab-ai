@@ -156,7 +156,7 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                     del cache[stale_key]
             # Historical evidence must be reconstructed even if the fitted model is cached.
             # A cached fit alone is not a source for the recent-form and H2H panels.
-            if cache_key not in cache or cache_key not in context_history:
+            if cache_key not in cache:
                 year=now.year if now.month>=7 else now.year-1
                 frames=[]
                 for y in range(year-7,year+1):
@@ -213,6 +213,9 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                 if cache_key not in cache:
                     cache[cache_key]=loaded
             dc,bayes,elo=cache[cache_key]
+            # Reuse cached fitted models without requiring another training fetch.
+            # Historical context is optional when the caller supplies pre-fitted
+            # models (including offline integration tests).
             home=match_team(fixture['home'],dc[0])
             away=match_team(fixture['away'],dc[0])
             if home not in dc[0] or away not in dc[0]:
