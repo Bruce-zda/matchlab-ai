@@ -228,14 +228,6 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Crystal Palace FC",
-      "away": "Liverpool FC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Serie A",
       "home": "Genoa CFC",
       "away": "AC Milan",
@@ -263,6 +255,14 @@
       "league": "Serie A",
       "home": "AC Monza",
       "away": "Atalanta BC",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Crystal Palace FC",
+      "away": "Liverpool FC",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -388,5 +388,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-04T11:57:51.742620+00:00"
+  "collected_at_utc": "2026-11-04T17:54:53.245956+00:00"
 }
