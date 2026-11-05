@@ -1,9 +1,9 @@
 {
   "audit": {
-    "total_snapshots": 304,
+    "total_snapshots": 312,
     "newly_settled": 0,
     "already_settled": 112,
-    "awaiting_verified_result": 192,
+    "awaiting_verified_result": 200,
     "conflicting_provider_results": 0,
     "invalid_actual_kickoff": 0
   },
