@@ -8646,5 +8646,483 @@
       "grid_truncated_and_renormalized": true
     },
     "snapshot_id": "7c5ea9f2218901c47f8d5e12"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "AJ Auxerre",
+    "away": "Paris FC",
+    "kickoff_utc": "2026-11-07T18:00:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559637,
+    "p_home": 0.3137955340255137,
+    "p_draw": 0.27986311255524393,
+    "p_away": 0.4063413534192424,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5133440538571427,
+        "btts_no": 0.48665594614285723,
+        "over_1_5": 0.7196836966168384,
+        "under_1_5": 0.2803163033831616,
+        "over_2_5": 0.4575888864937854,
+        "under_2_5": 0.5424111135062146,
+        "over_3_5": 0.24359347896917805,
+        "under_3_5": 0.756406521030822,
+        "home_over_0_5": 0.6850680576130707,
+        "home_under_0_5": 0.31493194238692934,
+        "home_over_1_5": 0.32119609456304443,
+        "home_under_1_5": 0.6788039054369556,
+        "home_over_2_5": 0.11098749442808609,
+        "home_under_2_5": 0.8890125055719139,
+        "away_over_0_5": 0.7407778453636495,
+        "away_under_0_5": 0.25922215463635045,
+        "away_over_1_5": 0.3908098306365712,
+        "away_under_1_5": 0.6091901693634287,
+        "away_over_2_5": 0.15456919853506335,
+        "away_under_2_5": 0.8454308014649367
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13320436273453426
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.1043552924402245
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08846286006251444
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08749815088042263
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08596134255495469
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.07439972113844388
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "6e78f2f301889f362137a26a"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "AJ Auxerre",
+    "away": "Paris FC",
+    "kickoff_utc": "2026-11-07T18:00:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559637,
+    "p_home": 0.3445278219463421,
+    "p_draw": 0.2913613863816729,
+    "p_away": 0.36411079167198507,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.44460716294178865,
+        "btts_no": 0.5553928370582114,
+        "over_1_5": 0.6450699273513837,
+        "under_1_5": 0.3549300726486163,
+        "over_2_5": 0.37689042028419567,
+        "under_2_5": 0.6231095797158044,
+        "over_3_5": 0.18035740040390263,
+        "under_3_5": 0.8196425995960974,
+        "home_over_0_5": 0.6603418373776387,
+        "home_under_0_5": 0.33965816262236126,
+        "home_over_1_5": 0.2935736644446687,
+        "home_under_1_5": 0.7064263355553313,
+        "home_over_2_5": 0.09555267234186757,
+        "home_under_2_5": 0.9044473276581324,
+        "away_over_0_5": 0.6732984914410701,
+        "away_under_0_5": 0.3267015085589299,
+        "away_over_1_5": 0.3078147881244693,
+        "away_under_1_5": 0.6921852118755307,
+        "away_over_2_5": 0.10337995404729133,
+        "away_under_2_5": 0.8966200459527087
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13404779010220538
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.1241395231369328
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11982371538860383
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.11096683412307973
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07498019057834145
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07237344552815915
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "290b5639b314cc88fbb1b452"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "AJ Auxerre",
+    "away": "Paris FC",
+    "kickoff_utc": "2026-11-07T18:00:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "Elo",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559637,
+    "p_home": 0.34743266706872045,
+    "p_draw": 0.24163467584822315,
+    "p_away": 0.41093265708305643,
+    "snapshot_id": "c711c1bcba7519e363cd2c3f"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "AJ Auxerre",
+    "away": "Paris FC",
+    "kickoff_utc": "2026-11-07T18:00:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559637,
+    "p_home": 0.3291616779859279,
+    "p_draw": 0.2856122494684584,
+    "p_away": 0.3852260725456137,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4789756083994657,
+        "btts_no": 0.5210243916005343,
+        "over_1_5": 0.682376811984111,
+        "under_1_5": 0.31762318801588896,
+        "over_2_5": 0.41723965338899055,
+        "under_2_5": 0.5827603466110094,
+        "over_3_5": 0.21197543968654034,
+        "under_3_5": 0.7880245603134597,
+        "home_over_0_5": 0.6727049474953547,
+        "home_under_0_5": 0.3272950525046453,
+        "home_over_1_5": 0.3073848795038566,
+        "home_under_1_5": 0.6926151204961434,
+        "home_over_2_5": 0.10327008338497681,
+        "home_under_2_5": 0.8967299166150232,
+        "away_over_0_5": 0.7070381684023598,
+        "away_under_0_5": 0.2929618315976402,
+        "away_over_1_5": 0.34931230938052027,
+        "away_under_1_5": 0.6506876906194797,
+        "away_over_2_5": 0.12897457629117734,
+        "away_under_2_5": 0.8710254237088226
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13362607641836982
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.11424740778857864
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.10414328772555914
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.09923249250175117
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08047076656664806
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.07296986599797439
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "a485bdb04959ea94619db475"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Paris Saint-Germain",
+    "away": "ES Troyes AC",
+    "kickoff_utc": "2026-11-07T20:05:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559635,
+    "p_home": 0.9293437404980227,
+    "p_draw": 0.05262918653920668,
+    "p_away": 0.01802707296277073,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4218164741967024,
+        "btts_no": 0.5781835258032977,
+        "over_1_5": 0.9432554426949811,
+        "under_1_5": 0.05674455730501893,
+        "over_2_5": 0.8338541518883097,
+        "under_2_5": 0.1661458481116903,
+        "over_3_5": 0.6689134518423437,
+        "under_3_5": 0.33108654815765626,
+        "home_over_0_5": 0.9818289979965265,
+        "home_under_0_5": 0.018171002003473546,
+        "home_over_1_5": 0.9089958548214165,
+        "home_under_1_5": 0.09100414517858346,
+        "home_over_2_5": 0.7630306861490453,
+        "home_under_2_5": 0.23696931385095465,
+        "away_over_0_5": 0.4285314602241059,
+        "away_under_0_5": 0.5714685397758941,
+        "away_over_1_5": 0.1087686128021599,
+        "away_under_1_5": 0.8912313871978401,
+        "away_over_2_5": 0.019307626348305344,
+        "away_under_2_5": 0.9806923736516947
+      },
+      "correct_scores": [
+        {
+          "home_goals": 4,
+          "away_goals": 0,
+          "probability": 0.11167621010053282
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.11144753879964987
+        },
+        {
+          "home_goals": 5,
+          "away_goals": 0,
+          "probability": 0.08952428047667238
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08341450179934203
+        },
+        {
+          "home_goals": 4,
+          "away_goals": 1,
+          "probability": 0.062487959433500516
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.0623600073570438
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "155884a7d5e7e406b75b353e"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Paris Saint-Germain",
+    "away": "ES Troyes AC",
+    "kickoff_utc": "2026-11-07T20:05:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559635,
+    "p_home": 0.7442446968570373,
+    "p_draw": 0.15550501620391044,
+    "p_away": 0.10025028693905225,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5173285539126509,
+        "btts_no": 0.48267144608734924,
+        "over_1_5": 0.8485263794969344,
+        "under_1_5": 0.15147362050306556,
+        "over_2_5": 0.6524335682310781,
+        "under_2_5": 0.3475664317689219,
+        "over_3_5": 0.43282500493960013,
+        "under_3_5": 0.5671749950603999,
+        "home_over_0_5": 0.920697174020772,
+        "home_under_0_5": 0.079302825979228,
+        "home_over_1_5": 0.719705408627389,
+        "home_under_1_5": 0.28029459137261103,
+        "home_over_2_5": 0.46500017424816165,
+        "home_under_2_5": 0.5349998257518384,
+        "away_over_0_5": 0.5618878481547066,
+        "away_under_0_5": 0.4381121518452934,
+        "away_over_1_5": 0.20032249947817732,
+        "away_under_1_5": 0.7996775005218226,
+        "away_over_2_5": 0.05112611127830913,
+        "away_under_2_5": 0.9488738887216909
+      },
+      "correct_scores": [
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.11158945832014312
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.0942739091161419
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09209258687806238
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08805693483967944
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.07780240442340844
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.07267165773556968
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "3055e5b5ce9540a7026f2739"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Paris Saint-Germain",
+    "away": "ES Troyes AC",
+    "kickoff_utc": "2026-11-07T20:05:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "Elo",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559635,
+    "p_home": 0.7847964392060711,
+    "p_draw": 0.09300803988509634,
+    "p_away": 0.12219552090883262,
+    "snapshot_id": "1833d9a7bd6182380cc11dbd"
+  },
+  {
+    "league": "Ligue 1",
+    "home": "Paris Saint-Germain",
+    "away": "ES Troyes AC",
+    "kickoff_utc": "2026-11-07T20:05:00+00:00",
+    "captured_at_utc": "2026-11-05T06:00:14.512296+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "eae6811a26f330733e744c64739eb8928c22931d",
+    "provider_match_id": 559635,
+    "p_home": 0.83679421867753,
+    "p_draw": 0.10406710137155856,
+    "p_away": 0.05913867995091149,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.46957251405467665,
+        "btts_no": 0.5304274859453234,
+        "over_1_5": 0.8958909110959579,
+        "under_1_5": 0.10410908890404214,
+        "over_2_5": 0.7431438600596938,
+        "under_2_5": 0.2568561399403062,
+        "over_3_5": 0.550869228390972,
+        "under_3_5": 0.44913077160902803,
+        "home_over_0_5": 0.9512630860086492,
+        "home_under_0_5": 0.04873691399135083,
+        "home_over_1_5": 0.8143506317244027,
+        "home_under_1_5": 0.1856493682755973,
+        "home_over_2_5": 0.6140154301986035,
+        "home_under_2_5": 0.3859845698013965,
+        "away_over_0_5": 0.4952096541894062,
+        "away_under_0_5": 0.5047903458105938,
+        "away_over_1_5": 0.15454555614016863,
+        "away_under_1_5": 0.8454544438598314,
+        "away_over_2_5": 0.035216868813307226,
+        "away_under_2_5": 0.9647831311866928
+      },
+      "correct_scores": [
+        {
+          "home_goals": 3,
+          "away_goals": 0,
+          "probability": 0.10286072395789589
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09750198005974257
+        },
+        {
+          "home_goals": 4,
+          "away_goals": 0,
+          "probability": 0.08570507257288636
+        },
+        {
+          "home_goals": 3,
+          "away_goals": 1,
+          "probability": 0.07008120589022612
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0693834124185822
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.06430346241118393
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "0d705b0929d7ca94060e95e2"
   }
 ]
