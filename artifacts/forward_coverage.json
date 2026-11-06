@@ -213,22 +213,6 @@
     },
     {
       "league": "Premier League",
-      "home": "Ipswich Town FC",
-      "away": "AFC Bournemouth",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
-      "home": "AC Monza",
-      "away": "Atalanta BC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Premier League",
       "home": "Crystal Palace FC",
       "away": "Liverpool FC",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
@@ -239,6 +223,22 @@
       "league": "Serie A",
       "home": "Genoa CFC",
       "away": "AC Milan",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Ipswich Town FC",
+      "away": "AFC Bournemouth",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Serie A",
+      "home": "AC Monza",
+      "away": "Atalanta BC",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -285,14 +285,6 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Le Mans FC",
-      "away": "AS Monaco FC",
-      "kickoff_utc": "2026-11-08T16:15:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
       "home": "Le Havre AC",
       "away": "FC Lorient",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
@@ -301,8 +293,8 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Angers SCO",
-      "away": "OGC Nice",
+      "home": "Le Mans FC",
+      "away": "AS Monaco FC",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -311,6 +303,14 @@
       "league": "Ligue 1",
       "home": "Stade Brestois 29",
       "away": "Olympique Lyonnais",
+      "kickoff_utc": "2026-11-08T16:15:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Ligue 1",
+      "home": "Angers SCO",
+      "away": "OGC Nice",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -388,5 +388,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-06T11:53:44.143639+00:00"
+  "collected_at_utc": "2026-11-06T17:50:37.737385+00:00"
 }
