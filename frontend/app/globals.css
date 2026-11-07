@@ -215,3 +215,16 @@
 .ml-fixture-outcomes .ml-fixture-outcome-leading strong{color:#b7fb5b}
 @media(max-width:820px){.ml-fixture-premium{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px}.ml-fixture-premium .ml-fixture-main{grid-column:1/-1}.ml-fixture-premium .ml-fixture-forecast{min-width:0}.ml-fixture-premium .ml-fixture-outcomes{min-width:0;width:190px}.ml-fixture-premium .ml-fixture-arrow{display:none}}
 @media(max-width:460px){.ml-fixture-premium .ml-fixture-teams{font-size:14px}.ml-fixture-premium .ml-fixture-outcomes{width:156px}.ml-fixture-premium .ml-fixture-outcomes>div{padding:9px 5px}.ml-fixture-premium .ml-fixture-outcomes strong{font-size:13px}.ml-fixture-premium .ml-fixture-forecast strong{font-size:14px}}
+
+
+/* Compact market browsing, with methodology on demand */
+.ml-market-list-premium{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ml-market-list-premium .ml-market-line{min-width:0;border:1px solid #293842;border-radius:12px;background:#111b24;padding:15px}
+.ml-market-list-premium .ml-market-line-top{gap:12px}
+.ml-market-list-premium .ml-market-line-top h4{overflow-wrap:anywhere}
+.ml-market-detail{margin-top:10px;border-top:1px solid #28343d;padding-top:9px}
+.ml-market-detail summary,.ml-market-method-note summary{cursor:pointer;color:#8fa5b0;font-size:11px;font-weight:700}
+.ml-market-detail p{font-size:11px;color:#9babb3;line-height:1.6;margin:9px 0 0}
+.ml-market-method-note{margin-top:22px;border:1px solid #28343d;border-radius:10px;padding:13px 16px}
+.ml-market-method-note p{font-size:12px;line-height:1.7;color:#9eacb5}
+@media(max-width:680px){.ml-market-list-premium{grid-template-columns:1fr}.ml-market-list-premium .ml-market-line{padding:14px}}
