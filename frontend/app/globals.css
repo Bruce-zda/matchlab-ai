@@ -242,3 +242,19 @@
 :where(a,button,input,select,summary):focus-visible{outline:3px solid #b7fb5b;outline-offset:3px}
 .ml-tab-panel[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+/* Forebet-inspired compact market rows: interactive, readable on narrow phones */
+.ml-market-list-premium{display:flex;flex-direction:column;gap:0;border:1px solid #2b3943;border-radius:12px;overflow:hidden}
+.ml-market-list-premium .ml-market-line{padding:0;border:0;border-bottom:1px solid #293842;border-radius:0;background:#101b23}
+.ml-market-list-premium .ml-market-line:last-child{border-bottom:0}
+.ml-market-row-button{width:100%;border:0;background:transparent;color:#f1f5f5;display:grid;grid-template-columns:minmax(0,1fr) 75px 20px;align-items:center;gap:10px;padding:12px 14px;text-align:left;cursor:pointer}
+.ml-market-row-button:hover,.ml-market-row-button[aria-expanded=true]{background:#192a29}
+.ml-market-row-name{display:flex;flex-direction:column;min-width:0;gap:4px}
+.ml-market-row-name small{color:#9ab4ac;font-size:10px;font-weight:700}
+.ml-market-row-name strong{font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.ml-market-row-prob{font-size:17px;font-weight:800;color:#c4f77b;text-align:right;font-variant-numeric:tabular-nums}
+.ml-market-row-toggle{font-size:19px;color:#9bb6a4;text-align:center}
+.ml-market-row-context{padding:0 14px 13px}
+.ml-market-row-context p{font-size:11px;color:#a6b5b4;line-height:1.6;margin:8px 0 0}
+@media(max-width:460px){.ml-market-row-button{grid-template-columns:minmax(0,1fr) 66px 16px;gap:7px;padding:11px}.ml-market-row-prob{font-size:15px}}
