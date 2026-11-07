@@ -1,54 +1,54 @@
 {
   "audit": {
     "total_snapshots": 312,
-    "newly_settled": 0,
+    "newly_settled": 20,
     "already_settled": 112,
-    "awaiting_verified_result": 200,
+    "awaiting_verified_result": 180,
     "conflicting_provider_results": 0,
     "invalid_actual_kickoff": 0
   },
   "status": "pilot_forward_results_not_validated",
-  "settled_forecasts": 112,
-  "settled_fixtures": 28,
+  "settled_forecasts": 132,
+  "settled_fixtures": 33,
   "models": [
     {
       "model": "Bayesian Goals",
-      "n": 28,
-      "mean_brier": 0.18563411675711475,
-      "mean_log_loss": 0.9420058193184814
+      "n": 33,
+      "mean_brier": 0.19127637526500274,
+      "mean_log_loss": 0.9637538399769385
     },
     {
       "model": "DC + Bayesian (50/50)",
-      "n": 28,
-      "mean_brier": 0.17894372473362205,
-      "mean_log_loss": 0.9148696872817406
+      "n": 33,
+      "mean_brier": 0.1840063656447927,
+      "mean_log_loss": 0.93515379872721
     },
     {
       "model": "Dixon-Coles",
-      "n": 28,
-      "mean_brier": 0.17459112044866062,
-      "mean_log_loss": 0.8990711094636821
+      "n": 33,
+      "mean_brier": 0.17966340085800356,
+      "mean_log_loss": 0.9193084630006159
     },
     {
       "model": "Elo",
-      "n": 28,
-      "mean_brier": 0.17121116461965843,
-      "mean_log_loss": 0.8798289660864355
+      "n": 33,
+      "mean_brier": 0.17452045678577124,
+      "mean_log_loss": 0.8941429797718083
     }
   ],
   "paired_comparison": {
-    "paired_fixtures": 28,
+    "paired_fixtures": 33,
     "status": "descriptive_only",
-    "mean_brier_delta": 0.004352604284961421,
-    "mean_log_loss_delta": 0.01579857781805825,
+    "mean_brier_delta": 0.004342964786789201,
+    "mean_log_loss_delta": 0.01584533572659392,
     "bootstrap_95pct_ci": {
       "brier_delta": [
-        -0.007918968298487726,
-        0.013487112841427793
+        -0.006481235341578627,
+        0.014175500095339235
       ],
       "log_loss_delta": [
-        -0.04263668299458466,
-        0.058229963769961104
+        -0.0371078003242764,
+        0.0614653971047092
       ]
     },
     "promotion_eligible": false
