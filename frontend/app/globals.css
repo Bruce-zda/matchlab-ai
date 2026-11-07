@@ -183,3 +183,21 @@
 
 /* Evidence-led football analysis: venue form and scoring momentum */
 .ml-venue-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0 24px}.ml-venue-card{background:#17271f;border:1px solid #38503f;border-radius:13px;padding:19px;min-width:0}.ml-venue-card small{color:#b6e78e;letter-spacing:1.1px;font-weight:800;font-size:10px}.ml-venue-card h4{color:#eff8ec;font:700 18px 'Space Grotesk',sans-serif;margin:12px 0}.ml-venue-card strong{display:block;color:#d1f7a6;font:700 23px 'Space Grotesk',sans-serif}.ml-venue-card p{color:#a5b8a9;font-size:12px;line-height:1.6}.ml-momentum-arrow{font-size:13px;font-weight:500;color:#b2c6b5}@media(max-width:650px){.ml-venue-grid{grid-template-columns:1fr}.ml-venue-card{padding:16px}}
+
+
+/* Premium match centre: compact, mobile-first information hierarchy */
+.premium-match-tabs .ml-tab-navigation{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:12;background:#0b121b;padding:10px 8px;border:1px solid #263640;border-radius:14px;margin:0 0 20px;box-shadow:0 14px 32px #0005}
+.premium-match-tabs .ml-tab-navigation::-webkit-scrollbar{display:none}
+.premium-match-tabs .ml-tab-navigation button{flex:1 0 auto;min-width:100px;white-space:nowrap;border-radius:10px;transition:background .2s ease,color .2s ease}
+.premium-match-tabs .ml-tab-navigation button.active{background:#b7fb5b;color:#101b0c;border-color:#b7fb5b}
+.premium-match-tabs .ml-tab-panel[hidden]{display:none!important}
+.premium-match-tabs .ml-tab-title{margin-bottom:18px}
+.ml-technical-disclosure{margin:18px 0;border:1px solid #293740;border-radius:14px;background:#0d151d;overflow:hidden}
+.ml-technical-disclosure>summary{cursor:pointer;list-style:none;padding:19px 22px;color:#dce6e7;font-weight:700;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.ml-technical-disclosure>summary::-webkit-details-marker{display:none}
+.ml-technical-disclosure>summary:after{content:'+';font-size:22px;color:#b7fb5b}
+.ml-technical-disclosure[open]>summary:after{content:'−'}
+.ml-technical-disclosure>summary span{color:#82939c;font-size:11px;font-weight:500;margin-left:auto}
+.ml-technical-disclosure .detail-panel{margin:10px}
+.ml-h2h-panel .ml-h2h{margin-top:18px}
+@media(max-width:700px){.premium-match-tabs .ml-tab-navigation{margin-left:-12px;margin-right:-12px;border-radius:12px;padding:8px;gap:4px}.premium-match-tabs .ml-tab-navigation button{min-width:90px;padding:12px 10px;font-size:12px}.premium-match-tabs .ml-tab-navigation button svg{width:14px;height:14px}.ml-technical-disclosure>summary{padding:16px}.ml-technical-disclosure>summary span{display:none}}
