@@ -11,7 +11,7 @@ export default function MatchTabs({prediction,analysis,markets,statistics,h2h}:{
  ['h2h','H2H',<Users size={16} key="h2h"/>,h2h],
  ['analysis','Analysis',<BrainCircuit size={16} key="analysis"/>,analysis]
  ];
- return <div className="match-workspace ml-tab-experience premium-match-tabs">
+ return <div className="match-workspace ml-tab-experience premium-match-tabs ml-match-centre">
  <div className="ml-tab-navigation" role="tablist" aria-label="Match centre sections">
  {sections.map(([id,label,icon])=><button type="button" key={id} id={'ml-tab-'+id} role="tab" aria-controls={'ml-panel-'+id} aria-selected={active===id} tabIndex={active===id?0:-1} className={active===id?'active':''} onClick={()=>setActive(id)} onKeyDown={e=>{if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();const i=sections.findIndex(s=>s[0]===active);const next=e.key==='Home'?sections[0][0]:e.key==='End'?sections[sections.length-1][0]:sections[(i+(e.key==='ArrowRight'?1:sections.length-1))%sections.length][0];setActive(next);requestAnimationFrame(()=>document.getElementById('ml-tab-'+next)?.focus());}}>{icon}<span>{label}</span></button>)}
  </div>
