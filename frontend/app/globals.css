@@ -234,3 +234,11 @@
 .ml-research-secondary{background:#0c141b;border-color:#26343d}
 .ml-research-secondary .detail-section-label{color:#9babb4}
 .ml-research-secondary .market-highlight{background:#101b23}
+
+
+/* Keyboard and motion accessibility */
+.ml-skip-link{position:fixed;top:10px;left:10px;z-index:9999;transform:translateY(-160%);background:#b7fb5b;color:#101a14;padding:11px 16px;border-radius:8px;font-weight:800}
+.ml-skip-link:focus{transform:translateY(0)}
+:where(a,button,input,select,summary):focus-visible{outline:3px solid #b7fb5b;outline-offset:3px}
+.ml-tab-panel[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
