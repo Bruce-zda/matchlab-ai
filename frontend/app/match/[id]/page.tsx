@@ -16,12 +16,12 @@ const winner=(f:Forecast)=>{const values=[f.p_home,f.p_draw,f.p_away];const i=va
 export async function generateMetadata({params}:{params:Promise<{id:string}>}):Promise<Metadata>{return {title:'Match intelligence | MatchLab',description:'Archived evidence-first football forecasts and model comparison.'}}
 export default async function MatchPage({params}:{params:Promise<{id:string}>}){
  const {id}=await params;
- if(!/^\d+$/.test(id))return <main className="detail-page"><Link href="/">← Back to Discover</Link><h1>Invalid match identifier</h1></main>;
+ if(!/^\d+$/.test(id))return <main id="main-content" tabIndex={-1} className="detail-page"><Link href="/">← Back to Discover</Link><h1>Invalid match identifier</h1></main>;
  let ledger:Forecast[];let settled:Settlement[];
- try{[ledger,settled]=await Promise.all([read<Forecast[]>('forward_ledger.json'),read<Settlement[]>('forward_settlements.json')])}catch{return <main className="detail-page"><Link href="/">← Back to Discover</Link><h1>Data temporarily unavailable</h1><p>Try again shortly.</p></main>}
+ try{[ledger,settled]=await Promise.all([read<Forecast[]>('forward_ledger.json'),read<Settlement[]>('forward_settlements.json')])}catch{return <main id="main-content" tabIndex={-1} className="detail-page"><Link href="/">← Back to Discover</Link><h1>Data temporarily unavailable</h1><p>Try again shortly.</p></main>}
  const raw=ledger.filter(x=>String(x.provider_match_id)===id).sort((a,b)=>b.captured_at_utc.localeCompare(a.captured_at_utc));
  const forecasts=Array.from(new Map(raw.slice().reverse().map(x=>[x.model,x])).values());
- if(!forecasts.length)return <main className="detail-page"><Link href="/">← Back to Discover</Link><h1>Match not found</h1><p>No archived forecasts for this fixture.</p></main>;
+ if(!forecasts.length)return <main id="main-content" tabIndex={-1} className="detail-page"><Link href="/">← Back to Discover</Link><h1>Match not found</h1><p>No archived forecasts for this fixture.</p></main>;
  const main=forecasts.find(x=>x.model==='Dixon-Coles')||forecasts[0];const top=winner(main);
  const result=settled.find(x=>x.provider_match_id===main.provider_match_id);
  const lead=[main.p_home,main.p_draw,main.p_away].sort((a,b)=>b-a);
@@ -57,7 +57,7 @@ export default async function MatchPage({params}:{params:Promise<{id:string}>}){
  ].filter(m=>Number.isFinite(m.prob));
  const ranked=markets.map(m=>({...m,agree:forecasts.filter(f=>m.calc(f)>.5).length,spread:Math.max(...forecasts.map(f=>m.calc(f)))-Math.min(...forecasts.map(f=>m.calc(f)))})).sort((a,b)=>b.agree-a.agree||a.spread-b.spread);
  const highlights=ranked.filter(m=>m.agree===forecasts.length&&m.prob>=.6).slice(0,3);
- return <main className="detail-page">
+ return <main id="main-content" tabIndex={-1} className="detail-page">
  <nav className="detail-nav"><Link href="/" className="detail-brand"><Activity size={21}/> MATCH<span>LAB</span></Link><Link href="/" className="back-link"><ArrowLeft size={16}/> Discover</Link></nav>
  <div className="detail-wrap"><div className="detail-kicker"><span className="live-pulse"/> MATCH CENTRE / {main.league.toUpperCase()}</div>
  <div className="detail-head"><div><div className="detail-meta"><Clock3 size={14}/> {date(main.kickoff_utc)} · ARCHIVED FORECAST</div><h1>{main.home}<span>vs</span>{main.away}</h1></div><div className="detail-score">{result?<><small>FINAL SCORE</small><strong>{result.home_goals} – {result.away_goals}</strong></>:<><small>FORECAST STATUS</small><strong>PRE-MATCH</strong></>}</div></div>
