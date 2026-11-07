@@ -22,6 +22,7 @@ sys.path.insert(0,str(ROOT))
 from forward_validation import append_snapshot,utc_time,snapshot_id
 from bayesian_goals import BayesianGoals
 from goal_markets import market_probabilities
+from intelligence_selection import screen_outlook
 from scenario_engine import simulate_score_grid, stress_expected_goals
 from elo_baseline import EloBaseline
 from data_quality import valid_score_pair,valid_team_pair
@@ -107,6 +108,29 @@ def match_team(provider_name,training_names):
                          '; training-name candidates (diagnostic only): '+repr(candidates))
     return matches[0]
 
+def build_team_context(history,home,away):
+    """Historical completed league results, strictly before forecast cutoff.
+    This is not xG, tactical scouting, or live lineup information.
+    """
+    def summarize(team):
+        games=history[(history['HomeTeam']==team)|(history['AwayTeam']==team)].sort_values('Date').tail(10)
+        recent=[]
+        for row in games.itertuples():
+            is_home=row.HomeTeam==team
+            gf=int(row.FTHG if is_home else row.FTAG)
+            ga=int(row.FTAG if is_home else row.FTHG)
+            recent.append({'date':row.Date.date().isoformat(),'opponent':row.AwayTeam if is_home else row.HomeTeam,
+                           'venue':'home' if is_home else 'away','gf':gf,'ga':ga,
+                           'result':'W' if gf>ga else 'D' if gf==ga else 'L'})
+        return {'matches':recent,'played':len(recent),'wins':sum(x['result']=='W' for x in recent),
+                'draws':sum(x['result']=='D' for x in recent),'losses':sum(x['result']=='L' for x in recent),
+                'goals_for':sum(x['gf'] for x in recent),'goals_against':sum(x['ga'] for x in recent)}
+    h2h=history[((history['HomeTeam']==home)&(history['AwayTeam']==away))|
+                ((history['HomeTeam']==away)&(history['AwayTeam']==home))].sort_values('Date').tail(5)
+    return {'source':'historical league results used for training','home':summarize(home),'away':summarize(away),
+            'head_to_head':[{'date':r.Date.date().isoformat(),'home':r.HomeTeam,'away':r.AwayTeam,
+                             'home_goals':int(r.FTHG),'away_goals':int(r.FTAG)} for r in h2h.itertuples()]}
+
 def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
     now=utc_time(now)
     ns=models_from_app()
@@ -115,6 +139,7 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
     # Optional caller-owned in-memory fitted models. The UTC training cutoff
     # and code revision are part of the key; never reuse across cutoff days.
     cache={} if fitted_cache is None else fitted_cache
+    context_history={}
     for fixture in fixtures:
         label={k:fixture.get(k) for k in ('league','home','away','kickoff_utc')}
         try:
@@ -129,6 +154,8 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             for stale_key in list(cache):
                 if stale_key[1:] != cache_key[1:]:
                     del cache[stale_key]
+            # Historical evidence must be reconstructed even if the fitted model is cached.
+            # A cached fit alone is not a source for the recent-form and H2H panels.
             if cache_key not in cache:
                 year=now.year if now.month>=7 else now.year-1
                 frames=[]
@@ -146,6 +173,7 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                 history=history.drop_duplicates(['Date','HomeTeam','AwayTeam'])
                 history=history[history.Date.dt.date<now.date()].sort_values('Date')
                 history=canonicalize_history(history)
+                context_history[cache_key]=history
                 if len(history)<150:
                     raise ValueError('Insufficient historical training data')
                 # Optional persistent snapshot store. Never trust a saved fit
@@ -182,15 +210,30 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                         except (OSError,TypeError,ValueError):
                             pass  # Disk cache is optional; never block a valid fresh fit.
                     loaded=(dc,bayes,elo)
-                cache[cache_key]=loaded
+                if cache_key not in cache:
+                    cache[cache_key]=loaded
             dc,bayes,elo=cache[cache_key]
+            # Reuse cached fitted models without requiring another training fetch.
+            # Historical context is optional when the caller supplies pre-fitted
+            # models (including offline integration tests).
             home=match_team(fixture['home'],dc[0])
             away=match_team(fixture['away'],dc[0])
             if home not in dc[0] or away not in dc[0]:
                 raise ValueError('Team names not matched to model training data')
             home_lambda,away_lambda,grid=ns['forecast'](dc,home,away)
+            # Refuse invalid score grids before freezing any probabilities.
+            # Normalize truncation tails consistently for 1X2 and goal markets.
+            def normalized_grid(value, label):
+                matrix=np.asarray(value,dtype=float)
+                if (matrix.ndim!=2 or min(matrix.shape)<4 or
+                        not np.isfinite(matrix).all() or (matrix<0).any() or
+                        not np.isfinite(matrix.sum()) or matrix.sum()<=0):
+                    raise ValueError('Invalid '+label+' score grid')
+                return matrix/matrix.sum()
+            grid=normalized_grid(grid,'Dixon-Coles')
             dc_p=np.array([np.tril(grid,-1).sum(),np.trace(grid),np.triu(grid,1).sum()])
             bayes_grid=bayes.score_grid(home,away)
+            bayes_grid=normalized_grid(bayes_grid,'Bayesian Goals')
             bayes_p=np.array([np.tril(bayes_grid,-1).sum(),np.trace(bayes_grid),np.triu(bayes_grid,1).sum()])
             elo_p=elo.predict(home,away)
             probabilities={'Dixon-Coles':dc_p,'Bayesian Goals':bayes_p,
@@ -200,6 +243,8 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
             bayes_full=np.pad(bayes_grid,((0,side-bayes_grid.shape[0]),(0,side-bayes_grid.shape[1])))
             goal_grids={'Dixon-Coles':grid,'Bayesian Goals':bayes_grid,
                         'DC + Bayesian (50/50)':(dc_full+bayes_full)/2}
+            historical_context=(build_team_context(context_history[cache_key],home,away)
+                                if cache_key in context_history else None)
             new_records=[]
             for model,probs in probabilities.items():
                 record={'league':league,'home':home,'away':away,
@@ -209,12 +254,35 @@ def collect(fixtures,ledger,now,model_version,preview=False,fitted_cache=None):
                         'provider_match_id':fixture.get('provider_match_id'),
                         'p_home':float(probs[0]),'p_draw':float(probs[1]),
                         'p_away':float(probs[2])}
+                if model=='Dixon-Coles':
+                    record['expected_goals']={'home':float(home_lambda),'away':float(away_lambda)}
+                    if historical_context is not None:
+                        record['historical_context']=historical_context
                 if model in goal_grids:
                     record['goal_markets']=market_probabilities(goal_grids[model])
                 if preview and model=='DC + Bayesian (50/50)':
                     record['simulation']=simulate_score_grid(goal_grids[model])
                     record['scenarios']=stress_expected_goals(home_lambda,away_lambda,dc[5])
                 new_records.append(record)
+            # Freeze the actual 80%/10%-disagreement research screen before kickoff.
+            # Only goal markets backed by BOTH independent goal-grid models are eligible.
+            dc_markets=market_probabilities(goal_grids['Dixon-Coles'])['markets']
+            bayes_markets=market_probabilities(goal_grids['Bayesian Goals'])['markets']
+            hybrid=next(row for row in new_records if row['model']=='DC + Bayesian (50/50)')
+            hybrid_probs=hybrid['goal_markets']['markets']
+            screen_markets=[]
+            for key, probability in sorted(hybrid_probs.items()):
+                spread=abs(dc_markets[key]-bayes_markets[key])
+                screen_markets.append({'key':key,'probability':float(probability),
+                                       'model_range':{'spread':float(spread)},
+                                       'conditional':False})
+            hybrid['screen_markets']=screen_markets
+            hybrid['frozen_screen']=screen_outlook(screen_markets)
+            hybrid['screen_policy_version']='intelligence_selection.screen_outlook_default_80pct_10pct_spread'
+            # Validate the entire frozen capture before preview or publication.
+            from forward_validation import validate_forecast
+            for record in new_records:
+                validate_forecast(record)
             if preview:
                 for record in new_records:
                     record['snapshot_id']=snapshot_id(record)

@@ -39,6 +39,29 @@ def validate_forecast(record):
     if 'goal_markets' in record:
         from goal_markets import validate_goal_markets
         validate_goal_markets(record['goal_markets'])
+    if 'screen_markets' in record or 'frozen_screen' in record:
+        from intelligence_selection import screen_outlook
+        if record['model']!='DC + Bayesian (50/50)':
+            raise ValueError('Only hybrid forecasts may include frozen live screen')
+        if record.get('screen_policy_version')!='intelligence_selection.screen_outlook_default_80pct_10pct_spread':
+            raise ValueError('Unknown frozen screen policy version')
+        markets=record.get('screen_markets')
+        if not isinstance(markets,list) or not markets:
+            raise ValueError('Missing frozen screen markets')
+        goals=record.get('goal_markets',{}).get('markets',{})
+        keys=set()
+        for item in markets:
+            key=item.get('key')
+            if key in keys or key not in goals:
+                raise ValueError('Duplicate or unsupported frozen screen market')
+            keys.add(key)
+            if type(item.get('probability')) not in (float,int) or abs(item['probability']-goals[key])>1e-9:
+                raise ValueError('Frozen screen probability mismatch')
+            spread=item.get('model_range',{}).get('spread')
+            if type(spread) not in (float,int) or not math.isfinite(spread) or not 0<=spread<=1:
+                raise ValueError('Invalid model disagreement')
+        if record.get('frozen_screen')!=screen_outlook(markets):
+            raise ValueError('Frozen screen decision mismatch')
     return True
 
 def snapshot_id(record):
