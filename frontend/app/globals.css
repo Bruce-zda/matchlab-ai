@@ -228,3 +228,9 @@
 .ml-market-method-note{margin-top:22px;border:1px solid #28343d;border-radius:10px;padding:13px 16px}
 .ml-market-method-note p{font-size:12px;line-height:1.7;color:#9eacb5}
 @media(max-width:680px){.ml-market-list-premium{grid-template-columns:1fr}.ml-market-list-premium .ml-market-line{padding:14px}}
+
+
+/* Research stays accessible but no longer dominates the prediction */
+.ml-research-secondary{background:#0c141b;border-color:#26343d}
+.ml-research-secondary .detail-section-label{color:#9babb4}
+.ml-research-secondary .market-highlight{background:#101b23}
