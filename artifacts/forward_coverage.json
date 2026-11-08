@@ -1,21 +1,21 @@
 {
-  "fixture_count": 24,
-  "covered": 24,
+  "fixture_count": 23,
+  "covered": 23,
   "skipped": 0,
   "details": [
-    {
-      "league": "Serie A",
-      "home": "SSC Napoli",
-      "away": "SS Lazio",
-      "kickoff_utc": "2026-11-08T11:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
     {
       "league": "La Liga",
       "home": "Elche CF",
       "away": "Real Betis Balompi\u00e9",
       "kickoff_utc": "2026-11-08T13:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Crystal Palace FC",
+      "away": "Liverpool FC",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -37,8 +37,8 @@
     },
     {
       "league": "Premier League",
-      "home": "Crystal Palace FC",
-      "away": "Liverpool FC",
+      "home": "Sunderland AFC",
+      "away": "Chelsea FC",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -68,14 +68,6 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Sunderland AFC",
-      "away": "Chelsea FC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Bundesliga",
       "home": "1. FC K\u00f6ln",
       "away": "Bayer 04 Leverkusen",
@@ -93,14 +85,6 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Stade Brestois 29",
-      "away": "Olympique Lyonnais",
-      "kickoff_utc": "2026-11-08T16:15:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
       "home": "Angers SCO",
       "away": "OGC Nice",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
@@ -109,8 +93,8 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Le Mans FC",
-      "away": "AS Monaco FC",
+      "home": "Stade Brestois 29",
+      "away": "Olympique Lyonnais",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -124,10 +108,10 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Manchester United FC",
-      "away": "Aston Villa FC",
-      "kickoff_utc": "2026-11-08T16:30:00+00:00",
+      "league": "Ligue 1",
+      "home": "Le Mans FC",
+      "away": "AS Monaco FC",
+      "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -135,6 +119,14 @@
       "league": "Bundesliga",
       "home": "SC Freiburg",
       "away": "1. FC Union Berlin",
+      "kickoff_utc": "2026-11-08T16:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Manchester United FC",
+      "away": "Aston Villa FC",
       "kickoff_utc": "2026-11-08T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -196,5 +188,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-08T05:51:31.703489+00:00"
+  "collected_at_utc": "2026-11-08T11:40:08.797212+00:00"
 }
