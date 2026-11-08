@@ -1,40 +1,8 @@
 {
-  "fixture_count": 28,
-  "covered": 28,
+  "fixture_count": 24,
+  "covered": 24,
   "skipped": 0,
   "details": [
-    {
-      "league": "Ligue 1",
-      "home": "AJ Auxerre",
-      "away": "Paris FC",
-      "kickoff_utc": "2026-11-07T18:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
-      "home": "AS Roma",
-      "away": "US Sassuolo Calcio",
-      "kickoff_utc": "2026-11-07T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "La Liga",
-      "home": "Valencia CF",
-      "away": "Real Madrid CF",
-      "kickoff_utc": "2026-11-07T20:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Paris Saint-Germain FC",
-      "away": "ES Troyes AC",
-      "kickoff_utc": "2026-11-07T20:05:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
     {
       "league": "Serie A",
       "home": "SSC Napoli",
@@ -52,9 +20,41 @@
       "models": 0
     },
     {
+      "league": "Premier League",
+      "home": "Ipswich Town FC",
+      "away": "AFC Bournemouth",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
       "league": "Serie A",
       "home": "AC Monza",
       "away": "Atalanta BC",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Crystal Palace FC",
+      "away": "Liverpool FC",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Ligue 1",
+      "home": "Stade Rennais FC 1901",
+      "away": "Lille OSC",
+      "kickoff_utc": "2026-11-08T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Serie A",
+      "home": "Genoa CFC",
+      "away": "AC Milan",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -71,38 +71,6 @@
       "league": "Premier League",
       "home": "Sunderland AFC",
       "away": "Chelsea FC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Stade Rennais FC 1901",
-      "away": "Lille OSC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Premier League",
-      "home": "Crystal Palace FC",
-      "away": "Liverpool FC",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
-      "home": "Genoa CFC",
-      "away": "AC Milan",
-      "kickoff_utc": "2026-11-08T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Premier League",
-      "home": "Ipswich Town FC",
-      "away": "AFC Bournemouth",
       "kickoff_utc": "2026-11-08T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -125,22 +93,6 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Le Mans FC",
-      "away": "AS Monaco FC",
-      "kickoff_utc": "2026-11-08T16:15:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Le Havre AC",
-      "away": "FC Lorient",
-      "kickoff_utc": "2026-11-08T16:15:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
       "home": "Stade Brestois 29",
       "away": "Olympique Lyonnais",
       "kickoff_utc": "2026-11-08T16:15:00+00:00",
@@ -156,10 +108,18 @@
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "SC Freiburg",
-      "away": "1. FC Union Berlin",
-      "kickoff_utc": "2026-11-08T16:30:00+00:00",
+      "league": "Ligue 1",
+      "home": "Le Mans FC",
+      "away": "AS Monaco FC",
+      "kickoff_utc": "2026-11-08T16:15:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Ligue 1",
+      "home": "Le Havre AC",
+      "away": "FC Lorient",
+      "kickoff_utc": "2026-11-08T16:15:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -167,6 +127,14 @@
       "league": "Premier League",
       "home": "Manchester United FC",
       "away": "Aston Villa FC",
+      "kickoff_utc": "2026-11-08T16:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Bundesliga",
+      "home": "SC Freiburg",
+      "away": "1. FC Union Berlin",
       "kickoff_utc": "2026-11-08T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -181,16 +149,16 @@
     },
     {
       "league": "La Liga",
-      "home": "Villarreal CF",
-      "away": "Getafe CF",
+      "home": "RC Celta de Vigo",
+      "away": "Levante UD",
       "kickoff_utc": "2026-11-08T17:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
       "league": "La Liga",
-      "home": "RC Celta de Vigo",
-      "away": "Levante UD",
+      "home": "Villarreal CF",
+      "away": "Getafe CF",
       "kickoff_utc": "2026-11-08T17:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -204,17 +172,17 @@
       "models": 0
     },
     {
-      "league": "Serie A",
-      "home": "ACF Fiorentina",
-      "away": "Juventus FC",
+      "league": "Ligue 1",
+      "home": "Racing Club de Lens",
+      "away": "Olympique de Marseille",
       "kickoff_utc": "2026-11-08T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Ligue 1",
-      "home": "Racing Club de Lens",
-      "away": "Olympique de Marseille",
+      "league": "Serie A",
+      "home": "ACF Fiorentina",
+      "away": "Juventus FC",
       "kickoff_utc": "2026-11-08T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -228,5 +196,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-07T17:37:33.439501+00:00"
+  "collected_at_utc": "2026-11-08T05:51:31.703489+00:00"
 }
