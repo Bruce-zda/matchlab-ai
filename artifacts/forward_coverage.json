@@ -1,40 +1,7 @@
 {
-  "fixture_count": 4,
-  "covered": 4,
+  "fixture_count": 0,
+  "covered": 0,
   "skipped": 0,
-  "details": [
-    {
-      "league": "Bundesliga",
-      "home": "TSG 1899 Hoffenheim",
-      "away": "FC Schalke 04",
-      "kickoff_utc": "2026-11-08T18:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
-      "home": "ACF Fiorentina",
-      "away": "Juventus FC",
-      "kickoff_utc": "2026-11-08T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Racing Club de Lens",
-      "away": "Olympique de Marseille",
-      "kickoff_utc": "2026-11-08T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "La Liga",
-      "home": "Club Atl\u00e9tico de Madrid",
-      "away": "FC Barcelona",
-      "kickoff_utc": "2026-11-08T20:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    }
-  ],
-  "collected_at_utc": "2026-11-08T17:37:27.361066+00:00"
+  "details": [],
+  "collected_at_utc": "2026-11-09T06:05:54.669599+00:00"
 }
