@@ -8,25 +8,25 @@
       "home": "FC Bayern M\u00fcnchen",
       "away": "1. FC K\u00f6ln",
       "kickoff_utc": "2026-11-20T19:30:00+00:00",
-      "status": "recorded",
-      "models": 4
+      "status": "already_recorded",
+      "models": 0
     },
     {
       "league": "Ligue 1",
       "home": "ES Troyes AC",
       "away": "Le Havre AC",
       "kickoff_utc": "2026-11-20T19:45:00+00:00",
-      "status": "recorded",
-      "models": 4
+      "status": "already_recorded",
+      "models": 0
     },
     {
       "league": "La Liga",
       "home": "Athletic Club",
       "away": "RCD Espanyol de Barcelona",
       "kickoff_utc": "2026-11-20T20:00:00+00:00",
-      "status": "recorded",
-      "models": 4
+      "status": "already_recorded",
+      "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-14T05:51:32.436449+00:00"
+  "collected_at_utc": "2026-11-14T11:40:29.340383+00:00"
 }
