@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "record_count": 312,
-  "sha256": "91af219de4dfaab643356f5ee8c55278876be5b11542c799fa5728ef73caedc6",
+  "record_count": 324,
+  "sha256": "0d867a39e176e81a1301cc4293a27564823f7177c5da818d5dfc106847c80961",
   "scope": "complete_ordered_forecast_records",
   "note": "Verify against the forecast ledger in the same Git commit; Git commit history supplies publication evidence."
 }
