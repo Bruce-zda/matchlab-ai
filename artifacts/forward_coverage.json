@@ -61,14 +61,6 @@
     },
     {
       "league": "Bundesliga",
-      "home": "Bayer 04 Leverkusen",
-      "away": "SC Paderborn 07",
-      "kickoff_utc": "2026-11-21T14:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Bundesliga",
       "home": "Eintracht Frankfurt",
       "away": "TSG 1899 Hoffenheim",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
@@ -77,8 +69,8 @@
     },
     {
       "league": "Bundesliga",
-      "home": "Borussia M\u00f6nchengladbach",
-      "away": "Borussia Dortmund",
+      "home": "Bayer 04 Leverkusen",
+      "away": "SC Paderborn 07",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -95,6 +87,14 @@
       "league": "Bundesliga",
       "home": "SV 07 Elversberg",
       "away": "SC Freiburg",
+      "kickoff_utc": "2026-11-21T14:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Bundesliga",
+      "home": "Borussia M\u00f6nchengladbach",
+      "away": "Borussia Dortmund",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -172,17 +172,17 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Newcastle United FC",
-      "away": "Arsenal FC",
+      "league": "La Liga",
+      "home": "Sevilla FC",
+      "away": "Real Betis Balompi\u00e9",
       "kickoff_utc": "2026-11-21T17:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "La Liga",
-      "home": "Sevilla FC",
-      "away": "Real Betis Balompi\u00e9",
+      "league": "Premier League",
+      "home": "Newcastle United FC",
+      "away": "Arsenal FC",
       "kickoff_utc": "2026-11-21T17:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -236,5 +236,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-15T11:41:51.112390+00:00"
+  "collected_at_utc": "2026-11-15T17:39:32.530339+00:00"
 }
