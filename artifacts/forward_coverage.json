@@ -61,6 +61,14 @@
     },
     {
       "league": "Bundesliga",
+      "home": "Bayer 04 Leverkusen",
+      "away": "SC Paderborn 07",
+      "kickoff_utc": "2026-11-21T14:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Bundesliga",
       "home": "Eintracht Frankfurt",
       "away": "TSG 1899 Hoffenheim",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
@@ -69,8 +77,8 @@
     },
     {
       "league": "Bundesliga",
-      "home": "Bayer 04 Leverkusen",
-      "away": "SC Paderborn 07",
+      "home": "Borussia M\u00f6nchengladbach",
+      "away": "Borussia Dortmund",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -87,14 +95,6 @@
       "league": "Bundesliga",
       "home": "SV 07 Elversberg",
       "away": "SC Freiburg",
-      "kickoff_utc": "2026-11-21T14:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Bundesliga",
-      "home": "Borussia M\u00f6nchengladbach",
-      "away": "Borussia Dortmund",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -196,6 +196,14 @@
       "models": 0
     },
     {
+      "league": "Ligue 1",
+      "home": "Racing Club de Lens",
+      "away": "Toulouse FC",
+      "kickoff_utc": "2026-11-21T19:45:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
       "league": "Serie A",
       "home": "SSC Napoli",
       "away": "Torino FC",
@@ -215,14 +223,6 @@
       "league": "Ligue 1",
       "home": "RC Strasbourg Alsace",
       "away": "Stade Brestois 29",
-      "kickoff_utc": "2026-11-21T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Racing Club de Lens",
-      "away": "Toulouse FC",
       "kickoff_utc": "2026-11-21T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -308,17 +308,17 @@
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "SV Werder Bremen",
-      "away": "Hamburger SV",
+      "league": "Premier League",
+      "home": "Liverpool FC",
+      "away": "Manchester United FC",
       "kickoff_utc": "2026-11-22T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Liverpool FC",
-      "away": "Manchester United FC",
+      "league": "Bundesliga",
+      "home": "SV Werder Bremen",
+      "away": "Hamburger SV",
       "kickoff_utc": "2026-11-22T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -364,5 +364,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-16T12:08:46.012361+00:00"
+  "collected_at_utc": "2026-11-16T18:02:50.681611+00:00"
 }
