@@ -50680,5 +50680,2825 @@
     },
     "screen_policy_version": "intelligence_selection.screen_outlook_default_80pct_10pct_spread",
     "snapshot_id": "3cfdb4add73f6c1829ffb06d"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "ACF Fiorentina",
+    "kickoff_utc": "2026-11-23T19:45:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 558519,
+    "p_home": 0.25185611125042745,
+    "p_draw": 0.24262991451020147,
+    "p_away": 0.5055139742393711,
+    "expected_goals": {
+      "home": 1.1438328732956982,
+      "away": 1.7158199646244463
+    },
+    "historical_context": {
+      "source": "historical league results used for training",
+      "home": {
+        "matches": [
+          {
+            "date": "2025-04-19",
+            "opponent": "SSC Napoli",
+            "venue": "home",
+            "gf": 0,
+            "ga": 1,
+            "result": "L"
+          },
+          {
+            "date": "2025-04-27",
+            "opponent": "Juventus FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2025-05-04",
+            "opponent": "Atalanta BC",
+            "venue": "home",
+            "gf": 0,
+            "ga": 4,
+            "result": "L"
+          },
+          {
+            "date": "2025-05-11",
+            "opponent": "Udinese Calcio",
+            "venue": "away",
+            "gf": 2,
+            "ga": 1,
+            "result": "W"
+          },
+          {
+            "date": "2025-05-18",
+            "opponent": "Empoli FC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-22",
+            "opponent": "FC Internazionale Milano",
+            "venue": "away",
+            "gf": 1,
+            "ga": 4,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-29",
+            "opponent": "Udinese Calcio",
+            "venue": "home",
+            "gf": 2,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-06",
+            "opponent": "Parma Calcio 1913",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-13",
+            "opponent": "US Lecce",
+            "venue": "away",
+            "gf": 2,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-18",
+            "opponent": "US Sassuolo Calcio",
+            "venue": "home",
+            "gf": 2,
+            "ga": 1,
+            "result": "W"
+          }
+        ],
+        "played": 10,
+        "wins": 2,
+        "draws": 1,
+        "losses": 7,
+        "goals_for": 11,
+        "goals_against": 23
+      },
+      "away": {
+        "matches": [
+          {
+            "date": "2026-04-26",
+            "opponent": "US Sassuolo Calcio",
+            "venue": "home",
+            "gf": 0,
+            "ga": 0,
+            "result": "D"
+          },
+          {
+            "date": "2026-05-04",
+            "opponent": "AS Roma",
+            "venue": "away",
+            "gf": 0,
+            "ga": 4,
+            "result": "L"
+          },
+          {
+            "date": "2026-05-10",
+            "opponent": "Genoa CFC",
+            "venue": "home",
+            "gf": 0,
+            "ga": 0,
+            "result": "D"
+          },
+          {
+            "date": "2026-05-17",
+            "opponent": "Juventus FC",
+            "venue": "away",
+            "gf": 2,
+            "ga": 0,
+            "result": "W"
+          },
+          {
+            "date": "2026-05-22",
+            "opponent": "Atalanta BC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-08-24",
+            "opponent": "AS Roma",
+            "venue": "away",
+            "gf": 0,
+            "ga": 4,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-29",
+            "opponent": "Frosinone Calcio",
+            "venue": "home",
+            "gf": 0,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-05",
+            "opponent": "Torino FC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-11",
+            "opponent": "Venezia FC",
+            "venue": "away",
+            "gf": 4,
+            "ga": 2,
+            "result": "W"
+          },
+          {
+            "date": "2026-09-20",
+            "opponent": "SSC Napoli",
+            "venue": "home",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          }
+        ],
+        "played": 10,
+        "wins": 2,
+        "draws": 4,
+        "losses": 4,
+        "goals_for": 9,
+        "goals_against": 17
+      },
+      "head_to_head": [
+        {
+          "date": "2023-04-23",
+          "home": "AC Monza",
+          "away": "ACF Fiorentina",
+          "home_goals": 3,
+          "away_goals": 2
+        },
+        {
+          "date": "2023-12-22",
+          "home": "AC Monza",
+          "away": "ACF Fiorentina",
+          "home_goals": 0,
+          "away_goals": 1
+        },
+        {
+          "date": "2024-05-13",
+          "home": "ACF Fiorentina",
+          "away": "AC Monza",
+          "home_goals": 2,
+          "away_goals": 1
+        },
+        {
+          "date": "2024-09-01",
+          "home": "ACF Fiorentina",
+          "away": "AC Monza",
+          "home_goals": 2,
+          "away_goals": 2
+        },
+        {
+          "date": "2025-01-13",
+          "home": "AC Monza",
+          "away": "ACF Fiorentina",
+          "home_goals": 2,
+          "away_goals": 1
+        }
+      ]
+    },
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5609324007783023,
+        "btts_no": 0.4390675992216978,
+        "over_1_5": 0.780941229215683,
+        "under_1_5": 0.21905877078431701,
+        "over_2_5": 0.5446434770007955,
+        "under_2_5": 0.4553565229992045,
+        "over_3_5": 0.321359655305211,
+        "under_3_5": 0.6786403446947891,
+        "home_over_0_5": 0.6814044576511616,
+        "home_under_0_5": 0.31859554234883836,
+        "home_over_1_5": 0.31698440302708863,
+        "home_under_1_5": 0.6830155969729114,
+        "home_over_2_5": 0.10856658394347414,
+        "home_under_2_5": 0.8914334160565258,
+        "away_over_0_5": 0.82018377608642,
+        "away_under_0_5": 0.17981622391358,
+        "away_over_1_5": 0.5116515091321195,
+        "away_under_1_5": 0.48834849086788046,
+        "away_over_2_5": 0.2469585974466055,
+        "away_under_2_5": 0.7530414025533945
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.09924469822427748,
+          "push": 0.0,
+          "loss": 0.9007553017757225
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.09924469822427748,
+          "push": 0.15261141302615,
+          "loss": 0.7481438887495726
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.2518561112504275,
+          "push": 0.0,
+          "loss": 0.7481438887495726
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.25185611125042745,
+          "push": 0.2426299145102014,
+          "loss": 0.5055139742393712
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.4944860257606289,
+          "push": 0.0,
+          "loss": 0.5055139742393712
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.494486025760629,
+          "push": 0.22995443316239342,
+          "loss": 0.27555954107697767
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.7244404589230223,
+          "push": 0.0,
+          "loss": 0.27555954107697767
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.27555954107697767,
+          "push": 0.0,
+          "loss": 0.7244404589230223
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.27555954107697767,
+          "push": 0.22995443316239342,
+          "loss": 0.494486025760629
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.5055139742393712,
+          "push": 0.0,
+          "loss": 0.4944860257606289
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.5055139742393712,
+          "push": 0.2426299145102014,
+          "loss": 0.25185611125042745
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.7481438887495726,
+          "push": 0.0,
+          "loss": 0.2518561112504275
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.7481438887495726,
+          "push": 0.15261141302615,
+          "loss": 0.09924469822427748
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.9007553017757225,
+          "push": 0.0,
+          "loss": 0.09924469822427748
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11449086523662871
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09645940533503995
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.09624148526256851
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08432998175433952
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.06430362219553883
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.06347311848102796
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "4eed03a7220e7421422e28f0"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "ACF Fiorentina",
+    "kickoff_utc": "2026-11-23T19:45:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 558519,
+    "p_home": 0.30706211100245534,
+    "p_draw": 0.2678140398342711,
+    "p_away": 0.42512384916327367,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5036501396536829,
+        "btts_no": 0.49634986034631723,
+        "over_1_5": 0.711699924254336,
+        "under_1_5": 0.28830007574566396,
+        "over_2_5": 0.4549348812080568,
+        "under_2_5": 0.5450651187919432,
+        "over_3_5": 0.24138154832619782,
+        "under_3_5": 0.7586184516738022,
+        "home_over_0_5": 0.6748545870826919,
+        "home_under_0_5": 0.32514541291730814,
+        "home_over_1_5": 0.30955931707573464,
+        "home_under_1_5": 0.6904406829242653,
+        "home_over_2_5": 0.10435784569069526,
+        "home_under_2_5": 0.8956421543093047,
+        "away_over_0_5": 0.7463091298392098,
+        "away_under_0_5": 0.25369087016079017,
+        "away_over_1_5": 0.3983368884809371,
+        "away_under_1_5": 0.6016631115190629,
+        "away_over_2_5": 0.15969077425704706,
+        "away_under_2_5": 0.840309225742953
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.12210022765293861,
+          "push": 0.0,
+          "loss": 0.8778997723470613
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.12210022765293861,
+          "push": 0.18496188334951666,
+          "loss": 0.6929378889975447
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.3070621110024553,
+          "push": 0.0,
+          "loss": 0.6929378889975448
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.3070621110024553,
+          "push": 0.2678140398342711,
+          "loss": 0.4251238491632736
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.5748761508367265,
+          "push": 0.0,
+          "loss": 0.4251238491632736
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.5748761508367264,
+          "push": 0.22581645430988792,
+          "loss": 0.19930739485338567
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.8006926051466142,
+          "push": 0.0,
+          "loss": 0.19930739485338567
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.19930739485338567,
+          "push": 0.0,
+          "loss": 0.8006926051466142
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.19930739485338567,
+          "push": 0.22581645430988792,
+          "loss": 0.5748761508367264
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.4251238491632736,
+          "push": 0.0,
+          "loss": 0.5748761508367265
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.4251238491632736,
+          "push": 0.2678140398342711,
+          "loss": 0.3070621110024553
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.6929378889975448,
+          "push": 0.0,
+          "loss": 0.3070621110024553
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.6929378889975447,
+          "push": 0.18496188334951666,
+          "loss": 0.12210022765293861
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.8778997723470613,
+          "push": 0.0,
+          "loss": 0.12210022765293861
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.1271126138618963
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.11314157810019684
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09267207491368579
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08717629673152702
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08248642273178142
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.07759468935043784
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "79f0390dc82450250a880dfb"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "ACF Fiorentina",
+    "kickoff_utc": "2026-11-23T19:45:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Elo",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 558519,
+    "p_home": 0.2722555808716381,
+    "p_draw": 0.21799998444411042,
+    "p_away": 0.5097444346842515,
+    "snapshot_id": "b3450790994d5ad12a38412a"
+  },
+  {
+    "league": "Serie A",
+    "home": "AC Monza",
+    "away": "ACF Fiorentina",
+    "kickoff_utc": "2026-11-23T19:45:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 558519,
+    "p_home": 0.2794591111264414,
+    "p_draw": 0.25522197717223627,
+    "p_away": 0.46531891170132234,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5322912702159927,
+        "btts_no": 0.46770872978400746,
+        "over_1_5": 0.7463205767350094,
+        "under_1_5": 0.2536794232649906,
+        "over_2_5": 0.4997891791044261,
+        "under_2_5": 0.5002108208955739,
+        "over_3_5": 0.2813706018157044,
+        "under_3_5": 0.7186293981842956,
+        "home_over_0_5": 0.6781295223669267,
+        "home_under_0_5": 0.3218704776330733,
+        "home_over_1_5": 0.31327186005141155,
+        "home_under_1_5": 0.6867281399485885,
+        "home_over_2_5": 0.10646221481708468,
+        "home_under_2_5": 0.8935377851829154,
+        "away_over_0_5": 0.7832464529628148,
+        "away_under_0_5": 0.2167535470371852,
+        "away_over_1_5": 0.4549941988065283,
+        "away_under_1_5": 0.5450058011934718,
+        "away_over_2_5": 0.20332468585182628,
+        "away_under_2_5": 0.7966753141481737
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.11067246293860801,
+          "push": 0.0,
+          "loss": 0.889327537061392
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.11067246293860804,
+          "push": 0.1687866481878333,
+          "loss": 0.7205408888735587
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.2794591111264413,
+          "push": 0.0,
+          "loss": 0.7205408888735587
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.2794591111264413,
+          "push": 0.2552219771722363,
+          "loss": 0.46531891170132234
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.5346810882986777,
+          "push": 0.0,
+          "loss": 0.4653189117013224
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.5346810882986776,
+          "push": 0.2278854437361407,
+          "loss": 0.2374334679651817
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.7625665320348183,
+          "push": 0.0,
+          "loss": 0.2374334679651817
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.2374334679651817,
+          "push": 0.0,
+          "loss": 0.7625665320348183
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.2374334679651817,
+          "push": 0.2278854437361407,
+          "loss": 0.5346810882986776
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.4653189117013224,
+          "push": 0.0,
+          "loss": 0.5346810882986777
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.46531891170132234,
+          "push": 0.2552219771722363,
+          "loss": 0.2794591111264413
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.7205408888735587,
+          "push": 0.0,
+          "loss": 0.2794591111264413
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.7205408888735587,
+          "push": 0.1687866481878333,
+          "loss": 0.11067246293860804
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.889327537061392,
+          "push": 0.0,
+          "loss": 0.11067246293860801
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12080173954926249
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.10469153168138268
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.09181785103328348
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.08096233555238867
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07807259669735686
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07091529488625102
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "screen_markets": [
+      {
+        "key": "away_over_0_5",
+        "probability": 0.7832464529628148,
+        "model_range": {
+          "spread": 0.07387464624721019
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_1_5",
+        "probability": 0.4549941988065283,
+        "model_range": {
+          "spread": 0.11331462065118242
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_2_5",
+        "probability": 0.20332468585182628,
+        "model_range": {
+          "spread": 0.08726782318955845
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_0_5",
+        "probability": 0.2167535470371852,
+        "model_range": {
+          "spread": 0.07387464624721019
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_1_5",
+        "probability": 0.5450058011934718,
+        "model_range": {
+          "spread": 0.11331462065118247
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_2_5",
+        "probability": 0.7966753141481737,
+        "model_range": {
+          "spread": 0.0872678231895585
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_no",
+        "probability": 0.46770872978400746,
+        "model_range": {
+          "spread": 0.05728226112461943
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_yes",
+        "probability": 0.5322912702159927,
+        "model_range": {
+          "spread": 0.05728226112461943
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_0_5",
+        "probability": 0.6781295223669267,
+        "model_range": {
+          "spread": 0.0065498705684697844
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_1_5",
+        "probability": 0.31327186005141155,
+        "model_range": {
+          "spread": 0.0074250859513539935
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_2_5",
+        "probability": 0.10646221481708468,
+        "model_range": {
+          "spread": 0.004208738252778885
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_0_5",
+        "probability": 0.3218704776330733,
+        "model_range": {
+          "spread": 0.0065498705684697844
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_1_5",
+        "probability": 0.6867281399485885,
+        "model_range": {
+          "spread": 0.007425085951353938
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_2_5",
+        "probability": 0.8935377851829154,
+        "model_range": {
+          "spread": 0.004208738252778899
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_1_5",
+        "probability": 0.7463205767350094,
+        "model_range": {
+          "spread": 0.06924130496134695
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_2_5",
+        "probability": 0.4997891791044261,
+        "model_range": {
+          "spread": 0.08970859579273871
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_3_5",
+        "probability": 0.2813706018157044,
+        "model_range": {
+          "spread": 0.07997810697901317
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_1_5",
+        "probability": 0.2536794232649906,
+        "model_range": {
+          "spread": 0.06924130496134695
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_2_5",
+        "probability": 0.5002108208955739,
+        "model_range": {
+          "spread": 0.08970859579273871
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_3_5",
+        "probability": 0.7186293981842956,
+        "model_range": {
+          "spread": 0.07997810697901309
+        },
+        "conditional": false
+      }
+    ],
+    "frozen_screen": {
+      "status": "RESEARCH_SCREEN_ONLY",
+      "candidate": {
+        "market": "home_under_2_5",
+        "probability": 0.8935377851829154,
+        "model_disagreement": 0.004208738252778899,
+        "minimum_hypothetical_scenario_probability": null
+      },
+      "candidates_considered": 1,
+      "expert_pick": false,
+      "historical_reliability": "NOT_ESTABLISHED_FOR_THIS_SELECTION_POLICY",
+      "calibration": "NOT_VERIFIED",
+      "note": "80% is an uncalibrated screening threshold, NOT a measured win rate. Historical out-of-sample and forward testing are required before endorsement."
+    },
+    "screen_policy_version": "intelligence_selection.screen_outlook_default_80pct_10pct_spread",
+    "snapshot_id": "73f656e7108a00f70e755a9f"
+  },
+  {
+    "league": "La Liga",
+    "home": "Levante UD",
+    "away": "Elche CF",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 564757,
+    "p_home": 0.4825079321813345,
+    "p_draw": 0.2297370625645086,
+    "p_away": 0.287755005254157,
+    "expected_goals": {
+      "home": 1.8224429654258627,
+      "away": 1.3638957257743074
+    },
+    "historical_context": {
+      "source": "historical league results used for training",
+      "home": {
+        "matches": [
+          {
+            "date": "2026-05-08",
+            "opponent": "CA Osasuna",
+            "venue": "home",
+            "gf": 3,
+            "ga": 2,
+            "result": "W"
+          },
+          {
+            "date": "2026-05-12",
+            "opponent": "RC Celta de Vigo",
+            "venue": "away",
+            "gf": 3,
+            "ga": 2,
+            "result": "W"
+          },
+          {
+            "date": "2026-05-17",
+            "opponent": "RCD Mallorca",
+            "venue": "home",
+            "gf": 2,
+            "ga": 0,
+            "result": "W"
+          },
+          {
+            "date": "2026-05-23",
+            "opponent": "Real Betis Balompi\u00e9",
+            "venue": "away",
+            "gf": 1,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-16",
+            "opponent": "RCD Espanyol de Barcelona",
+            "venue": "away",
+            "gf": 0,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-24",
+            "opponent": "CA Osasuna",
+            "venue": "away",
+            "gf": 0,
+            "ga": 0,
+            "result": "D"
+          },
+          {
+            "date": "2026-08-29",
+            "opponent": "Real Betis Balompi\u00e9",
+            "venue": "home",
+            "gf": 5,
+            "ga": 2,
+            "result": "W"
+          },
+          {
+            "date": "2026-09-06",
+            "opponent": "M\u00e1laga CF",
+            "venue": "away",
+            "gf": 0,
+            "ga": 0,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-13",
+            "opponent": "FC Barcelona",
+            "venue": "home",
+            "gf": 2,
+            "ga": 4,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-20",
+            "opponent": "Villarreal CF",
+            "venue": "away",
+            "gf": 1,
+            "ga": 3,
+            "result": "L"
+          }
+        ],
+        "played": 10,
+        "wins": 4,
+        "draws": 2,
+        "losses": 4,
+        "goals_for": 17,
+        "goals_against": 18
+      },
+      "away": {
+        "matches": [
+          {
+            "date": "2026-05-12",
+            "opponent": "Real Betis Balompi\u00e9",
+            "venue": "away",
+            "gf": 1,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2026-05-17",
+            "opponent": "Getafe CF",
+            "venue": "home",
+            "gf": 1,
+            "ga": 0,
+            "result": "W"
+          },
+          {
+            "date": "2026-05-23",
+            "opponent": "Girona FC",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-08-17",
+            "opponent": "RC Deportivo La Coru\u00f1a",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-08-23",
+            "opponent": "FC Barcelona",
+            "venue": "home",
+            "gf": 0,
+            "ga": 5,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-28",
+            "opponent": "Real Racing Club de Santander",
+            "venue": "away",
+            "gf": 2,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-07",
+            "opponent": "Real Sociedad de F\u00fatbol",
+            "venue": "home",
+            "gf": 2,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-12",
+            "opponent": "Athletic Club",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-15",
+            "opponent": "Real Madrid CF",
+            "venue": "home",
+            "gf": 2,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-18",
+            "opponent": "RCD Espanyol de Barcelona",
+            "venue": "away",
+            "gf": 3,
+            "ga": 1,
+            "result": "W"
+          }
+        ],
+        "played": 10,
+        "wins": 2,
+        "draws": 3,
+        "losses": 5,
+        "goals_for": 14,
+        "goals_against": 20
+      },
+      "head_to_head": [
+        {
+          "date": "2021-04-24",
+          "home": "Elche CF",
+          "away": "Levante UD",
+          "home_goals": 1,
+          "away_goals": 0
+        },
+        {
+          "date": "2021-09-18",
+          "home": "Elche CF",
+          "away": "Levante UD",
+          "home_goals": 1,
+          "away_goals": 1
+        },
+        {
+          "date": "2022-02-25",
+          "home": "Levante UD",
+          "away": "Elche CF",
+          "home_goals": 3,
+          "away_goals": 0
+        },
+        {
+          "date": "2025-08-29",
+          "home": "Elche CF",
+          "away": "Levante UD",
+          "home_goals": 2,
+          "away_goals": 0
+        },
+        {
+          "date": "2026-01-23",
+          "home": "Levante UD",
+          "away": "Elche CF",
+          "home_goals": 3,
+          "away_goals": 2
+        }
+      ]
+    },
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6246378415463434,
+        "btts_no": 0.3753621584536566,
+        "over_1_5": 0.827616586479088,
+        "under_1_5": 0.17238341352091202,
+        "over_2_5": 0.6172377826838334,
+        "under_2_5": 0.38276221731616655,
+        "over_3_5": 0.3944377332792916,
+        "under_3_5": 0.6055622667207083,
+        "home_over_0_5": 0.8383695774941046,
+        "home_under_0_5": 0.16163042250589543,
+        "home_over_1_5": 0.5438073509994252,
+        "home_under_1_5": 0.45619264900057477,
+        "home_over_2_5": 0.2753959222217213,
+        "home_under_2_5": 0.7246040777782787,
+        "away_over_0_5": 0.7443371572912609,
+        "away_under_0_5": 0.25566284270873907,
+        "away_over_1_5": 0.3956396988815027,
+        "away_under_1_5": 0.6043603011184973,
+        "away_over_2_5": 0.1578462123247858,
+        "away_under_2_5": 0.8421537876752142
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.26632247451422975,
+          "push": 0.0,
+          "loss": 0.7336775254857703
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.26632247451422975,
+          "push": 0.21618545766710473,
+          "loss": 0.5174920678186655
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.4825079321813346,
+          "push": 0.0,
+          "loss": 0.5174920678186655
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.4825079321813346,
+          "push": 0.2297370625645086,
+          "loss": 0.2877550052541569
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.7122449947458431,
+          "push": 0.0,
+          "loss": 0.2877550052541569
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.7122449947458431,
+          "push": 0.16163772072167648,
+          "loss": 0.1261172845324804
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.8738827154675197,
+          "push": 0.0,
+          "loss": 0.1261172845324804
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.1261172845324804,
+          "push": 0.0,
+          "loss": 0.8738827154675197
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.1261172845324804,
+          "push": 0.16163772072167648,
+          "loss": 0.7122449947458431
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.2877550052541569,
+          "push": 0.0,
+          "loss": 0.7122449947458431
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.2877550052541569,
+          "push": 0.2297370625645086,
+          "loss": 0.4825079321813346
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.5174920678186655,
+          "push": 0.0,
+          "loss": 0.4825079321813346
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.5174920678186655,
+          "push": 0.21618545766710473,
+          "loss": 0.26632247451422975
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.7336775254857703,
+          "push": 0.0,
+          "loss": 0.26632247451422975
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10332131319712035
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09359438302291723
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07470040270533902
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.07004497884607909
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.06862282889682203
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.0638264894807201
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "109d5bf2e2bc65367ec40aa4"
+  },
+  {
+    "league": "La Liga",
+    "home": "Levante UD",
+    "away": "Elche CF",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 564757,
+    "p_home": 0.5266488469835566,
+    "p_draw": 0.23199257527980666,
+    "p_away": 0.2413585777366366,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5671530820475076,
+        "btts_no": 0.43284691795249225,
+        "over_1_5": 0.7907869852210034,
+        "under_1_5": 0.20921301477899656,
+        "over_2_5": 0.5618798759700366,
+        "under_2_5": 0.43812012402996336,
+        "over_3_5": 0.3380026748924381,
+        "under_3_5": 0.6619973251075619,
+        "home_over_0_5": 0.8336404455940183,
+        "home_under_0_5": 0.1663595544059817,
+        "home_over_1_5": 0.5352572994371999,
+        "home_under_1_5": 0.4647427005628001,
+        "home_over_2_5": 0.26766671160367067,
+        "home_under_2_5": 0.7323332883963294,
+        "away_over_0_5": 0.6803329721404979,
+        "away_under_0_5": 0.3196670278595021,
+        "away_over_1_5": 0.3157606024485348,
+        "away_under_1_5": 0.6842393975514651,
+        "away_over_2_5": 0.10786769958519886,
+        "away_under_2_5": 0.8921323004148012
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.2941590196168809,
+          "push": 0.0,
+          "loss": 0.7058409803831192
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.2941590196168809,
+          "push": 0.23248982736667584,
+          "loss": 0.4733511530164433
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.5266488469835567,
+          "push": 0.0,
+          "loss": 0.4733511530164433
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.5266488469835567,
+          "push": 0.2319925752798067,
+          "loss": 0.24135857773663658
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.7586414222633635,
+          "push": 0.0,
+          "loss": 0.24135857773663658
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.7586414222633634,
+          "push": 0.14783025382101878,
+          "loss": 0.09352832391561786
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.9064716760843822,
+          "push": 0.0,
+          "loss": 0.09352832391561786
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.09352832391561786,
+          "push": 0.0,
+          "loss": 0.9064716760843822
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.09352832391561786,
+          "push": 0.14783025382101878,
+          "loss": 0.7586414222633634
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.24135857773663658,
+          "push": 0.0,
+          "loss": 0.7586414222633635
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.24135857773663658,
+          "push": 0.2319925752798067,
+          "loss": 0.5266488469835567
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.4733511530164433,
+          "push": 0.0,
+          "loss": 0.5266488469835567
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.4733511530164433,
+          "push": 0.23248982736667584,
+          "loss": 0.2941590196168809
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.7058409803831192,
+          "push": 0.0,
+          "loss": 0.2941590196168809
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10878225067053468
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09755613471373517
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.09538325349531748
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.08553988789592126
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.06203173842003604
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06065009697068783
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "ff678a851c23d10bb1ca8b6c"
+  },
+  {
+    "league": "La Liga",
+    "home": "Levante UD",
+    "away": "Elche CF",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Elo",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 564757,
+    "p_home": 0.48616153393879086,
+    "p_draw": 0.2304673401212062,
+    "p_away": 0.28337112594000297,
+    "snapshot_id": "b02a398e374327f3c67f5998"
+  },
+  {
+    "league": "La Liga",
+    "home": "Levante UD",
+    "away": "Elche CF",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 564757,
+    "p_home": 0.5045783895824456,
+    "p_draw": 0.23086481892215763,
+    "p_away": 0.2645567914953968,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5958954617969257,
+        "btts_no": 0.40410453820307446,
+        "over_1_5": 0.8092017858500458,
+        "under_1_5": 0.19079821414995424,
+        "over_2_5": 0.5895588293269352,
+        "under_2_5": 0.41044117067306485,
+        "over_3_5": 0.36622020408586486,
+        "under_3_5": 0.6337797959141351,
+        "home_over_0_5": 0.8360050115440615,
+        "home_under_0_5": 0.16399498845593852,
+        "home_over_1_5": 0.5395323252183126,
+        "home_under_1_5": 0.4604676747816874,
+        "home_over_2_5": 0.271531316912696,
+        "home_under_2_5": 0.728468683087304,
+        "away_over_0_5": 0.7123350647158795,
+        "away_under_0_5": 0.2876649352841205,
+        "away_over_1_5": 0.3557001506650188,
+        "away_under_1_5": 0.6442998493349812,
+        "away_over_2_5": 0.13285695595499233,
+        "away_under_2_5": 0.8671430440450076
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.28024074706555524,
+          "push": 0.0,
+          "loss": 0.7197592529344449
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.2802407470655553,
+          "push": 0.22433764251689026,
+          "loss": 0.49542161041755445
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.5045783895824457,
+          "push": 0.0,
+          "loss": 0.4954216104175544
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.5045783895824457,
+          "push": 0.2308648189221576,
+          "loss": 0.26455679149539674
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.7354432085046033,
+          "push": 0.0,
+          "loss": 0.26455679149539674
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.7354432085046032,
+          "push": 0.1547339872713476,
+          "loss": 0.10982280422404911
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.8901771957759508,
+          "push": 0.0,
+          "loss": 0.10982280422404911
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.10982280422404911,
+          "push": 0.0,
+          "loss": 0.8901771957759508
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.10982280422404914,
+          "push": 0.15473398727134763,
+          "loss": 0.7354432085046033
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.26455679149539674,
+          "push": 0.0,
+          "loss": 0.7354432085046033
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.26455679149539674,
+          "push": 0.2308648189221576,
+          "loss": 0.5045783895824457
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.4954216104175544,
+          "push": 0.0,
+          "loss": 0.5045783895824457
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.49542161041755445,
+          "push": 0.22433764251689026,
+          "loss": 0.2802407470655553
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.7197592529344449,
+          "push": 0.0,
+          "loss": 0.28024074706555524
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10605178193382751
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0955752588683262
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.08504182810032826
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.07708135839637165
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.06603835863305757
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.05972833678216949
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "screen_markets": [
+      {
+        "key": "away_over_0_5",
+        "probability": 0.7123350647158795,
+        "model_range": {
+          "spread": 0.064004185150763
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_1_5",
+        "probability": 0.3557001506650188,
+        "model_range": {
+          "spread": 0.07987909643296787
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_2_5",
+        "probability": 0.13285695595499233,
+        "model_range": {
+          "spread": 0.049978512739586936
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_0_5",
+        "probability": 0.2876649352841205,
+        "model_range": {
+          "spread": 0.064004185150763
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_1_5",
+        "probability": 0.6442998493349812,
+        "model_range": {
+          "spread": 0.07987909643296787
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_2_5",
+        "probability": 0.8671430440450076,
+        "model_range": {
+          "spread": 0.04997851273958698
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_no",
+        "probability": 0.40410453820307446,
+        "model_range": {
+          "spread": 0.057484759498835636
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_yes",
+        "probability": 0.5958954617969257,
+        "model_range": {
+          "spread": 0.0574847594988358
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_0_5",
+        "probability": 0.8360050115440615,
+        "model_range": {
+          "spread": 0.004729131900086281
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_1_5",
+        "probability": 0.5395323252183126,
+        "model_range": {
+          "spread": 0.008550051562225325
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_2_5",
+        "probability": 0.271531316912696,
+        "model_range": {
+          "spread": 0.007729210618050653
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_0_5",
+        "probability": 0.16399498845593852,
+        "model_range": {
+          "spread": 0.004729131900086281
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_1_5",
+        "probability": 0.4604676747816874,
+        "model_range": {
+          "spread": 0.008550051562225325
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_2_5",
+        "probability": 0.728468683087304,
+        "model_range": {
+          "spread": 0.007729210618050653
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_1_5",
+        "probability": 0.8092017858500458,
+        "model_range": {
+          "spread": 0.03682960125808454
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_2_5",
+        "probability": 0.5895588293269352,
+        "model_range": {
+          "spread": 0.05535790671379681
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_3_5",
+        "probability": 0.36622020408586486,
+        "model_range": {
+          "spread": 0.056435058386853476
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_1_5",
+        "probability": 0.19079821414995424,
+        "model_range": {
+          "spread": 0.03682960125808454
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_2_5",
+        "probability": 0.41044117067306485,
+        "model_range": {
+          "spread": 0.05535790671379681
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_3_5",
+        "probability": 0.6337797959141351,
+        "model_range": {
+          "spread": 0.05643505838685359
+        },
+        "conditional": false
+      }
+    ],
+    "frozen_screen": {
+      "status": "RESEARCH_SCREEN_ONLY",
+      "candidate": {
+        "market": "away_under_2_5",
+        "probability": 0.8671430440450076,
+        "model_disagreement": 0.04997851273958698,
+        "minimum_hypothetical_scenario_probability": null
+      },
+      "candidates_considered": 3,
+      "expert_pick": false,
+      "historical_reliability": "NOT_ESTABLISHED_FOR_THIS_SELECTION_POLICY",
+      "calibration": "NOT_VERIFIED",
+      "note": "80% is an uncalibrated screening threshold, NOT a measured win rate. Historical out-of-sample and forward testing are required before endorsement."
+    },
+    "screen_policy_version": "intelligence_selection.screen_outlook_default_80pct_10pct_spread",
+    "snapshot_id": "c44e6663f81b43ba09a202d5"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brentford FC",
+    "away": "Everton FC",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 560649,
+    "p_home": 0.46476595884055216,
+    "p_draw": 0.2852005574071279,
+    "p_away": 0.2500334837523198,
+    "expected_goals": {
+      "home": 1.4620738348956464,
+      "away": 1.0097253851277803
+    },
+    "historical_context": {
+      "source": "historical league results used for training",
+      "home": {
+        "matches": [
+          {
+            "date": "2026-04-27",
+            "opponent": "Manchester United FC",
+            "venue": "away",
+            "gf": 1,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2026-05-02",
+            "opponent": "West Ham United FC",
+            "venue": "home",
+            "gf": 3,
+            "ga": 0,
+            "result": "W"
+          },
+          {
+            "date": "2026-05-09",
+            "opponent": "Manchester City FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-05-17",
+            "opponent": "Crystal Palace FC",
+            "venue": "home",
+            "gf": 2,
+            "ga": 2,
+            "result": "D"
+          },
+          {
+            "date": "2026-05-24",
+            "opponent": "Liverpool FC",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-08-22",
+            "opponent": "Tottenham Hotspur FC",
+            "venue": "home",
+            "gf": 3,
+            "ga": 0,
+            "result": "W"
+          },
+          {
+            "date": "2026-08-30",
+            "opponent": "Leeds United FC",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-05",
+            "opponent": "Sunderland AFC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-12",
+            "opponent": "AFC Bournemouth",
+            "venue": "away",
+            "gf": 2,
+            "ga": 2,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-18",
+            "opponent": "Chelsea FC",
+            "venue": "home",
+            "gf": 3,
+            "ga": 0,
+            "result": "W"
+          }
+        ],
+        "played": 10,
+        "wins": 3,
+        "draws": 5,
+        "losses": 2,
+        "goals_for": 17,
+        "goals_against": 12
+      },
+      "away": {
+        "matches": [
+          {
+            "date": "2026-04-25",
+            "opponent": "West Ham United FC",
+            "venue": "away",
+            "gf": 1,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2026-05-04",
+            "opponent": "Manchester City FC",
+            "venue": "home",
+            "gf": 3,
+            "ga": 3,
+            "result": "D"
+          },
+          {
+            "date": "2026-05-10",
+            "opponent": "Crystal Palace FC",
+            "venue": "away",
+            "gf": 2,
+            "ga": 2,
+            "result": "D"
+          },
+          {
+            "date": "2026-05-17",
+            "opponent": "Sunderland AFC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-05-24",
+            "opponent": "Tottenham Hotspur FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 1,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-22",
+            "opponent": "Crystal Palace FC",
+            "venue": "home",
+            "gf": 2,
+            "ga": 0,
+            "result": "W"
+          },
+          {
+            "date": "2026-08-29",
+            "opponent": "AFC Bournemouth",
+            "venue": "away",
+            "gf": 1,
+            "ga": 1,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-06",
+            "opponent": "Manchester United FC",
+            "venue": "home",
+            "gf": 2,
+            "ga": 2,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-12",
+            "opponent": "Tottenham Hotspur FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 0,
+            "result": "D"
+          },
+          {
+            "date": "2026-09-19",
+            "opponent": "Ipswich Town FC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 0,
+            "result": "W"
+          }
+        ],
+        "played": 10,
+        "wins": 2,
+        "draws": 5,
+        "losses": 3,
+        "goals_for": 13,
+        "goals_against": 14
+      },
+      "head_to_head": [
+        {
+          "date": "2024-04-27",
+          "home": "Everton FC",
+          "away": "Brentford FC",
+          "home_goals": 1,
+          "away_goals": 0
+        },
+        {
+          "date": "2024-11-23",
+          "home": "Everton FC",
+          "away": "Brentford FC",
+          "home_goals": 0,
+          "away_goals": 0
+        },
+        {
+          "date": "2025-02-26",
+          "home": "Brentford FC",
+          "away": "Everton FC",
+          "home_goals": 1,
+          "away_goals": 1
+        },
+        {
+          "date": "2026-01-04",
+          "home": "Everton FC",
+          "away": "Brentford FC",
+          "home_goals": 2,
+          "away_goals": 4
+        },
+        {
+          "date": "2026-04-11",
+          "home": "Brentford FC",
+          "away": "Everton FC",
+          "home_goals": 2,
+          "away_goals": 2
+        }
+      ]
+    },
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.4992740386833266,
+        "btts_no": 0.5007259613166736,
+        "over_1_5": 0.717781635504474,
+        "under_1_5": 0.28221836449552595,
+        "over_2_5": 0.4489328114887281,
+        "under_2_5": 0.5510671885112719,
+        "over_3_5": 0.23641293094997062,
+        "under_3_5": 0.7635870690500294,
+        "home_over_0_5": 0.7682448445635408,
+        "home_under_0_5": 0.2317551554364592,
+        "home_over_1_5": 0.42940169569771963,
+        "home_under_1_5": 0.5705983043022804,
+        "home_over_2_5": 0.18169484465253596,
+        "home_under_2_5": 0.8183051553474641,
+        "away_over_0_5": 0.6356809867191605,
+        "away_under_0_5": 0.3643190132808395,
+        "away_over_1_5": 0.2678188307247917,
+        "away_under_1_5": 0.7321811692752083,
+        "away_over_2_5": 0.08209895215711685,
+        "away_under_2_5": 0.9179010478428832
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.23571967698430393,
+          "push": 0.0,
+          "loss": 0.7642803230156959
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.235719676984304,
+          "push": 0.2290462818562483,
+          "loss": 0.5352340411594478
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.4647659588405523,
+          "push": 0.0,
+          "loss": 0.5352340411594478
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.46476595884055216,
+          "push": 0.28520055740712796,
+          "loss": 0.2500334837523198
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.7499665162476802,
+          "push": 0.0,
+          "loss": 0.2500334837523198
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.7499665162476802,
+          "push": 0.15480496022953963,
+          "loss": 0.09522852352278026
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.9047714764772197,
+          "push": 0.0,
+          "loss": 0.09522852352278029
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.09522852352278029,
+          "push": 0.0,
+          "loss": 0.9047714764772197
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.09522852352278026,
+          "push": 0.15480496022953963,
+          "loss": 0.7499665162476802
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.2500334837523198,
+          "push": 0.0,
+          "loss": 0.7499665162476802
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.2500334837523199,
+          "push": 0.285200557407128,
+          "loss": 0.4647659588405523
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.5352340411594478,
+          "push": 0.0,
+          "loss": 0.4647659588405523
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.5352340411594477,
+          "push": 0.22904628185624826,
+          "loss": 0.23571967698430393
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.7642803230156959,
+          "push": 0.0,
+          "loss": 0.23571967698430393
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.13556296913496887
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11253160380250149
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.0953482074006256
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09112197628005721
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09024431555568523
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07433855329239897
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "4adf15c1ffab0f8d17449126"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brentford FC",
+    "away": "Everton FC",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 560649,
+    "p_home": 0.5209636557633914,
+    "p_draw": 0.24574576107556792,
+    "p_away": 0.2332905831610408,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5136700018531248,
+        "btts_no": 0.48632999814687516,
+        "over_1_5": 0.7432224620458427,
+        "under_1_5": 0.25677753795415725,
+        "over_2_5": 0.49550730405565613,
+        "under_2_5": 0.5044926959443439,
+        "over_3_5": 0.27620649507736855,
+        "under_3_5": 0.7237935049226314,
+        "home_over_0_5": 0.8065979521920082,
+        "home_under_0_5": 0.19340204780799175,
+        "home_over_1_5": 0.48884145695282644,
+        "home_under_1_5": 0.5111585430471736,
+        "home_over_2_5": 0.2278070175271137,
+        "home_under_2_5": 0.7721929824728864,
+        "away_over_0_5": 0.6368352417176074,
+        "away_under_0_5": 0.3631647582823926,
+        "away_over_1_5": 0.26898614171696794,
+        "away_under_1_5": 0.7310138582830321,
+        "away_over_2_5": 0.08268920997275007,
+        "away_under_2_5": 0.9173107900272499
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.27889314906773094,
+          "push": 0.0,
+          "loss": 0.7211068509322691
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.278893149067731,
+          "push": 0.24207050669566044,
+          "loss": 0.4790363442366086
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.5209636557633914,
+          "push": 0.0,
+          "loss": 0.47903634423660857
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.5209636557633914,
+          "push": 0.24574576107556786,
+          "loss": 0.23329058316104068
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.7667094168389593,
+          "push": 0.0,
+          "loss": 0.2332905831610407
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.7667094168389593,
+          "push": 0.14923631298652004,
+          "loss": 0.0840542701745207
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.9159457298254793,
+          "push": 0.0,
+          "loss": 0.08405427017452069
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.08405427017452069,
+          "push": 0.0,
+          "loss": 0.9159457298254793
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.0840542701745207,
+          "push": 0.14923631298652004,
+          "loss": 0.7667094168389593
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.2332905831610407,
+          "push": 0.0,
+          "loss": 0.7667094168389593
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.23329058316104068,
+          "push": 0.24574576107556786,
+          "loss": 0.5209636557633914
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.47903634423660857,
+          "push": 0.0,
+          "loss": 0.5209636557633914
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.47903634423660857,
+          "push": 0.2420705066956604,
+          "loss": 0.27889314906773094
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.7211068509322691,
+          "push": 0.0,
+          "loss": 0.27889314906773094
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11688644079309048
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11539796078619761
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09602128361191992
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09479850909741883
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07114276922445043
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.07023680794350905
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "2edb0df473212ecceb19c561"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brentford FC",
+    "away": "Everton FC",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "Elo",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 560649,
+    "p_home": 0.5072013109890846,
+    "p_draw": 0.20410932388784023,
+    "p_away": 0.28868936512307525,
+    "snapshot_id": "83df012ca510a5bb1ad37f54"
+  },
+  {
+    "league": "Premier League",
+    "home": "Brentford FC",
+    "away": "Everton FC",
+    "kickoff_utc": "2026-11-23T20:00:00+00:00",
+    "captured_at_utc": "2026-11-17T06:00:19.260607+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "6db5159f60d7efe20d3d98064b258537b51bfc0b",
+    "provider_match_id": 560649,
+    "p_home": 0.4928648073019718,
+    "p_draw": 0.2654731592413479,
+    "p_away": 0.2416620334566803,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.5064720202682257,
+        "btts_no": 0.4935279797317743,
+        "over_1_5": 0.7305020487751585,
+        "under_1_5": 0.26949795122484155,
+        "over_2_5": 0.4722200577721921,
+        "under_2_5": 0.5277799422278079,
+        "over_3_5": 0.25630971301366956,
+        "under_3_5": 0.7436902869863304,
+        "home_over_0_5": 0.7874213983777744,
+        "home_under_0_5": 0.21257860162222564,
+        "home_over_1_5": 0.45912157632527306,
+        "home_under_1_5": 0.5408784236747269,
+        "home_over_2_5": 0.2047509310898248,
+        "home_under_2_5": 0.7952490689101752,
+        "away_over_0_5": 0.636258114218384,
+        "away_under_0_5": 0.36374188578161604,
+        "away_over_1_5": 0.26840248622087975,
+        "away_under_1_5": 0.7315975137791202,
+        "away_over_2_5": 0.08239408106493346,
+        "away_under_2_5": 0.9176059189350665
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.2573064130260175,
+          "push": 0.0,
+          "loss": 0.7426935869739825
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.2573064130260174,
+          "push": 0.23555839427595432,
+          "loss": 0.5071351926980282
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.4928648073019719,
+          "push": 0.0,
+          "loss": 0.5071351926980282
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.4928648073019719,
+          "push": 0.26547315924134784,
+          "loss": 0.2416620334566803
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.7583379665433198,
+          "push": 0.0,
+          "loss": 0.24166203345668036
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.7583379665433198,
+          "push": 0.15202063660802984,
+          "loss": 0.0896413968486505
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.9103586031513495,
+          "push": 0.0,
+          "loss": 0.0896413968486505
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.0896413968486505,
+          "push": 0.0,
+          "loss": 0.9103586031513495
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.0896413968486505,
+          "push": 0.15202063660802984,
+          "loss": 0.7583379665433198
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.24166203345668036,
+          "push": 0.0,
+          "loss": 0.7583379665433198
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.2416620334566803,
+          "push": 0.26547315924134784,
+          "loss": 0.4928648073019719
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.5071351926980282,
+          "push": 0.0,
+          "loss": 0.4928648073019719
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.5071351926980282,
+          "push": 0.23555839427595432,
+          "loss": 0.2573064130260174
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.7426935869739825,
+          "push": 0.0,
+          "loss": 0.2573064130260175
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.12622470496402965
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.11396478229434955
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.09357162994598855
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 0,
+          "probability": 0.09252141232655203
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.08279250767206732
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.07274066125842468
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "screen_markets": [
+      {
+        "key": "away_over_0_5",
+        "probability": 0.636258114218384,
+        "model_range": {
+          "spread": 0.001154254998446902
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_1_5",
+        "probability": 0.26840248622087975,
+        "model_range": {
+          "spread": 0.0011673109921762626
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_2_5",
+        "probability": 0.08239408106493346,
+        "model_range": {
+          "spread": 0.0005902578156332244
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_0_5",
+        "probability": 0.36374188578161604,
+        "model_range": {
+          "spread": 0.001154254998446902
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_1_5",
+        "probability": 0.7315975137791202,
+        "model_range": {
+          "spread": 0.0011673109921761515
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_2_5",
+        "probability": 0.9176059189350665,
+        "model_range": {
+          "spread": 0.0005902578156332661
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_no",
+        "probability": 0.4935279797317743,
+        "model_range": {
+          "spread": 0.01439596316979841
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_yes",
+        "probability": 0.5064720202682257,
+        "model_range": {
+          "spread": 0.014395963169798243
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_0_5",
+        "probability": 0.7874213983777744,
+        "model_range": {
+          "spread": 0.03835310762846744
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_1_5",
+        "probability": 0.45912157632527306,
+        "model_range": {
+          "spread": 0.059439761255106804
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_2_5",
+        "probability": 0.2047509310898248,
+        "model_range": {
+          "spread": 0.04611217287457772
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_0_5",
+        "probability": 0.21257860162222564,
+        "model_range": {
+          "spread": 0.03835310762846744
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_1_5",
+        "probability": 0.5408784236747269,
+        "model_range": {
+          "spread": 0.05943976125510686
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_2_5",
+        "probability": 0.7952490689101752,
+        "model_range": {
+          "spread": 0.046112172874577695
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_1_5",
+        "probability": 0.7305020487751585,
+        "model_range": {
+          "spread": 0.0254408265413687
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_2_5",
+        "probability": 0.4722200577721921,
+        "model_range": {
+          "spread": 0.04657449256692803
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_3_5",
+        "probability": 0.25630971301366956,
+        "model_range": {
+          "spread": 0.03979356412739793
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_1_5",
+        "probability": 0.26949795122484155,
+        "model_range": {
+          "spread": 0.0254408265413687
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_2_5",
+        "probability": 0.5277799422278079,
+        "model_range": {
+          "spread": 0.04657449256692803
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_3_5",
+        "probability": 0.7436902869863304,
+        "model_range": {
+          "spread": 0.039793564127397985
+        },
+        "conditional": false
+      }
+    ],
+    "frozen_screen": {
+      "status": "RESEARCH_SCREEN_ONLY",
+      "candidate": {
+        "market": "away_under_2_5",
+        "probability": 0.9176059189350665,
+        "model_disagreement": 0.0005902578156332661,
+        "minimum_hypothetical_scenario_probability": null
+      },
+      "candidates_considered": 1,
+      "expert_pick": false,
+      "historical_reliability": "NOT_ESTABLISHED_FOR_THIS_SELECTION_POLICY",
+      "calibration": "NOT_VERIFIED",
+      "note": "80% is an uncalibrated screening threshold, NOT a measured win rate. Historical out-of-sample and forward testing are required before endorsement."
+    },
+    "screen_policy_version": "intelligence_selection.screen_outlook_default_80pct_10pct_spread",
+    "snapshot_id": "816e60371a38986782869b8a"
   }
 ]
