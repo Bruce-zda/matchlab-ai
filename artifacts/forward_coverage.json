@@ -45,14 +45,6 @@
     },
     {
       "league": "Serie A",
-      "home": "Como 1907",
-      "away": "Cagliari Calcio",
-      "kickoff_utc": "2026-11-21T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Serie A",
       "home": "SS Lazio",
       "away": "US Lecce",
       "kickoff_utc": "2026-11-21T14:00:00+00:00",
@@ -60,18 +52,10 @@
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "Bayer 04 Leverkusen",
-      "away": "SC Paderborn 07",
-      "kickoff_utc": "2026-11-21T14:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Bundesliga",
-      "home": "Eintracht Frankfurt",
-      "away": "TSG 1899 Hoffenheim",
-      "kickoff_utc": "2026-11-21T14:30:00+00:00",
+      "league": "Serie A",
+      "home": "Como 1907",
+      "away": "Cagliari Calcio",
+      "kickoff_utc": "2026-11-21T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -96,6 +80,30 @@
       "home": "SV 07 Elversberg",
       "away": "SC Freiburg",
       "kickoff_utc": "2026-11-21T14:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Bundesliga",
+      "home": "Eintracht Frankfurt",
+      "away": "TSG 1899 Hoffenheim",
+      "kickoff_utc": "2026-11-21T14:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Bundesliga",
+      "home": "Bayer 04 Leverkusen",
+      "away": "SC Paderborn 07",
+      "kickoff_utc": "2026-11-21T14:30:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "AFC Bournemouth",
+      "away": "Nottingham Forest FC",
+      "kickoff_utc": "2026-11-21T15:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -132,14 +140,6 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "AFC Bournemouth",
-      "away": "Nottingham Forest FC",
-      "kickoff_utc": "2026-11-21T15:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "La Liga",
       "home": "Rayo Vallecano de Madrid",
       "away": "Valencia CF",
@@ -164,14 +164,6 @@
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "FC Schalke 04",
-      "away": "VfB Stuttgart",
-      "kickoff_utc": "2026-11-21T17:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Premier League",
       "home": "Newcastle United FC",
       "away": "Arsenal FC",
@@ -188,18 +180,10 @@
       "models": 0
     },
     {
-      "league": "Serie A",
-      "home": "SSC Napoli",
-      "away": "Torino FC",
-      "kickoff_utc": "2026-11-21T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Lille OSC",
-      "away": "Olympique Lyonnais",
-      "kickoff_utc": "2026-11-21T19:45:00+00:00",
+      "league": "Bundesliga",
+      "home": "FC Schalke 04",
+      "away": "VfB Stuttgart",
+      "kickoff_utc": "2026-11-21T17:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -223,6 +207,22 @@
       "league": "Ligue 1",
       "home": "Racing Club de Lens",
       "away": "Toulouse FC",
+      "kickoff_utc": "2026-11-21T19:45:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Serie A",
+      "home": "SSC Napoli",
+      "away": "Torino FC",
+      "kickoff_utc": "2026-11-21T19:45:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Ligue 1",
+      "home": "Lille OSC",
+      "away": "Olympique Lyonnais",
       "kickoff_utc": "2026-11-21T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -252,14 +252,6 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Hull City AFC",
-      "away": "Brighton & Hove Albion FC",
-      "kickoff_utc": "2026-11-22T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Ligue 1",
       "home": "Paris FC",
       "away": "Angers SCO",
@@ -279,6 +271,14 @@
       "league": "Serie A",
       "home": "Bologna FC 1909",
       "away": "Udinese Calcio",
+      "kickoff_utc": "2026-11-22T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Hull City AFC",
+      "away": "Brighton & Hove Albion FC",
       "kickoff_utc": "2026-11-22T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -308,17 +308,17 @@
       "models": 0
     },
     {
-      "league": "Bundesliga",
-      "home": "SV Werder Bremen",
-      "away": "Hamburger SV",
+      "league": "Premier League",
+      "home": "Liverpool FC",
+      "away": "Manchester United FC",
       "kickoff_utc": "2026-11-22T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Liverpool FC",
-      "away": "Manchester United FC",
+      "league": "Bundesliga",
+      "home": "SV Werder Bremen",
+      "away": "Hamburger SV",
       "kickoff_utc": "2026-11-22T16:30:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -372,21 +372,21 @@
       "models": 0
     },
     {
-      "league": "La Liga",
-      "home": "Levante UD",
-      "away": "Elche CF",
-      "kickoff_utc": "2026-11-23T20:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Premier League",
       "home": "Brentford FC",
       "away": "Everton FC",
       "kickoff_utc": "2026-11-23T20:00:00+00:00",
       "status": "already_recorded",
       "models": 0
+    },
+    {
+      "league": "La Liga",
+      "home": "Levante UD",
+      "away": "Elche CF",
+      "kickoff_utc": "2026-11-23T20:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-18T12:01:14.303700+00:00"
+  "collected_at_utc": "2026-11-18T17:58:05.913208+00:00"
 }
