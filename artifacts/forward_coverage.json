@@ -252,6 +252,14 @@
       "models": 0
     },
     {
+      "league": "Premier League",
+      "home": "Hull City AFC",
+      "away": "Brighton & Hove Albion FC",
+      "kickoff_utc": "2026-11-22T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
       "league": "Serie A",
       "home": "US Sassuolo Calcio",
       "away": "Genoa CFC",
@@ -271,14 +279,6 @@
       "league": "Serie A",
       "home": "Bologna FC 1909",
       "away": "Udinese Calcio",
-      "kickoff_utc": "2026-11-22T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Premier League",
-      "home": "Hull City AFC",
-      "away": "Brighton & Hove Albion FC",
       "kickoff_utc": "2026-11-22T14:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -388,5 +388,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-20T06:07:05.917430+00:00"
+  "collected_at_utc": "2026-11-20T11:59:07.587803+00:00"
 }
