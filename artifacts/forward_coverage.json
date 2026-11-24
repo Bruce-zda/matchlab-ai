@@ -93,16 +93,16 @@
     },
     {
       "league": "Premier League",
-      "home": "Leeds United FC",
-      "away": "Coventry City FC",
+      "home": "Manchester United FC",
+      "away": "Brentford FC",
       "kickoff_utc": "2026-11-28T15:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
       "league": "Premier League",
-      "home": "Manchester United FC",
-      "away": "Brentford FC",
+      "home": "Leeds United FC",
+      "away": "Coventry City FC",
       "kickoff_utc": "2026-11-28T15:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -388,5 +388,5 @@
       "models": 0
     }
   ],
-  "collected_at_utc": "2026-11-24T12:00:25.880635+00:00"
+  "collected_at_utc": "2026-11-24T17:56:37.304215+00:00"
 }
