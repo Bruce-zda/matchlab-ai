@@ -97878,5 +97878,869 @@
     },
     "screen_policy_version": "intelligence_selection.screen_outlook_default_80pct_10pct_spread",
     "snapshot_id": "88ee2c40896cdc3fc0bb87e6"
+  },
+  {
+    "league": "Premier League",
+    "home": "Coventry City FC",
+    "away": "Ipswich Town FC",
+    "kickoff_utc": "2026-12-01T20:00:00+00:00",
+    "captured_at_utc": "2026-11-25T06:02:11.554591+00:00",
+    "model": "Dixon-Coles",
+    "model_version": "1d928c055bf9948c5e9e0bd2e667030fb7451ffb",
+    "provider_match_id": 560668,
+    "p_home": 0.13515654636927912,
+    "p_draw": 0.33291909619942134,
+    "p_away": 0.5319243574312994,
+    "expected_goals": {
+      "home": 0.4603099966730299,
+      "away": 1.1799226493415624
+    },
+    "historical_context": {
+      "source": "historical league results used for training",
+      "home": {
+        "matches": [
+          {
+            "date": "2026-08-21",
+            "opponent": "Arsenal FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-29",
+            "opponent": "Hull City AFC",
+            "venue": "home",
+            "gf": 0,
+            "ga": 1,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-05",
+            "opponent": "Manchester City FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 1,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-13",
+            "opponent": "Brighton & Hove Albion FC",
+            "venue": "home",
+            "gf": 0,
+            "ga": 5,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-19",
+            "opponent": "Nottingham Forest FC",
+            "venue": "away",
+            "gf": 1,
+            "ga": 0,
+            "result": "W"
+          }
+        ],
+        "played": 5,
+        "wins": 1,
+        "draws": 0,
+        "losses": 4,
+        "goals_for": 1,
+        "goals_against": 10
+      },
+      "away": {
+        "matches": [
+          {
+            "date": "2025-04-26",
+            "opponent": "Newcastle United FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2025-05-03",
+            "opponent": "Everton FC",
+            "venue": "away",
+            "gf": 2,
+            "ga": 2,
+            "result": "D"
+          },
+          {
+            "date": "2025-05-10",
+            "opponent": "Brentford FC",
+            "venue": "home",
+            "gf": 0,
+            "ga": 1,
+            "result": "L"
+          },
+          {
+            "date": "2025-05-18",
+            "opponent": "Leicester City FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2025-05-25",
+            "opponent": "West Ham United FC",
+            "venue": "home",
+            "gf": 1,
+            "ga": 3,
+            "result": "L"
+          },
+          {
+            "date": "2026-08-22",
+            "opponent": "Sunderland AFC",
+            "venue": "home",
+            "gf": 2,
+            "ga": 1,
+            "result": "W"
+          },
+          {
+            "date": "2026-08-30",
+            "opponent": "Manchester United FC",
+            "venue": "away",
+            "gf": 2,
+            "ga": 5,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-04",
+            "opponent": "Liverpool FC",
+            "venue": "home",
+            "gf": 0,
+            "ga": 2,
+            "result": "L"
+          },
+          {
+            "date": "2026-09-12",
+            "opponent": "Crystal Palace FC",
+            "venue": "away",
+            "gf": 3,
+            "ga": 2,
+            "result": "W"
+          },
+          {
+            "date": "2026-09-19",
+            "opponent": "Everton FC",
+            "venue": "away",
+            "gf": 0,
+            "ga": 1,
+            "result": "L"
+          }
+        ],
+        "played": 10,
+        "wins": 2,
+        "draws": 1,
+        "losses": 7,
+        "goals_for": 10,
+        "goals_against": 22
+      },
+      "head_to_head": []
+    },
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.26477292071110026,
+        "btts_no": 0.7352270792888995,
+        "over_1_5": 0.4971951854435567,
+        "under_1_5": 0.5028048145564433,
+        "over_2_5": 0.2270890177247378,
+        "under_2_5": 0.7729109822752622,
+        "over_3_5": 0.08445565632808588,
+        "under_3_5": 0.9155443436719142,
+        "home_over_0_5": 0.3689120199935226,
+        "home_under_0_5": 0.6310879800064775,
+        "home_over_1_5": 0.07841591401635183,
+        "home_under_1_5": 0.9215840859836482,
+        "home_over_2_5": 0.011556783228412025,
+        "home_under_2_5": 0.988443216771588,
+        "away_over_0_5": 0.6926974921246317,
+        "away_under_0_5": 0.3073025078753683,
+        "away_over_1_5": 0.3301043028830212,
+        "away_under_1_5": 0.6698956971169788,
+        "away_over_2_5": 0.1161883446414371,
+        "away_under_2_5": 0.8838116553585629
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.028575630276030977,
+          "push": 0.0,
+          "loss": 0.9714243697239691
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.028575630276030977,
+          "push": 0.10658091609324817,
+          "loss": 0.8648434536307209
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.13515654636927918,
+          "push": 0.0,
+          "loss": 0.8648434536307209
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.13515654636927918,
+          "push": 0.3329190961994214,
+          "loss": 0.5319243574312995
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.46807564256870055,
+          "push": 0.0,
+          "loss": 0.5319243574312995
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.46807564256870055,
+          "push": 0.2876282847600451,
+          "loss": 0.24429607267125442
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.7557039273287457,
+          "push": 0.0,
+          "loss": 0.24429607267125442
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.24429607267125442,
+          "push": 0.0,
+          "loss": 0.7557039273287457
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.24429607267125442,
+          "push": 0.2876282847600451,
+          "loss": 0.46807564256870055
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.5319243574312995,
+          "push": 0.0,
+          "loss": 0.46807564256870055
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.5319243574312994,
+          "push": 0.33291909619942134,
+          "loss": 0.13515654636927915
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.8648434536307209,
+          "push": 0.0,
+          "loss": 0.13515654636927918
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.8648434536307209,
+          "push": 0.10658091609324817,
+          "loss": 0.028575630276030977
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.9714243697239691,
+          "push": 0.0,
+          "loss": 0.028575630276030977
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.21959971371563927
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.20316340859294585
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.13499978997783119
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11456039917548647
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.0800416922478581
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.062141752875555206
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "cb6afbc3d61891b1d802278b"
+  },
+  {
+    "league": "Premier League",
+    "home": "Coventry City FC",
+    "away": "Ipswich Town FC",
+    "kickoff_utc": "2026-12-01T20:00:00+00:00",
+    "captured_at_utc": "2026-11-25T06:02:11.554591+00:00",
+    "model": "Bayesian Goals",
+    "model_version": "1d928c055bf9948c5e9e0bd2e667030fb7451ffb",
+    "provider_match_id": 560668,
+    "p_home": 0.3783518001238747,
+    "p_draw": 0.237263617095641,
+    "p_away": 0.3843845827804844,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.6253203024811473,
+        "btts_no": 0.37467969751885266,
+        "over_1_5": 0.819270661536975,
+        "under_1_5": 0.18072933846302497,
+        "over_2_5": 0.6050224883285632,
+        "under_2_5": 0.3949775116714368,
+        "over_3_5": 0.38158143363673425,
+        "under_3_5": 0.6184185663632658,
+        "home_over_0_5": 0.7893111085481607,
+        "home_under_0_5": 0.21068889145183933,
+        "home_over_1_5": 0.4611899821294675,
+        "home_under_1_5": 0.5388100178705325,
+        "home_over_2_5": 0.2056865408697689,
+        "home_under_2_5": 0.7943134591302311,
+        "away_over_0_5": 0.792235527549265,
+        "away_under_0_5": 0.20776447245073504,
+        "away_over_1_5": 0.46576478258022824,
+        "away_under_1_5": 0.5342352174197718,
+        "away_over_2_5": 0.2092648476697715,
+        "away_under_2_5": 0.7907351523302285
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.1848833545285956,
+          "push": 0.0,
+          "loss": 0.8151166454714044
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.1848833545285956,
+          "push": 0.19346844559527904,
+          "loss": 0.6216481998761254
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.3783518001238747,
+          "push": 0.0,
+          "loss": 0.6216481998761253
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.37835180012387476,
+          "push": 0.23726361709564098,
+          "loss": 0.3843845827804843
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.6156154172195156,
+          "push": 0.0,
+          "loss": 0.3843845827804844
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.6156154172195156,
+          "push": 0.19520483540032216,
+          "loss": 0.18917974738016222
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.8108202526198377,
+          "push": 0.0,
+          "loss": 0.18917974738016222
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.18917974738016222,
+          "push": 0.0,
+          "loss": 0.8108202526198377
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.18917974738016222,
+          "push": 0.19520483540032216,
+          "loss": 0.6156154172195156
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.3843845827804844,
+          "push": 0.0,
+          "loss": 0.6156154172195156
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.3843845827804843,
+          "push": 0.23726361709564098,
+          "loss": 0.37835180012387476
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.6216481998761253,
+          "push": 0.0,
+          "loss": 0.3783518001238747
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.6216481998761254,
+          "push": 0.19346844559527904,
+          "loss": 0.1848833545285956
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.8151166454714044,
+          "push": 0.0,
+          "loss": 0.1848833545285956
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.10712194858199021
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.08416304756914056
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 1,
+          "probability": 0.0834143988102063
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.06878375934898247
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.06817191273032072
+        },
+        {
+          "home_goals": 2,
+          "away_goals": 2,
+          "probability": 0.06553661605251039
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "snapshot_id": "314468693dc9ae11adf7ae82"
+  },
+  {
+    "league": "Premier League",
+    "home": "Coventry City FC",
+    "away": "Ipswich Town FC",
+    "kickoff_utc": "2026-12-01T20:00:00+00:00",
+    "captured_at_utc": "2026-11-25T06:02:11.554591+00:00",
+    "model": "Elo",
+    "model_version": "1d928c055bf9948c5e9e0bd2e667030fb7451ffb",
+    "provider_match_id": 560668,
+    "p_home": 0.582213416556292,
+    "p_draw": 0.17535229886839324,
+    "p_away": 0.24243428457531482,
+    "snapshot_id": "744910fc4ce48fa35e942680"
+  },
+  {
+    "league": "Premier League",
+    "home": "Coventry City FC",
+    "away": "Ipswich Town FC",
+    "kickoff_utc": "2026-12-01T20:00:00+00:00",
+    "captured_at_utc": "2026-11-25T06:02:11.554591+00:00",
+    "model": "DC + Bayesian (50/50)",
+    "model_version": "1d928c055bf9948c5e9e0bd2e667030fb7451ffb",
+    "provider_match_id": 560668,
+    "p_home": 0.2567541732465769,
+    "p_draw": 0.28509135664753116,
+    "p_away": 0.4581544701058919,
+    "goal_markets": {
+      "markets": {
+        "btts_yes": 0.44504661159612385,
+        "btts_no": 0.554953388403876,
+        "over_1_5": 0.658232923490266,
+        "under_1_5": 0.34176707650973404,
+        "over_2_5": 0.41605575302665054,
+        "under_2_5": 0.5839442469733495,
+        "over_3_5": 0.2330185449824101,
+        "under_3_5": 0.76698145501759,
+        "home_over_0_5": 0.5791115642708415,
+        "home_under_0_5": 0.42088843572915846,
+        "home_over_1_5": 0.26980294807290967,
+        "home_under_1_5": 0.7301970519270904,
+        "home_over_2_5": 0.10862166204909046,
+        "home_under_2_5": 0.8913783379509095,
+        "away_over_0_5": 0.7424665098369485,
+        "away_under_0_5": 0.2575334901630515,
+        "away_over_1_5": 0.39793454273162465,
+        "away_under_1_5": 0.6020654572683753,
+        "away_over_2_5": 0.1627265961556043,
+        "away_under_2_5": 0.8372734038443956
+      },
+      "asian_handicap": {
+        "home_minus_1_5": {
+          "side": "home",
+          "line": -1.5,
+          "win": 0.10672949240231328,
+          "push": 0.0,
+          "loss": 0.8932705075976867
+        },
+        "home_minus_1_0": {
+          "side": "home",
+          "line": -1.0,
+          "win": 0.1067294924023133,
+          "push": 0.15002468084426365,
+          "loss": 0.743245826753423
+        },
+        "home_minus_0_5": {
+          "side": "home",
+          "line": -0.5,
+          "win": 0.2567541732465769,
+          "push": 0.0,
+          "loss": 0.743245826753423
+        },
+        "home_plus_0_0": {
+          "side": "home",
+          "line": 0.0,
+          "win": 0.2567541732465769,
+          "push": 0.2850913566475312,
+          "loss": 0.4581544701058919
+        },
+        "home_plus_0_5": {
+          "side": "home",
+          "line": 0.5,
+          "win": 0.5418455298941082,
+          "push": 0.0,
+          "loss": 0.4581544701058919
+        },
+        "home_plus_1_0": {
+          "side": "home",
+          "line": 1.0,
+          "win": 0.5418455298941082,
+          "push": 0.24141656008018367,
+          "loss": 0.21673791002570825
+        },
+        "home_plus_1_5": {
+          "side": "home",
+          "line": 1.5,
+          "win": 0.7832620899742918,
+          "push": 0.0,
+          "loss": 0.21673791002570822
+        },
+        "away_minus_1_5": {
+          "side": "away",
+          "line": -1.5,
+          "win": 0.21673791002570822,
+          "push": 0.0,
+          "loss": 0.7832620899742918
+        },
+        "away_minus_1_0": {
+          "side": "away",
+          "line": -1.0,
+          "win": 0.21673791002570825,
+          "push": 0.24141656008018367,
+          "loss": 0.5418455298941082
+        },
+        "away_minus_0_5": {
+          "side": "away",
+          "line": -0.5,
+          "win": 0.4581544701058919,
+          "push": 0.0,
+          "loss": 0.5418455298941082
+        },
+        "away_plus_0_0": {
+          "side": "away",
+          "line": 0.0,
+          "win": 0.4581544701058919,
+          "push": 0.2850913566475312,
+          "loss": 0.2567541732465769
+        },
+        "away_plus_0_5": {
+          "side": "away",
+          "line": 0.5,
+          "win": 0.743245826753423,
+          "push": 0.0,
+          "loss": 0.2567541732465769
+        },
+        "away_plus_1_0": {
+          "side": "away",
+          "line": 1.0,
+          "win": 0.743245826753423,
+          "push": 0.15002468084426365,
+          "loss": 0.1067294924023133
+        },
+        "away_plus_1_5": {
+          "side": "away",
+          "line": 1.5,
+          "win": 0.8932705075976867,
+          "push": 0.0,
+          "loss": 0.10672949240231328
+        }
+      },
+      "correct_scores": [
+        {
+          "home_goals": 0,
+          "away_goals": 1,
+          "probability": 0.14419173653231088
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 0,
+          "probability": 0.1234685374883337
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 1,
+          "probability": 0.11084117387873835
+        },
+        {
+          "home_goals": 0,
+          "away_goals": 2,
+          "probability": 0.09452073846079212
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 0,
+          "probability": 0.07410680248908942
+        },
+        {
+          "home_goals": 1,
+          "away_goals": 2,
+          "probability": 0.0731524002223479
+        }
+      ],
+      "grid_max_goals": [
+        12,
+        12
+      ],
+      "grid_truncated_and_renormalized": true
+    },
+    "screen_markets": [
+      {
+        "key": "away_over_0_5",
+        "probability": 0.7424665098369485,
+        "model_range": {
+          "spread": 0.09953803542463324
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_1_5",
+        "probability": 0.39793454273162465,
+        "model_range": {
+          "spread": 0.13566047969720707
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_over_2_5",
+        "probability": 0.1627265961556043,
+        "model_range": {
+          "spread": 0.0930765030283344
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_0_5",
+        "probability": 0.2575334901630515,
+        "model_range": {
+          "spread": 0.09953803542463324
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_1_5",
+        "probability": 0.6020654572683753,
+        "model_range": {
+          "spread": 0.13566047969720707
+        },
+        "conditional": false
+      },
+      {
+        "key": "away_under_2_5",
+        "probability": 0.8372734038443956,
+        "model_range": {
+          "spread": 0.09307650302833437
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_no",
+        "probability": 0.554953388403876,
+        "model_range": {
+          "spread": 0.36054738177004686
+        },
+        "conditional": false
+      },
+      {
+        "key": "btts_yes",
+        "probability": 0.44504661159612385,
+        "model_range": {
+          "spread": 0.3605473817700471
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_0_5",
+        "probability": 0.5791115642708415,
+        "model_range": {
+          "spread": 0.4203990885546381
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_1_5",
+        "probability": 0.26980294807290967,
+        "model_range": {
+          "spread": 0.38277406811311565
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_over_2_5",
+        "probability": 0.10862166204909046,
+        "model_range": {
+          "spread": 0.19412975764135687
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_0_5",
+        "probability": 0.42088843572915846,
+        "model_range": {
+          "spread": 0.42039908855463815
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_1_5",
+        "probability": 0.7301970519270904,
+        "model_range": {
+          "spread": 0.38277406811311565
+        },
+        "conditional": false
+      },
+      {
+        "key": "home_under_2_5",
+        "probability": 0.8913783379509095,
+        "model_range": {
+          "spread": 0.19412975764135687
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_1_5",
+        "probability": 0.658232923490266,
+        "model_range": {
+          "spread": 0.32207547609341836
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_2_5",
+        "probability": 0.41605575302665054,
+        "model_range": {
+          "spread": 0.3779334706038254
+        },
+        "conditional": false
+      },
+      {
+        "key": "over_3_5",
+        "probability": 0.2330185449824101,
+        "model_range": {
+          "spread": 0.29712577730864836
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_1_5",
+        "probability": 0.34176707650973404,
+        "model_range": {
+          "spread": 0.32207547609341836
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_2_5",
+        "probability": 0.5839442469733495,
+        "model_range": {
+          "spread": 0.3779334706038254
+        },
+        "conditional": false
+      },
+      {
+        "key": "under_3_5",
+        "probability": 0.76698145501759,
+        "model_range": {
+          "spread": 0.2971257773086484
+        },
+        "conditional": false
+      }
+    ],
+    "frozen_screen": {
+      "status": "RESEARCH_SCREEN_ONLY",
+      "candidate": {
+        "market": "away_under_2_5",
+        "probability": 0.8372734038443956,
+        "model_disagreement": 0.09307650302833437,
+        "minimum_hypothetical_scenario_probability": null
+      },
+      "candidates_considered": 1,
+      "expert_pick": false,
+      "historical_reliability": "NOT_ESTABLISHED_FOR_THIS_SELECTION_POLICY",
+      "calibration": "NOT_VERIFIED",
+      "note": "80% is an uncalibrated screening threshold, NOT a measured win rate. Historical out-of-sample and forward testing are required before endorsement."
+    },
+    "screen_policy_version": "intelligence_selection.screen_outlook_default_80pct_10pct_spread",
+    "snapshot_id": "3aa2e2ea15cf70a2a2a5d653"
   }
 ]
