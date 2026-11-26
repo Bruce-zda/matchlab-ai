@@ -1,6 +1,6 @@
 {
-  "fixture_count": 49,
-  "covered": 49,
+  "fixture_count": 59,
+  "covered": 59,
   "skipped": 0,
   "details": [
     {
@@ -28,17 +28,17 @@
       "models": 0
     },
     {
-      "league": "La Liga",
-      "home": "Levante UD",
-      "away": "Real Racing Club de Santander",
+      "league": "Premier League",
+      "home": "Nottingham Forest FC",
+      "away": "Chelsea FC",
       "kickoff_utc": "2026-11-27T20:00:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Nottingham Forest FC",
-      "away": "Chelsea FC",
+      "league": "La Liga",
+      "home": "Levante UD",
+      "away": "Real Racing Club de Santander",
       "kickoff_utc": "2026-11-27T20:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -69,14 +69,6 @@
     },
     {
       "league": "Bundesliga",
-      "home": "Hamburger SV",
-      "away": "FC Bayern M\u00fcnchen",
-      "kickoff_utc": "2026-11-28T14:30:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Bundesliga",
       "home": "1. FC K\u00f6ln",
       "away": "SV 07 Elversberg",
       "kickoff_utc": "2026-11-28T14:30:00+00:00",
@@ -92,10 +84,10 @@
       "models": 0
     },
     {
-      "league": "Premier League",
-      "home": "Manchester United FC",
-      "away": "Brentford FC",
-      "kickoff_utc": "2026-11-28T15:00:00+00:00",
+      "league": "Bundesliga",
+      "home": "Hamburger SV",
+      "away": "FC Bayern M\u00fcnchen",
+      "kickoff_utc": "2026-11-28T14:30:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
@@ -103,6 +95,14 @@
       "league": "Premier League",
       "home": "Leeds United FC",
       "away": "Coventry City FC",
+      "kickoff_utc": "2026-11-28T15:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Premier League",
+      "home": "Manchester United FC",
+      "away": "Brentford FC",
       "kickoff_utc": "2026-11-28T15:00:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -156,6 +156,22 @@
       "models": 0
     },
     {
+      "league": "Ligue 1",
+      "home": "Paris Saint-Germain FC",
+      "away": "FC Lorient",
+      "kickoff_utc": "2026-11-28T19:45:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
+      "league": "Ligue 1",
+      "home": "OGC Nice",
+      "away": "ES Troyes AC",
+      "kickoff_utc": "2026-11-28T19:45:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
       "league": "Serie A",
       "home": "FC Internazionale Milano",
       "away": "Genoa CFC",
@@ -175,22 +191,6 @@
       "league": "Ligue 1",
       "home": "Le Havre AC",
       "away": "RC Strasbourg Alsace",
-      "kickoff_utc": "2026-11-28T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "OGC Nice",
-      "away": "ES Troyes AC",
-      "kickoff_utc": "2026-11-28T19:45:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Paris Saint-Germain FC",
-      "away": "FC Lorient",
       "kickoff_utc": "2026-11-28T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -228,14 +228,6 @@
       "models": 0
     },
     {
-      "league": "Ligue 1",
-      "home": "AJ Auxerre",
-      "away": "Olympique de Marseille",
-      "kickoff_utc": "2026-11-29T14:00:00+00:00",
-      "status": "already_recorded",
-      "models": 0
-    },
-    {
       "league": "Serie A",
       "home": "US Sassuolo Calcio",
       "away": "SSC Napoli",
@@ -244,9 +236,17 @@
       "models": 0
     },
     {
+      "league": "Ligue 1",
+      "home": "AJ Auxerre",
+      "away": "Olympique de Marseille",
+      "kickoff_utc": "2026-11-29T14:00:00+00:00",
+      "status": "already_recorded",
+      "models": 0
+    },
+    {
       "league": "Premier League",
-      "home": "Crystal Palace FC",
-      "away": "Hull City AFC",
+      "home": "Sunderland AFC",
+      "away": "Tottenham Hotspur FC",
       "kickoff_utc": "2026-11-29T14:05:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -269,8 +269,8 @@
     },
     {
       "league": "Premier League",
-      "home": "Sunderland AFC",
-      "away": "Tottenham Hotspur FC",
+      "home": "Crystal Palace FC",
+      "away": "Hull City AFC",
       "kickoff_utc": "2026-11-29T14:05:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -340,17 +340,17 @@
       "models": 0
     },
     {
-      "league": "Ligue 1",
-      "home": "Olympique Lyonnais",
-      "away": "AS Monaco FC",
+      "league": "Serie A",
+      "home": "Como 1907",
+      "away": "Juventus FC",
       "kickoff_utc": "2026-11-29T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
     },
     {
-      "league": "Serie A",
-      "home": "Como 1907",
-      "away": "Juventus FC",
+      "league": "Ligue 1",
+      "home": "Olympique Lyonnais",
+      "away": "AS Monaco FC",
       "kickoff_utc": "2026-11-29T19:45:00+00:00",
       "status": "already_recorded",
       "models": 0
@@ -394,7 +394,87 @@
       "kickoff_utc": "2026-12-01T20:00:00+00:00",
       "status": "already_recorded",
       "models": 0
+    },
+    {
+      "league": "La Liga",
+      "home": "Real Sociedad de F\u00fatbol",
+      "away": "Real Madrid CF",
+      "kickoff_utc": "2026-12-02T18:00:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Liverpool FC",
+      "away": "Sunderland AFC",
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Manchester City FC",
+      "away": "Leeds United FC",
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Chelsea FC",
+      "away": "Crystal Palace FC",
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Hull City AFC",
+      "away": "Nottingham Forest FC",
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "AFC Bournemouth",
+      "away": "Brighton & Hove Albion FC",
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Brentford FC",
+      "away": "Arsenal FC",
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Newcastle United FC",
+      "away": "Manchester United FC",
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "Premier League",
+      "home": "Aston Villa FC",
+      "away": "Everton FC",
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "status": "recorded",
+      "models": 4
+    },
+    {
+      "league": "La Liga",
+      "home": "FC Barcelona",
+      "away": "Club Atl\u00e9tico de Madrid",
+      "kickoff_utc": "2026-12-02T20:30:00+00:00",
+      "status": "recorded",
+      "models": 4
     }
   ],
-  "collected_at_utc": "2026-11-25T17:54:02.317970+00:00"
+  "collected_at_utc": "2026-11-26T06:02:53.513477+00:00"
 }
